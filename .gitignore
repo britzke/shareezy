@@ -1,7 +1,21 @@
 *.class
 
+/.classpath
+/.project
+/.settings
+
 # Package Files #
 *.jar
 *.war
 *.ear
+
+/lib
+/lib/**
+/bin
+/bin/**
+/build
+/build/**
+/db
+/doc
+/javadoc.xml
 /target
