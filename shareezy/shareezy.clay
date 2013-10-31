@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clay-model clay-version="2.0.1">
+<database-model author="" begin-script="" end-script="" id="6973d7:141c5683d2a:-8000" name="segelbootverleih" sql-dialect-id="jp.azzurri.clay.dialect.Derby_10_2_Dialect" version="1.0">
+<schema-list>
+<schema id="6973d7:141c5683d2a:-7ffd" name="DEFAULT_SCHEMA">
+<table-list>
+<table id="6973d7:141c5683d2a:-7fff" name="accounts">
+<column-list>
+<column auto-increment="true" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7ffa" mandatory="true" name="id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="20" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7ff9" mandatory="true" name="username">
+<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7ff8" mandatory="true" name="passwort">
+<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7ff7" mandatory="true" name="mail">
+<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+</column>
+</column-list>
+<primary-key id="6973d7:141c5683d2a:-7ffe" name="PK_ACCOUNTS">
+<primary-key-column name="id"/>
+</primary-key>
+</table>
+<table id="6973d7:141c5683d2a:-7ff6" name="Resourcen">
+<column-list>
+<column auto-increment="true" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7ff2" mandatory="true" name="id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7ff1" mandatory="false" name="beschreibung">
+<data-type name="CLOB" selected-variant-pattern="CLOB(%n K)"/>
+</column>
+<column auto-increment="false" column-size="1" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7ff0" mandatory="false" name="bild">
+<data-type name="BLOB" selected-variant-pattern="BLOB(%n M)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7fef" mandatory="false" name="kapazität">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7fee" mandatory="false" name="accounts_id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7dfe" mandatory="true" name="typen_id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7d6c" mandatory="true" name="resourcen_id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7d69" mandatory="true" name="events_id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="6973d7:141c5683d2a:-7ff5" name="PK_RESOURCEN">
+<primary-key-column name="id"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="6973d7:141c5683d2a:-7fcf" name="FK_Resourcen_Accounts" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_ACCOUNTS" referenced-table="accounts" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="accounts_id" referenced-key-column-name="id"/>
+</foreign-key>
+<foreign-key id="6973d7:141c5683d2a:-7f89" name="FK_Resourcen_Typen" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_TYPEN" referenced-table="Typen" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="typen_id" referenced-key-column-name="id"/>
+</foreign-key>
+<foreign-key id="6973d7:141c5683d2a:-7d6e" name="FK_Resourcen_3" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_EVENTSRESOURCEN" referenced-table="EventsResourcen" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="resourcen_id" referenced-key-column-name="resourcen_id"/>
+<foreign-key-column column-name="events_id" referenced-key-column-name="events_id"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="6973d7:141c5683d2a:-7fa6" name="Typen">
+<column-list>
+<column auto-increment="true" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7fa2" mandatory="true" name="id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7fa1" mandatory="false" name="name">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+</column-list>
+<primary-key id="6973d7:141c5683d2a:-7fa5" name="PK_TYPEN">
+<primary-key-column name="id"/>
+</primary-key>
+</table>
+<table id="6973d7:141c5683d2a:-7f44" name="Buchungen">
+<column-list>
+<column auto-increment="true" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7f40" mandatory="true" name="id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7f3f" mandatory="false" name="start">
+<data-type name="DATE" selected-variant-pattern="DATE"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7f3c" mandatory="false" name="ende">
+<data-type name="DATE" selected-variant-pattern="DATE"/>
+</column>
+<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7f3b" mandatory="false" name="beschreibung">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7f3a" mandatory="true" name="kapazität">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="1" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7f37" mandatory="true" name="private">
+<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7f39" mandatory="true" name="accounts_id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7f38" mandatory="true" name="resourcen_id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7d56" mandatory="false" name="events_id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="6973d7:141c5683d2a:-7f43" name="PK_BUCHUNGEN">
+<primary-key-column name="id"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="6973d7:141c5683d2a:-7f14" name="FK_Buchungen_Accounts" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_ACCOUNTS" referenced-table="accounts" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="accounts_id" referenced-key-column-name="id"/>
+</foreign-key>
+<foreign-key id="6973d7:141c5683d2a:-7ec4" name="FK_Buchungen_Resourcen" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_RESOURCEN" referenced-table="Resourcen" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="resourcen_id" referenced-key-column-name="id"/>
+</foreign-key>
+<foreign-key id="6973d7:141c5683d2a:-7dcc" name="FK_Buchungen_Events" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_EVENTS" referenced-table="Events" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="events_id" referenced-key-column-name="id"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="6973d7:141c5683d2a:-7eb1" name="Events">
+<column-list>
+<column auto-increment="true" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7ead" mandatory="true" name="id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7eac" mandatory="true" name="beschreibung">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7eab" mandatory="true" name="start">
+<data-type name="DATE" selected-variant-pattern="DATE"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7eaa" mandatory="true" name="ende">
+<data-type name="DATE" selected-variant-pattern="DATE"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7d9a" mandatory="true" name="resourcen_id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7d97" mandatory="true" name="events_id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="6973d7:141c5683d2a:-7eb0" name="PK_EVENTS">
+<primary-key-column name="id"/>
+</primary-key>
+<foreign-key-list>
+<foreign-key id="6973d7:141c5683d2a:-7d9c" name="FK_Events_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_EVENTSRESOURCEN" referenced-table="EventsResourcen" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="resourcen_id" referenced-key-column-name="resourcen_id"/>
+<foreign-key-column column-name="events_id" referenced-key-column-name="events_id"/>
+</foreign-key>
+</foreign-key-list>
+</table>
+<table id="6973d7:141c5683d2a:-7e23" name="EventsResourcen">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7e1f" mandatory="true" name="resourcen_id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7e1e" mandatory="true" name="events_id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+</column-list>
+<primary-key id="6973d7:141c5683d2a:-7e22" name="PK_EVENTSRESOURCEN">
+<primary-key-column name="resourcen_id"/>
+<primary-key-column name="events_id"/>
+</primary-key>
+</table>
+</table-list>
+</schema>
+</schema-list>
+</database-model>
+<diagram>
+<table-figure refid="6973d7:141c5683d2a:-7fff" x="65" y="8"/>
+<table-figure refid="6973d7:141c5683d2a:-7ff6" x="348" y="99"/>
+<table-figure refid="6973d7:141c5683d2a:-7fa6" x="353" y="5"/>
+<table-figure refid="6973d7:141c5683d2a:-7f44" x="10" y="236"/>
+<table-figure refid="6973d7:141c5683d2a:-7eb1" x="344" y="349"/>
+<table-figure refid="6973d7:141c5683d2a:-7e23" x="585" y="257"/>
+</diagram>
+</clay-model>
