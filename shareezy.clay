@@ -10,18 +10,35 @@
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
 <column auto-increment="false" column-size="20" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7ff9" mandatory="true" name="username">
-<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7ff8" mandatory="true" name="passwort">
-<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+<column auto-increment="false" column-size="50" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7ff8" mandatory="true" name="passwort">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7ff7" mandatory="true" name="mail">
-<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+<column auto-increment="false" column-size="50" decimal-digits="0" default-value="" id="1672c74:14255dbacb7:-7fdd" mandatory="true" name="passwort_wiederholung">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="100" decimal-digits="0" default-value="" id="1672c74:14255dbacb7:-7fdc" mandatory="true" name="email">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="50" decimal-digits="0" default-value="" id="1672c74:14255dbacb7:-7fdb" mandatory="true" name="vorname">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="50" decimal-digits="0" default-value="" id="1672c74:14255dbacb7:-7fda" mandatory="true" name="nachname">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="1672c74:14255dbacb7:-7e96" mandatory="true" name="gruppen_id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
 </column-list>
 <primary-key id="6973d7:141c5683d2a:-7ffe" name="PK_ACCOUNTS">
 <primary-key-column name="id"/>
 </primary-key>
+<foreign-key-list>
+<foreign-key id="1672c74:14255dbacb7:-7e30" name="FK_accounts_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_GRUPPEN" referenced-table="Gruppen" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="gruppen_id" referenced-key-column-name="id"/>
+</foreign-key>
+</foreign-key-list>
 </table>
 <table id="6973d7:141c5683d2a:-7ff6" name="Resourcen">
 <column-list>
@@ -31,11 +48,8 @@
 <column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7ff1" mandatory="false" name="beschreibung">
 <data-type name="CLOB" selected-variant-pattern="CLOB(%n K)"/>
 </column>
-<column auto-increment="false" column-size="1" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7ff0" mandatory="false" name="bild">
+<column auto-increment="false" column-size="1" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7ff0" mandatory="false" name="bilder">
 <data-type name="BLOB" selected-variant-pattern="BLOB(%n M)"/>
-</column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7fef" mandatory="false" name="kapazität">
-<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7fee" mandatory="false" name="accounts_id">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
@@ -47,6 +61,18 @@
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="6973d7:141c5683d2a:-7d69" mandatory="true" name="events_id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="1672c74:14255dbacb7:-7fd7" mandatory="true" name="einstellungsdatum">
+<data-type name="DATE" selected-variant-pattern="DATE"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="1672c74:14255dbacb7:-7fd6" mandatory="true" name="enddatum">
+<data-type name="DATE" selected-variant-pattern="DATE"/>
+</column>
+<column auto-increment="false" column-size="250" decimal-digits="0" default-value="" id="1672c74:14255dbacb7:-7fd5" mandatory="false" name="usergruppe">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="1672c74:14255dbacb7:-7fc8" mandatory="true" name="gruppen_id">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
 </column-list>
@@ -63,6 +89,9 @@
 <foreign-key id="6973d7:141c5683d2a:-7d6e" name="FK_Resourcen_3" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_EVENTSRESOURCEN" referenced-table="EventsResourcen" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
 <foreign-key-column column-name="resourcen_id" referenced-key-column-name="resourcen_id"/>
 <foreign-key-column column-name="events_id" referenced-key-column-name="events_id"/>
+</foreign-key>
+<foreign-key id="1672c74:14255dbacb7:-7e74" name="FK_Resourcen_4" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_GRUPPEN" referenced-table="Gruppen" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="gruppen_id" referenced-key-column-name="id"/>
 </foreign-key>
 </foreign-key-list>
 </table>
@@ -169,16 +198,47 @@
 <primary-key-column name="events_id"/>
 </primary-key>
 </table>
+<table id="1672c74:14255dbacb7:-7fd0" name="Gruppen">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="1672c74:14255dbacb7:-7fcc" mandatory="true" name="id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="1672c74:14255dbacb7:-7fcb" mandatory="true" name="Gruppenname">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="1672c74:14255dbacb7:-7ecf" mandatory="true" name="gruppenschluessel">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+</column-list>
+<primary-key id="1672c74:14255dbacb7:-7fcf" name="PK_GRUPPEN">
+<primary-key-column name="id"/>
+</primary-key>
+</table>
+<table id="1672c74:14255dbacb7:-7e0a" name="Verfuegbarkeit">
+<column-list>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="1672c74:14255dbacb7:-7e06" mandatory="true" name="id">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="10" decimal-digits="0" default-value="" id="1672c74:14255dbacb7:-7e05" mandatory="false" name="ausgebucht">
+<data-type name="CHAR" selected-variant-pattern="CHAR(%n)"/>
+</column>
+</column-list>
+<primary-key id="1672c74:14255dbacb7:-7e09" name="PK_VERFUEGBARKEIT">
+<primary-key-column name="id"/>
+</primary-key>
+</table>
 </table-list>
 </schema>
 </schema-list>
 </database-model>
 <diagram>
-<table-figure refid="6973d7:141c5683d2a:-7fff" x="65" y="8"/>
-<table-figure refid="6973d7:141c5683d2a:-7ff6" x="348" y="99"/>
+<table-figure refid="6973d7:141c5683d2a:-7fff" x="17" y="13"/>
+<table-figure refid="6973d7:141c5683d2a:-7ff6" x="582" y="30"/>
 <table-figure refid="6973d7:141c5683d2a:-7fa6" x="353" y="5"/>
-<table-figure refid="6973d7:141c5683d2a:-7f44" x="10" y="236"/>
-<table-figure refid="6973d7:141c5683d2a:-7eb1" x="344" y="349"/>
-<table-figure refid="6973d7:141c5683d2a:-7e23" x="585" y="257"/>
+<table-figure refid="6973d7:141c5683d2a:-7f44" x="8" y="429"/>
+<table-figure refid="6973d7:141c5683d2a:-7eb1" x="378" y="457"/>
+<table-figure refid="6973d7:141c5683d2a:-7e23" x="625" y="295"/>
+<table-figure height="75" refid="1672c74:14255dbacb7:-7fd0" width="212" x="168" y="232"/>
+<table-figure height="66" refid="1672c74:14255dbacb7:-7e0a" width="110" x="441" y="240"/>
 </diagram>
 </clay-model>
