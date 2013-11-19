@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <office:document xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:officeooo="http://openoffice.org/2009/office" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:drawooo="http://openoffice.org/2010/draw" xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" xmlns:css3t="http://www.w3.org/TR/css3-text/" office:version="1.2" office:mimetype="application/vnd.oasis.opendocument.text">
- <office:meta><meta:generator>LibreOffice/4.1.2.3$MacOSX_x86 LibreOffice_project/40b2d7fde7e8d2d7bc5a449dc65df4d08a7dd38</meta:generator><dc:title/><meta:initial-creator/><meta:editing-cycles>76</meta:editing-cycles><dc:date>2013-11-18T09:02:33.021044000</dc:date><meta:editing-duration>P1DT18H45M27S</meta:editing-duration><dc:creator>Burghard Britzke</dc:creator><meta:document-statistic meta:table-count="6" meta:image-count="1" meta:object-count="0" meta:page-count="7" meta:paragraph-count="160" meta:word-count="1213" meta:character-count="9104" meta:non-whitespace-character-count="8064"/></office:meta>
+ <office:meta><meta:generator>LibreOffice/4.0.4.2$Linux_x86 LibreOffice_project/400m0$Build-2</meta:generator><dc:title/><meta:initial-creator/><meta:editing-cycles>80</meta:editing-cycles><dc:date>2013-11-19T09:27:32</dc:date><meta:editing-duration>P1DT18H46M41S</meta:editing-duration><dc:creator>Wegner Kevin</dc:creator><meta:document-statistic meta:table-count="6" meta:image-count="1" meta:object-count="0" meta:page-count="7" meta:paragraph-count="162" meta:word-count="1203" meta:character-count="9322" meta:non-whitespace-character-count="8280"/></office:meta>
  <office:settings>
   <config:config-item-set config:name="ooo:view-settings">
-   <config:config-item config:name="ViewAreaTop" config:type="int">33436</config:config-item>
+   <config:config-item config:name="ViewAreaTop" config:type="int">123</config:config-item>
    <config:config-item config:name="ViewAreaLeft" config:type="int">0</config:config-item>
-   <config:config-item config:name="ViewAreaWidth" config:type="int">25587</config:config-item>
-   <config:config-item config:name="ViewAreaHeight" config:type="int">11455</config:config-item>
+   <config:config-item config:name="ViewAreaWidth" config:type="int">28265</config:config-item>
+   <config:config-item config:name="ViewAreaHeight" config:type="int">19293</config:config-item>
    <config:config-item config:name="ShowRedlineChanges" config:type="boolean">true</config:config-item>
    <config:config-item config:name="InBrowseMode" config:type="boolean">false</config:config-item>
    <config:config-item-map-indexed config:name="Views">
     <config:config-item-map-entry>
      <config:config-item config:name="ViewId" config:type="string">view2</config:config-item>
-     <config:config-item config:name="ViewLeft" config:type="int">11391</config:config-item>
-     <config:config-item config:name="ViewTop" config:type="int">41531</config:config-item>
+     <config:config-item config:name="ViewLeft" config:type="int">6960</config:config-item>
+     <config:config-item config:name="ViewTop" config:type="int">3041</config:config-item>
      <config:config-item config:name="VisibleLeft" config:type="int">0</config:config-item>
-     <config:config-item config:name="VisibleTop" config:type="int">33436</config:config-item>
-     <config:config-item config:name="VisibleRight" config:type="int">25585</config:config-item>
-     <config:config-item config:name="VisibleBottom" config:type="int">44889</config:config-item>
+     <config:config-item config:name="VisibleTop" config:type="int">123</config:config-item>
+     <config:config-item config:name="VisibleRight" config:type="int">28263</config:config-item>
+     <config:config-item config:name="VisibleBottom" config:type="int">19415</config:config-item>
      <config:config-item config:name="ZoomType" config:type="short">0</config:config-item>
      <config:config-item config:name="ViewLayoutColumns" config:type="short">0</config:config-item>
      <config:config-item config:name="ViewLayoutBookMode" config:type="boolean">false</config:config-item>
-     <config:config-item config:name="ZoomFactor" config:type="short">100</config:config-item>
+     <config:config-item config:name="ZoomFactor" config:type="short">110</config:config-item>
      <config:config-item config:name="IsSelectedFrame" config:type="boolean">false</config:config-item>
     </config:config-item-map-entry>
    </config:config-item-map-indexed>
@@ -31,7 +31,7 @@
    <config:config-item config:name="ChartAutoUpdate" config:type="boolean">true</config:config-item>
    <config:config-item config:name="IsLabelDocument" config:type="boolean">false</config:config-item>
    <config:config-item config:name="MathBaselineAlignment" config:type="boolean">false</config:config-item>
-   <config:config-item config:name="Rsid" config:type="int">8591135</config:config-item>
+   <config:config-item config:name="Rsid" config:type="int">8653283</config:config-item>
    <config:config-item config:name="OutlineLevelYieldsNumbering" config:type="boolean">true</config:config-item>
    <config:config-item config:name="PrintLeftPages" config:type="boolean">true</config:config-item>
    <config:config-item config:name="DoNotJustifyLinesWithManualBreak" config:type="boolean">false</config:config-item>
@@ -144,7 +144,7 @@
    <style:paragraph-properties style:text-autospace="ideograph-alpha" style:line-break="strict" style:writing-mode="lr-tb" style:font-independent-line-spacing="false">
     <style:tab-stops/>
    </style:paragraph-properties>
-   <style:text-properties style:use-window-font-color="true" style:font-name="Times New Roman" fo:font-size="10pt" fo:language="de" fo:country="DE" style:letter-kerning="true" style:font-name-asian="Times New Roman" style:font-size-asian="10pt" style:language-asian="en" style:country-asian="US" style:font-name-complex="Times New Roman" style:font-size-complex="10pt" style:language-complex="en" style:country-complex="US"/>
+   <style:text-properties style:use-window-font-color="true" fo:font-size="10pt" fo:language="de" fo:country="DE" style:letter-kerning="true" style:font-size-asian="10pt" style:language-asian="en" style:country-asian="US" style:font-size-complex="10pt" style:language-complex="en" style:country-complex="US"/>
   </style:default-style>
   <style:default-style style:family="paragraph">
    <style:paragraph-properties fo:orphans="2" fo:widows="2" fo:hyphenation-ladder-count="no-limit" style:text-autospace="ideograph-alpha" style:punctuation-wrap="hanging" style:line-break="strict" style:tab-stop-distance="1.27cm" style:writing-mode="page"/>
@@ -668,6 +668,12 @@
   <style:style style:name="Tabelle1.B3" style:family="table-cell">
    <style:table-cell-properties fo:padding="0.097cm" fo:border-left="0.05pt solid #000000" fo:border-right="0.05pt solid #000000" fo:border-top="none" fo:border-bottom="0.05pt solid #000000"/>
   </style:style>
+  <style:style style:name="Tabelle1.A4" style:family="table-cell">
+   <style:table-cell-properties fo:padding="0.097cm" fo:border-left="0.05pt solid #000000" fo:border-right="none" fo:border-top="none" fo:border-bottom="0.05pt solid #000000"/>
+  </style:style>
+  <style:style style:name="Tabelle1.B4" style:family="table-cell">
+   <style:table-cell-properties fo:padding="0.097cm" fo:border-left="0.05pt solid #000000" fo:border-right="0.05pt solid #000000" fo:border-top="none" fo:border-bottom="0.05pt solid #000000"/>
+  </style:style>
   <style:style style:name="Tabelle2" style:family="table">
    <style:table-properties style:width="16.51cm" table:align="margins" style:writing-mode="lr-tb"/>
   </style:style>
@@ -1107,6 +1113,34 @@
   <style:style style:name="P63" style:family="paragraph" style:parent-style-name="Footer" style:master-page-name="Standard">
    <style:paragraph-properties style:page-number="auto"/>
   </style:style>
+  <style:style style:name="P64" style:family="paragraph" style:parent-style-name="Contents_20_2">
+   <style:paragraph-properties>
+    <style:tab-stops>
+     <style:tab-stop style:position="16.311cm" style:type="right" style:leader-style="dotted" style:leader-text="."/>
+    </style:tab-stops>
+   </style:paragraph-properties>
+  </style:style>
+  <style:style style:name="P65" style:family="paragraph" style:parent-style-name="Contents_20_3">
+   <style:paragraph-properties>
+    <style:tab-stops>
+     <style:tab-stop style:position="16.11cm" style:type="right" style:leader-style="dotted" style:leader-text="."/>
+    </style:tab-stops>
+   </style:paragraph-properties>
+  </style:style>
+  <style:style style:name="P66" style:family="paragraph" style:parent-style-name="Contents_20_4">
+   <style:paragraph-properties>
+    <style:tab-stops>
+     <style:tab-stop style:position="15.91cm" style:type="right" style:leader-style="dotted" style:leader-text="."/>
+    </style:tab-stops>
+   </style:paragraph-properties>
+  </style:style>
+  <style:style style:name="P67" style:family="paragraph" style:parent-style-name="Contents_20_1">
+   <style:paragraph-properties>
+    <style:tab-stops>
+     <style:tab-stop style:position="16.51cm" style:type="right" style:leader-style="dotted" style:leader-text="."/>
+    </style:tab-stops>
+   </style:paragraph-properties>
+  </style:style>
   <style:style style:name="T1" style:family="text">
    <style:text-properties officeooo:rsid="000de08c"/>
   </style:style>
@@ -1337,258 +1371,6 @@
     <style:text-properties fo:color="#000000" fo:font-size="100%"/>
    </text:list-level-style-number>
   </text:list-style>
-  <text:list-style style:name="L3">
-   <text:list-level-style-number text:level="1" style:num-format="A">
-    <style:list-level-properties/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="2" style:num-format="A">
-    <style:list-level-properties text:space-before="0.8cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="3" style:num-format="A">
-    <style:list-level-properties text:space-before="1.6cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="4" style:num-format="A">
-    <style:list-level-properties text:space-before="2.4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="5" style:num-format="A">
-    <style:list-level-properties text:space-before="3.2cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="6" style:num-format="A">
-    <style:list-level-properties text:space-before="4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="7" style:num-format="A">
-    <style:list-level-properties text:space-before="4.8cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="8" style:num-format="A">
-    <style:list-level-properties text:space-before="5.6cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="9" style:num-format="A">
-    <style:list-level-properties text:space-before="6.4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="10" style:num-format="A">
-    <style:list-level-properties text:space-before="7.2cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-  </text:list-style>
-  <text:list-style style:name="L4">
-   <text:list-level-style-number text:level="1" style:num-format="A">
-    <style:list-level-properties/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="2" style:num-format="A">
-    <style:list-level-properties text:space-before="0.8cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="3" style:num-format="A">
-    <style:list-level-properties text:space-before="1.6cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="4" style:num-format="A">
-    <style:list-level-properties text:space-before="2.4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="5" style:num-format="A">
-    <style:list-level-properties text:space-before="3.2cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="6" style:num-format="A">
-    <style:list-level-properties text:space-before="4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="7" style:num-format="A">
-    <style:list-level-properties text:space-before="4.8cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="8" style:num-format="A">
-    <style:list-level-properties text:space-before="5.6cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="9" style:num-format="A">
-    <style:list-level-properties text:space-before="6.4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="10" style:num-format="A">
-    <style:list-level-properties text:space-before="7.2cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-  </text:list-style>
-  <text:list-style style:name="L5">
-   <text:list-level-style-number text:level="1" style:num-format="A">
-    <style:list-level-properties/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="2" style:num-format="A">
-    <style:list-level-properties text:space-before="0.8cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="3" style:num-format="A">
-    <style:list-level-properties text:space-before="1.6cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="4" style:num-format="A">
-    <style:list-level-properties text:space-before="2.4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="5" style:num-format="A">
-    <style:list-level-properties text:space-before="3.2cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="6" style:num-format="A">
-    <style:list-level-properties text:space-before="4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="7" style:num-format="A">
-    <style:list-level-properties text:space-before="4.8cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="8" style:num-format="A">
-    <style:list-level-properties text:space-before="5.6cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="9" style:num-format="A">
-    <style:list-level-properties text:space-before="6.4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="10" style:num-format="A">
-    <style:list-level-properties text:space-before="7.2cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-  </text:list-style>
-  <text:list-style style:name="L6">
-   <text:list-level-style-number text:level="1" style:num-format="A">
-    <style:list-level-properties/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="2" style:num-format="A">
-    <style:list-level-properties text:space-before="0.8cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="3" style:num-format="A">
-    <style:list-level-properties text:space-before="1.6cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="4" style:num-format="A">
-    <style:list-level-properties text:space-before="2.4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="5" style:num-format="A">
-    <style:list-level-properties text:space-before="3.2cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="6" style:num-format="A">
-    <style:list-level-properties text:space-before="4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="7" style:num-format="A">
-    <style:list-level-properties text:space-before="4.8cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="8" style:num-format="A">
-    <style:list-level-properties text:space-before="5.6cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="9" style:num-format="A">
-    <style:list-level-properties text:space-before="6.4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="10" style:num-format="A">
-    <style:list-level-properties text:space-before="7.2cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-  </text:list-style>
-  <text:list-style style:name="L7">
-   <text:list-level-style-number text:level="1" style:num-format="A">
-    <style:list-level-properties/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="2" style:num-format="A">
-    <style:list-level-properties text:space-before="0.8cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="3" style:num-format="A">
-    <style:list-level-properties text:space-before="1.6cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="4" style:num-format="A">
-    <style:list-level-properties text:space-before="2.4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="5" style:num-format="A">
-    <style:list-level-properties text:space-before="3.2cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="6" style:num-format="A">
-    <style:list-level-properties text:space-before="4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="7" style:num-format="A">
-    <style:list-level-properties text:space-before="4.8cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="8" style:num-format="A">
-    <style:list-level-properties text:space-before="5.6cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="9" style:num-format="A">
-    <style:list-level-properties text:space-before="6.4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="10" style:num-format="A">
-    <style:list-level-properties text:space-before="7.2cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-  </text:list-style>
-  <text:list-style style:name="L8">
-   <text:list-level-style-number text:level="1" style:num-format="A">
-    <style:list-level-properties/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="2" style:num-format="A">
-    <style:list-level-properties text:space-before="0.8cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="3" style:num-format="A">
-    <style:list-level-properties text:space-before="1.6cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="4" style:num-format="A">
-    <style:list-level-properties text:space-before="2.4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="5" style:num-format="A">
-    <style:list-level-properties text:space-before="3.2cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="6" style:num-format="A">
-    <style:list-level-properties text:space-before="4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="7" style:num-format="A">
-    <style:list-level-properties text:space-before="4.8cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="8" style:num-format="A">
-    <style:list-level-properties text:space-before="5.6cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="9" style:num-format="A">
-    <style:list-level-properties text:space-before="6.4cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-   <text:list-level-style-number text:level="10" style:num-format="A">
-    <style:list-level-properties text:space-before="7.2cm"/>
-    <style:text-properties fo:color="#000000" fo:font-size="100%"/>
-   </text:list-level-style-number>
-  </text:list-style>
   <style:page-layout style:name="pm1">
    <style:page-layout-properties fo:page-width="21.59cm" fo:page-height="27.94cm" style:num-format="1" style:print-orientation="portrait" fo:margin-top="2.54cm" fo:margin-bottom="1.249cm" fo:margin-left="2.54cm" fo:margin-right="2.54cm" fo:border="none" fo:padding="0cm" style:writing-mode="lr-tb" style:footnote-max-height="0cm">
     <style:footnote-sep style:width="0.018cm" style:distance-before-sep="0.101cm" style:distance-after-sep="0.101cm" style:line-style="solid" style:adjustment="left" style:rel-width="25%" style:color="#000000"/>
@@ -1619,7 +1401,7 @@
     <text:p text:style-name="Header">Software-Architektur „Shareezy“</text:p>
    </style:header>
    <style:footer>
-    <text:p text:style-name="P1">Stand <text:modification-date style:data-style-name="N30">18.11.13</text:modification-date> <text:modification-time style:data-style-name="N40">09:02</text:modification-time><text:tab/><text:tab/><text:page-number text:select-page="current">7</text:page-number></text:p>
+    <text:p text:style-name="P1">Stand <text:modification-date style:data-style-name="N30">19.11.13</text:modification-date> <text:modification-time style:data-style-name="N40">09:27</text:modification-time><text:tab/><text:tab/><text:page-number text:select-page="current">3</text:page-number></text:p>
    </style:footer>
   </style:master-page>
  </office:master-styles>
@@ -1723,35 +1505,35 @@
      <text:p text:style-name="P12"><text:a xlink:type="simple" xlink:href="#__RefHeading__26378_1659882527" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">1Einleitung<text:tab/>2</text:a></text:p>
      <text:p text:style-name="P12"><text:a xlink:type="simple" xlink:href="#__RefHeading__26380_1659882527" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2Beschreibung der Benutzerschnittstelle<text:tab/>2</text:a></text:p>
      <text:p text:style-name="P13"><text:a xlink:type="simple" xlink:href="#__RefHeading__811_2145797916" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.1 Benutzergruppen<text:tab/>2</text:a></text:p>
-     <text:p text:style-name="P13"><text:a xlink:type="simple" xlink:href="#__RefHeading__4190_1263209261" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2 Account<text:tab/>2</text:a></text:p>
+     <text:p text:style-name="P13"><text:a xlink:type="simple" xlink:href="#__RefHeading__4190_1263209261" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2 Konto<text:tab/>2</text:a></text:p>
      <text:p text:style-name="P59"><text:a xlink:type="simple" xlink:href="#__RefHeading__4192_1263209261" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2.1 Registrierung<text:tab/>2</text:a></text:p>
      <text:p text:style-name="P59"><text:a xlink:type="simple" xlink:href="#__RefHeading__5087_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2.2 Login<text:tab/>3</text:a></text:p>
      <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__1264_825139797" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2.2.1 Beschreibung des Login-Formulars<text:tab/>3</text:a></text:p>
-     <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__1266_825139797" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2.2.2 Accountpanel<text:tab/>3</text:a></text:p>
+     <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__1266_825139797" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2.2.2 Benutzerkonto<text:tab/>3</text:a></text:p>
      <text:p text:style-name="P59"><text:a xlink:type="simple" xlink:href="#__RefHeading__1268_825139797" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2.3 Logout<text:tab/>3</text:a></text:p>
-     <text:p text:style-name="P59"><text:a xlink:type="simple" xlink:href="#__RefHeading__5089_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2.4 Accountseite<text:tab/>3</text:a></text:p>
-     <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__5091_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2.4.1 Eigene Buchungen<text:tab/>3</text:a></text:p>
-     <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__4194_1263209261" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2.4.2 Profil bearbeiten<text:tab/>3</text:a></text:p>
+     <text:p text:style-name="P59"><text:a xlink:type="simple" xlink:href="#__RefHeading__5089_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2.4 Kontoseite<text:tab/>3</text:a></text:p>
+     <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__5091_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2.4.1 Eigene Buchungen<text:tab/>4</text:a></text:p>
+     <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__4194_1263209261" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2.4.2 Profil bearbeiten<text:tab/>4</text:a></text:p>
      <text:p text:style-name="P59"><text:a xlink:type="simple" xlink:href="#__RefHeading__5093_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2.5 Gruppen<text:tab/>4</text:a></text:p>
      <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__4196_1263209261" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.2.5.1 Gruppenverwaltung<text:tab/>4</text:a></text:p>
      <text:p text:style-name="P13"><text:a xlink:type="simple" xlink:href="#__RefHeading__4198_1263209261" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3 Ressourcen<text:tab/>4</text:a></text:p>
      <text:p text:style-name="P59"><text:a xlink:type="simple" xlink:href="#__RefHeading__5099_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.1 Eigene Ressourcen<text:tab/>4</text:a></text:p>
      <text:p text:style-name="P59"><text:a xlink:type="simple" xlink:href="#__RefHeading__5101_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.2 Eigene Ressourcen Verwaltung<text:tab/>4</text:a></text:p>
-     <text:p text:style-name="P59"><text:a xlink:type="simple" xlink:href="#__RefHeading__5103_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.3 Ressourcenansicht<text:tab/>4</text:a></text:p>
-     <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__5327_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.3.1 Status der Verfügbarkeit<text:tab/>4</text:a></text:p>
+     <text:p text:style-name="P59"><text:a xlink:type="simple" xlink:href="#__RefHeading__5103_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.3 Ressourcenansicht<text:tab/>5</text:a></text:p>
+     <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__5327_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.3.1 Status der Verfügbarkeit<text:tab/>5</text:a></text:p>
      <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__5329_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.3.2 Filterfunktion<text:tab/>5</text:a></text:p>
      <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__5331_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.3.3 Button neue Ressource<text:tab/>5</text:a></text:p>
      <text:p text:style-name="P59"><text:a xlink:type="simple" xlink:href="#__RefHeading__5321_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.4 Detailressourcenansicht<text:tab/>5</text:a></text:p>
-     <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__5333_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.4.1 Bildergalerie<text:tab/>5</text:a></text:p>
+     <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__5333_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.4.1 Bildergalerie <text:tab/>5</text:a></text:p>
      <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__5335_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.4.2 Kalender<text:tab/>5</text:a></text:p>
-     <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__5337_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.4.3 Buchungen<text:tab/>5</text:a></text:p>
-     <text:p text:style-name="P59"><text:a xlink:type="simple" xlink:href="#__RefHeading__5107_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.5 neue Ressource<text:tab/>5</text:a></text:p>
+     <text:p text:style-name="P60"><text:a xlink:type="simple" xlink:href="#__RefHeading__5337_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.4.3 Buchungen<text:tab/>6</text:a></text:p>
+     <text:p text:style-name="P59"><text:a xlink:type="simple" xlink:href="#__RefHeading__5107_747461095" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.3.5 neue Ressource<text:tab/>6</text:a></text:p>
      <text:p text:style-name="P13"><text:a xlink:type="simple" xlink:href="#__RefHeading__5001_534894546" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">2.4 Beschreibung der Navigation<text:tab/>6</text:a></text:p>
      <text:p text:style-name="P12"><text:a xlink:type="simple" xlink:href="#__RefHeading__26406_1659882527" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3Datenmodell<text:tab/>6</text:a></text:p>
      <text:p text:style-name="P13"><text:a xlink:type="simple" xlink:href="#__RefHeading__26408_1659882527" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.1Beschreibung der einzelnen Entitäten<text:tab/>6</text:a></text:p>
      <text:p text:style-name="P13"><text:a xlink:type="simple" xlink:href="#__RefHeading__26420_1659882527" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">3.2Beschreibung des Object Relational Mapping (ORM)<text:tab/>6</text:a></text:p>
-     <text:p text:style-name="P12"><text:a xlink:type="simple" xlink:href="#__RefHeading__30108_1659882527" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4Implementierung<text:tab/>6</text:a></text:p>
-     <text:p text:style-name="P12"><text:a xlink:type="simple" xlink:href="#__RefHeading__26494_1659882527" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5Glossar<text:tab/>6</text:a></text:p>
+     <text:p text:style-name="P12"><text:a xlink:type="simple" xlink:href="#__RefHeading__30108_1659882527" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">4Implementierung<text:tab/>7</text:a></text:p>
+     <text:p text:style-name="P12"><text:a xlink:type="simple" xlink:href="#__RefHeading__26494_1659882527" text:style-name="Index_20_Link" text:visited-style-name="Index_20_Link">5Glossar<text:tab/>7</text:a></text:p>
     </text:index-body>
    </text:table-of-content>
    <text:p text:style-name="P10"/>
@@ -1787,18 +1569,18 @@
       <text:p text:style-name="Table_20_Contents">Gering – Zugriff auf index.html und Registrierung</text:p>
      </table:table-cell>
     </table:table-row>
+    <table:table-row>
+     <table:table-cell table:style-name="Tabelle1.A4" office:value-type="string">
+      <text:p text:style-name="Table_20_Contents">Administrator</text:p>
+     </table:table-cell>
+     <table:table-cell table:style-name="Tabelle1.B4" office:value-type="string">
+      <text:p text:style-name="Table_20_Contents">Verwaltung der Website.</text:p>
+     </table:table-cell>
+    </table:table-row>
    </table:table>
    <text:p text:style-name="Text_20_body"/>
-   <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark-start text:name="__RefHeading__4190_1263209261"/><text:s/><office:annotation office:name="__Fieldmark__699_360134498">
-     <dc:creator>Burghard Britzke</dc:creator>
-     <dc:date>2013-11-17T12:54:51</dc:date>
-     <text:list text:style-name="">
-      <text:list-item>
-       <text:p>Account ist ein Anglizismus, Konto wäre hier besser.</text:p>
-      </text:list-item>
-     </text:list>
-    </office:annotation>Account<office:annotation-end office:name="__Fieldmark__699_360134498"/><text:bookmark-end text:name="__RefHeading__4190_1263209261"/></text:h>
-   <text:p text:style-name="Text_20_body">Der Account speichert die für den Benutzer privaten Informationen und Funktionen.</text:p>
+   <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark-start text:name="__RefHeading__4190_1263209261"/><text:s/>Konto<text:bookmark-end text:name="__RefHeading__4190_1263209261"/></text:h>
+   <text:p text:style-name="Text_20_body">Das Konto speichert die für den Benutzer privaten Informationen und Funktionen.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading__4192_1263209261"/><text:s/>Registrierung<text:bookmark-end text:name="__RefHeading__4192_1263209261"/></text:h>
    <text:p text:style-name="Text_20_body">Um sich als Nutzer registrieren zu können, muss der Benutzer die Schaltfläche zur Registrierung anwählen. Der Benutzer wird dann zu einem Registrierungsformular weitergeleitet in dem folgende Angaben getätigt werden müssen:</text:p>
    <table:table table:name="Tabelle2" table:style-name="Tabelle2">
@@ -1814,15 +1596,7 @@
     </table:table-row>
     <table:table-row>
      <table:table-cell table:style-name="Tabelle2.A7" office:value-type="string">
-      <text:p text:style-name="Table_20_Contents"><office:annotation office:name="__Fieldmark__700_360134498">
-        <dc:creator>Burghard Britzke</dc:creator>
-        <dc:date>2013-11-17T12:56:09</dc:date>
-        <text:list text:continue-numbering="true" text:style-name="">
-         <text:list-item>
-          <text:p>Anglizismus</text:p>
-         </text:list-item>
-        </text:list>
-       </office:annotation>Username<office:annotation-end office:name="__Fieldmark__700_360134498"/></text:p>
+      <text:p text:style-name="Table_20_Contents">Benutzername</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Tabelle2.B7" office:value-type="string">
       <text:p text:style-name="Table_20_Contents">Validierung bezüglich vorhandener Existenz</text:p>
@@ -1871,44 +1645,20 @@
     </table:table-row>
    </table:table>
    <text:p text:style-name="Text_20_body"/>
-   <text:p text:style-name="Text_20_body">Nachdem der Benutzer seine Angaben eingegeben hat, kann er diese durch einen Klick auf die Schaltfläche „Registrieren“ absenden.</text:p>
-   <text:p text:style-name="Text_20_body"><text:soft-page-break/>Die E-Mailadresse wird über eine Bestätigungsmail validiert, die der Benutzer beantworten muss. Eine Freischaltung des Accounts erfolgt ggf. durch <text:s/><office:annotation office:name="__Fieldmark__698_360134498">
-     <dc:creator>Burghard Britzke</dc:creator>
-     <dc:date>2013-11-17T12:47:36</dc:date>
-     <text:list text:continue-numbering="true" text:style-name="">
-      <text:list-item>
-       <text:p>Hier wird eine neue Benutzergruppe eingeführt, die unter 2.1 nicht aufgeführt ist.</text:p>
-      </text:list-item>
-     </text:list>
-    </office:annotation>Administratoren<office:annotation-end office:name="__Fieldmark__698_360134498"/>.</text:p>
+   <text:p text:style-name="Text_20_body"><text:soft-page-break/>Nachdem der Benutzer seine Angaben eingegeben hat, kann er diese durch einen Klick auf die Schaltfläche „Registrieren“ absenden.</text:p>
+   <text:p text:style-name="Text_20_body">Die E-Mailadresse wird über eine Bestätigungsmail validiert, die der Benutzer beantworten muss. Eine Freischaltung des Accounts erfolgt ggf. durch <text:s/>Administratoren.</text:p>
    <text:p text:style-name="Text_20_body">Mögliche Erweiterung: </text:p>
    <text:p text:style-name="Text_20_body">Eine Passwort Analyse zeigt dem Benutzer eine allgemein Sicherheitseinschätzung seines gewählten Passwortes.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading__5087_747461095"/><text:s/>Login<text:bookmark-end text:name="__RefHeading__5087_747461095"/></text:h>
    <text:p text:style-name="Text_20_body">Ein Login ist erst nach erfolgreicher abgeschlossener Registrierung des Benutzers möglich.</text:p>
    <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__1264_825139797"/><text:s/>Beschreibung des Login-Formulars<text:bookmark-end text:name="__RefHeading__1264_825139797"/></text:h>
-   <text:p text:style-name="Text_20_body">In der Werkzeugleiste des Headers gibt es einen „Shortway“ zum anmelden. Nach korrekter Eingabe des Benutzernamens und des dazugehörigen Kennwortes, das mit Betätigung der Schaltfläche „anmelden“ an den Server gesandt wird, gilt der Benutzer für die Applikation als authentisiert. </text:p>
-   <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__1266_825139797"/><text:s/><office:annotation office:name="__Fieldmark__701_360134498">
-     <dc:creator>Burghard Britzke</dc:creator>
-     <dc:date>2013-11-17T12:56:48</dc:date>
-     <text:list text:continue-numbering="true" text:style-name="">
-      <text:list-item>
-       <text:p>Anglizismus</text:p>
-      </text:list-item>
-     </text:list>
-    </office:annotation>Account Panel<office:annotation-end office:name="__Fieldmark__701_360134498"/><text:bookmark-end text:name="__RefHeading__1266_825139797"/></text:h>
-   <text:p text:style-name="Text_20_body">Wenn der Benutzer angemeldet ist, erhält er im Navigationsmenü einen Unterpunkt Account Panel. Dieser ermöglicht ihm die Navigation zur Accountseite.</text:p>
+   <text:p text:style-name="Text_20_body">In der Werkzeugleiste der Kopfzeile gibt es einen „Shortway“ zum anmelden. Nach korrekter Eingabe des Benutzernamens und des dazugehörigen Kennwortes, das mit Betätigung der Schaltfläche „anmelden“ an den Server gesandt wird, gilt der Benutzer für die Applikation als authentisiert. </text:p>
+   <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__1266_825139797"/><text:s/>Benutzerkonto<text:bookmark-end text:name="__RefHeading__1266_825139797"/></text:h>
+   <text:p text:style-name="Text_20_body">Wenn der Benutzer angemeldet ist, erhält er im Navigationsmenü einen Unterpunkt Benutzerkonto. Dieser ermöglicht ihm die Navigation zur Kontoseite.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading__1268_825139797"/><text:s/>Logout<text:bookmark-end text:name="__RefHeading__1268_825139797"/></text:h>
-   <text:p text:style-name="Text_20_body">Ist der User eingeloggt ändert sich der Zustand des Loginbuttons im <office:annotation office:name="__Fieldmark__702_360134498">
-     <dc:creator>Burghard Britzke</dc:creator>
-     <dc:date>2013-11-17T12:57:02</dc:date>
-     <text:list text:continue-numbering="true" text:style-name="">
-      <text:list-item>
-       <text:p>Anglizismus</text:p>
-      </text:list-item>
-     </text:list>
-    </office:annotation>Header<office:annotation-end office:name="__Fieldmark__702_360134498"/>. Dem User wird nun ein Logoutbutton dargestellt. Möchte der User sich ausloggen, so muss er auf den Logoutbutton klicken. Danach werden die Funktionalitäten und Rechte eines eingeloggten Users wieder entfernt. Der User kann keine Buchungen/Reservierungen mehr vornehmen und hat ebenfalls keinen Zugriff mehr auf das Accountpanel.</text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading__5089_747461095"/><text:s/>Accountseite<text:bookmark-end text:name="__RefHeading__5089_747461095"/></text:h>
-   <text:p text:style-name="Text_20_body">Auf der Accountseite werden dem User seine Accountinformationen aufgezeigt, welche er bei der Registrierung angab. Das Passwort wird auch hier nicht im Klartext angezeigt. Es Befinden sich mehrere Navigationselemente und Interaktionselemente auf dieser Seite.</text:p>
+   <text:p text:style-name="Text_20_body">Ist der Benutzer eingeloggt ändert sich der Zustand der Loginschaltfläche in der Kopfzeile. Dem Benutzer wird nun eine Logoutschaltfläche dargestellt. Möchte der Benutzer sich ausloggen, so muss er auf den Logoutschaltfläche klicken. Danach werden die Funktionalitäten und Rechte eines eingeloggten Benutzers wieder entfernt. Der Benutzer kann keine Buchungen/Reservierungen mehr vornehmen und hat ebenfalls keinen Zugriff mehr auf das Benutzerkonto.</text:p>
+   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading__5089_747461095"/><text:s/>Kontoseite<text:bookmark-end text:name="__RefHeading__5089_747461095"/></text:h>
+   <text:p text:style-name="Text_20_body">Auf der Kontoseite werden dem Benutzer seine Kontoinformationen aufgezeigt, welche er bei der Registrierung angab. Das Passwort wird auch hier nicht im Klartext angezeigt. Es Befinden sich mehrere Navigationselemente und Interaktionselemente(Schalftflächen) auf dieser Seite.</text:p>
    <table:table table:name="Tabelle3" table:style-name="Tabelle3">
     <table:table-column table:style-name="Tabelle3.A"/>
     <table:table-column table:style-name="Tabelle3.B"/>
@@ -1933,7 +1683,7 @@
       <text:p text:style-name="Table_20_Contents">Gruppenverwaltung</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Tabelle3.B5" office:value-type="string">
-      <text:p text:style-name="Table_20_Contents">Navigiert den User zur Gruppenverwaltung</text:p>
+      <text:p text:style-name="Table_20_Contents">Navigiert den Benutzer zur Gruppenverwaltung</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row>
@@ -1941,7 +1691,7 @@
       <text:p text:style-name="Table_20_Contents">Eigene Ressourcen</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Tabelle3.B5" office:value-type="string">
-      <text:p text:style-name="Table_20_Contents">Navigiert den User zu den eigenen Ressourcen</text:p>
+      <text:p text:style-name="Table_20_Contents">Navigiert den Benutzer zu den eigenen Ressourcen</text:p>
      </table:table-cell>
     </table:table-row>
     <table:table-row>
@@ -1949,28 +1699,20 @@
       <text:p text:style-name="Table_20_Contents">Eigene Buchungen</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Tabelle3.B5" office:value-type="string">
-      <text:p text:style-name="Table_20_Contents">Navigiert den User zu den eigenen Buchungen</text:p>
+      <text:p text:style-name="Table_20_Contents">Navigiert den Benutzer zu den eigenen Buchungen</text:p>
      </table:table-cell>
     </table:table-row>
    </table:table>
    <text:p text:style-name="Text_20_body"/>
-   <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__5091_747461095"/><text:s/>Eigene Buchungen<text:bookmark-end text:name="__RefHeading__5091_747461095"/></text:h>
-   <text:p text:style-name="Text_20_body">Dem User werden alle von ihm gebuchten Ressourcen angezeigt</text:p>
-   <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__4194_1263209261"/><text:soft-page-break/><text:s/>Profil bearbeiten<text:bookmark-end text:name="__RefHeading__4194_1263209261"/></text:h>
-   <text:p text:style-name="Text_20_body">Der User kann sein Profil bearbeiten. Es gelten die gleichen Richtlinien wie bei der Registrierung.</text:p>
-   <text:p text:style-name="Text_20_body"><office:annotation office:name="__Fieldmark__725_360134498">
-     <dc:creator>Burghard Britzke</dc:creator>
-     <dc:date>2013-11-17T12:58:50</dc:date>
-     <text:list text:continue-numbering="true" text:style-name="">
-      <text:list-item>
-       <text:p>Das ist etwas ungenau und sollte noch präzisiert werden.</text:p>
-      </text:list-item>
-     </text:list>
-    </office:annotation>Außerdem hat der User die Möglichkeit sein Profil zu löschen und wird nach Tätigung automatisch ausgeloggt.<office:annotation-end office:name="__Fieldmark__725_360134498"/></text:p>
+   <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__5091_747461095"/><text:soft-page-break/><text:s/>Eigene Buchungen<text:bookmark-end text:name="__RefHeading__5091_747461095"/></text:h>
+   <text:p text:style-name="Text_20_body">Dem Benutzer werden alle von ihm gebuchten Ressourcen angezeigt</text:p>
+   <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__4194_1263209261"/><text:s/>Profil bearbeiten<text:bookmark-end text:name="__RefHeading__4194_1263209261"/></text:h>
+   <text:p text:style-name="Text_20_body">Der Benutzer kann sein Profil bearbeiten. Es gelten die gleichen Richtlinien wie bei der Registrierung.</text:p>
+   <text:p text:style-name="Text_20_body">Außerdem hat der Benutzer die Möglichkeit sein Profil zu löschen, wodurch es aus der Datenbank gelöscht wird.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading__5093_747461095"/><text:s/>Gruppen<text:bookmark-end text:name="__RefHeading__5093_747461095"/></text:h>
-   <text:p text:style-name="Text_20_body">Gruppen ermöglichen es dem User mehrere User zu einer Einheit zusammenzufügen um Ressourcen gemeinschaftlich buchen zu können – bspw. beim Buchen einer Ressource, welche als Privat gekennzeichnet ist.</text:p>
+   <text:p text:style-name="Text_20_body">Gruppen ermöglichen es dem Benutzer mehrere Benutzer zu einer Einheit zusammenzufügen um Ressourcen gemeinschaftlich buchen zu können – bspw. beim Buchen einer Ressource, welche als Privat gekennzeichnet ist.</text:p>
    <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__4196_1263209261"/><text:s/>Gruppenverwaltung<text:bookmark-end text:name="__RefHeading__4196_1263209261"/></text:h>
-   <text:p text:style-name="Text_20_body">Dem User werden alle Gruppen angezeigt, deren Mitglied er ist. Zusätzlich kann der User neue Gruppen erstellen.</text:p>
+   <text:p text:style-name="Text_20_body">Dem Benutzer werden alle Gruppen angezeigt, deren Mitglied er ist. Zusätzlich kann der User neue Gruppen erstellen.</text:p>
    <text:p text:style-name="Text_20_body">Um eine Gruppe erstellen zu können, müssen folgende Angaben beschrieben werden:</text:p>
    <table:table table:name="Tabelle4" table:style-name="Tabelle4">
     <table:table-column table:style-name="Tabelle4.A"/>
@@ -1999,7 +1741,7 @@
       <text:p text:style-name="Table_20_Contents"><office:annotation office:name="__Fieldmark__726_360134498">
         <dc:creator>Burghard Britzke</dc:creator>
         <dc:date>2013-11-17T13:01:06</dc:date>
-        <text:list text:continue-numbering="true" text:style-name="">
+        <text:list text:style-name="">
          <text:list-item>
           <text:p>Sollte das System nicht selbst wissen, ob ein Benutzer Mitglied in einer Gruppe ist und die Angebote an Ressourcen entsprechend steuern? </text:p>
          </text:list-item>
@@ -2009,16 +1751,16 @@
     </table:table-row>
    </table:table>
    <text:p text:style-name="Text_20_body"/>
-   <text:p text:style-name="Text_20_body">Vom User erstellte Gruppen werden gesondert gekennzeichnet und können gelöscht bzw. editiert werden.</text:p>
+   <text:p text:style-name="Text_20_body">Vom Benutzer erstellte Gruppen werden gesondert gekennzeichnet und können gelöscht bzw. editiert werden.</text:p>
    <text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark-start text:name="__RefHeading__4198_1263209261"/><text:s/>Ressourcen<text:bookmark-end text:name="__RefHeading__4198_1263209261"/></text:h>
-   <text:p text:style-name="Text_20_body">Eine Ressource beschreibt ein Objekt, welches ein User anderen Usern in einem zeitlichen Bereich zur Verfügung stellen möchte.</text:p>
+   <text:p text:style-name="Text_20_body">Eine Ressource beschreibt ein Objekt, welches ein Benutzer anderen Benutzern in einem zeitlichen Bereich zur Verfügung stellen möchte.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading__5099_747461095"/><text:s/>Eigene Ressourcen<text:bookmark-end text:name="__RefHeading__5099_747461095"/></text:h>
-   <text:p text:style-name="Text_20_body">Nachdem der User über die Navigationleiste zu „Eigene Ressourcen“ navigiert ist wird ihm eine Liste der von ihm eingepflegten Ressourcen angezeigt.</text:p>
+   <text:p text:style-name="Text_20_body">Nachdem der Benutzer über die Navigationleiste zu „Eigene Ressourcen“ navigiert ist wird ihm eine Liste der von ihm eingepflegten Ressourcen angezeigt.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading__5101_747461095"/><text:s/>Eigene Ressourcen Verwaltung<text:bookmark-end text:name="__RefHeading__5101_747461095"/></text:h>
-   <text:p text:style-name="Text_20_body">Unter dem Reiter „Ressourcen verwalten“ kann der User die Daten für seine eigenen Ressourcen editieren. Nach dem Editieren der Ressource muss ein Button „Änderungen übernehmen“ gedrückt werden, um die Änderungen an der Ressource zu bestätigen.</text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading__5103_747461095"/><text:s/>Ressourcenansicht<text:bookmark-end text:name="__RefHeading__5103_747461095"/></text:h>
-   <text:p text:style-name="Text_20_body">Nachdem der User in der Navigationsleiste die Navigation für die Ressourcenansicht tätigte wird er auf die Ressourcenansicht geleitet. Die Ressourcenansicht bietet dem User eine Übersicht aller verfügbaren Ressourcen. Es wird ihm, dem User, der User ,welcher die Ressource erstellte, eine Kurzbeschreibung der Ressource, ein Ressourcendetailansichtsbutton, die zeitliche Verfügbarkeit sowie den Status der Verfügbarkeit angezeigt. Ein Button zum erstellen einer neuer Ressource ist weiterhin vorhanden.</text:p>
-   <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__5327_747461095"/><text:soft-page-break/><text:s/>Status der Verfügbarkeit<text:bookmark-end text:name="__RefHeading__5327_747461095"/></text:h>
+   <text:p text:style-name="Text_20_body">Unter dem Reiter „Ressourcen verwalten“ kann der Benutzer die Daten für seine eigenen Ressourcen editieren. Nach dem Editieren der Ressource muss eine Schaltfläche „Änderungen übernehmen“ gedrückt werden, um die Änderungen an der Ressource zu bestätigen.</text:p>
+   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading__5103_747461095"/><text:soft-page-break/><text:s/>Ressourcenansicht<text:bookmark-end text:name="__RefHeading__5103_747461095"/></text:h>
+   <text:p text:style-name="Text_20_body">Nachdem der Benutzer in der Navigationsleiste die Navigation für die Ressourcenansicht tätigte wird er auf die Ressourcenansicht geleitet. Die Ressourcenansicht bietet dem Benutzer eine Übersicht aller verfügbaren Ressourcen. Es wird ihm, dem Benutzer, der Benutzer, welcher die Ressource erstellte, eine Kurzbeschreibung der Ressource, ein Ressourcendetailansichtsbutton, die zeitliche Verfügbarkeit sowie den Status der Verfügbarkeit angezeigt. Eine Schaltfläche zum erstellen einer neuer Ressource ist weiterhin vorhanden.</text:p>
+   <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__5327_747461095"/><text:s/>Status der Verfügbarkeit<text:bookmark-end text:name="__RefHeading__5327_747461095"/></text:h>
    <text:p text:style-name="Text_20_body">Der Status der Verfügbarkeit gibt an inwiefern die Ressource verfügbar ist.</text:p>
    <table:table table:name="Tabelle5" table:style-name="Tabelle5">
     <table:table-column table:style-name="Tabelle5.A"/>
@@ -2060,16 +1802,16 @@
    <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__5329_747461095"/><text:s/>Filterfunktion<text:bookmark-end text:name="__RefHeading__5329_747461095"/></text:h>
    <text:p text:style-name="Text_20_body">Filterfunktionen ermöglichen spezifisches Suchen je nach Kategorie.</text:p>
    <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__5331_747461095"/><text:s/>Button neue Ressource<text:bookmark-end text:name="__RefHeading__5331_747461095"/></text:h>
-   <text:p text:style-name="Text_20_body">Ein Button zum erstellen neuer Ressourcen befindet sich ebenfalls auf der Ressourcenansicht und leitet den User, sofern eingeloggt, zu einer Seite, welche es ihm ermöglicht eine neue Ressource einzustellen.</text:p>
+   <text:p text:style-name="Text_20_body">Eine Schaltfläche zum erstellen neuer Ressourcen befindet sich ebenfalls auf der Ressourcenansicht und leitet den Benutzer, sofern eingeloggt, zu einer Seite, welche es ihm ermöglicht eine neue Ressource einzustellen.</text:p>
    <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading__5321_747461095"/><text:s/>Detailressourcenansicht<text:bookmark-end text:name="__RefHeading__5321_747461095"/></text:h>
-   <text:p text:style-name="Text_20_body">Nachdem der User den <text:s/>Ressourcendetailansichtsbutton auswählte, wird er auf die Detailressourcenansicht geleitet. Auf dieser Seite erscheint eine Beschreibung der Ressource sowie eine Bildergalerie zu dieser Ressource. </text:p>
+   <text:p text:style-name="Text_20_body">Nachdem der Benutzer die Ressourcendetailansichtschaltfläche auswählte, wird er auf die Detailressourcenansicht geleitet. Auf dieser Seite erscheint eine Beschreibung der Ressource sowie eine Bildergalerie zu dieser Ressource. </text:p>
    <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__5333_747461095"/><text:s/>Bildergalerie <text:bookmark-end text:name="__RefHeading__5333_747461095"/></text:h>
    <text:p text:style-name="Text_20_body">Mehrere Bilder pro Ressource sind möglich.</text:p>
    <text:p text:style-name="Text_20_body">Bilder werden durch eine Funktion einheitlich größenoptimiert und beim Anklicken im Vollbildmodus dargestellt. </text:p>
    <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__5335_747461095"/><text:s/>Kalender<text:bookmark-end text:name="__RefHeading__5335_747461095"/></text:h>
-   <text:p text:style-name="Text_20_body">Des Weiteren wird dem User ein Kalender präsentiert, welcher ihm die nötigen Buchungsinformationen aufzeigt. Buchungsinformationen beinhalten die Dauer der Verfügbarkeit der Ressource, mögliche Fremdbuchungen der Ressource sowie die Dauer der eigenen Buchung, sofern getätigt.</text:p>
-   <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__5337_747461095"/><text:s/>Buchungen<text:bookmark-end text:name="__RefHeading__5337_747461095"/></text:h>
-   <text:p text:style-name="Text_20_body">Eigene Buchungen einer Ressource können durch einen Klick auf einen Buchungsbutton vorgenommen werden. Dabei wird ein neues Eingabefenster aufgerufen, welches die zeitlichen Eigenschaften der gewünschten Buchung abfragt und hingehend auf die Buchung validiert.</text:p>
+   <text:p text:style-name="Text_20_body">Des Weiteren wird dem Benutzer ein Kalender präsentiert, welcher ihm die nötigen Buchungsinformationen aufzeigt. Buchungsinformationen beinhalten die Dauer der Verfügbarkeit der Ressource, mögliche Fremdbuchungen der Ressource sowie die Dauer der eigenen Buchung, sofern getätigt.</text:p>
+   <text:h text:style-name="Heading_20_4" text:outline-level="4"><text:bookmark-start text:name="__RefHeading__5337_747461095"/><text:soft-page-break/><text:s/>Buchungen<text:bookmark-end text:name="__RefHeading__5337_747461095"/></text:h>
+   <text:p text:style-name="Text_20_body">Eigene Buchungen einer Ressource können durch einen Klick auf einen Buchungsschaltfläche vorgenommen werden. Dabei wird ein neues Eingabefenster aufgerufen, welches die zeitlichen Eigenschaften der gewünschten Buchung abfragt und hingehend auf die Buchung validiert.</text:p>
    <text:p text:style-name="Text_20_body">Zusätzlich gibt es die Möglichkeit, Ressourcen mit einer Gruppe zu teilen. <office:annotation office:name="__Fieldmark__728_360134498">
      <dc:creator>Burghard Britzke</dc:creator>
      <dc:date>2013-11-17T13:09:35</dc:date>
@@ -2078,9 +1820,9 @@
        <text:p>Das ist etwas ungenau und sollte noch präzisiert werden.</text:p>
       </text:list-item>
      </text:list>
-    </office:annotation>Ein Radio-Button unterhalb des Eingabefensters weißt diesbezüglich darauf hin.<office:annotation-end office:name="__Fieldmark__728_360134498"/></text:p>
-   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading__5107_747461095"/><text:soft-page-break/><text:s/>neue Ressource<text:bookmark-end text:name="__RefHeading__5107_747461095"/></text:h>
-   <text:p text:style-name="Text_20_body">Dem User ist es möglich eigene Ressourcen zu erstellen und anderen Usern zur Verfügung zu stellen. Um eigene Ressourcen zu erstellen muss der User zu der Seite „neue Ressource erstellen“ navigieren. Auf dieser Seite befinden sich mehrere Eingabefelder die ausgefüllt werden müssen.</text:p>
+    </office:annotation>Eine Auswahschaltfläche unterhalb des Eingabefensters weißt diesbezüglich darauf hin.<office:annotation-end office:name="__Fieldmark__728_360134498"/></text:p>
+   <text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark-start text:name="__RefHeading__5107_747461095"/><text:s/>neue Ressource<text:bookmark-end text:name="__RefHeading__5107_747461095"/></text:h>
+   <text:p text:style-name="Text_20_body">Dem Benutzer ist es möglich eigene Ressourcen zu erstellen und anderen Benutzern zur Verfügung zu stellen. Um eigene Ressourcen zu erstellen muss der Benutzer zu der Seite „neue Ressource erstellen“ navigieren. Auf dieser Seite befinden sich mehrere Eingabefelder die ausgefüllt werden müssen.</text:p>
    <text:p text:style-name="Text_20_body"/>
    <table:table table:name="Tabelle6" table:style-name="Tabelle6">
     <table:table-column table:style-name="Tabelle6.A"/>
@@ -2135,7 +1877,7 @@
     </table:table-row>
     <table:table-row>
      <table:table-cell table:style-name="Tabelle6.A7" office:value-type="string">
-      <text:p text:style-name="Text_20_body">Usergruppe</text:p>
+      <text:p text:style-name="Text_20_body">Benutzergruppe</text:p>
      </table:table-cell>
      <table:table-cell table:style-name="Tabelle6.B7" office:value-type="string">
       <text:p text:style-name="Table_20_Contents">Beschreibt für wen bzw. für welche Gruppen die Ressource verfügbar ist.</text:p>
