@@ -186,18 +186,18 @@
 </database-model>
 <diagram>
 <table-figure height="147" refid="16f7abd:1426f37016b:-7e9a" width="173" x="44" y="45"/>
-<table-figure refid="16f7abd:1426f37016b:-7e8f" x="839" y="78"/>
+<table-figure refid="16f7abd:1426f37016b:-7e8f" x="724" y="167"/>
 <fk-figure refid="16f7abd:1426f37016b:-7695">
 <source-terminal x="2" y="161"/>
 <target-terminal x="108" y="17"/>
 </fk-figure>
-<table-figure refid="16f7abd:1426f37016b:-7e81" x="357" y="500"/>
-<table-figure refid="16f7abd:1426f37016b:-7e76" x="501" y="48"/>
+<table-figure refid="16f7abd:1426f37016b:-7e81" x="382" y="425"/>
+<table-figure refid="16f7abd:1426f37016b:-7e76" x="750" y="37"/>
 <table-figure refid="16f7abd:1426f37016b:-7e68" x="245" y="224"/>
 <table-figure refid="16f7abd:1426f37016b:-7e5f" x="762" y="406"/>
 <fk-figure refid="16f7abd:1426f37016b:-7741">
 <source-terminal x="7" y="36"/>
 </fk-figure>
-<table-figure height="62" refid="16f7abd:1426f37016b:-74b8" width="137" x="35" y="350"/>
+<table-figure height="62" refid="16f7abd:1426f37016b:-74b8" width="137" x="60" y="343"/>
 </diagram>
 </clay-model>
