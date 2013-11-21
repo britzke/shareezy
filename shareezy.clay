@@ -9,16 +9,16 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e95" mandatory="true" name="id">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
-<column auto-increment="false" column-size="25" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e94" mandatory="true" name="Username">
+<column auto-increment="false" column-size="25" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e94" mandatory="true" name="username">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e93" mandatory="true" name="Email">
+<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e93" mandatory="true" name="email">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e92" mandatory="true" name="Passwort">
+<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e92" mandatory="true" name="passwort">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e91" mandatory="true" name="Vorname">
+<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e91" mandatory="true" name="vorname">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 <column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e90" mandatory="true" name="nachname">
