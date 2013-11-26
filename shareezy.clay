@@ -185,16 +185,16 @@
 </schema-list>
 </database-model>
 <diagram>
-<table-figure height="147" refid="16f7abd:1426f37016b:-7e9a" width="173" x="44" y="45"/>
-<table-figure refid="16f7abd:1426f37016b:-7e8f" x="724" y="167"/>
+<table-figure height="147" refid="16f7abd:1426f37016b:-7e9a" width="173" x="44" y="81"/>
+<table-figure refid="16f7abd:1426f37016b:-7e8f" x="407" y="159"/>
 <fk-figure refid="16f7abd:1426f37016b:-7695">
 <source-terminal x="2" y="161"/>
 <target-terminal x="108" y="17"/>
 </fk-figure>
-<table-figure refid="16f7abd:1426f37016b:-7e81" x="382" y="425"/>
-<table-figure refid="16f7abd:1426f37016b:-7e76" x="750" y="37"/>
-<table-figure refid="16f7abd:1426f37016b:-7e68" x="245" y="224"/>
-<table-figure refid="16f7abd:1426f37016b:-7e5f" x="762" y="406"/>
+<table-figure refid="16f7abd:1426f37016b:-7e81" x="207" y="467"/>
+<table-figure refid="16f7abd:1426f37016b:-7e76" x="435" y="39"/>
+<table-figure refid="16f7abd:1426f37016b:-7e68" x="813" y="195"/>
+<table-figure refid="16f7abd:1426f37016b:-7e5f" x="609" y="457"/>
 <fk-figure refid="16f7abd:1426f37016b:-7741">
 <source-terminal x="7" y="36"/>
 </fk-figure>
