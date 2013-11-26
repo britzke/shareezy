@@ -46,7 +46,7 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e89" mandatory="true" name="typen_id">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e88" mandatory="true" name="resourcen_id">
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e88" mandatory="true" name="ressourcen_id">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e86" mandatory="true" name="einstellungsdatum">
@@ -70,7 +70,7 @@
 <foreign-key-column column-name="gruppen_id" referenced-key-column-name="id"/>
 </foreign-key>
 <foreign-key id="16f7abd:1426f37016b:-7671" name="FK_Ressourcen_Buchungen" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_BUCHUNGEN" referenced-table="Buchungen" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
-<foreign-key-column column-name="resourcen_id" referenced-key-column-name="id"/>
+<foreign-key-column column-name="ressourcen_id" referenced-key-column-name="id"/>
 </foreign-key>
 <foreign-key id="16f7abd:1426f37016b:-7623" name="FK_Ressourcen_Accounts" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_ACCOUNTS" referenced-table="Accounts" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
 <foreign-key-column column-name="accounts_id" referenced-key-column-name="id"/>
