@@ -55,6 +55,9 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="667f9:1429568fea0:-7d13" mandatory="true" name="Startdatum">
 <data-type name="DATE" selected-variant-pattern="DATE"/>
 </column>
+<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="18f1cb6:1429d8ae896:-7fc9" mandatory="true" name="Name">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
 </column-list>
 <primary-key id="16f7abd:1426f37016b:-7e82" name="PK_RESSOURCEN">
 <primary-key-column name="id"/>
@@ -77,6 +80,9 @@
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 <column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e7d" mandatory="true" name="passwort">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
+<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="18f1cb6:1429d8ae896:-7fce" mandatory="true" name="Gruppenverantwortlicher">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 </column-list>
@@ -177,10 +183,10 @@
 <diagram>
 <table-figure height="147" refid="16f7abd:1426f37016b:-7e9a" width="173" x="45" y="49"/>
 <table-figure refid="16f7abd:1426f37016b:-7e8f" x="527" y="157"/>
-<table-figure refid="16f7abd:1426f37016b:-7e81" x="207" y="467"/>
+<table-figure refid="16f7abd:1426f37016b:-7e81" x="195" y="501"/>
 <table-figure refid="16f7abd:1426f37016b:-7e76" x="435" y="39"/>
 <table-figure refid="16f7abd:1426f37016b:-7e68" x="218" y="278"/>
-<table-figure refid="16f7abd:1426f37016b:-7e5f" x="489" y="420"/>
+<table-figure refid="16f7abd:1426f37016b:-7e5f" x="492" y="410"/>
 <table-figure height="62" refid="16f7abd:1426f37016b:-74b8" width="137" x="60" y="343"/>
 </diagram>
 </clay-model>
