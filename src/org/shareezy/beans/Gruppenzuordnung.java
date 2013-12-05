@@ -41,6 +41,7 @@ public class Gruppenzuordnung {
 		return null;
 	}
 	
+	
 	/**
 	 * bearbeiten der ressource
 	 * @return
