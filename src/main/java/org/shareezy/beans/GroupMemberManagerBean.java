@@ -2,6 +2,11 @@ package org.shareezy.beans;
 
 import javax.faces.bean.ManagedBean;
 
+/** Beschreibung von GroupMemberManagerBean 
+*
+* @author Timo Kuchling
+* @version Dez 5, 2013 - 09:23Uhr
+*/
 @ManagedBean(name="MemberManager")
 public class GroupMemberManagerBean {
 	
@@ -13,6 +18,7 @@ public class GroupMemberManagerBean {
 	 * 
 	 *  - wird bei Klick auf 'Hinzufügen' und 'Annehmen' aufgerufen
 	 *  - erstellt die Zuweisung in der AccountsGruppen Entität
+	 *  @return gibt nichts zurück damit sich die View nicht ändert
 	 */
 	public String addUser(){
 		return null; 
@@ -22,6 +28,7 @@ public class GroupMemberManagerBean {
 	 * 
 	 *  - wird bei Klick auf 'Entfernen' aufgerufen
 	 *  - löscht die Zuweisung in der AccountsGruppen Entität
+	 *  @return gibt nichts zurück damit sich die View nicht ändert
 	 */
 	public String deleteUser(){
 		return null; 
@@ -30,6 +37,7 @@ public class GroupMemberManagerBean {
 	/** Die Methode deleteRequest dient dazu eine Anfrage in der Gruppendetailansicht zu entfernen
 	 * 
 	 *  - wird bei Klick auf Ablehnen aufgerufen
+	 *  @return gibt nichts zurück damit sich die View nicht ändert
 	 */
 	public String deleteRequest(){
 		return null; 
