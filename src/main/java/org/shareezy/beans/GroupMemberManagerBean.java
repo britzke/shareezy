@@ -14,10 +14,10 @@ import javax.faces.bean.ManagedBean;
 public class GroupMemberManagerBean {
 	
 	/** Die Methode AddUser dient dazu dem Benutzer eine Gruppe zuzuweisen
-	 * 
-	 *  - wird bei Klick auf 'Hinzufügen' und 'Annehmen' aufgerufen
+	 * @Beschreibung
+	 *  - wird bei Klick auf 'Hinzufügen' und 'Annehmen' aufgerufen <br>
 	 *  - falls addUser durch einen Klick auf 'Annehmen' aufgerufen wurde muss deleteRequest
-	 *  - nach dem Hinzufügen aufgerufen werden
+	 *    nach dem Hinzufügen aufgerufen werden <br>
 	 *  
 	 *  - erstellt die Zuweisung in der AccountsGruppen Entität
 	 *  @return gibt nichts zurück damit sich die View nicht ändert
@@ -27,8 +27,8 @@ public class GroupMemberManagerBean {
 		}
 	
 	/** Die Methode deleteUser dient dazu die Gruppenzuweisung eines Benutzers zu entfernen
-	 * 
-	 *  - wird bei Klick auf 'Entfernen' aufgerufen
+	 * @Beschreibung
+	 *  - wird bei Klick auf 'Entfernen' aufgerufen<br>
 	 *  - löscht die Zuweisung in der AccountsGruppen Entität
 	 *  @return gibt nichts zurück damit sich die View nicht ändert
 	 */
@@ -37,8 +37,9 @@ public class GroupMemberManagerBean {
 		}
 	
 	/** Die Methode deleteRequest dient dazu eine Anfrage in der Gruppendetailansicht zu entfernen
-	 * 
-	 *  - wird bei Klick auf Ablehnen aufgerufen
+	 * @Beschreibung
+	 *  - wird bei Klick auf Ablehnen aufgerufen<br>
+	 *  - 
 	 *  @return gibt nichts zurück damit sich die View nicht ändert
 	 */
 	public String deleteRequest(){
