@@ -5,7 +5,10 @@ import javax.faces.bean.ManagedBean;
 /** Beschreibung von GroupMemberManagerBean 
 *
 * @author Timo Kuchling
-* @version Dez 5, 2013 - 09:23Uhr
+* @Beschreibung
+*  - Ermöglicht das Hinzufügen/Entfernen von Benutzern in Gruppen
+*  - Entfernt abgelehnte Aufnahmeanfragen
+* @version Dez 5, 2013 - 09:30Uhr
 */
 @ManagedBean(name="MemberManager")
 public class GroupMemberManagerBean {
