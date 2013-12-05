@@ -16,6 +16,9 @@ public class GroupMemberManagerBean {
 	/** Die Methode AddUser dient dazu dem Benutzer eine Gruppe zuzuweisen
 	 * 
 	 *  - wird bei Klick auf 'Hinzufügen' und 'Annehmen' aufgerufen
+	 *  - falls addUser durch einen Klick auf 'Annehmen' aufgerufen wurde muss deleteRequest
+	 *  - nach dem Hinzufügen aufgerufen werden
+	 *  
 	 *  - erstellt die Zuweisung in der AccountsGruppen Entität
 	 *  @return gibt nichts zurück damit sich die View nicht ändert
 	 */
@@ -41,4 +44,5 @@ public class GroupMemberManagerBean {
 	public String deleteRequest(){
 		return null; 
 	}
+	
 }
