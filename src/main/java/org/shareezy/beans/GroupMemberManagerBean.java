@@ -10,10 +10,6 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean(name="MemberManager")
 public class GroupMemberManagerBean {
 	
-	public GroupMemberManagerBean(){
-		
-	}
-	
 	/** Die Methode AddUser dient dazu dem Benutzer eine Gruppe zuzuweisen
 	 * 
 	 *  - wird bei Klick auf 'Hinzufügen' und 'Annehmen' aufgerufen
