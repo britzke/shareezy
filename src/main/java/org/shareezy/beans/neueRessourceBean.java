@@ -22,7 +22,7 @@ public class neueRessourceBean {
 	 * 
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
-	private String neueRessource() {
+	public String neueRessource() {
 		return null;
 	}
 
@@ -33,7 +33,7 @@ public class neueRessourceBean {
 	 * 
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
-	private String loescheRessource() {
+	public String loescheRessource() {
 		return null;
 	}
 
@@ -43,7 +43,7 @@ public class neueRessourceBean {
 	 * 
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
-	private String speichern() {
+	public String speichern() {
 		return null;
 	}
 }
