@@ -3,26 +3,33 @@ package org.shareezy.beans;
 import javax.faces.bean.ManagedBean;
 
 /**
- * @author e1_slipachuk
  * 
- * GroupMembership ist eine Klasse/Funktion für 
- * "eigene Gruppenzugehörigkeit beantragen/entfernen".
- *  
- *
+ * @author Maxim Slipachuk
+ * @Beschreibung Eigene Gruppenzugehörigkeit beantragen/entfernen.
+ * @version Dez 9, 2013 
  */
 @ManagedBean
 public class GroupMembership {	
-	/*userName - Username bzw. User-ID(in unser Fall als String)
-	 newGroupp - Neue Gruppe  
-	 myGroupp -  user existiert schon in diese Gruppe.*/
+	
 	public GroupMembership(){			
 	}
-	/*Der user erstellt eine Anfrage für eine Gruppe*/
+	/** Die Methode sendAnfrage erstellt eine Anfrage fuer eine Gruppe
+	 * @Description
+	 *  - wird bei Klick auf 'Hinzufuegen' aufgerufen
+	 *  	 
+	 *  @return gibt nichts zurueck damit sich die View nicht Veraendert
+	 */
 	public String sendAnfrage( ){				
 		return null;
 	}
 	
-	/*Der user will eine Gruppe verlassen*/
+	/** 
+	 * Mit Methode knopfGruppeVerlassen- wird der User aus eine Gruppe entfernt
+	 * @Description
+	 *  - wird bei Klick auf 'Gruppe Verlassen' aufgerufen
+	 *  	 
+	 *  @return gibt nichts zurueck damit sich die View nicht Veraendert
+	 */
 	public String knopfGruppeVerlassen(){		
 		return null;
 	}
