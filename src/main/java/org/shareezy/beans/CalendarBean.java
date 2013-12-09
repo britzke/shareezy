@@ -12,10 +12,12 @@ import java.util.Calendar;
 public class CalendarBean {
 
 	/**
-	 * liest die neuen, vom User geänderten Daten aus der Datenbank aus und lässt sie im Kalender erscheinen
-	 * wird aufgerufen sobald ein User eine Ressource erfolgreich gebucht hat
+	 * liest die neuen, vom User geaenderten Daten aus der Datenbank aus und laesst sie im Kalender erscheinen
+	 * die Methode wird durch die Schedule.xml (View) angesprochen
+	 * wird aufgerufen sobald ein User eine Ressource erfolgreich gebucht hat (Klick auf den Bestaetigungsbutton unterhalb des TimePickers)
 	 */
-	public void scheduleController(){
+	public String scheduleController(){
+		return null;
 	}
 	
 	/**

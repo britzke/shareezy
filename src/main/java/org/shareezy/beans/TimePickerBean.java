@@ -10,12 +10,12 @@ import java.util.Date;
 
 public class TimePickerBean {
 
-	/**
-	 * wird durch Verwendung des TimePickers ausgeführt
-	 * um den vom User ausgewählten Zeitraum im Textfeld auszugeben
-	 */
-	
 	private Date timeframe;
+	
+	/**
+	 * wird durch Verwendung des TimePickers ausgefuehrt
+	 * um den vom User ausgewaehlten Zeitraum im Textfeld auszugeben
+	 */
 	
 	public Date getTimeframe(){
 		return timeframe;
@@ -25,20 +25,16 @@ public class TimePickerBean {
     /**
 	 * um Doppelbuchungen zu verhindern
 	 * 
-	 * sucht Datensatz "ressourcen_id" in der Entität "Buchungen" und vergleicht die 
+	 * sucht Datensatz "ressourcen_id" in der Entitaet "Buchungen" und vergleicht die 
 	 * neuen Werte (Datum + Uhrzeit) mit den Werten aus der Datenbank
-	 * Fehlermeldung wenn Ressource in dem gewünschtem Zeitraum bereits vergeben 
+	 * Fehlermeldung wenn Ressource in dem gewuenschtem Zeitraum bereits vergeben 
 	 * ist + alternativen Terminvorschlag
-	 * Ist die Reservierung erfolgreich, wird in der Entität "Buchungen" ein neuer Datensatz
+	 * Ist die Reservierung erfolgreich, wird in der Entitaet "Buchungen" ein neuer Datensatz
 	 * (Datum + Uhrzeit) angelegt und die ressourcen_id und die user_id werden aktualisiert
 	 * 
-	 * wird beim Klick auf den Bestätigungsbutton aufgerufen
+	 * wird beim Klick auf den Bestaetigungsbutton aufgerufen
 	 */
 	
     public void checkDate(){
     } 
-
-
-
-
 }
