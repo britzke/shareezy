@@ -5,7 +5,7 @@ import javax.faces.bean.ManagedBean;
 /**
  * 
  * @author Maxim Slipachuk
- * @Description Eigene Gruppenzugehörigkeit beantragen/entfernen.
+ * @Description Eigene Gruppenzugehörigkeit beantragen/entfernen
  * @version Dez 9, 2013 
  */
 @ManagedBean
