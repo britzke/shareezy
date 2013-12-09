@@ -5,7 +5,7 @@ import javax.faces.bean.ManagedBean;
 /**
  * 
  * @author Maxim Slipachuk
- * @Beschreibung Eigene Gruppenzugehörigkeit beantragen/entfernen.
+ * @Description Eigene Gruppenzugehörigkeit beantragen/entfernen.
  * @version Dez 9, 2013 
  */
 @ManagedBean
@@ -22,7 +22,6 @@ public class GroupMembership {
 	public String sendAnfrage( ){				
 		return null;
 	}
-	
 	/** 
 	 * Mit Methode knopfGruppeVerlassen- wird der User aus eine Gruppe entfernt
 	 * @Description
