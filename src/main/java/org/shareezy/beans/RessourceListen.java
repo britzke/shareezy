@@ -17,7 +17,7 @@ import javax.faces.bean.ManagedBean;
 public class RessourceListen {
 	/**
 	 * Die Methode ressourceClicked leitet bei einem Klick auf den Namen der Ressource, den Benutzer auf die Detailansicht der Ressource weiter.
-	 * @return "ressourcendetail" gibt die ressourcendetail zurück wenn auf einen Ressourcennamen geklickt wurde.
+	 * @return "ressourcendetail" gibt die ressourcendetail zurÃ¼ck wenn auf einen Ressourcennamen geklickt wurde.
 	 */
 	public String ressourceClicked(){
 	return "ressourcendetail";

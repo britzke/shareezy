@@ -3,34 +3,43 @@ package org.shareezy.beans;
 import javax.faces.bean.ManagedBean;
 
 /**
+ * Eigene Gruppenzugehörigkeit beantragen/entfernen
  * 
  * @author Maxim Slipachuk
- * @Description Eigene Gruppenzugehörigkeit beantragen/entfernen
- * @version Dez 9, 2013 
+ * @version Dez 9, 2013
  */
 @ManagedBean
-public class GroupMembership {	
-	
-	public GroupMembership(){			
+public class GroupMembership {
+
+	/**
+	 * Default constructor
+	 * */
+
+	public GroupMembership() {
 	}
-	/** Die Methode sendAnfrage erstellt eine Anfrage fuer eine Gruppe
-	 * @Description
-	 *  - wird bei Klick auf 'Hinzufuegen' aufgerufen
-	 *  	 
-	 *  @return gibt nichts zurueck damit sich die View nicht Veraendert
+
+	/**
+	 * Wird bei Klick auf 'Hinzufuegen' aufgerufen
+	 * 
+	 * @param sendAnfrage
+	 *            () erstellt eine Anfrage für eine Gruppe
+	 * 
+	 * @return gibt nichts zurück damit sich die View nicht Verändert
 	 */
-	public String sendAnfrage( ){				
+	public String sendAnfrage() {
 		return null;
 	}
-	/** 
-	 * Mit Methode knopfGruppeVerlassen- wird der User aus eine Gruppe entfernt
-	 * @Description
-	 *  - wird bei Klick auf 'Gruppe Verlassen' aufgerufen
-	 *  	 
-	 *  @return gibt nichts zurueck damit sich die View nicht Veraendert
+
+	/**
+	 * Wird bei Klick auf 'Gruppe Verlassen' aufgerufen
+	 * 
+	 * @param knopfGruppeVerlassen
+	 *            () Der User wird aus eine Gruppe entfernt
+	 * 
+	 * @return gibt nichts zurück damit sich die View nicht Veraendert
 	 */
-	public String knopfGruppeVerlassen(){		
+	public String knopfGruppeVerlassen() {
 		return null;
 	}
-	
+
 }
