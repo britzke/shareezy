@@ -14,7 +14,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class neueRessourceBean {
+public class NeueRessourceBean {
 
 	/**
 	 * neueRessource() ist die Actionmethode die eine BlankoRessource listet in
