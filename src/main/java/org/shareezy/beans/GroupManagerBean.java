@@ -17,8 +17,8 @@ public class GroupManagerBean {
 	 * Wird ausgeführt wenn der User auf "Neue Gruppe" (@issue9/Schritt 1)
 	 * klickt
 	 * <p>
-	 * Öffnet einen Dialog (@issue9/Schritt 2) und der user wird
-	 *               aufgefordert eine Gruppen-ID einzugeben
+	 * Öffnet einen Dialog (@issue9/Schritt 2) und der user wird aufgefordert
+	 * eine Gruppen-ID einzugeben
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
@@ -29,8 +29,8 @@ public class GroupManagerBean {
 	/**
 	 * Wird ausgeführt wenn der User auf "Erstellen" (@issue9/Schritt 2) klickt
 	 * <p>
-	 * Erzeugt eine neue Gruppe in der Datenbank Leitet den User
-	 *               zur Gruppen-Ansicht (@issue9/Schritt 3) der neuen Gruppe
+	 * Erzeugt eine neue Gruppe in der Datenbank Leitet den User zur
+	 * Gruppen-Ansicht (@issue9/Schritt 3) der neuen Gruppe
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
