@@ -6,7 +6,7 @@
 <table-list>
 <table id="16f7abd:1426f37016b:-7e9a" name="BENUTZER">
 <column-list>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e95" mandatory="true" name="ID">
+<column auto-increment="true" column-size="0" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e95" mandatory="true" name="ID">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
 <column auto-increment="false" column-size="25" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e94" mandatory="true" name="KURZNAME">
@@ -52,7 +52,7 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="667f9:1429568fea0:-7d13" mandatory="true" name="STARTDATUM">
 <data-type name="DATE" selected-variant-pattern="DATE"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e8a" mandatory="false" name="BENUTZER_ID_EIGENTÜMER">
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e8a" mandatory="true" name="BENUTZER_ID_EIGENTÜMER">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e89" mandatory="true" name="TYPEN_ID">
@@ -63,17 +63,17 @@
 <primary-key-column name="ID"/>
 </primary-key>
 <foreign-key-list>
-<foreign-key id="16f7abd:1426f37016b:-75e4" name="FK_Ressourcen_Typen" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_TYPEN" referenced-table="TYPEN" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key id="16f7abd:1426f37016b:-75e4" name="FK_Ressourcen_Typen" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_TYPEN" referenced-table="TYPEN" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="1..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
 <foreign-key-column column-name="TYPEN_ID" referenced-key-column-name="ID"/>
 </foreign-key>
-<foreign-key id="16f7abd:1426f37016b:-7623" name="FK_RESSOURCEN_BENUTZER" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_BENUTZER" referenced-table="BENUTZER" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key id="16f7abd:1426f37016b:-7623" name="FK_RESSOURCEN_BENUTZER" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_BENUTZER" referenced-table="BENUTZER" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="1..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
 <foreign-key-column column-name="BENUTZER_ID_EIGENTÜMER" referenced-key-column-name="ID"/>
 </foreign-key>
 </foreign-key-list>
 </table>
 <table id="16f7abd:1426f37016b:-7e81" name="GRUPPEN">
 <column-list>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e7f" mandatory="true" name="ID">
+<column auto-increment="true" column-size="0" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e7f" mandatory="true" name="ID">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
 <column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e7e" mandatory="true" name="NAME">
@@ -90,7 +90,7 @@
 <primary-key-column name="ID"/>
 </primary-key>
 <foreign-key-list>
-<foreign-key id="4343ed:142db5d5d24:-7f6d" name="FK_GRUPPEN_BENUTZER" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_BENUTZER" referenced-table="BENUTZER" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key id="4343ed:142db5d5d24:-7f6d" name="FK_GRUPPEN_BENUTZER" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_BENUTZER" referenced-table="BENUTZER" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="1..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
 <foreign-key-column column-name="BENUTZER_ID_VERWALTER" referenced-key-column-name="ID"/>
 </foreign-key>
 </foreign-key-list>
@@ -129,10 +129,10 @@
 <primary-key-column name="RESSOURCEN_ID"/>
 </primary-key>
 <foreign-key-list>
-<foreign-key id="667f9:1429568fea0:-7ce1" name="FK_BUCHUNGEN_RESSOURCEN" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_RESSOURCEN" referenced-table="RESSOURCEN" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key id="667f9:1429568fea0:-7ce1" name="FK_BUCHUNGEN_RESSOURCEN" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_RESSOURCEN" referenced-table="RESSOURCEN" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="1..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
 <foreign-key-column column-name="RESSOURCEN_ID" referenced-key-column-name="ID"/>
 </foreign-key>
-<foreign-key id="667f9:1429568fea0:-7d2f" name="FK_BUCHUNGEN_BENUTZER" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_BENUTZER" referenced-table="BENUTZER" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key id="667f9:1429568fea0:-7d2f" name="FK_BUCHUNGEN_BENUTZER" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_BENUTZER" referenced-table="BENUTZER" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="1..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
 <foreign-key-column column-name="BENUTZER_ID_AUSLEIHER" referenced-key-column-name="ID"/>
 </foreign-key>
 </foreign-key-list>
@@ -151,10 +151,10 @@
 <primary-key-column name="GRUPPEN_ID"/>
 </primary-key>
 <foreign-key-list>
-<foreign-key id="667f9:1429568fea0:-7dca" name="FK_VERFÜGBARKEITEN_GRUPPEN" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_GRUPPEN" referenced-table="GRUPPEN" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key id="667f9:1429568fea0:-7dca" name="FK_VERFÜGBARKEITEN_GRUPPEN" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_GRUPPEN" referenced-table="GRUPPEN" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="1..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
 <foreign-key-column column-name="GRUPPEN_ID" referenced-key-column-name="ID"/>
 </foreign-key>
-<foreign-key id="667f9:1429568fea0:-7d9b" name="FK_VERFÜGBARKEITEN_RESSOURCEN" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_RESSOURCEN" referenced-table="RESSOURCEN" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key id="667f9:1429568fea0:-7d9b" name="FK_VERFÜGBARKEITEN_RESSOURCEN" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_RESSOURCEN" referenced-table="RESSOURCEN" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="1..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
 <foreign-key-column column-name="RESSORCEN_ID" referenced-key-column-name="ID"/>
 </foreign-key>
 </foreign-key-list>
@@ -167,20 +167,17 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-74ab" mandatory="true" name="GRUPPEN_ID">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="4343ed:142db5d5d24:-7eac" mandatory="true" name="ID">
-<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
-</column>
 </column-list>
 <primary-key id="16f7abd:1426f37016b:-74b7" name="PK_BENUTZERGRUPPEN">
 <primary-key-column name="BENUTZER_ID"/>
 <primary-key-column name="GRUPPEN_ID"/>
 </primary-key>
 <foreign-key-list>
-<foreign-key id="4343ed:142db5d5d24:-7eae" name="FK_BENUTZERGRUPPEN_GRUPPEN" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_GRUPPEN" referenced-table="GRUPPEN" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
-<foreign-key-column column-name="GRUPPEN_ID" referenced-key-column-name="ID"/>
-</foreign-key>
-<foreign-key id="4343ed:142db5d5d24:-7e82" name="FK_BENUTZERGRUPPEN_BENUTZER" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_BENUTZER" referenced-table="BENUTZER" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key id="4343ed:142db5d5d24:-7e82" name="FK_BENUTZERGRUPPEN_BENUTZER" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_BENUTZER" referenced-table="BENUTZER" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="1..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
 <foreign-key-column column-name="BENUTZER_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+<foreign-key id="4343ed:142db5d5d24:-7eae" name="FK_BENUTZERGRUPPEN_GRUPPEN" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_GRUPPEN" referenced-table="GRUPPEN" referenced-table-schema="shareezy" source-entity-role="" source-multiplicity="1..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="GRUPPEN_ID" referenced-key-column-name="ID"/>
 </foreign-key>
 </foreign-key-list>
 </table>
@@ -189,12 +186,12 @@
 </schema-list>
 </database-model>
 <diagram>
-<table-figure height="147" refid="16f7abd:1426f37016b:-7e9a" width="173" x="45" y="49"/>
+<table-figure refid="16f7abd:1426f37016b:-7e9a" x="45" y="49"/>
 <table-figure refid="16f7abd:1426f37016b:-7e8f" x="527" y="157"/>
-<table-figure refid="16f7abd:1426f37016b:-7e81" x="22" y="512"/>
-<table-figure refid="16f7abd:1426f37016b:-7e76" x="397" y="411"/>
-<table-figure refid="16f7abd:1426f37016b:-7e68" x="554"/>
-<table-figure refid="16f7abd:1426f37016b:-7e5f" x="591" y="544"/>
-<table-figure height="62" refid="16f7abd:1426f37016b:-74b8" width="137" x="246" y="328"/>
+<table-figure refid="16f7abd:1426f37016b:-7e81" x="25" y="340"/>
+<table-figure refid="16f7abd:1426f37016b:-7e76" x="308" y="246"/>
+<table-figure refid="16f7abd:1426f37016b:-7e68" x="540" y="18"/>
+<table-figure refid="16f7abd:1426f37016b:-7e5f" x="577" y="345"/>
+<table-figure refid="16f7abd:1426f37016b:-74b8" x="161" y="247"/>
 </diagram>
 </clay-model>
