@@ -8,17 +8,23 @@ import javax.faces.bean.SessionScoped;
  */
 
 /**
- * @author e1_klawitter Die Annotation ManagedBean sorgt dafür, dass diese
- *         classe als MBean erkannt wird SessionScoped sorgt dafür das die Bean
- *         nur bis zum ende der Session lebt
+ *  Die Annotation ManagedBean sorgt dafür, dass diese
+ *  Klasse als ManagedBean erkannt wird.
+ *  SessionScoped sorgt dafür das diese ManagedBean
+ *  nur bis zum Ende der Session lebt.
+ *  
+ *  @author ThomasKLawitter
+ *  @version 12.12.2013
  */
 @ManagedBean
 @SessionScoped
 public class NeueRessourceBean {
 
 	/**
-	 * neueRessource() ist die Actionmethode die eine BlankoRessource listet in
-	 * die mit Eigenschaften zu füllen ist
+	 * Action-Routine für den View <code>neueRessource</code>.Wird angesprochen,
+	 * wenn der Benutzer die Schaltfläche <code>neueRessoure</code> anwählt.
+	 * Sorgt dafür das eine neue Ressource erzeugt wird,
+	 * deren Werte der Benutzer festlegen kann.
 	 * 
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
@@ -27,9 +33,9 @@ public class NeueRessourceBean {
 	}
 
 	/**
-	 * Action-Routine für den View <code>neueResource</code>. Wird angesprochen,
+	 * Action-Routine für den View <code>neueRessource</code>. Wird angesprochen,
 	 * wenn der Benutzer die Schaltfläche <code>löschen</code> anwählt. Sorgt
-	 * dafür, dass Resourcen aus der Ressourcenliste gelöscht werden können.
+	 * dafür, dass Ressourcen aus der Ressourcenliste gelöscht werden können.
 	 * 
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
@@ -38,8 +44,9 @@ public class NeueRessourceBean {
 	}
 
 	/**
-	 * speichern() ist dafür da die nun eingetragenen Eigenschaften der neu
-	 * angelegten Ressource zu speichern.
+	 * Action-Routine für den View <code>neueRessource</code>. Wird angesprochen,
+	 * wenn der Benutzer die Schaltfläche <code>speichern</code> anwählt. Sorgt
+	 * dafür, dass die neu eingesetzten Werte für diese Ressource in der Datenbank gespeichert wird.
 	 * 
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
