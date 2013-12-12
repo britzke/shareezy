@@ -13,7 +13,7 @@ import javax.faces.bean.SessionScoped;
  *  SessionScoped sorgt dafür das diese ManagedBean
  *  nur bis zum Ende der Session lebt.
  *  
- *  @author e1_klawitter
+ *  @author ThomasKLawitter
  *  @version 12.12.2013
  */
 @ManagedBean
