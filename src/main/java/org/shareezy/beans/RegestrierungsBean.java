@@ -18,21 +18,12 @@ public class RegestrierungsBean {
 	 * Datansatz vorhanden sind. Sind die Spezifischen Daten noch nicht
 	 * vorhanden, wird die Methode datensatzEinfügen() aufgerufen.
 	 * 
-	 * @param name
-	 *            Der Inhalt des textfeldes Nachname.
-	 * @param vorname
-	 *            Der Inhalt des textfeldes Vorname.
-	 * @param username
-	 *            Der Inhalt des textfeldes username.
-	 * @param eMail
-	 *            Der Inhalt des textfeldes e-Mail.
-	 * @param passwort
-	 *            Der Inhalt des textfeldes passwort.
 	 * @param passwortWiederholen
 	 *            Der Inhalt des textfeldes passwort wiederholen.
+	 * @return null da kein Seitenwechsel stattfindet.
 	 */
-	public void datensatzPrüfen(String name, String vorname, String username,
-			String eMail, String passwort, String passwortWiederholen) {
+	public String datensatzPrüfen() {
+		return null;
 
 	}
 
@@ -41,27 +32,10 @@ public class RegestrierungsBean {
 	 * vom Benutzer eingegebenen Daten hinzu. Danach wird die Methode
 	 * dalidierungsEmail() aufgerufen.
 	 * 
-	 * @param name
-	 *            Der Inhalt des textfeldes Nachname, den die Methode von
-	 *            dantensatzPrüfen() übergeben bekommt.
-	 * @param vorname
-	 *            Der Inhalt des textfeldes Vornameden, die Methode von
-	 *            dantensatzPrüfen() übergeben bekommt.
-	 * @param username
-	 *            Der Inhalt des textfeldes username, den die Methode von
-	 *            dantensatzPrüfen() übergeben bekommt.
-	 * @param eMail
-	 *            Der Inhalt des textfeldes e-Mail, den die Methode von
-	 *            dantensatzPrüfen() übergeben bekommt.
-	 * @param passwort
-	 *            Der Inhalt des textfeldes passwort, den die Methode von
-	 *            dantensatzPrüen() übergeben bekommt.
-	 * @param passwortWiederholen
-	 *            Der Inhalt des textfeldes passwort wiederholen, den die Methode
-	 *            von dantensatzPrüfen() übergeben bekommt.
+	 * @return null da kein Seitenwechsel stattfindet.
 	 */
-	public void datensatzEinfügen(String name, String vorname, String username,
-			String eMail, String passwort, String passwortWiederholen) {
+	public String datensatzEinfügen() {
+		return null;
 
 	}
 
@@ -69,11 +43,10 @@ public class RegestrierungsBean {
 	 * Schickt bei Erfolgreicher Regestrierung eine bestätigungs e-mail an den
 	 * Benutzer.
 	 * 
-	 * @param eMail
-	 *            die e-mail Addresse des Benutzers, den den die Methode von
-	 *            dantensatzEinfügen() übergeben bekommt.
+	 * @return null da kein Seitenwechsel stattfindet.
 	 */
-	public void validierungsEmail(String eMail) {
+	public String validierungsEmail() {
+		return null;
 
 	}
 
