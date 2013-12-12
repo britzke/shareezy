@@ -191,6 +191,7 @@ public class Benutzer implements Serializable {
 
 	/**
 	 * Antwortet mit der Liste der Buchungen für einen Benutzer.
+	 * 
 	 * @return Die Liste der Buchungen für den Benutzer
 	 */
 	public List<Buchung> getBuchungen() {
@@ -199,7 +200,9 @@ public class Benutzer implements Serializable {
 
 	/**
 	 * Setzt die Liste der Buchungen für den Benutzer.
-	 * @param buchungen Die Liste der Buchungen für den Benutzer
+	 * 
+	 * @param buchungen
+	 *            Die Liste der Buchungen für den Benutzer
 	 */
 	public void setBuchungen(List<Buchung> buchungen) {
 		this.buchungen = buchungen;
@@ -207,7 +210,10 @@ public class Benutzer implements Serializable {
 
 	/**
 	 * Fügt eine Buchung zur Liste der Buchungen für den Benutzer hinzu.
-	 * @param buchung Die Buchung, die der Liste der Buchungen hinzugefügt werden soll
+	 * 
+	 * @param buchung
+	 *            Die Buchung, die der Liste der Buchungen hinzugefügt werden
+	 *            soll
 	 * @return Die Buchung, die hinzugefügt wurde
 	 */
 	public Buchung addBuchung(Buchung buchung) {
@@ -219,8 +225,11 @@ public class Benutzer implements Serializable {
 
 	/**
 	 * Löscht eine Buchung aus der Liste der Buchungen für den Benuzter.
-	 * @param buchung Die Buchung, die aus der Liste der Buchungen gelöscht werden soll
-	 * @return Die Buchung, die gelöscht wurde 
+	 * 
+	 * @param buchung
+	 *            Die Buchung, die aus der Liste der Buchungen gelöscht werden
+	 *            soll
+	 * @return Die Buchung, die gelöscht wurde
 	 */
 	public Buchung removeBuchungen(Buchung buchung) {
 		getBuchungen().remove(buchung);
@@ -231,6 +240,7 @@ public class Benutzer implements Serializable {
 
 	/**
 	 * Antwortet mit der Liste der Ressourcen, dieses Benutzers.
+	 * 
 	 * @return Die Liste der Ressourcen, dieses Benutzers
 	 */
 	public List<Ressource> getRessourcen() {
@@ -239,7 +249,9 @@ public class Benutzer implements Serializable {
 
 	/**
 	 * Setzt die Liste der Ressourcen für diesen Benutzer.
-	 * @param ressourcen Die Liste der Ressourcen für diesen Benutzer
+	 * 
+	 * @param ressourcen
+	 *            Die Liste der Ressourcen für diesen Benutzer
 	 */
 	public void setRessourcen(List<Ressource> ressourcen) {
 		this.ressourcen = ressourcen;
@@ -247,7 +259,10 @@ public class Benutzer implements Serializable {
 
 	/**
 	 * Fügt eine Ressource der Liste von Ressourcen für diesen Benutzer hinzu.
-	 * @param ressourc Die Ressouce, die der Liste der Ressourcen hinzugefügt werden soll
+	 * 
+	 * @param ressourc
+	 *            Die Ressouce, die der Liste der Ressourcen hinzugefügt werden
+	 *            soll
 	 * @return Die Ressouce, die hinzugefügt wurde
 	 */
 	public Ressource addRessource(Ressource ressource) {
@@ -259,7 +274,9 @@ public class Benutzer implements Serializable {
 
 	/**
 	 * Löscht eine Ressource aus der Liste der Ressourcen für den Benutzer.
-	 * @param ressource Die Ressouce, die gelöscht werden soll
+	 * 
+	 * @param ressource
+	 *            Die Ressouce, die gelöscht werden soll
 	 * @return Die Ressource, die gelöscht wurde
 	 */
 	public Ressource removeRessourcen(Ressource ressource) {

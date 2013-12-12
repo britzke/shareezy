@@ -23,6 +23,7 @@ import java.util.List;
 
 /**
  * Klasse für Persistenzobjekte der Datenbank-Tabelle TYPEN.
+ * 
  * @author burghard.britzke (bubi@charmides.in-berlin.de)
  */
 @Entity
@@ -31,17 +32,18 @@ public class Typ implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String name;
 
-	//bi-directional many-to-one association to Ressourcen
-	@OneToMany(mappedBy="typ")
+	// bi-directional many-to-one association to Ressourcen
+	@OneToMany(mappedBy = "typ")
 	private List<Ressource> ressourcen;
 
 	/**
 	 * Antowrtet mit der Id des Typs.
+	 * 
 	 * @return Die Id des Typs
 	 */
 	public int getId() {
@@ -50,7 +52,9 @@ public class Typ implements Serializable {
 
 	/**
 	 * Setzt die ID des Typs.
-	 * @param id Die ID des Typs
+	 * 
+	 * @param id
+	 *            Die ID des Typs
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -58,6 +62,7 @@ public class Typ implements Serializable {
 
 	/**
 	 * Antowrtet mit dem Namen des Typs.
+	 * 
 	 * @return Der Name des Typs
 	 */
 	public String getName() {
@@ -66,7 +71,9 @@ public class Typ implements Serializable {
 
 	/**
 	 * Setzt den Namen des Typs.
-	 * @param name Der Name, der für den Typ gesetzt werden soll.
+	 * 
+	 * @param name
+	 *            Der Name, der für den Typ gesetzt werden soll.
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -74,15 +81,18 @@ public class Typ implements Serializable {
 
 	/**
 	 * Antwortet mit der Liste der Ressourcen.
+	 * 
 	 * @return Liste der Ressourcen
 	 */
 	public List<Ressource> getRessourcen() {
 		return this.ressourcen;
 	}
-	
+
 	/**
 	 * Setzt die Liste der Ressourcen.
-	 * @param ressourcen Liste der Ressourcen
+	 * 
+	 * @param ressourcen
+	 *            Liste der Ressourcen
 	 */
 	public void setRessourcens(List<Ressource> ressourcen) {
 		this.ressourcen = ressourcen;
@@ -90,7 +100,9 @@ public class Typ implements Serializable {
 
 	/**
 	 * Fügt eine Ressource zur Liste der Ressourcen hinzu.
-	 * @param ressourcen Ressource, die hinzugefügt werden soll.
+	 * 
+	 * @param ressourcen
+	 *            Ressource, die hinzugefügt werden soll.
 	 * @return Die Ressource, die hinzugefügt wurde.
 	 */
 	public Ressource addRessourcen(Ressource ressourcen) {
@@ -102,7 +114,9 @@ public class Typ implements Serializable {
 
 	/**
 	 * Löscht eine Ressource aus der Liste der Ressourcen.
-	 * @param ressourcen Ressource, die gelöscht werden soll.
+	 * 
+	 * @param ressourcen
+	 *            Ressource, die gelöscht werden soll.
 	 * @return Ressource, die gelöscht wurde.
 	 */
 	public Ressource removeRessourcen(Ressource ressourcen) {

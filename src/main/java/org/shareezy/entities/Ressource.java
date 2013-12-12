@@ -74,6 +74,7 @@ public class Ressource implements Serializable {
 
 	/**
 	 * Antwortet mit der Id der Ressource.
+	 * 
 	 * @return Die Id der Ressource
 	 */
 	public int getId() {
@@ -82,7 +83,9 @@ public class Ressource implements Serializable {
 
 	/**
 	 * Setzt die Id für die Ressource
-	 * @param id Die Id der Ressource
+	 * 
+	 * @param id
+	 *            Die Id der Ressource
 	 */
 	public void setId(int id) {
 		this.id = id;

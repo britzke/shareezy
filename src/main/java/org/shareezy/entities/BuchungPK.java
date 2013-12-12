@@ -100,6 +100,7 @@ public class BuchungPK implements Serializable {
 
 	/**
 	 * Antwortet, ob das angegebene Objekt gleich diesem ist.
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	public boolean equals(Object other) {
@@ -117,6 +118,7 @@ public class BuchungPK implements Serializable {
 
 	/**
 	 * Antwortet mit einem eindeutigen Kennzeichen dieses Objekts.
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	public int hashCode() {

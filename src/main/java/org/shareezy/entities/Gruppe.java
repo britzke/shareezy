@@ -93,6 +93,7 @@ public class Gruppe implements Serializable {
 
 	/**
 	 * Antwortet mit dem Namen dieser Gruppe.
+	 * 
 	 * @return Der Name dieser Gruppe
 	 */
 	public String getName() {
@@ -101,7 +102,9 @@ public class Gruppe implements Serializable {
 
 	/**
 	 * Setzt den Namen dieser Gruppe
-	 * @param name Der Name für diese Gruppe
+	 * 
+	 * @param name
+	 *            Der Name für diese Gruppe
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -109,6 +112,7 @@ public class Gruppe implements Serializable {
 
 	/**
 	 * Antwortet mit der Liste der Mitglieder dieser Gruppe.
+	 * 
 	 * @return Die Liste der Mitglieder dieser Gruppe
 	 */
 	public List<Benutzer> getBenutzers() {
@@ -117,7 +121,9 @@ public class Gruppe implements Serializable {
 
 	/**
 	 * Setzt die Liste der Mitglieder dieser Gruppe.
-	 * @param benutzer Die Liste der Mitglieder für diese Gruppe
+	 * 
+	 * @param benutzer
+	 *            Die Liste der Mitglieder für diese Gruppe
 	 */
 	public void setBenutzers(List<Benutzer> benutzer) {
 		this.benutzer = benutzer;
@@ -125,6 +131,7 @@ public class Gruppe implements Serializable {
 
 	/**
 	 * Antwortet mit dem Verwalter, dieser Gruppe.
+	 * 
 	 * @return Der Verwalter dieser Gruppe
 	 */
 	public Benutzer getVerwalter() {
@@ -133,14 +140,18 @@ public class Gruppe implements Serializable {
 
 	/**
 	 * Setzt den Verwalter für dies Gruppe.
-	 * @param verwalter Der Verwalter, der gesetzt werden soll
+	 * 
+	 * @param verwalter
+	 *            Der Verwalter, der gesetzt werden soll
 	 */
 	public void setVerwalter(Benutzer verwalter) {
 		this.verwalter = verwalter;
 	}
 
 	/**
-	 * Antwortet mit der Liste der Ressourcen, die in die Gruppe eingestellt sind.
+	 * Antwortet mit der Liste der Ressourcen, die in die Gruppe eingestellt
+	 * sind.
+	 * 
 	 * @return Die Liste der Ressource für diese Gruppe
 	 */
 	public List<Ressource> getRessourcens() {
@@ -149,7 +160,9 @@ public class Gruppe implements Serializable {
 
 	/**
 	 * Setzt die Liste der Ressourcen, die in die Gruppe eingestellt sind.
-	 * @param ressourcen Die Liste der Ressourcen, die gesetzt werden soll
+	 * 
+	 * @param ressourcen
+	 *            Die Liste der Ressourcen, die gesetzt werden soll
 	 */
 	public void setRessourcen(List<Ressource> ressourcen) {
 		this.ressourcen = ressourcen;
