@@ -31,7 +31,7 @@ public class TestNeueRessourcenBean {
 			 proband  = new NeueRessourceBean();
 		}
 	 /**
-	  * Die Annotation Test identifiziert die Methode als Testfall.
+	  * Die Annotation Test identifiziert die Methode als Test.
 	  * Der Test schlägt automatisch fehl, um zu gucken ob 
 	  */
 	@Test
