@@ -17,8 +17,9 @@ public class LoginBean {
 	 * In dieser Methode werden die Eingaben des Benutzers, mit den entsprechenden Daten 
 	 * der Datenbank verglichen. Stimmen Benutzername und Passwort jeweils überein, 
 	 * ist die Anmeldung erfolgreich.
-	 * @return
+	 * @return null, damit kein Seitenwechsel stattfindet.
 	 */	
 	public String login(){
-		return null;}
+		return null;
+	}
 }
