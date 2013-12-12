@@ -21,9 +21,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
-
 /**
  * Klasse für die Persistenzobjekte der Datenbanktabelle BUCHUNGEN.
+ * 
  * @author burghard.britzke (bubi@charmides.in-berlin.de)
  */
 @Entity
@@ -37,69 +37,88 @@ public class Buchung implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date rückgabedatum;
 
-	//bi-directional many-to-one association to Benutzer
+	// bi-directional many-to-one association to Benutzer
 	@ManyToOne
-	@JoinColumn(name="BENUTZER_ID_AUSLEIHER")
+	@JoinColumn(name = "BENUTZER_ID_AUSLEIHER")
 	private Benutzer ausleiher;
 
-	//bi-directional many-to-one association to Ressourcen
+	// bi-directional many-to-one association to Ressourcen
 	@ManyToOne
 	private Ressource ressourcen;
 
 	/**
-	 * @return
+	 * Antwortet mit der Id der Buchung.
+	 * 
+	 * @return Die Id der Buchung
 	 */
 	public BuchungPK getId() {
 		return this.id;
 	}
 
 	/**
+	 * Setzt die Id der Buchung.
+	 * 
 	 * @param id
+	 *            Die Id, die in der Buchung gesetzt werden soll.
 	 */
 	public void setId(BuchungPK id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return
+	 * Antowrtet mit dem Rückgabedatum für diese Buchung.
+	 * 
+	 * @return Das Rückgabedatum für diese Buchung
 	 */
 	public Date getRückgabedatum() {
 		return this.rückgabedatum;
 	}
 
 	/**
+	 * Setzt das Rückgabedatum für diese Buchung.
+	 * 
 	 * @param rückgabedatum
+	 *            Das Rückgabedatum, das für diese Buchung gesetzt werden soll.
 	 */
 	public void setRückgabedatum(Date rückgabedatum) {
 		this.rückgabedatum = rückgabedatum;
 	}
 
 	/**
-	 * @return
+	 * Antwortet mit dem Benutzer für diese Buchung.
+	 * 
+	 * @return Der Benutzer für diese Buchung
 	 */
 	public Benutzer getBenutzer() {
 		return this.ausleiher;
 	}
 
 	/**
+	 * Setzt den Benutzer für diese Buchung.
+	 * 
 	 * @param benutzer
+	 *            Der Benutzer, der für diese Buchung gesetzt werden soll
 	 */
 	public void setBenutzer(Benutzer benutzer) {
 		this.ausleiher = benutzer;
 	}
 
 	/**
-	 * @return
+	 * Antwortet mit der Ressource aus der Buchung.
+	 * 
+	 * @return Die Ressouce aus der Buchung
 	 */
 	public Ressource getRessourcen() {
 		return this.ressourcen;
 	}
 
 	/**
+	 * Setzt eine Ressource für diese Buchung.
+	 * 
 	 * @param ressourcen
+	 *            Die Ressource, die für die Buchung gesetzt werden soll
 	 */
 	public void setRessourcen(Ressource ressourcen) {
 		this.ressourcen = ressourcen;
 	}
-
 }

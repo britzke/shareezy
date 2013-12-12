@@ -92,56 +92,64 @@ public class Gruppe implements Serializable {
 	}
 
 	/**
-	 * @return
+	 * Antwortet mit dem Namen dieser Gruppe.
+	 * @return Der Name dieser Gruppe
 	 */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 * @param name
+	 * Setzt den Namen dieser Gruppe
+	 * @param name Der Name für diese Gruppe
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * @return
+	 * Antwortet mit der Liste der Mitglieder dieser Gruppe.
+	 * @return Die Liste der Mitglieder dieser Gruppe
 	 */
 	public List<Benutzer> getBenutzers() {
 		return this.benutzer;
 	}
 
 	/**
-	 * @param benutzer
+	 * Setzt die Liste der Mitglieder dieser Gruppe.
+	 * @param benutzer Die Liste der Mitglieder für diese Gruppe
 	 */
 	public void setBenutzers(List<Benutzer> benutzer) {
 		this.benutzer = benutzer;
 	}
 
 	/**
-	 * @return
+	 * Antwortet mit dem Verwalter, dieser Gruppe.
+	 * @return Der Verwalter dieser Gruppe
 	 */
-	public Benutzer getBenutzer() {
+	public Benutzer getVerwalter() {
 		return this.verwalter;
 	}
 
 	/**
-	 * @param verwalter
+	 * Setzt den Verwalter für dies Gruppe.
+	 * @param verwalter Der Verwalter, der gesetzt werden soll
 	 */
 	public void setVerwalter(Benutzer verwalter) {
 		this.verwalter = verwalter;
 	}
 
 	/**
-	 * @return
+	 * Antwortet mit der Liste der Ressourcen, die in die Gruppe eingestellt sind.
+	 * @return Die Liste der Ressource für diese Gruppe
 	 */
 	public List<Ressource> getRessourcens() {
 		return this.ressourcen;
 	}
 
 	/**
-	 * @param ressourcen
+	 * Setzt die Liste der Ressourcen, die in die Gruppe eingestellt sind.
+	 * @param ressourcen Die Liste der Ressourcen, die gesetzt werden soll
 	 */
 	public void setRessourcen(List<Ressource> ressourcen) {
 		this.ressourcen = ressourcen;

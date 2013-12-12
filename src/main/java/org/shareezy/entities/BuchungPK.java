@@ -60,34 +60,46 @@ public class BuchungPK implements Serializable {
 	}
 
 	/**
-	 * @return
+	 * Antwortet mit der Id des Ausleihers.
+	 * 
+	 * @return Die Id des Ausleihers
 	 */
 	public int getBenutzerIdAusleiher() {
 		return this.benutzerIdAusleiher;
 	}
 
 	/**
+	 * Setzt die Id des Ausleihers im Primärschlüssel für die Buchungen.
+	 * 
 	 * @param benutzerIdAusleiher
+	 *            Die Id des Ausleihers, die gesetzt werden soll.
 	 */
 	public void setBenutzerIdAusleiher(int benutzerIdAusleiher) {
 		this.benutzerIdAusleiher = benutzerIdAusleiher;
 	}
 
 	/**
-	 * @return
+	 * Antwortet mit der Id der Ressource in diesem Primärschlüssel.
+	 * 
+	 * @return Die Id der Ressource in diesem Primärschlüssel
 	 */
 	public int getRessourcenId() {
 		return this.ressourcenId;
 	}
 
 	/**
+	 * Setzt die Id für die Ressource in diesem Primärschlüssel.
+	 * 
 	 * @param ressourcenId
+	 *            Die Id für die Ressource, die in diesem Primärschlüssel
+	 *            gesetzt werden soll.
 	 */
 	public void setRessourcenId(int ressourcenId) {
 		this.ressourcenId = ressourcenId;
 	}
 
 	/**
+	 * Antwortet, ob das angegebene Objekt gleich diesem ist.
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	public boolean equals(Object other) {
@@ -104,7 +116,7 @@ public class BuchungPK implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Antwortet mit einem eindeutigen Kennzeichen dieses Objekts.
 	 * @see java.lang.Object#hashCode()
 	 */
 	public int hashCode() {
