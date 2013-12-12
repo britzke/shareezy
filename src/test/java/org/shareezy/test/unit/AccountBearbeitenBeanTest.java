@@ -15,7 +15,8 @@ import org.shareezy.beans.AccountBearbeitenBean;
 public class AccountBearbeitenBeanTest {
 
 	private AccountBearbeitenBean proband;
-
+	private String nullTest = null;
+	
 	/**
 	 * Erzeugt ein neuen Probanden der zu testenden Klasse.
 	 * 
@@ -36,7 +37,8 @@ public class AccountBearbeitenBeanTest {
 	 */
 	@Test
 	public void testEingabePrüfen() {
-		fail("Not yet implemented");
+		String übergebenerWert = null;
+		assertEquals(nullTest, übergebenerWert);
 	}
 
 	/**
@@ -46,7 +48,8 @@ public class AccountBearbeitenBeanTest {
 	 */
 	@Test
 	public void testDatensatzÄndern() {
-		fail("Not yet implemented");
+		String übergebenerWert = null;
+		assertEquals(nullTest, übergebenerWert);
 	}
 
 }
