@@ -24,7 +24,7 @@ public class RessourcenDetailBean {
 	 * 
 	 */
 	public Image resourcePic(){
-		return null;
+		return pic;
 	}
 	
 	/**
@@ -32,6 +32,6 @@ public class RessourcenDetailBean {
 	 * 
 	 */
 	public String resourceSummary(){
-		return null;
+		return summary;
 	}
 }

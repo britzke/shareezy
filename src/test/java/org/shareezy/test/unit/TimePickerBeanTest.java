@@ -12,16 +12,18 @@ import org.junit.Test;
 import org.shareezy.beans.TimePickerBean;
 
 /**
- * @author e1_krohn
+ * JUnit-Test zum Testen der Beans und dessen Methoden
+ * 
+ * @author Vanessa Krohn
  * 
  */
 public class TimePickerBeanTest {
-	
+
 	private TimePickerBean proband;
 	private Date timeframe;
 
 	/**
-	 * Erzeugt ein neuen Probanden der zu testenden Klasse.
+	 * Erzeugt einen neuen Probanden der zutestenden Klasse.
 	 * 
 	 * @throws java.lang.Exception
 	 */
@@ -31,7 +33,8 @@ public class TimePickerBeanTest {
 	}
 
 	/**
-	 * Test method for {@link org.shareezy.beans.TimePickerBean#getTimeframe()}.
+	 * Testmethode für getTimeframe() überprüft den Rückgabewert timeframe
+	 * {@link org.shareezy.beans.TimePickerBean#getTimeframe()}.
 	 */
 	@Test
 	public void testGetTimeframe() {
@@ -40,11 +43,12 @@ public class TimePickerBeanTest {
 	}
 
 	/**
-	 * Test method for {@link org.shareezy.beans.TimePickerBean#checkDate()}.
+	 * Testmethode für checkDate(); hat keinen Rückgabewert
+	 * {@link org.shareezy.beans.TimePickerBean#checkDate()}.
 	 */
 	@Test
 	public void testCheckDate() {
-		assertNull("Muesste Null sein", null);
+
 	}
 
 }
