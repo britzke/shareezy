@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.shareezy.beans.Bla;
 import org.shareezy.beans.Gruppenzuordnung;
 
 /**
@@ -15,6 +14,10 @@ import org.shareezy.beans.Gruppenzuordnung;
  *
  */
 public class GruppenzuordnungTest {
+	
+	public Gruppenzuordnung proband;
+	public String account_id;
+	public String accounts_id;
 
 	/**
 	 * @throws java.lang.Exception
@@ -24,10 +27,10 @@ public class GruppenzuordnungTest {
 		/*
 	    Gruppenzuordnung i; 
 		i=new Gruppenzuordnung();
-	    int[] meinarray = {1,3,4,5};
-	    */
-		Bla tester = new Bla();
-	    assertEquals("10 x 5 must be 50", 50, tester.multiply(10, 5));
+		*/
+		
+		proband = new Gruppenzuordnung();
+	   
 		
 	}
 
@@ -36,7 +39,8 @@ public class GruppenzuordnungTest {
 	 */
 	@Test
 	public void testMitgliederabfragen() {
-		fail("Not yet implemented");
+		String a = proband.mitgliederabfragen();
+		assertEquals(account_id, a);
 	}
 
 	/**
@@ -44,7 +48,8 @@ public class GruppenzuordnungTest {
 	 */
 	@Test
 	public void testRessourcestatus() {
-		fail("Not yet implemented");
+		String b = proband.mitgliederabfragen();
+		assertEquals(accounts_id, b);
 	}
 
 	/**
