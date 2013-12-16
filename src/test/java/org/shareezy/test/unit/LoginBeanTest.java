@@ -7,8 +7,8 @@ import org.junit.Test;
 import org.shareezy.beans.LoginBean;
 
 /**
- * Eine TestUnit, in der verschiedene Funktionalitäten/Methoden der 
- * {@link org.shareezy.beans.LoginBean} getestet werden können.
+ * Eine TestUnit, in der verschiedene FunktionalitÃ¤ten oder Methoden der 
+ * {@link org.shareezy.beans.LoginBean} getestet werden kÃ¶nnen.
  * @author Kevin Wegner
  * @version 0.1
  */
