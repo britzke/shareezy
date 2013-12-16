@@ -2,14 +2,15 @@ package org.shareezy.test.unit;
 
 import static org.junit.Assert.*;
 
-
 import org.junit.Before;
 import org.junit.Test;
 import org.shareezy.beans.LoginBean;
 
-
 /**
- * @author e1_wegner
+ * Eine TestUnit, in der verschiedene Funktionalitäten/Methoden der 
+ * {@link org.shareezy.beans.LoginBean} getestet werden können.
+ * @author Kevin Wegner
+ * @version 0.1
  */
 public class LoginBeanTest {
 
@@ -28,9 +29,9 @@ public class LoginBeanTest {
 	 */
 	@Test
 	public void testLogin() {
-		
+
 		String p = proband.login();
-		assertEquals(null, p);		
+		assertEquals(null, p);
 	}
 
 }
