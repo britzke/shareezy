@@ -11,7 +11,7 @@ import javax.faces.bean.ManagedBean;
  * 
  */
 @ManagedBean
-public class RegestrierungsBean {
+public class RegistrierungBean {
 
 	/**
 	 * Prüft ob die Spezifischen Daten(username, e-mail) schon in einem
