@@ -20,6 +20,8 @@ import org.shareezy.beans.RessourcenDetailBean;
 public class RessourcenDetailBeanTest {
 
 	private RessourcenDetailBean proband;
+	private Image pic;
+	private String summary;
 
 	/**
 	 * Erzeugt einen neuen Probanden der zutestenden Klasse.
