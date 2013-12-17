@@ -1,6 +1,7 @@
 package org.shareezy.beans;
 
 import javax.faces.bean.ManagedBean;
+import javax.persistence.EntityManagerFactory;
 
 /**
  * Die Klasse RegestrieurungsBean stellt Methoden zur Verfügung die dazu genutzt
@@ -13,6 +14,7 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean
 public class RegistrierungBean {
 
+	private EntityManagerFactory emf;
 	/**
 	 * Prüft ob die Spezifischen Daten(username, e-mail) schon in einem
 	 * Datansatz vorhanden sind. Sind die Spezifischen Daten noch nicht
