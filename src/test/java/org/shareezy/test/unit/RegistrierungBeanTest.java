@@ -7,15 +7,16 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.shareezy.beans.AccountBearbeitenBean;
+import org.shareezy.beans.RegistrierungBean;
 
 /**
  * @author e1_cakir, Maurice Engelskirchen
+ * @author burghard.britzke (bubi@charmides.in-berlin.de)
  *
  */
-public class RegestrierungsBeanTest {
+public class RegistrierungBeanTest {
 	
-	private RegestrierungsBeanTest proband;
+	private RegistrierungBean proband;
 	private String nullTest = null;
 
 	/**
@@ -23,7 +24,7 @@ public class RegestrierungsBeanTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		proband = new RegestrierungsBeanTest();
+		proband = new RegistrierungBean();
 	}
 
 	/**
