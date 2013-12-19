@@ -48,7 +48,7 @@ public class EntityManagerFactoryBean implements Serializable {
 	 */
 	public EntityManagerFactoryBean() {
 		entityManagerFactory = Persistence
-				.createEntityManagerFactory("archivator");
+				.createEntityManagerFactory("shareezy");
 	}
 
 	/**
