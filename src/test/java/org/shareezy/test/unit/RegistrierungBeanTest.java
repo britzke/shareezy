@@ -20,6 +20,7 @@
 package org.shareezy.test.unit;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -46,6 +47,7 @@ import javax.persistence.metamodel.Metamodel;
 import org.junit.Before;
 import org.junit.Test;
 import org.shareezy.beans.RegistrierungBean;
+import org.shareezy.entities.Benutzer;
 
 /**
  * Testet die RegistrierungBean
@@ -60,6 +62,8 @@ public class RegistrierungBeanTest {
 	public boolean beginSent;
 	public boolean commitSent;
 	public boolean createEntityManagerSent;
+	public boolean persistSent;
+	public Benutzer benutzer;
 
 	/**
 	 * Eine MockTransaction ist eine EntityTransaction, die ausschließlich als
@@ -67,7 +71,7 @@ public class RegistrierungBeanTest {
 	 * 
 	 * @author burghard.britzke (bubi@charmides.in-berlin.de)
 	 */
-	private class MockTransaction implements EntityTransaction {
+	private class MockEntityTransaction implements EntityTransaction {
 
 		/**
 		 * Vermerkt, ob die Transaction gestartet wurde.
@@ -121,7 +125,7 @@ public class RegistrierungBeanTest {
 		@Override
 		public EntityTransaction getTransaction() {
 			getTransactionSent = true;
-			return new MockTransaction();
+			return new MockEntityTransaction();
 		}
 
 		/**
@@ -130,6 +134,14 @@ public class RegistrierungBeanTest {
 		@Override
 		public void close() {
 			closeSent = true;
+		}
+
+		/**
+		 * Zeichnet auf, ob die Nachricht persist gesendet wurde.
+		 */
+		public void persist(Object arg0) {
+			benutzer = (Benutzer)arg0;
+			persistSent = true;
 		}
 
 		// ---------------------------------------------
@@ -334,10 +346,6 @@ public class RegistrierungBeanTest {
 		}
 
 		@Override
-		public void persist(Object arg0) {
-		}
-
-		@Override
 		public void refresh(Object arg0) {
 		}
 
@@ -463,6 +471,7 @@ public class RegistrierungBeanTest {
 
 	/**
 	 * Setzt den Probanden auf.
+	 * 
 	 * @throws java.lang.Exception
 	 */
 	@Before
@@ -500,10 +509,15 @@ public class RegistrierungBeanTest {
 
 		String antwort = proband.datensatzEinfügen();
 
-		assertNull("die Antwort muss null sein", antwort);
-//		assertTrue(
-//				"Es muss ein EntityManager aus einer Factory erzeugt worden sein",
-//				createEntityManagerSent);
+		assertNull("Die Antwort muss null sein", antwort);
+		assertTrue(
+				"Es muss ein EntityManager aus einer Factory erzeugt worden sein",
+				createEntityManagerSent);
+		assertTrue("Es muss eine Transaction vom EntityManager abgefragt werden",getTransactionSent);
+		assertTrue("Es muss die Transaktion gestartet werden",beginSent);
+		assertTrue("Das Entity muss 'persisted' werden",persistSent);
+		assertNotNull("Der Benutzer darf nich 'null' sein", benutzer);
+		assertTrue("Die Transaktion muss erfolgreich abgeschlossen worden sein", commitSent);
 	}
 
 	/**
