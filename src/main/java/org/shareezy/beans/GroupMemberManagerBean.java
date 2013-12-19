@@ -1,6 +1,11 @@
 package org.shareezy.beans;
 
 import javax.faces.bean.ManagedBean;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+
+import org.shareezy.entities.Benutzer;
 
 /** Beschreibung von GroupMemberManagerBean 
 *
@@ -10,10 +15,15 @@ import javax.faces.bean.ManagedBean;
 *  </li><li>
 *  Entfernt abgelehnte Aufnahmeanfragen
 *  </li></ol>
-* @version Dez 10, 2013 - 09:30Uhr
+* @version Dez 19, 2013 - 11:07Uhr
 */
 @ManagedBean(name="MemberManager")
 public class GroupMemberManagerBean {
+	
+	private EntityManagerFactory emf;
+	private EntityManager em;
+	private EntityTransaction t;
+	private Benutzer user;
 	
 	/** Die Methode AddUser dient dazu dem Benutzer eine Gruppe zuzuweisen
 	 * <ol><li>
@@ -27,8 +37,15 @@ public class GroupMemberManagerBean {
 	 *  @return gibt nichts zurück damit sich die View nicht ändert
 	 */
 	public String addUser(){
+		em = emf.createEntityManager();
+		t = em.getTransaction();
+		t.begin();
+		em.persist(user = new Benutzer());
+		t.commit();
+		em.close();
+		
 		return null; 
-		}
+	}
 	
 	/** Die Methode deleteUser dient dazu die Gruppenzuweisung eines Benutzers zu entfernen
 	 * <ol><li>
@@ -40,7 +57,7 @@ public class GroupMemberManagerBean {
 	 */
 	public String deleteUser(){
 		return null; 
-		}
+	}
 	
 	/** Die Methode deleteRequest dient dazu eine Anfrage in der Gruppendetailansicht zu entfernen
 	 * <ol><li>
