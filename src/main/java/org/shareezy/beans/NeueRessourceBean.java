@@ -2,6 +2,11 @@ package org.shareezy.beans;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+
+import org.shareezy.entities.Ressource;
 
 /**
  * 
@@ -19,6 +24,12 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class NeueRessourceBean {
+	
+	private EntityManagerFactory emf;
+	
+	public NeueRessourceBean(){
+		
+	}
 
 	/**
 	 * Action-Routine für den View <code>neueRessource</code>.Wird angesprochen,
@@ -39,7 +50,14 @@ public class NeueRessourceBean {
 	 * 
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
-	public String loescheRessource() {
+	public String loescheRessource(Ressource ressource) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction ent = em.getTransaction();
+		ent.begin();
+		ressource=em.merge(ressource);
+		em.remove(ressource);
+		ent.commit();
+		em.close();
 		return null;
 	}
 
