@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
  * Die Klasse RegestrieurungsBean stellt Methoden zur Verfügung die dazu genutzt
  * werden damit sich der Nutzer anmelden kann.
  * 
- * @author Maurice Engelskirchen
+ * @author Maurice Engelskirchen,Burak Cakir
  * @version 1.0 11.12.2013
  * 
  */
