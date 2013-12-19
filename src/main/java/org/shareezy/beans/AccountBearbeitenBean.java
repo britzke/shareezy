@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedBean;
  * Die Klasse AccountBearbeitenBean stellt Methoden zur Verfügung, die dafür
  * genutzt werden das der Nutzer seinen Account bearbeiten kann.
  * 
- * @author Maurice Engelskirchen
+ * @author Maurice Engelskirchen, Burak Cakir
  * @version 1.0 11.12.2013
  * 
  */
