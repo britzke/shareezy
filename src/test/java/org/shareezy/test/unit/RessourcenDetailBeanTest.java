@@ -12,15 +12,19 @@ import org.junit.Test;
 import org.shareezy.beans.RessourcenDetailBean;
 
 /**
- * @author e1_krohn
+ * JUnit-Test zum Testen der Beans und dessen Methoden
+ * 
+ * @author Vanessa Krohn
  * 
  */
 public class RessourcenDetailBeanTest {
-	
+
 	private RessourcenDetailBean proband;
+	private Image pic;
+	private String summary;
 
 	/**
-	 * Erzeugt ein neuen Probanden der zu testenden Klasse.
+	 * Erzeugt einen neuen Probanden der zutestenden Klasse.
 	 * 
 	 * @throws java.lang.Exception
 	 */
@@ -30,7 +34,7 @@ public class RessourcenDetailBeanTest {
 	}
 
 	/**
-	 * Test method for
+	 * Testmethode für testTimePicker()
 	 * {@link org.shareezy.beans.RessourcenDetailBean#timePicker()}.
 	 */
 	@Test
@@ -40,23 +44,23 @@ public class RessourcenDetailBeanTest {
 	}
 
 	/**
-	 * Test method for
+	 * Testmethode für resourcePic() überprüft den Rückgabewert pic
 	 * {@link org.shareezy.beans.RessourcenDetailBean#resourcePic()}.
 	 */
 	@Test
 	public void testResourcePic() {
-		Image pic = proband.resourcePic();
-		assertEquals(null, pic);
+		Image bild = proband.resourcePic();
+		assertEquals(pic, bild);
 	}
 
 	/**
-	 * Test method for
+	 * Testmethode für resourceSummary() überprüft den Rückgabewert summary
 	 * {@link org.shareezy.beans.RessourcenDetailBean#resourceSummary()}.
 	 */
 	@Test
 	public void testResourceSummary() {
-		String summary = proband.resourceSummary();
-		assertEquals(null, summary);
+		String sum = proband.resourceSummary();
+		assertEquals(summary, sum);
 	}
 
 }

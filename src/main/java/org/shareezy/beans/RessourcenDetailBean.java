@@ -1,9 +1,10 @@
 package org.shareezy.beans;
+
 import java.awt.Image;
 
 /**
- * Klasse ist zustaendig fuer die detailierte Ansicht der Ressourcen.
- * Ansicht besteht aus Bild, Beschreibung, Kalender und dem Buchungsbutton
+ * Klasse ist zustaendig fuer die detailierte Ansicht der Ressourcen. Ansicht
+ * besteht aus Bild, Beschreibung, Kalender und dem Buchungsbutton
  * 
  * @author Vanessa Krohn
  * @date 05/12/13
@@ -11,27 +12,30 @@ import java.awt.Image;
 
 public class RessourcenDetailBean {
 
+	private Image pic;
+	private String summary;
+
 	/**
-	 * Um den TimePicker zu oeffnen
-	 * wird beim Klick auf den Buchungsbutton (Detailressourcenansicht) ausgefuehrt
+	 * Um den TimePicker zu oeffnen wird beim Klick auf den Buchungsbutton
+	 * (Detailressourcenansicht) ausgefuehrt
 	 */
-	public String timePicker(){
+	public String timePicker() {
 		return null;
 	}
-	
+
 	/**
 	 * zeigt ein Bild der Ressource an
 	 * 
 	 */
-	public Image resourcePic(){
-		return null;
+	public Image resourcePic() {
+		return pic;
 	}
-	
+
 	/**
-	 * zustaendig fuer die Beschreibung der Ressource 
+	 * zustaendig fuer die Beschreibung der Ressource
 	 * 
 	 */
-	public String resourceSummary(){
-		return null;
+	public String resourceSummary() {
+		return summary;
 	}
 }

@@ -23,10 +23,10 @@ public class Gruppenzuordnung {
 	public String leitunguebertragen;
 	public String mitglied;
 	@Id
-	private String account_id;
+	public String account_id;
 	@Id
-	private int accounts_id;
-
+	public int accounts_id;
+	
 	/**
 	 * Welches Mitglied ist berechtigt zum abfragen/erstellen/verwalten von
 	 * Ressourcen

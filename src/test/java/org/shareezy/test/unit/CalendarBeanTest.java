@@ -12,14 +12,16 @@ import org.junit.Test;
 import org.shareezy.beans.CalendarBean;
 
 /**
- * @author e1_krohn
+ * JUnit-Test zum Testen der Beans und dessen Methoden
+ * 
+ * @author Vanessa Krohn
  * 
  */
 public class CalendarBeanTest {
 	private CalendarBean proband;
 
 	/**
-	 * Erzeugt ein neuen Probanden der zu testenden Klasse.
+	 * Erzeugt einen neuen Probanden der zutestenden Klasse.
 	 * 
 	 * @throws java.lang.Exception
 	 */
@@ -29,25 +31,27 @@ public class CalendarBeanTest {
 	}
 
 	/**
-	 * Test method for
-	 * {@link org.shareezy.beans.CalendarBean#scheduleController()}.
+	 * Testmethode für die Methode scheduleController() testet ob der
+	 * Rückgabewert null ist wenn nicht, dann wird eine Error-Message angezeigt
+	 * {@link org.shareezy.beans.CalendarBean#scheduleController()} .
 	 */
 	@Test
 	public void testScheduleController() {
-		//fail("Not yet implemented");
-		//assertNull("Muesste Null sein", null);
-		
 		String sc = proband.scheduleController();
 		assertEquals(null, sc);
+		assertNull("Muss Null sein!", null);
 	}
- 
+
 	/**
-	 * Test method for {@link org.shareezy.beans.CalendarBean#today()}.
+	 * Testmethode für die Methode today() testet ob der Rückgabewert null ist
+	 * wenn nicht, dann wird eine Error-Message angezeigt
+	 * {@link org.shareezy.beans.CalendarBean#today()}.
 	 */
 	@Test
 	public void testToday() {
 		Calendar today = proband.today();
 		assertEquals(null, today);
+		assertNull("Muss Null sein!", null);
 	}
 
 }
