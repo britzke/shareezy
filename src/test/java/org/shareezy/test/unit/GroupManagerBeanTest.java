@@ -1,4 +1,4 @@
-package org.shareezy.tests;
+package org.shareezy.test.unit;
 
 import static org.junit.Assert.*;
 
@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.shareezy.beans.GroupManagerBean;
 
-public class TestGroupManagerBean {
+public class GroupManagerBeanTest {
 
 	GroupManagerBean gmb ;
 	
