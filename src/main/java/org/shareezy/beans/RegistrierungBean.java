@@ -20,13 +20,18 @@
 package org.shareezy.beans;
 
 import javax.faces.bean.ManagedBean;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+
+import org.shareezy.entities.Benutzer;
 
 /**
  * Die Klasse RegestrieurungsBean stellt Methoden zur Verfügung die dazu genutzt
  * werden damit sich der Nutzer anmelden kann.
  * 
  * @author Maurice Engelskirchen
+ * @author burghard.britzke mailto:bubi@charmides.in-berlin.de
  * @version 1.0 11.12.2013
  * 
  */
@@ -34,6 +39,15 @@ import javax.persistence.EntityManagerFactory;
 public class RegistrierungBean {
 
 	private EntityManagerFactory emf;
+	private Benutzer benutzer;
+	
+	/**
+	 * Erzeugt eine neue RegistrierungBean. Initialisiert den Benutzer.
+	 */
+	public RegistrierungBean() {
+		benutzer = new Benutzer();
+	}
+	
 	/**
 	 * Prüft ob die Spezifischen Daten(username, e-mail) schon in einem
 	 * Datansatz vorhanden sind. Sind die Spezifischen Daten noch nicht
@@ -56,8 +70,13 @@ public class RegistrierungBean {
 	 * @return null da kein Seitenwechsel stattfindet.
 	 */
 	public String datensatzEinfügen() {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		et.begin();
+		em.persist(benutzer);
+		et.commit();
+		em.close();
 		return null;
-
 	}
 
 	/**
