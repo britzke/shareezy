@@ -27,6 +27,7 @@ import java.util.List;
  * @author burghard.britzke (bubi@charmides.in-berlin.de)
  */
 @Entity
+@Table(indexes = {@Index(columnList="kurzname")})
 public class Benutzer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
