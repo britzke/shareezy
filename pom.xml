@@ -1,11 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>de.shareezy</groupId>
-  <artifactId>shareezy</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
-  <name>shareezy</name>
-  <description>Easily share your Resources (like sailing boats or seats in a meeting room)</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.shareezy</groupId>
+	<artifactId>shareezy</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>shareezy</name>
+	<description>Easily share your Resources (like sailing boats or seats in a meeting room)</description>
 	<build>
 		<plugins>
 			<plugin>
@@ -49,22 +50,20 @@
 		<dependency>
 			<groupId>org.apache.myfaces.core</groupId>
 			<artifactId>myfaces-api</artifactId>
-			<version>2.1.13</version>
-			<scope>compile</scope>
+			<version>2.2.0-beta</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.myfaces.core</groupId>
 			<artifactId>myfaces-impl</artifactId>
-			<version>2.1.13</version>
-			<scope>compile</scope>
+			<version>2.2.0-beta</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
 			<artifactId>weld-servlet</artifactId>
 			<version>2.1.0.Final</version>
-			<!-- <version>2.0.0.SP1</version>  -->
+			<!-- <version>2.0.0.SP1</version> -->
 		</dependency>
 
 		<dependency>
