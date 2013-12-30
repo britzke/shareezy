@@ -2,6 +2,7 @@ package org.shareezy.beans;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.EntityManagerFactory;
 
 /**
  * Guppenverwaltung, Gruppen hinzufügen & Gruppen editieren
@@ -13,6 +14,8 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class GroupManagerBean {
 
+	private EntityManagerFactory emf;
+	
 	/**
 	 * Wird ausgeführt wenn der User auf "Neue Gruppe" (@issue9/Schritt 1)
 	 * klickt

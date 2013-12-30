@@ -436,7 +436,6 @@ public class GroupManagerBeanTest {
 	}
 
 	private GroupManagerBean proband;
-	private String nullTest = null;
 
 	/**
 	 * Setzt den Probanden auf.
