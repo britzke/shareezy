@@ -33,13 +33,13 @@ import org.shareezy.ContextListener;
  */
 public class ContextListenerTest {
 
-	private static final String MAIL_SMTP_WORD = "mail.smtp.word";
-	private static final String MAIL_SMTP_USER = "mail.smtp.user";
-	private static final String MAIL_SMTP_PORT = "mail.smtp.port";
-	private static final String MAIL_SMTP_HOST = "mail.smtp.host";
-	private static final String MAIL_SMTP_STARTTLS_ENABLE = "mail.smtp.starttls.enable";
-	private static final String MAIL_SMTP_AUTH = "mail.smtp.auth";
-	private static final String MAIL_FROM = "mail.from";
+	private static final String MAIL_SMTP_WORD = "org.shareezy.MAIL_SMTP_WORD";
+	private static final String MAIL_SMTP_USER = "org.shareezy.MAIL_SMTP_USER";
+	private static final String MAIL_SMTP_PORT = "org.shareezy.MAIL_SMTP_PORT";
+	private static final String MAIL_SMTP_HOST = "org.shareezy.MAIL_SMTP_HOST";
+	private static final String MAIL_SMTP_STARTTLS_ENABLE = "org.shareezy.MAIL_SMTP_STARTTLS_ENABLE";
+	private static final String MAIL_SMTP_AUTH = "org.shareezy.MAIL_SMTP_AUTH";
+	private static final String MAIL_FROM = "org.shareezy.MAIL_FROM";
 	private ContextListener proband;
 	private ServletContextEvent servletContextEvent;
 	private ServletContext servletContext;
@@ -56,14 +56,21 @@ public class ContextListenerTest {
 		servletContextEvent = mock(ServletContextEvent.class);
 
 		servletContext = mock(ServletContext.class);
-		when(servletContextEvent.getServletContext()).thenReturn(servletContext);
-		when(servletContext.getInitParameter(MAIL_FROM)).thenReturn("application@example.org");
-		when(servletContext.getInitParameter(MAIL_SMTP_AUTH)).thenReturn("true");
-		when(servletContext.getInitParameter(MAIL_SMTP_STARTTLS_ENABLE)).thenReturn("true");
-		when(servletContext.getInitParameter(MAIL_SMTP_HOST)).thenReturn("example.org");
+		when(servletContextEvent.getServletContext())
+				.thenReturn(servletContext);
+		when(servletContext.getInitParameter(MAIL_FROM)).thenReturn(
+				"application@example.org");
+		when(servletContext.getInitParameter(MAIL_SMTP_AUTH))
+				.thenReturn("true");
+		when(servletContext.getInitParameter(MAIL_SMTP_STARTTLS_ENABLE))
+				.thenReturn("true");
+		when(servletContext.getInitParameter(MAIL_SMTP_HOST)).thenReturn(
+				"example.org");
 		when(servletContext.getInitParameter(MAIL_SMTP_PORT)).thenReturn("587");
-		when(servletContext.getInitParameter(MAIL_SMTP_USER)).thenReturn("shareezy");
-		when(servletContext.getInitParameter(MAIL_SMTP_WORD)).thenReturn("secret");
+		when(servletContext.getInitParameter(MAIL_SMTP_USER)).thenReturn(
+				"shareezy");
+		when(servletContext.getInitParameter(MAIL_SMTP_WORD)).thenReturn(
+				"secret");
 
 		proband = new ContextListener();
 	}
@@ -78,7 +85,7 @@ public class ContextListenerTest {
 	@Test
 	public void testContextInitialized() {
 		proband.contextInitialized(servletContextEvent);
-		
+
 		verify(servletContext).getInitParameter(MAIL_FROM);
 		verify(servletContext).getInitParameter(MAIL_SMTP_STARTTLS_ENABLE);
 		verify(servletContext).getInitParameter(MAIL_SMTP_AUTH);
@@ -86,7 +93,7 @@ public class ContextListenerTest {
 		verify(servletContext).getInitParameter(MAIL_SMTP_PORT);
 		verify(servletContext).getInitParameter(MAIL_SMTP_USER);
 		verify(servletContext).getInitParameter(MAIL_SMTP_WORD);
-		verify(servletContext).setAttribute(eq("mail.properties"),anyObject());
+		verify(servletContext).setAttribute(eq("org.shareezy.MAIL_PROPERTIES"), anyObject());
 	}
 
 	/**

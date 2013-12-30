@@ -1,74 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-  <display-name>shareezy</display-name>
-  <context-param>
-    <param-name>javax.faces.PROJECT_STAGE</param-name>
-    <param-value>Development</param-value>
-  </context-param>
-  <context-param>
-    <description>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>shareezy</display-name>
+
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+	<context-param>
+		<description>
 		E-Mailadresse des Absenders, wird zur Validierung von E-Mailadressen
 		neu registrierter Benutzer benötigt.
 		</description>
-    <param-name>mail.from</param-name>
-    <param-value>application@example.org</param-value>
-  </context-param>
-  <context-param>
-    <description>
+		<param-name>org.shareezy.MAIL_FROM</param-name>
+		<param-value>application@example.org</param-value>
+	</context-param>
+	<context-param>
+		<description>
 		Gibt an, ob für den SMTP-E-Mailserver eine Authentisierung benötigt wird.
 		</description>
-    <param-name>mail.smtp.auth</param-name>
-    <param-value>true</param-value>
-  </context-param>
-  <context-param>
-    <description>
+		<param-name>org.shareezy.MAIL_SMTP_AUTH</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<description>
 		Gibt an, ob zur Authentisierung TLS verwendet werden soll
 		</description>
-    <param-name>mail.smtp.starttls.enable</param-name>
-    <param-value>true</param-value>
-  </context-param>
-  <context-param>
-    <description>
+		<param-name>org.shareezy.MAIL_SMTP_STARTTLS_ENABLE</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<description>
 		Name des SMTP E-Mailservers
 		</description>
-    <param-name>mail.smtp.host</param-name>
-    <param-value>smtp.example.org</param-value>
-  </context-param>
-  <context-param>
-    <description>
+		<param-name>org.shareezy.MAIL_SMTP_HOST</param-name>
+		<param-value>smtp.example.org</param-value>
+	</context-param>
+	<context-param>
+		<description>
 		Port des SMTP-Dienstes auf dem E-Mailserver
 		</description>
-    <param-name>mail.smtp.port</param-name>
-    <param-value>587</param-value>
-  </context-param>
-  <context-param>
-    <description>
+		<param-name>org.shareezy.MAIL_SMTP_PORT</param-name>
+		<param-value>587</param-value>
+	</context-param>
+	<context-param>
+		<description>
 		Benutzername für die Authentisierung am SMTP E-Mailserver
 		</description>
-    <param-name>mail.smtp.user</param-name>
-    <param-value>shareezy</param-value>
-  </context-param>
-  <context-param>
-    <description>
+		<param-name>org.shareezy.MAIL_SMTP_USER</param-name>
+		<param-value>shareezy</param-value>
+	</context-param>
+	<context-param>
+		<description>
 		Kennwort für die Authentisierung am SMTP E-Mailserver
 		</description>
-    <param-name>mail.smtp.word</param-name>
-    <param-value>secret</param-value>
-  </context-param>
-  <listener>
-    <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
-  </listener>
-  <servlet>
-    <servlet-name>Faces Servlet</servlet-name>
-    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>/faces/*</url-pattern>
-    <url-pattern>*.faces</url-pattern>
-  </servlet-mapping>
-  <listener>
-    <listener-class>org.shareezy.ContextListener</listener-class>
-  </listener>
+		<param-name>org.shareezy.MAIL_SMTP_WORD</param-name>
+		<param-value>secret</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+		<url-pattern>*.faces</url-pattern>
+	</servlet-mapping>
+	
+	<listener>
+		<listener-class>org.shareezy.ContextListener</listener-class>
+	</listener>
 </web-app>
