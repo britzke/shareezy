@@ -21,11 +21,19 @@ package org.shareezy.test.unit;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import static org.powermock.api.mockito.PowerMockito.*;
 
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
 import javax.persistence.Cache;
 import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
@@ -43,9 +51,13 @@ import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.metamodel.Metamodel;
+import javax.servlet.ServletContext;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 import org.shareezy.beans.RegistrierungBean;
 import org.shareezy.entities.Benutzer;
 
@@ -55,6 +67,8 @@ import org.shareezy.entities.Benutzer;
  * @author e1_cakir, Maurice Engelskirchen
  * @author burghard.britzke (bubi@charmides.in-berlin.de)
  */
+ @RunWith(PowerMockRunner.class)
+ @PrepareForTest({ Session.class, Transport.class })
 public class RegistrierungBeanTest {
 
 	public boolean closeSent;
@@ -140,7 +154,7 @@ public class RegistrierungBeanTest {
 		 * Zeichnet auf, ob die Nachricht persist gesendet wurde.
 		 */
 		public void persist(Object arg0) {
-			benutzer = (Benutzer)arg0;
+			benutzer = (Benutzer) arg0;
 			persistSent = true;
 		}
 
@@ -513,20 +527,60 @@ public class RegistrierungBeanTest {
 		assertTrue(
 				"Es muss ein EntityManager aus einer Factory erzeugt worden sein",
 				createEntityManagerSent);
-		assertTrue("Es muss eine Transaction vom EntityManager abgefragt werden",getTransactionSent);
-		assertTrue("Es muss die Transaktion gestartet werden",beginSent);
-		assertTrue("Das Entity muss 'persisted' werden",persistSent);
+		assertTrue(
+				"Es muss eine Transaction vom EntityManager abgefragt werden",
+				getTransactionSent);
+		assertTrue("Es muss die Transaktion gestartet werden", beginSent);
+		assertTrue("Das Entity muss 'persisted' werden", persistSent);
 		assertNotNull("Der Benutzer darf nich 'null' sein", benutzer);
-		assertTrue("Die Transaktion muss erfolgreich abgeschlossen worden sein", commitSent);
+		assertTrue(
+				"Die Transaktion muss erfolgreich abgeschlossen worden sein",
+				commitSent);
 	}
 
 	/**
 	 * Test method for
 	 * {@link org.shareezy.beans.RegestrierungsBean#validierungsEmail()}.
+	 * 
+	 * @throws MessagingException
+	 * @throws SecurityException 
+	 * @throws NoSuchFieldException 
+	 * @throws IllegalAccessException 
+	 * @throws IllegalArgumentException 
 	 */
 	@Test
-	public void testValidierungsEmail() {
-		String übergebenerWert = null;
-		assertEquals(nullTest, übergebenerWert);
+	public void testValidierungsEmail() throws MessagingException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+		Benutzer benutzer = org.mockito.Mockito.mock(Benutzer.class);
+		org.mockito.Mockito.when(benutzer.getEmail()).thenReturn("shareezy@example.org");
+		Field benutzerField = proband.getClass().getDeclaredField("benutzer");
+		benutzerField.setAccessible(true);
+		benutzerField.set(proband,benutzer);
+		
+		FacesContext facesContext = org.mockito.Mockito
+				.mock(FacesContext.class);
+
+		ExternalContext externalContext = org.mockito.Mockito
+				.mock(ExternalContext.class);
+		org.mockito.Mockito.when(facesContext.getExternalContext()).thenReturn(
+				externalContext);
+
+		ServletContext servletContext = org.mockito.Mockito
+				.mock(ServletContext.class);
+		org.mockito.Mockito.when(externalContext.getContext()).thenReturn(
+				servletContext);
+		
+		mockStatic(Session.class);
+		mockStatic(Transport.class);
+
+		String antwort = proband.validierungsEmail(facesContext);
+
+		assertNull("Die Antwort muss 'null' sein", antwort);
+		verify(facesContext).getExternalContext();
+		verify(externalContext).getContext();
+		verify(servletContext).getAttribute(eq("org.shareezy.MAIL_PROPERTIES"));
+		verifyStatic();
+		Session.getInstance(any(Properties.class));
+		verifyStatic();
+		Transport.send(any(Message.class));
 	}
 }
