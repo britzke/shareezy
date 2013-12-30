@@ -24,6 +24,15 @@
 <column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e90" mandatory="true" name="NACHNAME">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="30be7b79:1434392c637:-7fe5" mandatory="false" name="REGISTRATION">
+<data-type name="TIMESTAMP" selected-variant-pattern="TIMESTAMP"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="0" id="30be7b79:1434392c637:-7fe4" mandatory="true" name="validiert">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="0" id="30be7b79:1434392c637:-7fe3" mandatory="true" name="gesperrt">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
 </column-list>
 <primary-key id="16f7abd:1426f37016b:-7e99" name="PK_BENUTZER">
 <primary-key-column name="ID"/>

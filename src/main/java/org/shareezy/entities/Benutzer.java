@@ -18,8 +18,19 @@
 package org.shareezy.entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Klasse für Persistenz-Objekte der Datenbanktabelle BENUTZER.
@@ -27,7 +38,7 @@ import java.util.List;
  * @author burghard.britzke (bubi@charmides.in-berlin.de)
  */
 @Entity
-@Table(indexes = {@Index(columnList="kurzname")})
+@Table(indexes = { @Index(columnList = "kurzname") })
 public class Benutzer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -44,6 +55,15 @@ public class Benutzer implements Serializable {
 	private String nachname;
 
 	private String vorname;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date registration;
+
+	private String hash;
+	
+	boolean validiert;
+
+	boolean gesperrt;
 
 	// bi-directional many-to-many association to Gruppen
 	@ManyToMany(mappedBy = "benutzer")
@@ -169,6 +189,65 @@ public class Benutzer implements Serializable {
 	 */
 	public void setVorname(String vorname) {
 		this.vorname = vorname;
+	}
+
+	/**
+	 * @return the registration
+	 */
+	public Date getRegistration() {
+		return registration;
+	}
+
+	/**
+	 * @param registration
+	 *            the registration to set
+	 */
+	public void setRegistration(Date registration) {
+		this.registration = registration;
+	}
+
+	/**
+	 * @return the hash
+	 */
+	public String getHash() {
+		return hash;
+	}
+
+	/**
+	 * @param hash the hash to set
+	 */
+	public void setHash(String hash) {
+		this.hash = hash;
+	}
+
+	/**
+	 * @return the validiert
+	 */
+	public boolean isValidiert() {
+		return validiert;
+	}
+
+	/**
+	 * @param validiert
+	 *            the validiert to set
+	 */
+	public void setValidiert(boolean validiert) {
+		this.validiert = validiert;
+	}
+
+	/**
+	 * @return the gesperrt
+	 */
+	public boolean isGesperrt() {
+		return gesperrt;
+	}
+
+	/**
+	 * @param gesperrt
+	 *            the gesperrt to set
+	 */
+	public void setGesperrt(boolean gesperrt) {
+		this.gesperrt = gesperrt;
 	}
 
 	/**
