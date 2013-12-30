@@ -5,11 +5,13 @@ import java.util.Properties;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 /**
  * Application Lifecycle Listener Implementierung Initialisiert das
  * Context-Attribut "mail.properties" aus den Context-Parametern.
  */
+@WebListener
 public class ContextListener implements ServletContextListener {
 
 	/**

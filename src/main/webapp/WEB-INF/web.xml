@@ -74,8 +74,4 @@
 		<url-pattern>/faces/*</url-pattern>
 		<url-pattern>*.faces</url-pattern>
 	</servlet-mapping>
-	
-	<listener>
-		<listener-class>org.shareezy.ContextListener</listener-class>
-	</listener>
 </web-app>
