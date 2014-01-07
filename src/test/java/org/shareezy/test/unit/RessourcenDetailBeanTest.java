@@ -1,10 +1,15 @@
 package org.shareezy.test.unit;
 
 import static org.junit.Assert.*;
+
 import java.awt.Image;
 import java.lang.reflect.Field;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 import javax.persistence.Cache;
 import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
@@ -12,16 +17,19 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.FlushModeType;
 import javax.persistence.LockModeType;
+import javax.persistence.Parameter;
 import javax.persistence.PersistenceUnitUtil;
 import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.SynchronizationType;
+import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.metamodel.Metamodel;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.shareezy.beans.RessourcenDetailBean;
@@ -43,6 +51,7 @@ public class RessourcenDetailBeanTest {
     public boolean createEntityManagerSent;
 	public boolean createQuerySent;
 	public Ressource ressource;
+	public Query q;
 
 	
 	/**
@@ -120,7 +129,8 @@ public class RessourcenDetailBeanTest {
 		@Override
 		public Query createQuery(String arg0) {
 			createQuerySent = true;
-			return null;
+			
+			return q;
 		}
 
 		@Override
@@ -394,6 +404,202 @@ public class RessourcenDetailBeanTest {
 		}
 	}
 	
+	private class MockEntityQuery implements Query {
+
+		@Override
+		public int executeUpdate() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public int getFirstResult() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public FlushModeType getFlushMode() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Map<String, Object> getHints() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public LockModeType getLockMode() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public int getMaxResults() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public Parameter<?> getParameter(String arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Parameter<?> getParameter(int arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public <T> Parameter<T> getParameter(String arg0, Class<T> arg1) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public <T> Parameter<T> getParameter(int arg0, Class<T> arg1) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public <T> T getParameterValue(Parameter<T> arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Object getParameterValue(String arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Object getParameterValue(int arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Set<Parameter<?>> getParameters() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public List getResultList() {
+			return null;
+		}
+
+		@Override
+		public Object getSingleResult() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public boolean isBound(Parameter<?> arg0) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public Query setFirstResult(int arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Query setFlushMode(FlushModeType arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Query setHint(String arg0, Object arg1) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Query setLockMode(LockModeType arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Query setMaxResults(int arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public <T> Query setParameter(Parameter<T> arg0, T arg1) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Query setParameter(String arg0, Object arg1) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Query setParameter(int arg0, Object arg1) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Query setParameter(Parameter<Calendar> arg0, Calendar arg1,
+				TemporalType arg2) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Query setParameter(Parameter<Date> arg0, Date arg1,
+				TemporalType arg2) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Query setParameter(String arg0, Calendar arg1, TemporalType arg2) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Query setParameter(String arg0, Date arg1, TemporalType arg2) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Query setParameter(int arg0, Calendar arg1, TemporalType arg2) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Query setParameter(int arg0, Date arg1, TemporalType arg2) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public <T> T unwrap(Class<T> arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+	}
 	
 	/**
 	 * Erzeugt einen neuen Probanden der zutestenden Klasse.
@@ -404,6 +610,7 @@ public class RessourcenDetailBeanTest {
 	public void setUp() throws Exception {
 		proband = new RessourcenDetailBean();
 		EntityManagerFactory emf = new MockEntityManagerFactory();
+		q = new MockEntityQuery();
 
 		Class<? extends RessourcenDetailBean> clazz = proband.getClass();
 		Field field = clazz.getDeclaredField("emf");
