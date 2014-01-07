@@ -1,79 +1,88 @@
 /**
- *Es wird geprüft welche Mitglieder Ressourcen inerhalb der Gruppe verwalten können.
- *Abfrage des Status der Ressource
- *Wenn jemand aus der Gruppe entfernt wird/geht.
- *Welche Ressource zur Gruppe hinzugefügt wird.
- *Nachträgliches bearbeiten der ressourcen zu gruppe/ID.
- *Ressource der gruppe hinzufügen.
+*
+*/
+package org.shareezy.test.unit;
 
- *@author e1_hermann
- *@version update 10.12.2013
- **/
-package org.shareezy.beans;
+import static org.junit.Assert.*;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.persistence.Id;
+import org.junit.Before;
+import org.junit.Test;
+import org.shareezy.beans.Gruppenzuordnung;
 
-@ManagedBean
-@SessionScoped
-public class Gruppenzuordnung {
-
-	public String gruppenersteller;
-	public String leitunguebertragen;
-	public String mitglied;
-	@Id
-	public String account_id;
-	@Id
-	public int accounts_id;
+/**
+* @author e1_hermann
+*
+*/
+public class GruppenzuordnungTest {
 	
-	/**
-	 * Welches Mitglied ist berechtigt zum abfragen/erstellen/verwalten von
-	 * Ressourcen
-	 * 
-	 * @return accountID
-	 */
-	public String mitgliederabfragen() {
-		return account_id;
-	}
+
+	
+	public Gruppenzuordnung proband;
+	public String account_id;
+	public String accounts_id;
+       
 
 	/**
-	 * Abfrage des status der ressource
-	 * 
-	 * @return
+	 * @throws java.lang.Exception
 	 */
-	public int ressourcestatus() {
-
-		return accounts_id;
-
+	@Before
+	public void setUp() throws Exception {
+		/*
+	    Gruppenzuordnung i; 
+		i=new Gruppenzuordnung();
+		*/
+		
+		proband = new Gruppenzuordnung();
+	   
+		
 	}
+
+       
 
 	/**
-	 * Mitglied aus der Gruppe entfernen/gruppenID
-	 * 
-	 * @return
+	 * Test method for {@link org.shareezy.beans.Gruppenzuordnung#mitgliederabfragen()}.
 	 */
-	public String mitgliedentfernen() {
-		return null;
+	@Test
+	public void testmitgliederabfragen() {
+		String a = proband.mitgliederabfragen();
+		assertEquals(account_id, a);
 	}
 
-	/**
-	 * Ressource zur gruppe hinzufügen. Erstmal aus der View abfragen, dann
-	 * Datenbankabfrage
-	 * 
-	 * @return
-	 */
-	public String addressourcen(int ressourcenid) {
-		return null;
-	}
+        /**
+         * Test method for {@link org.shareezy.beans.Gruppenzuordnung#ressourcestatus()}.
+         */
+        @Test
+        public void testRessourcestatus() {
+                String b = proband.mitgliederabfragen();
+                assertEquals(accounts_id, b);
+        }
 
-	/**
-	 * bearbeiten der ressource
-	 * 
-	 * @return
-	 */
-	public String editressource() {
-		return null;
-	}
+	
+
+
+        /**
+         * Test method for {@link org.shareezy.beans.Gruppenzuordnung#mitgliedentfernen()}.
+         */
+        @Test
+        public void testMitgliedentfernen() {
+                fail("Not yet implemented");
+        }
+
+        /**
+         * Test method for {@link org.shareezy.beans.Gruppenzuordnung#addressourcen(int)}.
+         */
+        @Test
+        public void testAddressourcen() {
+                fail("Not yet implemented");
+        }
+
+        /**
+         * Test method for {@link org.shareezy.beans.Gruppenzuordnung#editressource()}.
+         */
+        @Test
+        public void testEditressource() {
+                fail("Not yet implemented");
+        }
 
 }
+
