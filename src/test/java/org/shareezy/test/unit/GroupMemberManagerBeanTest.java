@@ -39,6 +39,7 @@ public class GroupMemberManagerBeanTest {
 	public boolean createEntityManagerSent;
 	public boolean persistSent;
 	public Benutzer benutzer;
+	public boolean removeSent;
 
 	/**
 	 * Eine MockTransaction ist eine EntityTransaction, die ausschließlich als
@@ -114,6 +115,15 @@ public class GroupMemberManagerBeanTest {
 		public void persist(Object arg0) {
 			benutzer = (Benutzer) arg0;
 			persistSent = true;
+		}
+		
+		/**
+		 * Vermerkt, ob die Nachricht "remove" gesendet wurde.
+		 */
+		@Override
+		public void remove(Object arg0) {
+			benutzer = (Benutzer) arg0;
+			removeSent = true;
 		}
 
 		// ---------------------------------------------
@@ -335,10 +345,6 @@ public class GroupMemberManagerBeanTest {
 		}
 
 		@Override
-		public void remove(Object arg0) {
-		}
-
-		@Override
 		public void setFlushMode(FlushModeType arg0) {
 		}
 
@@ -467,7 +473,7 @@ public class GroupMemberManagerBeanTest {
 	@Test
 	public void testAddUser() {
 		String antwort = proband.addUser();
-		assertNull("die Antwort muss null sein", antwort);
+		assertNull("Die Antwort muss null sein", antwort);
 		assertTrue(
 				"Es muss ein EntityManager aus einer Factory erzeugt werden",
 				createEntityManagerSent);
@@ -488,8 +494,20 @@ public class GroupMemberManagerBeanTest {
 	 */
 	@Test
 	public void testDeleteUser() {
-		String testWert = null;
-		assertEquals(nullTest, testWert);
+		String antwort = proband.deleteUser();
+		assertNull("Die Antwort muss null sein", antwort);
+		assertTrue(
+				"Es muss ein EntityManager aus einer Factory erzeugt werden",
+				createEntityManagerSent);
+		assertTrue(
+				"Es muss die Transaction von einem EntityManager geholt werden",
+				getTransactionSent);
+		assertTrue("Die Transaction muss gestartet werden", beginSent);
+		assertTrue("Remove erwartet", removeSent);
+		assertNotNull("Der Benutzer darf nich 'null' sein", benutzer);
+		assertTrue("Die Transaktion muss erfolgreich abgeschlossen worden sein", commitSent);
+		assertTrue("Der EntityManager muss geschlossen werden",closeSent);
+		
 	}
 
 	/**
@@ -499,7 +517,7 @@ public class GroupMemberManagerBeanTest {
 	 */
 	@Test
 	public void testDeleteRequest() {
-		String testWert = null;
-		assertEquals(nullTest, testWert);
+		String antwort = proband.deleteUser();
+		assertNull(nullTest, antwort);
 	}
 }

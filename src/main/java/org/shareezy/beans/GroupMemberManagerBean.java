@@ -43,7 +43,6 @@ public class GroupMemberManagerBean {
 		em.persist(user = new Benutzer());
 		t.commit();
 		em.close();
-		
 		return null; 
 	}
 	
@@ -56,6 +55,12 @@ public class GroupMemberManagerBean {
 	 *  @return gibt nichts zurück damit sich die View nicht ändert
 	 */
 	public String deleteUser(){
+		em = emf.createEntityManager();
+		t = em.getTransaction();
+		t.begin();
+		em.remove(user = new Benutzer());
+		t.commit();
+		em.close();
 		return null; 
 	}
 	
