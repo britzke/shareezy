@@ -2,7 +2,11 @@ package org.shareezy.beans;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+
+import org.shareezy.entities.Gruppe;
 
 /**
  * Guppenverwaltung, Gruppen hinzufügen & Gruppen editieren
@@ -15,6 +19,7 @@ import javax.persistence.EntityManagerFactory;
 public class GroupManagerBean {
 
 	private EntityManagerFactory emf;
+	String name;
 	
 	/**
 	 * Wird ausgeführt wenn der User auf "Neue Gruppe" (@issue9/Schritt 1)
@@ -38,6 +43,13 @@ public class GroupManagerBean {
 	 * @return null - Soll in der selben View bleiben
 	 */
 	public String onCreateNewGroupClick() {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction t =  em.getTransaction();
+		t.begin();
+		Gruppe gruppe = new Gruppe();
+
+		em.persist(gruppe);
+	
 		return null;
 	}
 
@@ -74,6 +86,7 @@ public class GroupManagerBean {
 	 * @return null - Soll in der selben View bleiben
 	 */
 	public String onAddMembersClick() {
+		
 		return null;
 	}
 
