@@ -52,6 +52,7 @@ public class RessourcenDetailBeanTest {
 	public boolean createQuerySent;
 	public Ressource ressource;
 	public Query q;
+	public List<Ressource> ressourceList;
 
 	
 	/**
@@ -492,7 +493,8 @@ public class RessourcenDetailBeanTest {
 
 		@Override
 		public List getResultList() {
-			return null;
+			ressourceList = q.getResultList();
+			return ressourceList;
 		}
 
 		@Override
@@ -635,6 +637,7 @@ public class RessourcenDetailBeanTest {
 				"Es muss eine Query erzeugt worden sein",
 				createQuerySent);
 		assertNotNull("Die Ressource darf nicht 'null' sein", ressource);
+		assertNotNull("Die ResultList darf nicht 'null' sein", ressourceList);
 	
 	}
 	
