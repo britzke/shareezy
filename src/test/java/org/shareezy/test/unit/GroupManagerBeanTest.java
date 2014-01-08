@@ -1,35 +1,46 @@
+/*
+ * This file is part of shareezy, a software system for sharing resources.
+ *
+ * Copyright (C) 2013  	Steven Müller
+ * 						burghard.britzke bubi@charmides.in-berlin.de
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.shareezy.test.unit;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Map;
 
-import javax.persistence.Cache;
-import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.FlushModeType;
-import javax.persistence.LockModeType;
-import javax.persistence.PersistenceUnitUtil;
-import javax.persistence.Query;
-import javax.persistence.StoredProcedureQuery;
-import javax.persistence.SynchronizationType;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaDelete;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.CriteriaUpdate;
-import javax.persistence.metamodel.Metamodel;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.shareezy.beans.GroupManagerBean;
 import org.shareezy.entities.Benutzer;
 
+/**
+ * Test für die GroupManagerBean.
+ * 
+ * @author Steven Müller
+ * @author britzke bubi@charmides.in-berlin.de
+ */
 public class GroupManagerBeanTest {
 
 	public boolean closeSent;
@@ -43,6 +54,8 @@ public class GroupManagerBeanTest {
 	/**
 	 * Eine MockTransaction ist eine EntityTransaction, die ausschließlich als
 	 * Attrappe für Tests benutzt wird.
+	 * 
+	 * @author burghard.britzke bubi@charmides.in-berlin.de
 	 */
 	public class MockTransaction implements EntityTransaction {
 
@@ -94,7 +107,7 @@ public class GroupManagerBeanTest {
 	private EntityTransaction transaction;
 
 	/**
-	 * Setzt den Probanden auf.
+	 * Setzt den Probanden und die Testumgebung für ihn auf.
 	 * 
 	 * @throws java.lang.Exception
 	 */
@@ -120,39 +133,46 @@ public class GroupManagerBeanTest {
 		field.setAccessible(true);
 		// EntityManagerFactory in den Proband inizieren
 		field.set(proband, emf);
-		
+
 		field = clazz.getDeclaredField("name");
 		field.setAccessible(true);
-		field.set(proband,"StevensGroup");
+		field.set(proband, "StevensGroup");
 	}
 
 	/**
 	 * Test method for
-	 * {@link org.shareezy.beans.GroupManagerBean#onAddMembersClick()}.
+	 * {@link org.shareezy.beans.GroupManagerBean#onAddMembersClick()}. Testet,
+	 * dass die Antwort <em>null</em> ist, d. h. keine Navigation zu einem
+	 * anderen View eingeleitet wird.
 	 */
 	@Test
 	public void testOnAddMembersClick() {
 		String antwort = proband.onAddMembersClick();
 
-//		assertNull("die Antwort muss null sein", antwort);
-//
-//		assertNotNull("Der Benutzer darf nich 'null' sein", benutzer);
-//		assertTrue(
-//				"Die Transaktion muss erfolgreich abgeschlossen worden sein",
-//				commitSent);
-//		assertTrue("Der EntityManager muss geschlossen werden", closeSent);
+		assertNull("die Antwort muss null sein", antwort);
+		//
+		// assertNotNull("Der Benutzer darf nich 'null' sein", benutzer);
+		// assertTrue(
+		// "Die Transaktion muss erfolgreich abgeschlossen worden sein",
+		// commitSent);
+		// assertTrue("Der EntityManager muss geschlossen werden", closeSent);
 	}
 
+	/**
+	 * Test method for
+	 * {@link org.shareezy.beans.GroupManagerBean#onCreateNewGroupClick()}.
+	 * Testet, dass die Antwort <em>null</em> ist, d. h. keine Navigation zu
+	 * einem anderen View eingeleitet wird. Es wird getestest, ob die Gruppe
+	 * mittels eines EntityManagers und einer Transaktion gespeichert wird.
+	 */
 	@Test
 	public void testOnCreateNewGroupClick() {
 		String antwort = proband.onCreateNewGroupClick();
 
+		assertNull(antwort);
 		verify(emf).createEntityManager();
 		verify(em).getTransaction();
 		verify(transaction).begin();
 		verify(em).persist(any());
-
-		
-
 	}
 }
