@@ -53,6 +53,7 @@ public class TestNeueRessourcenBean {
 	public boolean entCommit;
 	public boolean entityManagerClose;
 	public boolean emRemove;
+
 	
 
 
@@ -62,6 +63,7 @@ public class TestNeueRessourcenBean {
 	 * Außerßerdem wird ein NeureRessourceBean Objekt erstellt und proband
 	 * zugewiesen. Dieser Proband wird noch nciht genutzt.
 	 */
+	
 	@Before
 	public void aufbau() throws Exception {
 		proband = new NeueRessourceBean();
@@ -83,8 +85,12 @@ public class TestNeueRessourcenBean {
 	 * Die Annotation Test identifiziert die Methode als Test. Es wird getestet
 	 * ob ein Objekt aus der Datenbank gelösct wird.
 	 */
+	
+	
+
+	
 	@Test
-	public void testNeueRessource() {
+	public void testLoescheRessource() {
 
 		String rueckgabewert = proband.loescheRessource(ressource);
 		verify(emf).createEntityManager();
@@ -97,5 +103,19 @@ public class TestNeueRessourcenBean {
 		verify(transaction).commit();
 		verify(em).close();
 	}
+	
+	@Test
+	public void testSpeichern() {
+		proband.speichern();
+		verify(emf).createEntityManager();
+		verify(em, times(2)).getTransaction();
+		verify(em).persist(any());
+		verify(em).close();
+		
+		
+		
+	}
+	
+	
 
 }
