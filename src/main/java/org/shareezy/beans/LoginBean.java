@@ -18,26 +18,43 @@
 package org.shareezy.beans;
 
 import javax.faces.bean.ManagedBean;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+
+import org.shareezy.entities.Benutzer;
 
 /**
- * In dieser Bean findet die Überprüfung der Anmeldungsdaten des Benutzers
- * statt. Der Benutzer muss seinen Benutzernamen und sein Passwort in die
- * entsprechenden Eingabefelder der View eintragen. Diese werden in die
- * jeweiligen Eigenschaften der Bean geschrieben.
- * 
+ * In dieser Bean findet die Überprüfung der Anmeldungsdaten des Benutzers statt.
+ * Der Benutzer muss seinen Benutzernamen und sein Passwort in die entsprechenden 
+ * Eingabefelder der View eintragen. Diese werden in die jeweiligen Eigenschaften 
+ * der Bean geschrieben.
  * @author wegner
+ * @version 1.1
  */
 @ManagedBean
 public class LoginBean {
+	
+	private EntityManagerFactory emf;
+	private Benutzer benutzer;
+	
+	public LoginBean(){
+		benutzer = new Benutzer();
+	}
 
 	/**
-	 * In dieser Methode werden die Eingaben des Benutzers, mit den
-	 * entsprechenden Daten der Datenbank verglichen. Stimmen Benutzername und
-	 * Passwort jeweils überein, ist die Anmeldung erfolgreich.
-	 * 
+	 * In dieser Methode werden die Eingaben des Benutzers, mit den entsprechenden Daten 
+	 * der Datenbank verglichen. Stimmen Benutzername und Passwort jeweils überein, 
+	 * ist die Anmeldung erfolgreich.
 	 * @return null, damit kein Seitenwechsel stattfindet.
-	 */
-	public String login() {
-		return null;
+	 */	
+	public String login(){
+		EntityManager em =emf.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		et.begin();
+		em.persist(benutzer);
+		et.commit();
+		em.close();		
+		return "failed";
 	}
 }

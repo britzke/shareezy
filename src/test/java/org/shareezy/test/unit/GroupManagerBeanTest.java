@@ -32,8 +32,12 @@ import javax.persistence.EntityTransaction;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentMatcher;
+import org.mockito.Matchers;
+import org.mockito.Mockito;
 import org.shareezy.beans.GroupManagerBean;
 import org.shareezy.entities.Benutzer;
+import org.shareezy.entities.Gruppe;
 
 /**
  * Test für die GroupManagerBean.
@@ -133,10 +137,14 @@ public class GroupManagerBeanTest {
 		field.setAccessible(true);
 		// EntityManagerFactory in den Proband inizieren
 		field.set(proband, emf);
-
-		field = clazz.getDeclaredField("name");
+		//groupName
+		field = clazz.getDeclaredField("groupName");
 		field.setAccessible(true);
-		field.set(proband, "StevensGroup");
+		field.set(proband, "Ste");
+		//benutzer
+		field = clazz.getDeclaredField("benutzer");
+		field.setAccessible(true);
+		field.set(proband, new Benutzer());
 	}
 
 	/**
@@ -160,6 +168,19 @@ public class GroupManagerBeanTest {
 
 	/**
 	 * Test method for
+	 * {@link org.shareezy.beans.GroupManagerBean#onNewGroupClick()}.
+	 * Testet, dass die Antwort <em>null</em> ist, d. h. keine Navigation zu
+	 * einem anderen View eingeleitet wird. Es wird getestest, ob die Gruppe
+	 * mittels eines EntityManagers und einer Transaktion gespeichert wird.
+	 */
+	@Test
+	public void testOnNewGroupClick() {
+		String antwort = proband.onNewGroupClick("StevensGruppe");
+		assertNull(antwort);
+	}
+	
+	/**
+	 * Test method for
 	 * {@link org.shareezy.beans.GroupManagerBean#onCreateNewGroupClick()}.
 	 * Testet, dass die Antwort <em>null</em> ist, d. h. keine Navigation zu
 	 * einem anderen View eingeleitet wird. Es wird getestest, ob die Gruppe
@@ -168,11 +189,29 @@ public class GroupManagerBeanTest {
 	@Test
 	public void testOnCreateNewGroupClick() {
 		String antwort = proband.onCreateNewGroupClick();
-
 		assertNull(antwort);
 		verify(emf).createEntityManager();
 		verify(em).getTransaction();
 		verify(transaction).begin();
-		verify(em).persist(any());
+		//verify(em).persist(any(Gruppe.class));
+		verify(em).persist(Mockito.argThat(new GroupArgumentMatcher()));
+	}
+
+	/**
+	 * Überprüft ein Gruppen-Objekt auf gültigen Namen & Verwalter
+	 * @author e0_smueller
+	 * @return true - wenn das Gruppen-Objekt einen Gruppen-Namen mit mindestens 3 Zeichen und einen Verwalter besitzt
+	 * @return false - wenn das Gruppen-Objekt keine gültigen Namen oder keinen Verwalter besitzt
+	 */
+	class GroupArgumentMatcher extends ArgumentMatcher {
+		
+		public boolean matches(Object o) {
+			if (o instanceof Gruppe) {
+				if(((Gruppe) o).getName().length()>2 && ((Gruppe) o).getVerwalter()!=null){
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 }

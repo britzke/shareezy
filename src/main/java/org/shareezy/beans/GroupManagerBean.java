@@ -23,6 +23,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
+import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.Gruppe;
 
 /**
@@ -35,7 +36,8 @@ import org.shareezy.entities.Gruppe;
 public class GroupManagerBean {
 
 	private EntityManagerFactory emf;
-	String name;
+	private String groupName;
+	private Benutzer benutzer;
 
 	/**
 	 * Wird ausgeführt wenn der User auf "Neue Gruppe" (@issue9/Schritt 1)
@@ -45,7 +47,8 @@ public class GroupManagerBean {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onNewGroupClick() {
+	public String onNewGroupClick(String groupName) {
+		this.groupName = groupName;
 		return null;
 	}
 
@@ -61,7 +64,8 @@ public class GroupManagerBean {
 		EntityTransaction t = em.getTransaction();
 		t.begin();
 		Gruppe gruppe = new Gruppe();
-
+		gruppe.setVerwalter(benutzer);
+		gruppe.setName(groupName);
 		em.persist(gruppe);
 
 		return null;
@@ -98,7 +102,7 @@ public class GroupManagerBean {
 	 * @return null - Soll in der selben View bleiben
 	 */
 	public String onAddMembersClick() {
-
+		
 		return null;
 	}
 
