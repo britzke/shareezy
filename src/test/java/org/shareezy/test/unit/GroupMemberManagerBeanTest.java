@@ -47,8 +47,13 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.metamodel.Metamodel;
 
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentMatcher;
+import org.mockito.Matchers;
+import org.mockito.Mockito;
 import org.shareezy.beans.GroupManagerBean;
 import org.shareezy.beans.GroupMemberManagerBean;
 import org.shareezy.entities.Benutzer;
@@ -59,6 +64,7 @@ public class GroupMemberManagerBeanTest {
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	private EntityTransaction transaction;
+	private Benutzer user;
 	private String nullTest = null;
 
 	/**
@@ -69,6 +75,7 @@ public class GroupMemberManagerBeanTest {
 	@Before
 	public void setUp() throws Exception {
 		proband = new GroupMemberManagerBean();
+		user = mock(Benutzer.class);
 		
 		emf = mock(EntityManagerFactory.class);
 
@@ -89,9 +96,9 @@ public class GroupMemberManagerBeanTest {
 		// EntityManagerFactory in den Proband inizieren
 		field.set(proband, emf);
 		
-//		field = clazz.getDeclaredField("user.name");
-//		field.setAccessible(true);
-//		field.set(proband, "Test");
+		field = clazz.getDeclaredField("user");
+		field.setAccessible(true);
+		field.set(proband, user );
 	}
 
 	/**
@@ -111,6 +118,19 @@ public class GroupMemberManagerBeanTest {
 		verify(transaction).commit();
 		verify(em).close();
 	}
+	class MessagesArgumentMatcher extends ArgumentMatcher {
+		String userKurzname = "test";
+		GroupMemberManagerBean testProband = proband;
+		Benutzer testUser = testProband.getUser();
+		
+		         public boolean matches(Object o) {
+		        	 if(testUser.getKurzname() == userKurzname){
+		        		 System.out.println("UserKurzname ist 'Test'");
+		        		 return true;
+		        	 }
+		             return false;
+		         }
+		     }
 
 	/**
 	 * Test method for
@@ -125,7 +145,7 @@ public class GroupMemberManagerBeanTest {
 		verify(emf).createEntityManager();
 		verify(em).getTransaction();
 		verify(transaction).begin();
-		verify(em).remove(any());
+		verify(em).remove(Mockito.argThat(new MessagesArgumentMatcher()));
 		verify(transaction).commit();
 		verify(em).close();
 	}
