@@ -18,32 +18,23 @@
 package org.shareezy.test.unit;
 
 import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
 
 import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Map;
 
-import javax.persistence.Cache;
-import javax.persistence.EntityGraph;
+
+
+
+
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.FlushModeType;
-import javax.persistence.LockModeType;
-import javax.persistence.PersistenceUnitUtil;
-import javax.persistence.Query;
-import javax.persistence.StoredProcedureQuery;
-import javax.persistence.SynchronizationType;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaDelete;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.CriteriaUpdate;
-import javax.persistence.metamodel.Metamodel;
 
+import org.hamcrest.core.IsInstanceOf;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.shareezy.beans.NeueRessourceBean;
 import org.shareezy.entities.Ressource;
 
@@ -53,20 +44,20 @@ import org.shareezy.entities.Ressource;
  * @author e1_klawitter
  * @author tim treibmann
  */
+
 public class TestNeueRessourcenBean {
 
 	private NeueRessourceBean proband;
+	@Mock
 	private EntityManagerFactory emf;
+	@Mock
 	private EntityManager em;
+	@Mock
 	private EntityTransaction transaction;
+	@Mock
 	private Ressource ressource;
-	public boolean createEntityManager;
-	public boolean getEntityTransaction;
-	public boolean entBegin;
-	public boolean mergeausgeführt;
-	public boolean entCommit;
-	public boolean entityManagerClose;
-	public boolean emRemove;
+
+
 
 	
 
@@ -80,12 +71,10 @@ public class TestNeueRessourcenBean {
 	
 	@Before
 	public void aufbau() throws Exception {
-		proband = new NeueRessourceBean();
-		emf= mock(EntityManagerFactory.class);
-		em = mock(EntityManager.class);
-		transaction = mock(EntityTransaction.class);
-		ressource = mock(Ressource.class);
+		//Hiermit wird sichergestellt, dass die @Mock Annotationen verfügbar sind.
+		MockitoAnnotations.initMocks(this);
 		
+		proband = new NeueRessourceBean();
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
 		
@@ -98,11 +87,7 @@ public class TestNeueRessourcenBean {
 	/**
 	 * Die Annotation Test identifiziert die Methode als Test. Es wird getestet
 	 * ob ein Objekt aus der Datenbank gelösct wird.
-	 */
-	
-	
-
-	
+	 */	
 	@Test
 	public void testLoescheRessource() {
 
@@ -124,12 +109,6 @@ public class TestNeueRessourcenBean {
 		verify(emf).createEntityManager();
 		verify(em, times(2)).getTransaction();
 		verify(em).persist(any());
-		verify(em).close();
-		
-		
-		
+		verify(em).close();		
 	}
-	
-	
-
 }
