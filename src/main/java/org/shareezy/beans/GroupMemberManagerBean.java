@@ -126,4 +126,19 @@ public class GroupMemberManagerBean {
 	public String deleteRequest() {
 		return null;
 	}
+	
+	/**
+	 * Die Methode sendRequest dient dazu eine Anfrage an den
+	 * Benutzer zu senden
+	 * <ol>
+	 * <li>
+	 * wird bei Klick auf Ablehnen aufgerufen<br>
+	 * </li>
+	 * </ol>
+	 * 
+	 * @return gibt nichts zurück damit sich die View nicht ändert
+	 */
+	public String sendRequest(){
+		return null;
+	}
 }
