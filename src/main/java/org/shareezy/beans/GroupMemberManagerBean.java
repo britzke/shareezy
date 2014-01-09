@@ -46,6 +46,20 @@ public class GroupMemberManagerBean {
 	private Benutzer user;
 
 	/**
+	 * @return the user
+	 */
+	public Benutzer getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(Benutzer user) {
+		this.user = user;
+	}
+
+	/**
 	 * Die Methode AddUser dient dazu dem Benutzer eine Gruppe zuzuweisen
 	 * <ol>
 	 * <li>
@@ -88,7 +102,11 @@ public class GroupMemberManagerBean {
 		em = emf.createEntityManager();
 		t = em.getTransaction();
 		t.begin();
-		em.remove(user = new Benutzer());
+		
+		user = new Benutzer();
+		user.setKurzname("test");
+		
+		em.remove(user);
 		t.commit();
 		em.close();
 		return null;
