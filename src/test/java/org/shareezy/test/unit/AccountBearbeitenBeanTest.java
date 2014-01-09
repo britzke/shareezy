@@ -20,21 +20,39 @@
 package org.shareezy.test.unit;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.lang.reflect.Field;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.shareezy.beans.AccountBearbeitenBean;
+import org.shareezy.beans.GroupMemberManagerBean;
+import org.shareezy.entities.Benutzer;
+import org.shareezy.entities.Ressource;
 
 /**
  * Testet die Übersetzungseinheit <i>(Compilation Unit)</i>
  * {@link org.shareezy.beans.AccountBearbeitenBean}.
- * 
- * @author e1_cakir
+ *   
+ * @author cakir
  * @author burghard.britzke bubi@charmides.in-berlin.de
  */
 public class AccountBearbeitenBeanTest {
-
 	private AccountBearbeitenBean proband;
+	private EntityTransaction transaction;
+	private EntityManager em;
+	private EntityManagerFactory emf;
+	private Benutzer user;
+
 
 	/**
 	 * Erzeugt ein neuen Probanden der zu testenden Klasse.
@@ -46,6 +64,18 @@ public class AccountBearbeitenBeanTest {
 	@Before
 	public void setUp() throws Exception {
 		proband = new AccountBearbeitenBean();
+		emf = mock(EntityManagerFactory.class);
+		em = mock(EntityManager.class);
+		transaction = mock(EntityTransaction.class);
+		user = mock(Benutzer.class);
+				
+		when(em.getTransaction()).thenReturn(transaction);
+		when(emf.createEntityManager()).thenReturn(em);
+		
+		Class<? extends AccountBearbeitenBean> clazz = proband.getClass();
+		Field field = clazz.getDeclaredField("emf");
+		field.setAccessible(true);
+		field.set(proband, emf);
 	}
 
 	/**
@@ -70,5 +100,13 @@ public class AccountBearbeitenBeanTest {
 	public void testDatensatzÄndern() {
 		String antwort = proband.datensatzÄndern();
 		assertNull(antwort);
+		
+		verify(emf).createEntityManager();
+		verify(em).getTransaction();
+		verify(transaction).begin();
+		verify(em).remove(any());
+		verify(transaction).commit();
+		verify(em).close();
+		verify(em).remove(em.merge(user));
 	}
 }
