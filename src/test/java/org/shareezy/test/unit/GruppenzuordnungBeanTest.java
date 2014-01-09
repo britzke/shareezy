@@ -100,6 +100,7 @@ public class GruppenzuordnungBeanTest {
 	 */
 	@Test
 	public void testEditressource() {
+		
 		fail("Not yet implemented");
 	}
 
