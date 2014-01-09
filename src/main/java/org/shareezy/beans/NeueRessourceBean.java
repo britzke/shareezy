@@ -14,41 +14,28 @@ import org.shareezy.entities.Ressource;
  */
 
 /**
- *  Die Annotation ManagedBean sorgt dafür, dass diese
- *  Klasse als ManagedBean erkannt wird.
- *  SessionScoped sorgt dafür das diese ManagedBean
- *  nur bis zum Ende der Session lebt.
- *  
- *  @author ThomasKLawitter
- *  @version 12.12.2013
+ * Die Annotation ManagedBean sorgt dafür, dass diese Klasse als ManagedBean
+ * erkannt wird. SessionScoped sorgt dafür das diese ManagedBean nur bis zum
+ * Ende der Session lebt.
+ * 
+ * @author ThomasKLawitter
+ * @version 12.12.2013
  */
 @ManagedBean
 @SessionScoped
 public class NeueRessourceBean {
-	
+
 	private EntityManagerFactory emf;
 	private EntityManager em;
-	
-	public NeueRessourceBean(){
-		
+
+	public NeueRessourceBean() {
 	}
 
 	/**
-	 * Action-Routine für den View <code>neueRessource</code>.Wird angesprochen,
-	 * wenn der Benutzer die Schaltfläche <code>neueRessoure</code> anwählt.
-	 * Sorgt dafür das eine neue Ressource erzeugt wird,
-	 * deren Werte der Benutzer festlegen kann.
-	 * 
-	 * @return null - d. h. der View wird nicht gewechselt.
-	 */
-	public String neueRessource() {
-		return null;
-	}
-
-	/**
-	 * Action-Routine für den View <code>neueRessource</code>. Wird angesprochen,
-	 * wenn der Benutzer die Schaltfläche <code>löschen</code> anwählt. Sorgt
-	 * dafür, dass Ressourcen aus der Ressourcenliste gelöscht werden können.
+	 * Action-Routine für den View <code>neueRessource</code>. Wird
+	 * angesprochen, wenn der Benutzer die Schaltfläche <code>löschen</code>
+	 * anwählt. Sorgt dafür, dass Ressourcen aus der Ressourcenliste gelöscht
+	 * werden können.
 	 * 
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
@@ -56,7 +43,7 @@ public class NeueRessourceBean {
 		em = emf.createEntityManager();
 		EntityTransaction ent = em.getTransaction();
 		ent.begin();
-		ressource=em.merge(ressource);
+		ressource = em.merge(ressource);
 		em.remove(ressource);
 		ent.commit();
 		em.close();
@@ -64,9 +51,10 @@ public class NeueRessourceBean {
 	}
 
 	/**
-	 * Action-Routine für den View <code>neueRessource</code>. Wird angesprochen,
-	 * wenn der Benutzer die Schaltfläche <code>speichern</code> anwählt. Sorgt
-	 * dafür, dass die neu eingesetzten Werte für diese Ressource in der Datenbank gespeichert wird.
+	 * Action-Routine für den View <code>neueRessource</code>. Wird
+	 * angesprochen, wenn der Benutzer die Schaltfläche <code>speichern</code>
+	 * anwählt. Sorgt dafür, dass die neu eingesetzten Werte für diese Ressource
+	 * in der Datenbank gespeichert wird.
 	 * 
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
@@ -77,7 +65,6 @@ public class NeueRessourceBean {
 		em.persist(ress);
 		em.getTransaction().commit();
 		em.close();
-		
 		return null;
 	}
 }
