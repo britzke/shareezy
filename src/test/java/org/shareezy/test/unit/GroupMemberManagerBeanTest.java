@@ -125,7 +125,7 @@ public class GroupMemberManagerBeanTest {
 		
 		         public boolean matches(Object o) {
 		        	 if(testUser.getKurzname() == userKurzname){
-		        		 System.out.println("UserKurzname ist 'Test'");
+		        		 System.out.println("UserKurzname ist 'test'");
 		        		 return true;
 		        	 }
 		             return false;
@@ -157,7 +157,18 @@ public class GroupMemberManagerBeanTest {
 	 */
 	@Test
 	public void testDeleteRequest() {
-		String antwort = proband.deleteUser();
+		String antwort = proband.deleteRequest();
+		assertNull(nullTest, antwort);
+	}
+	
+	/**
+	 * Test method for
+	 * {@link org.shareezy.beans.GroupMemberManagerBean#sendRequest()}.
+	 * Testet, ob ein Request gesendet wird.
+	 */
+	@Test
+	public void testSendRequest() {
+		String antwort = proband.sendRequest();
 		assertNull(nullTest, antwort);
 	}
 }
