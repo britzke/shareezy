@@ -62,7 +62,6 @@ public class AccountBearbeitenBean {
 		em = emf.createEntityManager();
 		t = em.getTransaction();
 		t.begin();
-		em.remove(user = new Benutzer());
 		em.merge(user);
 		t.commit();
 		em.close();

@@ -43,7 +43,7 @@ import org.shareezy.entities.Ressource;
  * Testet die Übersetzungseinheit <i>(Compilation Unit)</i>
  * {@link org.shareezy.beans.AccountBearbeitenBean}.
  *   
- * @author e1_cakir
+ * @author cakir
  * @author burghard.britzke bubi@charmides.in-berlin.de
  */
 public class AccountBearbeitenBeanTest {
