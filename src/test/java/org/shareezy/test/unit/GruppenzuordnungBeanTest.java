@@ -92,6 +92,7 @@ public class GruppenzuordnungBeanTest {
 	@Test
 	public void testAddressourcen() {
 		fail("Not yet implemented");
+		
 	}
 
 	/**
