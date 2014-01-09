@@ -20,6 +20,13 @@ package org.shareezy.beans;
 
 import javax.faces.bean.ManagedBean;
 
+import org.shareezy.entities.Benutzer;
+
+
+import javax.faces.bean.ManagedBean;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 /**
  * Die Klasse AccountBearbeitenBean stellt Methoden zur Verfügung, die dafür
  * genutzt werden das der Nutzer seinen Account bearbeiten kann.
@@ -28,6 +35,11 @@ import javax.faces.bean.ManagedBean;
  */
 @ManagedBean
 public class AccountBearbeitenBean {
+	private EntityManagerFactory emf;
+	private EntityManager em;
+	private Benutzer user;
+	private EntityTransaction t;
+
 	/**
 	 * Prüft die Eingabe des nutzer. Abhängig davon gibt er eine fehlermeldung
 	 * aus, prüftt die eingabe mit den in der Datenbank gespeicherten referens
@@ -47,6 +59,13 @@ public class AccountBearbeitenBean {
 	 * @return null da kein Seitenwechsel stattfindet.
 	 */
 	public String datensatzÄndern() {
+		em = emf.createEntityManager();
+		t = em.getTransaction();
+		t.begin();
+		em.remove(user = new Benutzer());
+		em.merge(user);
+		t.commit();
+		em.close();
 		return null;
 	}
 }
