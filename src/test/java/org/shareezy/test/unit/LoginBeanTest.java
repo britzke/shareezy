@@ -29,8 +29,9 @@ import org.shareezy.beans.LoginBean;
 import org.shareezy.entities.Benutzer;
 
 /**
- * Eine TestUnit, in der verschiedene Funktionalitäten oder Methoden der 
+ * Eine TestUnit, in der verschiedene Funktionalitäten oder Methoden der
  * {@link org.shareezy.beans.LoginBean} getestet werden können.
+ * 
  * @author Kevin Wegner
  * @version 1.1
  */
@@ -40,7 +41,7 @@ public class LoginBeanTest {
 	public Benutzer benutzer;
 	private EntityManagerFactory emf;
 	private EntityManager em;
-	private EntityTransaction transaction;	
+	private EntityTransaction transaction;
 
 	/**
 	 * @throws java.lang.Exception
@@ -48,16 +49,16 @@ public class LoginBeanTest {
 	@Before
 	public void setUp() throws Exception {
 		proband = new LoginBean();
-		emf = mock(EntityManagerFactory.class);		
+		emf = mock(EntityManagerFactory.class);
 		em = mock(EntityManager.class);
 		transaction = mock(EntityTransaction.class);
-		proband = mock(LoginBean.class);
-		
-		when(emf.createEntityManager()).thenReturn(em);		
+		// proband = mock(LoginBean.class);
+
+		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
-		//Abfrage des Rückgabewertes der Methode login().
-		//when(proband.login()).thenReturn("failed"); 
-		
+		// Abfrage des Rückgabewertes der Methode login().
+		// when(proband.login()).thenReturn("failed");
+
 		// Beschreibung der Klasse holen
 		Class<? extends LoginBean> clazz = proband.getClass();
 		// Beschreibung der Eigenschaft holen
@@ -74,25 +75,25 @@ public class LoginBeanTest {
 	@Test
 	public void testLogin() {
 		String p = proband.login();
-		//assertNull("muss null sein.", p);		
-//		assertTrue("Es muss ein EntityManager aus einer Factory erzeugt worden sein",
-//				createEntityManagerSent);
-		verify(emf).createEntityManager();				
-//		assertTrue(
-//				"Es muss eine Transaction vom EntityManager abgefragt werden",
-//				getTransactionSent);
+		// assertNull("muss null sein.", p);
+		// assertTrue("Es muss ein EntityManager aus einer Factory erzeugt worden sein",
+		// createEntityManagerSent);
+		verify(emf).createEntityManager();
+		// assertTrue(
+		// "Es muss eine Transaction vom EntityManager abgefragt werden",
+		// getTransactionSent);
 		verify(em).getTransaction();
-//		assertTrue("Die Transaktion muss gestartet werden.", beginSent);
+		// assertTrue("Die Transaktion muss gestartet werden.", beginSent);
 		verify(transaction).begin();
-//		assertTrue("Die Entity muss persistend sein.", persistSent);
-		//verify(em).persist(any());
-//		assertTrue(
-//				"Die Transaktion muss erfolgreich abgeschlossen worden sein",
-//				commitSend);
+		// assertTrue("Die Entity muss persistend sein.", persistSent);
+		// verify(em).persist(any());
+		// assertTrue(
+		// "Die Transaktion muss erfolgreich abgeschlossen worden sein",
+		// commitSend);
 		verify(transaction).commit();
-		verify(em).close();		
-		
-		//Abfrage des Rückgabewertes der Methode login().
-		//verify(proband).login();		
+		verify(em).close();
+
+		// Abfrage des Rückgabewertes der Methode login().
+		// verify(proband).login();
 	}
 }
