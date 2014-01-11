@@ -20,16 +20,14 @@ import org.shareezy.beans.GruppenzuordnungBean;
 
 /**
  * @author e1_hermann
- *
+ * 
  */
 public class GruppenzuordnungBeanTest {
-	
+
 	public EntityManager em;
 	public EntityManagerFactory emf;
 	public GruppenzuordnungBean proband;
 	public EntityTransaction transaction;
-
-	
 
 	/**
 	 * @throws java.lang.Exception
@@ -37,20 +35,19 @@ public class GruppenzuordnungBeanTest {
 	@Before
 	public void setUp() throws Exception {
 		proband = new GruppenzuordnungBean();
-		emf=mock(EntityManagerFactory.class);
-		em=mock(EntityManager.class);
+		emf = mock(EntityManagerFactory.class);
+		em = mock(EntityManager.class);
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
-		
+
 	}
-	
-	Class<? extends GruppenzuordnungBean> clazz = proband.getClass();
+
+	// Class<? extends GruppenzuordnungBean> clazz = proband.getClass();
 	/*
-    Field field = clazz.getDeclaredField("emf");
-    
-    field.setAccessible(true);
-    field.set(proband, emf);
-    */
+	 * Field field = clazz.getDeclaredField("emf");
+	 * 
+	 * field.setAccessible(true); field.set(proband, emf);
+	 */
 	/**
 	 * Test method for {@link org.shareezy.beans.GruppenzuordnungBean#setUp()}.
 	 */
@@ -60,7 +57,8 @@ public class GruppenzuordnungBeanTest {
 	}
 
 	/**
-	 * Test method for {@link org.shareezy.beans.GruppenzuordnungBean#mitgliederabfragen()}.
+	 * Test method for
+	 * {@link org.shareezy.beans.GruppenzuordnungBean#mitgliederabfragen()}.
 	 */
 	@Test
 	public void testMitgliederabfragen() {
@@ -71,7 +69,8 @@ public class GruppenzuordnungBeanTest {
 	}
 
 	/**
-	 * Test method for {@link org.shareezy.beans.GruppenzuordnungBean#ressourcestatus()}.
+	 * Test method for
+	 * {@link org.shareezy.beans.GruppenzuordnungBean#ressourcestatus()}.
 	 */
 	@Test
 	public void testRessourcestatus() {
@@ -79,7 +78,8 @@ public class GruppenzuordnungBeanTest {
 	}
 
 	/**
-	 * Test method for {@link org.shareezy.beans.GruppenzuordnungBean#mitgliedentfernen()}.
+	 * Test method for
+	 * {@link org.shareezy.beans.GruppenzuordnungBean#mitgliedentfernen()}.
 	 */
 	@Test
 	public void testMitgliedentfernen() {
@@ -87,20 +87,22 @@ public class GruppenzuordnungBeanTest {
 	}
 
 	/**
-	 * Test method for {@link org.shareezy.beans.GruppenzuordnungBean#addressourcen(int)}.
+	 * Test method for
+	 * {@link org.shareezy.beans.GruppenzuordnungBean#addressourcen(int)}.
 	 */
 	@Test
 	public void testAddressourcen() {
 		fail("Not yet implemented");
-		
+
 	}
 
 	/**
-	 * Test method for {@link org.shareezy.beans.GruppenzuordnungBean#editressource()}.
+	 * Test method for
+	 * {@link org.shareezy.beans.GruppenzuordnungBean#editressource()}.
 	 */
 	@Test
 	public void testEditressource() {
-		
+
 		fail("Not yet implemented");
 	}
 
