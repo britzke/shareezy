@@ -21,6 +21,7 @@ import static org.junit.Assert.*;
 
 import java.awt.Image;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -510,7 +511,7 @@ public class RessourcenDetailBeanTest {
 
 		@Override
 		public List getResultList() {
-			ressourceList = q.getResultList();
+			ressourceList = new ArrayList<Ressource>();
 			return ressourceList;
 		}
 
