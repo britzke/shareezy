@@ -18,6 +18,14 @@
 package org.shareezy.beans;
 
 import javax.faces.bean.ManagedBean;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.faces.event.ActionEvent; 
+
+
+
+import org.shareezy.entities.Benutzer;
+
 
 /**
  * Eigene Gruppenzugehörigkeit beantragen/entfernen
@@ -26,6 +34,21 @@ import javax.faces.bean.ManagedBean;
  */
 @ManagedBean
 public class GroupMembership {
+	
+	private EntityManagerFactory entityManagerFactory;
+	private EntityManager entityManager;	
+	private Benutzer benutzer;
+	private boolean bestätigt;
+	private boolean administrator;
+	
+	public String GroupMembership(){
+
+		entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		return "";
+	}
+
 	/**
 	 * Wird bei Klick auf 'Hinzufuegen' aufgerufen.
 	 * 
@@ -43,4 +66,13 @@ public class GroupMembership {
 	public String knopfGruppeVerlassen() {
 		return null;
 	}
+	
+	public String anfrageAbgesendet() {  
+        return "Anfrage an Verwalter gesendet!";  
+    } 
+      
+
+	public String leaveTheGroupp() {  
+		return"Sie sind aus dies Community ausgetreten!";  
+    }  
 }

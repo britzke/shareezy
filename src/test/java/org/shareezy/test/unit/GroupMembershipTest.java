@@ -18,29 +18,59 @@
 package org.shareezy.test.unit;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+import java.lang.reflect.Field;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+
+import org.junit.Before;
 import org.junit.Test;
+import org.shareezy.beans.GroupMembership;
+import org.shareezy.beans.NeueRessourceBean;
+import org.shareezy.entities.Ressource;
 
 /**
  * Testet die GroupMembershipBean
  * @author e1_slipachuk
  */
 public class GroupMembershipTest {
+	
+	private GroupMembership proband;
+	private EntityManagerFactory emf;
+	private EntityManager em;
+	private EntityTransaction transaction;
+	
+	
+	
+	@Before
+	public void struktur() throws Exception {
+		proband = new GroupMembership();
+		emf= mock(EntityManagerFactory.class);
+		em = mock(EntityManager.class);
+		transaction = mock(EntityTransaction.class);
+	
+		
+		when(emf.createEntityManager()).thenReturn(em);
+		when(em.getTransaction()).thenReturn(transaction);
+	
 
+	}
 	/**
 	 * Test method for {@link org.shareezy.beans.GroupMembership#GroupMembership()}.
 	 */
-	@Test
-	public void testGroupMembership() {
-		fail("Not yet implemented");
-	}
-
+		
 	/**
 	 * Test method for {@link org.shareezy.beans.GroupMembership#sendAnfrage()}.
 	 */
 	@Test
 	public void testSendAnfrage() {
-		fail("Not yet implemented");
+		fail("sendet anfrage");
 	}
 
 	/**
@@ -48,6 +78,6 @@ public class GroupMembershipTest {
 	 */
 	@Test
 	public void testKnopfGruppeVerlassen() {
-		fail("Not yet implemented");
+		fail("leave the group");
 	}
 }
