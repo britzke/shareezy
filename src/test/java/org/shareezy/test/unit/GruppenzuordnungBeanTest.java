@@ -68,6 +68,7 @@ public class GruppenzuordnungBeanTest {
 		verify(em).getTransaction();
 		verify(transaction).begin();
 		verify(em).persist(any());
+		
 	}
 
 	/**
