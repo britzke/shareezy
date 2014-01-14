@@ -10,7 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
-import org.junit.Before;
 import org.shareezy.beans.GruppenzuordnungBean;
 import org.shareezy.entities.Gruppe;
 
@@ -40,9 +39,9 @@ public class GruppenzuordnungBean {
 	*/
 
 	
-	public String account_id;
-	public String accounts_id;
-    public EntityManagerFactory emf;
+	private String account_id;
+	private String accounts_id;
+    private EntityManagerFactory emf;
 
 	/**
 	 * @throws java.lang.Exception
