@@ -18,39 +18,101 @@
 package org.shareezy.test.unit;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.shareezy.beans.RessourceListen;
+import org.shareezy.entities.Ressource;
 
 /**
- *  Eine TestUnit, in der verschiedene Funktionalitäten/Methoden der 
+ * Eine TestUnit, in der verschiedene Funktionalitäten/Methoden der
  * {@link org.shareezy.beans.RessourcenListen} getestet werden können.
+ * 
  * @author e1_treibmann
- *
+ * 
  */
 public class TestRessourcenListen {
 
 	private RessourceListen proband;
+	@Mock
+	private EntityManagerFactory emf;
+	@Mock
+	private EntityManager em;
+	@Mock
+	private EntityTransaction transaction;
+	@Mock
+	private Query query;
+	private final String queryString = "SELECT r FROM RESSOURCE r";
+	@Mock
+	private List<Ressource> list;
+	private List<Ressource> listeRessourcen;
+
 	/**
-	 * Diese Methode erstellt beim erstmaligen Testaufruf einen Probanden vom Typ RessourceListen
+	 * Diese Methode erstellt beim erstmaligen Testaufruf einen Probanden vom
+	 * Typ RessourceListen
+	 * 
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		 proband = new RessourceListen();
+		MockitoAnnotations.initMocks(this);
+		proband = new RessourceListen();
+
+		Class<? extends RessourceListen> klasse = proband.getClass();
+		Field field = klasse.getDeclaredField("emf");
+		field.setAccessible(true);
+		field.set(proband, emf);
+
+		when(emf.createEntityManager()).thenReturn(em);
+		when(em.getTransaction()).thenReturn(transaction);
+		when(em.createQuery(queryString)).thenReturn(query);
+		when(query.getResultList()).thenReturn(list);
+		when(list.size()).thenReturn(0).thenReturn(1);
+
 	}
 
 	/**
-	 * Dies ist eine Testmethode für die ressourceClickedmethode. Sie überprüft ob der Rückgabewert der Methode ressourceClicked mit
-	 * ressourcendetail übereinstimmt
+	 * Dies ist eine Testmethode für die ressourceClickedmethode. Sie überprüft
+	 * ob der Rückgabewert der Methode ressourceClicked mit ressourcendetail
+	 * übereinstimmt
 	 * {@link org.shareezy.beans.RessourceListen#ressourceClicked()}.
 	 */
 	@Test
 	public void testRessourceClicked() {
 		String nav = proband.ressourceClicked();
 		assertEquals("ressourcendetail", nav);
-		
+	}
+
+	/**
+	 * Dies ist eine Testmethode für die GetRessourcenListemethode. Es wird
+	 * überprüft ob ein EntityManager erzeugt wird. Es wird überprüft ob
+	 * Transactions ausgeführt werden. Es wird überprüft ob eine bestimmte Query
+	 * durchgeführt wird. Es wird überprüft ob ein Resultset erstellt wird. Es
+	 * wird überprüft ob alle Zweige der If-Anweisung abgefragt werden. Je nach
+	 * Konditionen. Es wird der Rückgabewert überprüft.
+	 */
+	@Test
+	public void testGetRessourcenListe() {
+		List<Ressource> rueckgabe = proband.getRessourcenListe();
+		verify(emf).createEntityManager();
+		verify(em, times(2)).getTransaction();
+		verify(em).createQuery(queryString);
+		verify(query).getResultList();
+		proband.getRessourcenListe();
+		assertEquals(rueckgabe, new ArrayList<Ressource>());
+		assertNotNull(rueckgabe);
 	}
 
 }
