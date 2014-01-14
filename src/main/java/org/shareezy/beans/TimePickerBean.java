@@ -25,7 +25,7 @@ import org.shareezy.entities.Buchung;
 /**
  * Klasse ist zustaendig fuer den TimePicker und die vom User eingestellten Daten (Datum + Uhrzeit)
  * 
- * @author Vanessa Krohn
+ * @author Vanessa Krohn 
  * @date 05/12/13
  */
 
