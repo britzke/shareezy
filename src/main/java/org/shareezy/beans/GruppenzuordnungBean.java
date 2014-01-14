@@ -3,6 +3,7 @@
 */
 package org.shareezy.beans;
 
+
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.persistence.EntityManager;
@@ -21,6 +22,22 @@ import org.shareezy.entities.Gruppe;
 @SessionScoped
 public class GruppenzuordnungBean {
 	
+	/*
+	public class DriverManager{
+		
+		public ResultSet resultset;
+		Connection con=null;
+		
+		
+		public void getConnection(){
+			
+			Statement stmt = con.createStatement();
+			con = DriverManager.getConnection( "jdbc:derby://localhost:1527/sample", 
+			        "test");
+			
+		}
+	}
+	*/
 
 	
 	public GruppenzuordnungBean proband;
@@ -31,19 +48,7 @@ public class GruppenzuordnungBean {
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@Before
-	public void setUp() throws Exception {
-		/*
-	    Gruppenzuordnung i; 
-		i=new Gruppenzuordnung();
-		*/
-		proband = new GruppenzuordnungBean();
-	   
-		
-	}
-
-       
-
+	
 	/**
 	 * Welches Mitglied ist berechtigt zum abfragen/erstellen/verwalten von Ressourcen
 	 * @return 

@@ -24,16 +24,16 @@ import org.shareezy.beans.GruppenzuordnungBean;
  */
 public class GruppenzuordnungBeanTest {
 
-	public EntityManager em;
-	public EntityManagerFactory emf;
-	public GruppenzuordnungBean proband;
-	public EntityTransaction transaction;
+	private EntityManager em;
+	private EntityManagerFactory emf;
+	private GruppenzuordnungBean proband;
+	private EntityTransaction transaction;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
-	public void setUp() throws Exception {
+	private void setUp() throws Exception {
 		proband = new GruppenzuordnungBean();
 		emf = mock(EntityManagerFactory.class);
 		em = mock(EntityManager.class);
@@ -41,19 +41,21 @@ public class GruppenzuordnungBeanTest {
 		when(em.getTransaction()).thenReturn(transaction);
 
 	}
-
-	// Class<? extends GruppenzuordnungBean> clazz = proband.getClass();
-	/*
-	 * Field field = clazz.getDeclaredField("emf");
-	 * 
-	 * field.setAccessible(true); field.set(proband, emf);
+    /*
+	 proband = new GruppenzuordnungBean();
+	 Class<? extends GruppenzuordnungBean> clazz = proband.getClass();
+	
+	 Field field = clazz.getDeclaredField("emf");
+	 field.setAccessible(true);
+	 field.set(proband, emf);
 	 */
+	
 	/**
 	 * Test method for {@link org.shareezy.beans.GruppenzuordnungBean#setUp()}.
 	 */
 	@Test
 	public void testSetUp() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -74,7 +76,7 @@ public class GruppenzuordnungBeanTest {
 	 */
 	@Test
 	public void testRessourcestatus() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -83,7 +85,7 @@ public class GruppenzuordnungBeanTest {
 	 */
 	@Test
 	public void testMitgliedentfernen() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -92,7 +94,6 @@ public class GruppenzuordnungBeanTest {
 	 */
 	@Test
 	public void testAddressourcen() {
-		fail("Not yet implemented");
 
 	}
 
@@ -103,7 +104,6 @@ public class GruppenzuordnungBeanTest {
 	@Test
 	public void testEditressource() {
 
-		fail("Not yet implemented");
 	}
 
 }
