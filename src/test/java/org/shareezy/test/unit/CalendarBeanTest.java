@@ -19,7 +19,16 @@ package org.shareezy.test.unit;
 
 import static org.junit.Assert.*;
 
+import java.lang.reflect.Field;
 import java.util.Calendar;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,6 +42,9 @@ import org.shareezy.beans.CalendarBean;
  */
 public class CalendarBeanTest {
 	private CalendarBean proband;
+	private EntityManagerFactory emf;
+	private EntityManager em;
+	private Query q;
 
 	/**
 	 * Erzeugt einen neuen Probanden der zu testenden Klasse.
@@ -41,7 +53,17 @@ public class CalendarBeanTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		emf = mock(EntityManagerFactory.class);
+		em = mock(EntityManager.class);
+		when(emf.createEntityManager()).thenReturn(em);
+		q = mock(Query.class);
+		when(em.createQuery("select b from Buchung where rückgabedatum= :rückgabedatum and ausleiher= :ausleiher")).thenReturn(q);
 		proband = new CalendarBean();
+		
+		Class<? extends CalendarBean> clazz = proband.getClass();
+		Field field = clazz.getDeclaredField("emf");
+		field.setAccessible(true);
+		field.set(proband, emf);
 	}
 
 	/**
@@ -52,7 +74,7 @@ public class CalendarBeanTest {
 	@Test
 	public void testScheduleController() {
 		String sc = proband.scheduleController();
-		assertNull("Muss Null sein!", sc);
+		verify(emf).createEntityManager();
 	}
 
 	/**
