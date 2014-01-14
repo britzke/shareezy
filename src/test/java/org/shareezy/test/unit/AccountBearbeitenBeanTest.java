@@ -33,26 +33,18 @@ import javax.persistence.EntityTransaction;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.shareezy.beans.AccountBearbeitenBean;
-import org.shareezy.beans.GroupMemberManagerBean;
 import org.shareezy.entities.Benutzer;
-import org.shareezy.entities.Ressource;
 
 /**
  * Testet die Übersetzungseinheit <i>(Compilation Unit)</i>
  * {@link org.shareezy.beans.AccountBearbeitenBean}.
  *   
  * @author cakir
+ * @author Maurice Engelskirchen
  * @author burghard.britzke bubi@charmides.in-berlin.de
  */
 public class AccountBearbeitenBeanTest {
-	private AccountBearbeitenBean proband;
-	private EntityTransaction transaction;
-	private EntityManager em;
-	private EntityManagerFactory emf;
-	private Benutzer user;
-
 
 	/**
 	 * Erzeugt ein neuen Probanden der zu testenden Klasse.
@@ -61,21 +53,45 @@ public class AccountBearbeitenBeanTest {
 	 *             Wenn eine Situation auftritt, die in der Methode nich
 	 *             berücksitigt wurde.
 	 */
+
+	private EntityManagerFactory emf;
+	private EntityManager em;
+	private EntityTransaction transaction;
+	private AccountBearbeitenBean proband;
+	private Benutzer benutzer;
+
 	@Before
 	public void setUp() throws Exception {
+
 		proband = new AccountBearbeitenBean();
+
+		// Beschreibung der Klasse holen
+		Class<? extends AccountBearbeitenBean> clazz = proband.getClass();
+
 		emf = mock(EntityManagerFactory.class);
 		em = mock(EntityManager.class);
-		transaction = mock(EntityTransaction.class);
-		user = mock(Benutzer.class);
-				
-		when(em.getTransaction()).thenReturn(transaction);
+		benutzer = mock(Benutzer.class);
+
 		when(emf.createEntityManager()).thenReturn(em);
-		
-		Class<? extends AccountBearbeitenBean> clazz = proband.getClass();
+
+		transaction = mock(EntityTransaction.class);
+		when(em.getTransaction()).thenReturn(transaction);
+
+		// Beschreibung der Eigenschaft holen
 		Field field = clazz.getDeclaredField("emf");
+		// Zugriff auf private Eigenschaft erlauben
 		field.setAccessible(true);
+		// EntityManagerFactory in den Proband inizieren
 		field.set(proband, emf);
+
+		field = clazz.getDeclaredField("altesPasswort");
+		field.setAccessible(true);
+		field.set(proband, "altesPasswort");
+
+		field = clazz.getDeclaredField("eingabePasswort");
+		field.setAccessible(true);
+		field.set(proband, "eingabePasswort");
+
 	}
 
 	/**
@@ -84,10 +100,21 @@ public class AccountBearbeitenBeanTest {
 	 * . Testet, dass die Antwort <em>null</em> ist, d.h. es findet keine
 	 * Navigation zu einer andern Seite statt.
 	 */
+
 	@Test
 	public void testEingabePrüfen() {
-		String antwort = proband.eingabePrüfen();
-		assertNull(antwort);
+
+		final String PASSWORT = "123";
+		when(benutzer.getKennwort()).thenReturn(PASSWORT);
+		proband.setEingabePasswort(PASSWORT);
+
+		proband.eingabePrüfen();
+		verify(emf).createEntityManager();
+		verify(em).getTransaction();
+		verify(transaction).begin();
+		verify(benutzer).getKennwort();
+		verify(proband).datensatzÄndern();
+		verify(em).persist(any());
 	}
 
 	/**
@@ -98,8 +125,6 @@ public class AccountBearbeitenBeanTest {
 	 */
 	@Test
 	public void testDatensatzÄndern() {
-		String antwort = proband.datensatzÄndern();
-		assertNull(antwort);
 		
 		verify(emf).createEntityManager();
 		verify(em).getTransaction();
@@ -107,6 +132,14 @@ public class AccountBearbeitenBeanTest {
 		verify(em).remove(any());
 		verify(transaction).commit();
 		verify(em).close();
-		verify(em).remove(em.merge(user));
+		//verify(em).remove(em.merge());
 	}
 }
+
+
+
+
+
+
+
+

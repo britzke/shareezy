@@ -176,6 +176,9 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-74ab" mandatory="true" name="GRUPPEN_ID">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="1ad4b1c:1438fca5934:-7fdf" mandatory="true" name="bestätigt">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
 </column-list>
 <primary-key id="16f7abd:1426f37016b:-74b7" name="PK_BENUTZERGRUPPEN">
 <primary-key-column name="BENUTZER_ID"/>

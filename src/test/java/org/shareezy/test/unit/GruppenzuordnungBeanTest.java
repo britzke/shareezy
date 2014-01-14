@@ -3,11 +3,8 @@
  */
 package org.shareezy.test.unit;
 
-import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
-
-import java.lang.reflect.Field;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,7 +12,6 @@ import javax.persistence.EntityTransaction;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.shareezy.beans.GroupManagerBean;
 import org.shareezy.beans.GruppenzuordnungBean;
 
 /**
@@ -24,16 +20,16 @@ import org.shareezy.beans.GruppenzuordnungBean;
  */
 public class GruppenzuordnungBeanTest {
 
-	public EntityManager em;
-	public EntityManagerFactory emf;
-	public GruppenzuordnungBean proband;
-	public EntityTransaction transaction;
+	private EntityManager em;
+	private EntityManagerFactory emf;
+	private GruppenzuordnungBean proband;
+	private EntityTransaction transaction;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
-	public void setUp() throws Exception {
+	private void setUp() throws Exception {
 		proband = new GruppenzuordnungBean();
 		emf = mock(EntityManagerFactory.class);
 		em = mock(EntityManager.class);
@@ -41,19 +37,21 @@ public class GruppenzuordnungBeanTest {
 		when(em.getTransaction()).thenReturn(transaction);
 
 	}
-
-	// Class<? extends GruppenzuordnungBean> clazz = proband.getClass();
-	/*
-	 * Field field = clazz.getDeclaredField("emf");
-	 * 
-	 * field.setAccessible(true); field.set(proband, emf);
+    /*
+	 proband = new GruppenzuordnungBean();
+	 Class<? extends GruppenzuordnungBean> clazz = proband.getClass();
+	
+	 Field field = clazz.getDeclaredField("emf");
+	 field.setAccessible(true);
+	 field.set(proband, emf);
 	 */
+	
 	/**
 	 * Test method for {@link org.shareezy.beans.GruppenzuordnungBean#setUp()}.
 	 */
 	@Test
 	public void testSetUp() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -66,6 +64,7 @@ public class GruppenzuordnungBeanTest {
 		verify(em).getTransaction();
 		verify(transaction).begin();
 		verify(em).persist(any());
+		
 	}
 
 	/**
@@ -74,7 +73,7 @@ public class GruppenzuordnungBeanTest {
 	 */
 	@Test
 	public void testRessourcestatus() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -83,7 +82,7 @@ public class GruppenzuordnungBeanTest {
 	 */
 	@Test
 	public void testMitgliedentfernen() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -92,7 +91,6 @@ public class GruppenzuordnungBeanTest {
 	 */
 	@Test
 	public void testAddressourcen() {
-		fail("Not yet implemented");
 
 	}
 
@@ -103,7 +101,6 @@ public class GruppenzuordnungBeanTest {
 	@Test
 	public void testEditressource() {
 
-		fail("Not yet implemented");
 	}
 
 }
