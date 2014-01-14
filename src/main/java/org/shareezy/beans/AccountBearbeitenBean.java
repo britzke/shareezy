@@ -1,3 +1,4 @@
+
 /*
  * This file is part of shareezy, a software system for sharing resources.
  *
@@ -20,6 +21,7 @@ package org.shareezy.beans;
 
 import javax.faces.bean.ManagedBean;
 
+
 import org.shareezy.entities.Benutzer;
 
 
@@ -39,6 +41,8 @@ public class AccountBearbeitenBean {
 	private EntityManager em;
 	private Benutzer user;
 	private EntityTransaction t;
+	private String altesPasswort;
+	private String eingabePasswort;
 
 	/**
 	 * Prüft die Eingabe des nutzer. Abhängig davon gibt er eine fehlermeldung
@@ -49,6 +53,19 @@ public class AccountBearbeitenBean {
 	 */
 
 	public String eingabePrüfen() {
+
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction t = em.getTransaction();
+		t.begin();
+		Benutzer benutzer = new Benutzer();
+		altesPasswort = benutzer.getKennwort();
+		eingabePasswort = getEingabePasswort();
+
+		if (eingabePasswort.equals(altesPasswort)) {
+			datensatzÄndern();
+		}
+		em.persist(benutzer);
+
 		return null;
 	}
 
@@ -66,5 +83,20 @@ public class AccountBearbeitenBean {
 		t.commit();
 		em.close();
 		return null;
+	}
+
+	/**
+	 * @return the eingabePasswort
+	 */
+	public String getEingabePasswort() {
+		return eingabePasswort;
+	}
+
+	/**
+	 * @param eingabePasswort
+	 *            the eingabePasswort to set
+	 */
+	public void setEingabePasswort(String eingabePasswort) {
+		this.eingabePasswort = eingabePasswort;
 	}
 }
