@@ -40,7 +40,6 @@ public class GruppenzuordnungBean {
 	*/
 
 	
-	public GruppenzuordnungBean proband;
 	public String account_id;
 	public String accounts_id;
     public EntityManagerFactory emf;
