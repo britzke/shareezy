@@ -27,10 +27,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Column;
 
 /**
  * Klasse für Persistenz-Objekte der Datenbanktabelle BENUTZER.
@@ -68,6 +70,9 @@ public class Benutzer implements Serializable {
 	// bi-directional many-to-many association to Gruppen
 	@ManyToMany(mappedBy = "benutzer")
 	private List<Gruppe> gruppen;
+	
+	@OneToMany(mappedBy = "benutzer")
+	private List<BenutzerGruppe> benutzerGruppe;
 
 	// bi-directional many-to-one association to Buchungen
 	@OneToMany(mappedBy = "ausleiher")

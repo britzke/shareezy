@@ -7,5 +7,6 @@
 		<class>org.shareezy.entities.Gruppe</class>
 		<class>org.shareezy.entities.Ressource</class>
 		<class>org.shareezy.entities.Typ</class>
+		<class>org.shareezy.entities.BenutzerGruppe</class>
 	</persistence-unit>
 </persistence>

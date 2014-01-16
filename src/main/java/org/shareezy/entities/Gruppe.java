@@ -44,6 +44,9 @@ public class Gruppe implements Serializable {
 	@JoinTable(name = "BENUTZERGRUPPEN", joinColumns = { @JoinColumn(name = "GRUPPEN_ID") }, inverseJoinColumns = { @JoinColumn(name = "BENUTZER_ID") })
 	private List<Benutzer> benutzer;
 
+	@OneToMany (mappedBy="gruppe")
+	private List<BenutzerGruppe> benutzergruppen;
+	
 	// bi-directional many-to-one association to Benutzer
 	@ManyToOne
 	@JoinColumn(name = "BENUTZER_ID_VERWALTER")
