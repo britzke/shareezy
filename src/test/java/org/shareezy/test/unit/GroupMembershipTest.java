@@ -18,12 +18,8 @@
 package org.shareezy.test.unit;
 
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-import java.lang.reflect.Field;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -32,52 +28,57 @@ import javax.persistence.EntityTransaction;
 import org.junit.Before;
 import org.junit.Test;
 import org.shareezy.beans.GroupMembership;
-import org.shareezy.beans.NeueRessourceBean;
-import org.shareezy.entities.Ressource;
 
 /**
  * Testet die GroupMembershipBean
+ * 
  * @author e1_slipachuk
+ * @author burghard.britzke
  */
 public class GroupMembershipTest {
-	
+
 	private GroupMembership proband;
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	private EntityTransaction transaction;
-	
-	
-	
+
+	/**
+	 * Setzt den Probanden und die Testumgebung vor jedem Test auf.
+	 * 
+	 * @throws Exception
+	 */
 	@Before
-	public void struktur() throws Exception {
+	public void struktur() {
 		proband = new GroupMembership();
-		emf= mock(EntityManagerFactory.class);
+		emf = mock(EntityManagerFactory.class);
 		em = mock(EntityManager.class);
 		transaction = mock(EntityTransaction.class);
-	
-		
+
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
-	
 
 	}
-	/**
-	 * Test method for {@link org.shareezy.beans.GroupMembership#GroupMembership()}.
-	 */
-		
+
 	/**
 	 * Test method for {@link org.shareezy.beans.GroupMembership#sendAnfrage()}.
+	 * Testet, ob <i>keine</i> Navigation zu einem anderen View eingeleitet
+	 * wird.
 	 */
 	@Test
 	public void testSendAnfrage() {
-		fail("sendet anfrage");
+		String antwort = proband.sendAnfrage();
+		assertNull(antwort);
 	}
 
 	/**
-	 * Test method for {@link org.shareezy.beans.GroupMembership#knopfGruppeVerlassen()}.
+	 * Test method for
+	 * {@link org.shareezy.beans.GroupMembership#knopfGruppeVerlassen()}.
+	 * Testet, ob <i>keine</i> Navigation zu einem anderen View eingeleitet
+	 * wird.
 	 */
 	@Test
 	public void testKnopfGruppeVerlassen() {
-		fail("leave the group");
+		String antwort = proband.knopfGruppeVerlassen();
+		assertNull(antwort);
 	}
 }
