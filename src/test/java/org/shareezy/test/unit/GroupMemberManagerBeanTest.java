@@ -37,6 +37,7 @@ import org.mockito.ArgumentMatcher;
 import org.mockito.Mockito;
 import org.shareezy.beans.GroupMemberManagerBean;
 import org.shareezy.entities.Benutzer;
+import org.shareezy.entities.BenutzerGruppe;
 
 /**
  * Testet die GroupMemberManagerBean
@@ -51,8 +52,10 @@ public class GroupMemberManagerBeanTest {
 	private EntityManager em;
 	private EntityTransaction transaction;
 	private Benutzer user;
+	private BenutzerGruppe userGrp = new BenutzerGruppe();
 	private String nullTest = null;
 	private int testBenutzerHash;
+	private int testUserGrpHash;
 
 	/**
 	 * Setzt den Probanden und die Testumgebung auf.
@@ -73,8 +76,10 @@ public class GroupMemberManagerBeanTest {
 			IllegalArgumentException, IllegalAccessException {
 		proband = new GroupMemberManagerBean();
 		user = new Benutzer();
+		userGrp = new BenutzerGruppe();
 		// Sichere Objekt Identität für den BenutzerArgumentMatcher
 		testBenutzerHash = user.hashCode();
+		testUserGrpHash = userGrp.hashCode();
 
 		emf = mock(EntityManagerFactory.class);
 		em = mock(EntityManager.class);
@@ -95,26 +100,11 @@ public class GroupMemberManagerBeanTest {
 		field = clazz.getDeclaredField("user");
 		field.setAccessible(true);
 		field.set(proband, user);
+		
+		field = clazz.getDeclaredField("userGrp");
+		field.setAccessible(true);
+		field.set(proband, userGrp);
 	}
-
-	/**
-	 * Test method for
-	 * {@link org.shareezy.beans.GroupMemberManagerBean#addUser()}. Testet, ob
-	 * ein Datensatz eingefügt wird.
-	 */
-	@Test
-	public void testAddUser() {
-		String antwort = proband.addUser();
-		assertNull("Die Antwort muss null sein", antwort);
-
-		verify(emf).createEntityManager();
-		verify(em).getTransaction();
-		verify(transaction).begin();
-		verify(em).persist(any());
-		verify(transaction).commit();
-		verify(em).close();
-	}
-
 	/**
 	 * Der BenutzerArgumentMatcher ist ein ArgumentMatcher, der sicherstellt, ob
 	 * ein Benutzer als Argument geliefert wurde, dessen hashCode dem Kode
@@ -137,11 +127,34 @@ public class GroupMemberManagerBeanTest {
 			if (argument instanceof Benutzer
 					&& (argument.hashCode() == testBenutzerHash)) {
 				return true;
+			} else if (argument instanceof BenutzerGruppe
+					&& (argument.hashCode() == testUserGrpHash)) {
+				return true;
 			} else {
 				return false;
 			}
 		}
 	}
+	/**
+	 * Test method for
+	 * {@link org.shareezy.beans.GroupMemberManagerBean#addUser()}. Testet, ob
+	 * ein Datensatz eingefügt wird.
+	 */
+	@Test
+	public void testAddUser() {
+		String antwort = proband.addUser();
+		assertNull("Die Antwort muss null sein", antwort);
+
+		verify(emf).createEntityManager();
+		verify(em).getTransaction();
+		verify(transaction).begin();
+		verify(em).persist(Mockito.argThat(new BenutzerArgumentMatcher()));
+		verify(transaction).commit();
+		verify(em).close();
+		System.out.println("user added");
+	}
+
+
 
 	/**
 	 * Test method for
@@ -159,6 +172,7 @@ public class GroupMemberManagerBeanTest {
 		verify(em).remove(Mockito.argThat(new BenutzerArgumentMatcher()));
 		verify(transaction).commit();
 		verify(em).close();
+		System.out.println("user deleted");
 	}
 
 	/**
@@ -170,6 +184,14 @@ public class GroupMemberManagerBeanTest {
 	public void testDeleteRequest() {
 		String antwort = proband.deleteRequest();
 		assertNull(nullTest, antwort);
+		
+		verify(emf).createEntityManager();
+		verify(em).getTransaction();
+		verify(transaction).begin();
+		verify(em).remove(Mockito.argThat(new BenutzerArgumentMatcher()));
+		verify(transaction).commit();
+		verify(em).close();
+		System.out.println("request deleted");
 	}
 
 	/**
@@ -181,5 +203,13 @@ public class GroupMemberManagerBeanTest {
 	public void testSendRequest() {
 		String antwort = proband.sendRequest();
 		assertNull(nullTest, antwort);
+		
+		verify(emf).createEntityManager();
+		verify(em).getTransaction();
+		verify(transaction).begin();
+		verify(em).persist(Mockito.argThat(new BenutzerArgumentMatcher()));
+		verify(transaction).commit();
+		verify(em).close();
+		System.out.println("request sent");
 	}
 }
