@@ -41,12 +41,13 @@ public class BenutzerGruppe implements Serializable {
 	private boolean bestätigt;
 
 	@ManyToOne
+	@JoinColumn(name = "benutzer_id", referencedColumnName = "id", updatable = false, insertable = false)
 	private Benutzer benutzer;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "gruppen_id", referencedColumnName = "id")
+	@JoinColumn(name = "gruppen_id", referencedColumnName = "id", updatable = false, insertable = false)
 	private Gruppe gruppe;
-	
+
 	/**
 	 * Antworted mit der Benutzer-ID der Benutzergruppe.
 	 * 
@@ -99,8 +100,11 @@ public class BenutzerGruppe implements Serializable {
 	}
 
 	/**
-	 * Setzt den Bestätigungsstatus der Zuordnung des Benutzers zu der referenzierten Gruppe 
-	 * @param bestätigt TRUE, wenn die Zuordnung bestätigt ist, FALSE ansonsten.
+	 * Setzt den Bestätigungsstatus der Zuordnung des Benutzers zu der
+	 * referenzierten Gruppe
+	 * 
+	 * @param bestätigt
+	 *            TRUE, wenn die Zuordnung bestätigt ist, FALSE ansonsten.
 	 */
 	public void setBestätigt(boolean bestätigt) {
 		this.bestätigt = bestätigt;
