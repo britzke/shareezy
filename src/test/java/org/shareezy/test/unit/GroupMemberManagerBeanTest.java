@@ -196,8 +196,8 @@ public class GroupMemberManagerBeanTest {
 
 	/**
 	 * Test method for
-	 * {@link org.shareezy.beans.GroupMemberManagerBean#sendRequest()}. Testet,
-	 * ob ein Request gesendet wird.
+	 * {@link org.shareezy.beans.GroupMemberManagerBean#sendRequest()}. 
+	 * Testet, ob ein Request gesendet wird.
 	 */
 	@Test
 	public void testSendRequest() {

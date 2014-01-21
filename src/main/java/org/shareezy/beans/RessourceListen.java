@@ -65,7 +65,7 @@ public class RessourceListen {
 	public List<Ressource> getRessourcenListe() {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		Query q = em.createQuery("SELECT r FROM RESSOURCE r");
+		Query q = em.createQuery("select r from Ressource r");
 		@SuppressWarnings("unchecked")
 		List<Ressource> listeRessourcen = q.getResultList();
 		em.getTransaction().commit();
