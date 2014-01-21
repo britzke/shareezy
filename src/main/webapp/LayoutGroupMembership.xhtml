@@ -12,17 +12,19 @@
 	<h:outputStylesheet library="default" name="mystyle.css" />
 </h:head>
 <h:body class="content">
+<h:form>
 	<p:graphicImage value="http://dummyimage.com/192x200/000/fff" />
 	<br></br>
 	<h:commandButton value="Der Community beitreten"
-		actionListener="#{buttonBean.save}" update="messages">
+		actionListener="#{#}" update="messages">
 	</h:commandButton>
 	<br></br>
 	<br></br>
 	<p:graphicImage value="http://dummyimage.com/192x200/000/fff" />
 	<br></br>	
-	<h:commandButton value="Der Community verlassen"
-		actionListener="#{buttonBean.save}" update="messages">
+	<h:commandButton value="Die Community verlassen"
+		actionListener="#{#}" update="messages">
 	</h:commandButton>
+	</h:form>
 </h:body>
 </html>
