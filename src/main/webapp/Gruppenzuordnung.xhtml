@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -16,17 +16,21 @@
   
 <h:head />
 <h:body>
-	<h:form id="form1">
-		<h:panelGroup id="haupt" style="css" columns="1">
-			<h:panelGrid>
-				<h:selectBooleanCheckbox
-					value="#{GruppenzuordnungBean.mitgliederabfragen}">
-					<f:ajax />
+  	<h:form id="form1">
+		<h:panelGroup id="haupt" style="css">
+			<h:panelGrid columns="2">
+				<h:commandButton
+					value="#{GruppenzuordnungBean.mitgliederabfragen}"/>
+					<f:ajax/>
 				</h:selectBooleanCheckbox>
+				<h:outputLabel for="ausGruppeentfernen" value="AusGruppeEntfernen"/>
+				<h:inputText value="#{GruppenzuordnungBean.mitgliederabfragen[account_id]}" required="true"></h:inputText>
+			 	<h:inputText></h:inputText>
 				</h:panelGrid>
 		</h:panelGroup>
 		
 	</h:form>
+	
 </h:body>
 </html>
  
