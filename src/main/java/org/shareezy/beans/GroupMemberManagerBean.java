@@ -23,6 +23,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
 import org.shareezy.entities.Benutzer;
+import org.shareezy.entities.BenutzerGruppe;
 
 /**
  * Beschreibung von GroupMemberManagerBean
@@ -43,21 +44,8 @@ public class GroupMemberManagerBean {
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	private EntityTransaction t;
-	private Benutzer user;
-
-	/**
-	 * @return the user
-	 */
-	public Benutzer getUser() {
-		return user;
-	}
-
-	/**
-	 * @param user the user to set
-	 */
-	public void setUser(Benutzer user) {
-		this.user = user;
-	}
+	private Benutzer user = new Benutzer();
+	private BenutzerGruppe userGrp = new BenutzerGruppe();
 
 	/**
 	 * Die Methode AddUser dient dazu dem Benutzer eine Gruppe zuzuweisen
@@ -79,7 +67,7 @@ public class GroupMemberManagerBean {
 		em = emf.createEntityManager();
 		t = em.getTransaction();
 		t.begin();
-		em.persist(user = new Benutzer());
+		em.persist(user);
 		t.commit();
 		em.close();
 		return null;
@@ -102,10 +90,7 @@ public class GroupMemberManagerBean {
 		em = emf.createEntityManager();
 		t = em.getTransaction();
 		t.begin();
-		
-		user = new Benutzer();
-		user.setKurzname("test");
-		
+		user.setKurzname("aaa");
 		em.remove(user);
 		t.commit();
 		em.close();
@@ -124,6 +109,12 @@ public class GroupMemberManagerBean {
 	 * @return gibt nichts zurück damit sich die View nicht ändert
 	 */
 	public String deleteRequest() {
+		em = emf.createEntityManager();
+		t = em.getTransaction();
+		t.begin();
+		em.remove(userGrp);
+		t.commit();
+		em.close();
 		return null;
 	}
 	
@@ -139,6 +130,12 @@ public class GroupMemberManagerBean {
 	 * @return gibt nichts zurück damit sich die View nicht ändert
 	 */
 	public String sendRequest(){
+		em = emf.createEntityManager();
+		t = em.getTransaction();
+		t.begin();
+		em.persist(userGrp);
+		t.commit();
+		em.close();
 		return null;
 	}
 }

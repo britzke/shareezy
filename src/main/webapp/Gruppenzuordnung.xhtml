@@ -7,16 +7,26 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://java.sun.com/jsf/core">
 
-
+<!--  
 <body>
 <h:>
 <p:commandButton value="" update="panel,display" id="ajax"  
              actionListener="#{Gruppenzuordnung.}" />  
+-->
   
-
-
-
-</h:>
-</body>
+<h:head />
+<h:body>
+	<h:form id="form1">
+		<h:panelGroup id="haupt" style="css" columns="1">
+			<h:panelGrid>
+				<h:selectBooleanCheckbox
+					value="#{GruppenzuordnungBean.mitgliederabfragen}">
+					<f:ajax />
+				</h:selectBooleanCheckbox>
+				</h:panelGrid>
+		</h:panelGroup>
+		
+	</h:form>
+</h:body>
 </html>
  

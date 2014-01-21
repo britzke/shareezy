@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<!--Eine View für GroupMembership  -->
+<h:head>
+	<link type="text/css" rel="stylesheet" href="mystyle.css" />
+	<h:outputStylesheet library="default" name="mystyle.css" />
+</h:head>
+<h:body class="content">
+	<p:graphicImage value="http://dummyimage.com/192x200/000/fff" />
+	<br></br>
+	<h:commandButton value="Der Community beitreten"
+		actionListener="#{buttonBean.save}" update="messages">
+	</h:commandButton>
+	<br></br>
+	<br></br>
+	<p:graphicImage value="http://dummyimage.com/192x200/000/fff" />
+	<br></br>	
+	<h:commandButton value="Der Community verlassen"
+		actionListener="#{buttonBean.save}" update="messages">
+	</h:commandButton>
+</h:body>
+</html>

@@ -43,6 +43,9 @@ public class LoginBean {
 	private EntityManagerFactory emf;
 	private Benutzer benutzer;
 	private boolean authenticated;
+	
+	private String benutzername="";
+	private String kennwort ="";
 
 	public LoginBean() {
 		benutzer = new Benutzer();
@@ -86,6 +89,36 @@ public class LoginBean {
 			}
 		}
 		em.close();
+		System.out.println("Username: "+benutzername+"Kennwort: "+kennwort);
 		return null;
+	}
+	
+	// ++++++++++++++++ Getter & Setter +++++++++++++++++++++++
+	/**
+	 * @return the benutzername
+	 */
+	public String getBenutzername() {
+		return benutzername;
+	}
+
+	/**
+	 * @param benutzername the benutzername to set
+	 */
+	public void setBenutzername(String benutzername) {
+		this.benutzername = benutzername;
+	}
+
+	/**
+	 * @return the kennwort
+	 */
+	public String getKennwort() {
+		return kennwort;
+	}
+
+	/**
+	 * @param kennwort the kennwort to set
+	 */
+	public void setKennwort(String kennwort) {
+		this.kennwort = kennwort;
 	}
 }
