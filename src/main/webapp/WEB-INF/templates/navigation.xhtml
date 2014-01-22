@@ -2,6 +2,15 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
+
+	<p:panelGrid columns="4" rendered="#{!loginBean.authenticated}">
+		<p:outputLabel value="Name" />
+		<p:inputText value="#{loginBean.benutzername}" />
+		<p:outputLabel value="Kennwort" />
+		<p:password value="#{loginBean.kennwort}" />
+		<h:commandButton value="anmelden" action="#{loginBean.login}" />
+	</p:panelGrid>
+
 	<p:commandLink action="registrierung">registrieren</p:commandLink>
 
 </form>
