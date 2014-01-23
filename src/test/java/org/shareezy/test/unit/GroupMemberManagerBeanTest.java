@@ -153,8 +153,8 @@ public class GroupMemberManagerBeanTest {
 	class BenutzerGruppeArgumentMatcher extends ArgumentMatcher<BenutzerGruppe> {
 
 		/**
-		 * Stellt sicher, dass als Argument ein Benutzer mit dem hashCode
-		 * übergeben wurde, der in der variablen "testBenutzerHash gespeichert
+		 * Stellt sicher, dass als Argument ein BenutzerGruppe Objekt mit dem hashCode
+		 * übergeben wurde, der in der variablen "testUserGrpHash gespeichert
 		 * wurde.
 		 * 
 		 * @see ArgumentMatcher#matches(Object)
