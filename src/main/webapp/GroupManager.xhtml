@@ -33,6 +33,9 @@
                 .ui-tabs {
                     border:0px none !important;
                 }
+                .vertAlign {
+    				vertical-align: top
+				}
             </style>
         </h:head>
 
@@ -41,7 +44,8 @@
             <p:layout fullPage="true">
                 <p:layoutUnit position="west" size="200" resizable="true" collapsible="true" header="My Groups">
                     <h:form>
-                        <p:commandButton  update=":grpView" value="TestGruppe" icon="ui-icon-document" title="testGrp"/>
+                        <p:commandButton  update=":grpView" value="Gruppe" icon="ui-icon-document" title="testGrp"/>
+                        <p:commandButton  update=":grpView" value="Gruppe2" icon="ui-icon-document" title="testGrp2"/>
                     </h:form>
                 </p:layoutUnit>
 
@@ -57,16 +61,15 @@
 
                                     <h:form>
 
-                                        <p:dataTable var="ressourcen" value="">
-
+                                        <p:dataTable var="ressourcen" value="#{groupManager.groupRessourcen}">
                                             <p:column headerText="Gruppen Ressourcen" sortBy="ressourcen">
                                                 <!-- Ressourcen auflisten -->
-                                                <h:outputText value="Hier werden die Ressourcen der jeweiligen Gruppe gelistet"/>
+                                                <h:outputText value="#{ressourcen.getName()}"/>
                                             </p:column>
-
+                                            
                                             <p:column>
                                                 <p:commandButton update=":grpView" icon="ui-icon-search" title="View">
-                                                    <f:setPropertyActionListener value="#{mail }" target="#{mailbox.mail}" />
+                                                    <f:setPropertyActionListener value="" target="#{mailbox.mail}" />
                                                 </p:commandButton>
                                             </p:column>
 
