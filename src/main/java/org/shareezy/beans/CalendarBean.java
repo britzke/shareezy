@@ -19,6 +19,12 @@ package org.shareezy.beans;
 
 import java.util.Calendar;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
+
+import org.shareezy.entities.Buchung;
+
 /**
  * Klasse ist zustaendig fuer die Kalender der Ressourcen. Das aktuelle Datum
  * und die Buchungen der Ressouren werden im Kalender angegeben.
@@ -27,6 +33,8 @@ import java.util.Calendar;
  */
 
 public class CalendarBean {
+	private EntityManagerFactory emf;
+	private Buchung buchung;
 
 	/**
 	 * Liest die neuen, vom User geaenderten Daten aus der Datenbank aus und
@@ -39,6 +47,8 @@ public class CalendarBean {
 	 *          eineleitet wird.
 	 */
 	public String scheduleController() {
+		EntityManager em = emf.createEntityManager();
+		Query q = em.createQuery("select b from Buchung where rückgabedatum= :rückgabedatum and ausleiher= :ausleiher");
 		return null;
 	}
 

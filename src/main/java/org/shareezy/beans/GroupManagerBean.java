@@ -17,27 +17,33 @@
  */
 package org.shareezy.beans;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+
+import java.util.ArrayList;
+
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
 import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.Gruppe;
+import org.shareezy.entities.Ressource;
 
 /**
  * Guppenverwaltung, Gruppen hinzufügen & Gruppen editieren
  * 
  * @author Steven Müller
  */
-@ManagedBean(name = "groupManager")
+@Named("groupManager")
 @SessionScoped
 public class GroupManagerBean {
 
 	private EntityManagerFactory emf;
 	private String groupName;
 	private Benutzer benutzer;
+	private ArrayList<Ressource> groupRessourcen = new ArrayList<Ressource>();
+
 
 	/**
 	 * Wird ausgeführt wenn der User auf "Neue Gruppe" (@issue9/Schritt 1)
@@ -47,11 +53,24 @@ public class GroupManagerBean {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onNewGroupClick(String groupName) {
-		this.groupName = groupName;
+	public String onNewGroupClick() {
 		return null;
 	}
 
+	public GroupManagerBean() {
+		groupRessourcen.add(generateTestRessources());
+		groupRessourcen.add(generateTestRessources());
+		groupRessourcen.add(generateTestRessources());
+		groupRessourcen.add(generateTestRessources());
+	}
+	
+	public Ressource generateTestRessources(){
+		Ressource res = new Ressource();
+		res.setName("TestRessource");
+		return res;
+	}
+	
+	
 	/**
 	 * Wird ausgeführt wenn der User auf "Erstellen" (@issue9/Schritt 2) klickt.
 	 * Erzeugt eine neue Gruppe in der Datenbank Leitet den User zur
@@ -114,5 +133,22 @@ public class GroupManagerBean {
 	 */
 	public String onInviteMembersClick() {
 		return null;
+	}
+
+	
+	public ArrayList<Ressource> getGroupRessourcen() {
+		return groupRessourcen;
+	}
+
+	public void setGroupRessourcen(ArrayList<Ressource> groupRessourcen) {
+		this.groupRessourcen = groupRessourcen;
+	}
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
 	}
 }

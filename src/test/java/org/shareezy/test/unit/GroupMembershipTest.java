@@ -18,36 +18,67 @@
 package org.shareezy.test.unit;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+
+import org.junit.Before;
 import org.junit.Test;
+import org.shareezy.beans.GroupMembership;
 
 /**
  * Testet die GroupMembershipBean
+ * 
  * @author e1_slipachuk
+ * @author burghard.britzke
  */
 public class GroupMembershipTest {
 
+	private GroupMembership proband;
+	private EntityManagerFactory emf;
+	private EntityManager em;
+	private EntityTransaction transaction;
+
 	/**
-	 * Test method for {@link org.shareezy.beans.GroupMembership#GroupMembership()}.
+	 * Setzt den Probanden und die Testumgebung vor jedem Test auf.
+	 * 
+	 * @throws Exception
 	 */
-	@Test
-	public void testGroupMembership() {
-		fail("Not yet implemented");
+	@Before
+	public void struktur() {
+		proband = new GroupMembership();
+		emf = mock(EntityManagerFactory.class);
+		em = mock(EntityManager.class);
+		transaction = mock(EntityTransaction.class);
+
+		when(emf.createEntityManager()).thenReturn(em);
+		when(em.getTransaction()).thenReturn(transaction);
+
 	}
 
 	/**
 	 * Test method for {@link org.shareezy.beans.GroupMembership#sendAnfrage()}.
+	 * Testet, ob <i>keine</i> Navigation zu einem anderen View eingeleitet
+	 * wird.
 	 */
 	@Test
 	public void testSendAnfrage() {
-		fail("Not yet implemented");
+		String antwort = proband.sendAnfrage();
+		assertNull(antwort);
 	}
 
 	/**
-	 * Test method for {@link org.shareezy.beans.GroupMembership#knopfGruppeVerlassen()}.
+	 * Test method for
+	 * {@link org.shareezy.beans.GroupMembership#knopfGruppeVerlassen()}.
+	 * Testet, ob <i>keine</i> Navigation zu einem anderen View eingeleitet
+	 * wird.
 	 */
 	@Test
 	public void testKnopfGruppeVerlassen() {
-		fail("Not yet implemented");
+		String antwort = proband.knopfGruppeVerlassen();
+		assertNull(antwort);
 	}
 }

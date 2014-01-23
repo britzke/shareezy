@@ -27,6 +27,9 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="30be7b79:1434392c637:-7fe5" mandatory="false" name="REGISTRATION">
 <data-type name="TIMESTAMP" selected-variant-pattern="TIMESTAMP"/>
 </column>
+<column auto-increment="false" column-size="50" decimal-digits="0" default-value="" id="1ddc5d0:14394d74771:-7fb3" mandatory="true" name="hash">
+<data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
+</column>
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="0" id="30be7b79:1434392c637:-7fe4" mandatory="true" name="validiert">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>

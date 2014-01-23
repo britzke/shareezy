@@ -3,11 +3,8 @@
  */
 package org.shareezy.test.unit;
 
-import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
-
-import java.lang.reflect.Field;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,7 +12,6 @@ import javax.persistence.EntityTransaction;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.shareezy.beans.GroupManagerBean;
 import org.shareezy.beans.GruppenzuordnungBean;
 
 /**
