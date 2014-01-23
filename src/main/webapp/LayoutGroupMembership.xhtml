@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head />
+<h:body class="content">
+	<h:form id="form">
+		<p:growl id="growl" showDetail="true" />
+		<p:dashboard id="board" model="#{buttonBean.model}">
+			<p:ajax event="reorder" listener="#{buttonBean.handleReorder}"
+				update="growl" />
+			<p:panel id="sports" header="Sports">
+				<h:commandButton value="Der Community beitreten" />
+			</p:panel>
+			<p:panel id="finance" header="Finance">
+				<h:commandButton value="Der Community beitreten" />
+			</p:panel>
+			<p:panel id="lifestyle" header="Lifestyle">
+				<h:commandButton value="Der Community beitreten" />
+			</p:panel>
+			<p:panel id="weather" header="Weather">
+				<h:commandButton value="Der Community beitreten" />
+			</p:panel>
+			<p:panel id="politics" header="Politics">
+				<h:commandButton value="Die Community verlassen" />
+			</p:panel>
+		</p:dashboard>
+	</h:form>
+</h:body>
+</html>
