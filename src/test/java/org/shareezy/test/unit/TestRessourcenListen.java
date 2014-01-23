@@ -58,6 +58,8 @@ public class TestRessourcenListen {
 	@Mock
 	private List<Ressource> list;
 	private List<Ressource> listeRessourcen;
+	@Mock
+	private Ressource ressource;
 
 	/**
 	 * Diese Methode erstellt beim erstmaligen Testaufruf einen Probanden vom
@@ -91,7 +93,7 @@ public class TestRessourcenListen {
 	 */
 	@Test
 	public void testRessourceClicked() {
-		String nav = proband.ressourceClicked();
+		String nav = proband.ressourceClicked(ressource);
 		assertEquals("ressourcendetail", nav);
 	}
 

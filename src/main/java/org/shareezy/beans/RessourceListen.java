@@ -20,13 +20,14 @@ package org.shareezy.beans;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
+import org.shareezy.annotations.AktuelleRessource;
 import org.shareezy.entities.Ressource;
 
 /**
@@ -44,6 +45,9 @@ public class RessourceListen {
 
 	@Inject
 	private EntityManagerFactory emf;
+	@Inject
+	@AktuelleRessource
+	private Ressource ressource;
 
 	/**
 	 * Die Methode ressourceClicked leitet bei einem Klick auf den Namen der
@@ -52,7 +56,8 @@ public class RessourceListen {
 	 * @return "ressourcendetail" gibt die ressourcendetail zurück wenn auf
 	 *         einen Ressourcennamen geklickt wurde.
 	 */
-	public String ressourceClicked() {
+	public String ressourceClicked(Ressource ressource) {
+		this.ressource=ressource;
 		return "ressourcendetail";
 	}
 
