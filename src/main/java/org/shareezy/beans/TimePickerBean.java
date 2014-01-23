@@ -17,10 +17,15 @@
  */
 package org.shareezy.beans;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+
 import org.shareezy.entities.Buchung;
+import org.shareezy.entities.Ressource;
 
 /**
  * Klasse ist zustaendig fuer den TimePicker und die vom User eingestellten Daten (Datum + Uhrzeit)
@@ -51,10 +56,18 @@ public class TimePickerBean {
 	 */
 	public String addDatensatz() {
 		EntityManager em = emf.createEntityManager();
-		EntityTransaction et = em.getTransaction();
-		et.begin();
+		Query q = em.createQuery("select rückgabedatum from buchung");
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		buchung.setRückgabedatum(timeframe);
 		em.persist(buchung);
-		et.commit();
+		transaction.commit();
+		
+		List<Buchung> buchungList = q.getResultList();
+		for(Buchung b : buchungList){
+			System.out.println(b);
+		}
+	
 		em.close();
 		return null;
 	}
@@ -83,4 +96,11 @@ public class TimePickerBean {
 	
     public void checkDate(){
     } 
+    
+    public String action(){
+    	System.out.println("funtkioniert!");
+    	//addDatensatz();
+		return "";
+    	
+    }
 }

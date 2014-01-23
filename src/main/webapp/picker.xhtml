@@ -31,7 +31,7 @@
 	<h:form>
 
 		<h3>DateTime</h3>
-		<p:calendar value="#{pickerBean.date1}" pattern="MM/dd/yyyy HH:mm" />
+		<p:calendar value="#{timePickerBean.timeframe}" pattern="MM/dd/yyyy HH:mm" />
 
 		<p:dialog header="Selected Dates" widgetVar="dialog" showEffect="fold"
 			hideEffect="fold">
@@ -39,7 +39,7 @@
 			<h:panelGrid id="display" columns="1">
 
 				<h:outputText value="Time Picker: " />
-				<h:outputText value="#{pickerBean.date1}">
+				<h:outputText value="#{timePickerBean.timeframe}">
 					<f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
 				</h:outputText>
 
@@ -47,7 +47,7 @@
 		</p:dialog>
 	</h:form>
 	<h:commandButton style="margin-top:20px;" value="Submit" update="display" 
-	oncomplete="PF('dialog').show()" action="#{pickerBean.action}"/>
+	oncomplete="PF('dialog').show()" action="#{timePickerBean.action}"/>
 	
 </h:body>
 </html>

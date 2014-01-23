@@ -28,7 +28,7 @@ import java.util.List;
  * @author burghard.britzke (bubi@charmides.in-berlin.de)
  */
 @Entity
-@Table(name = "RESSOURCEN")
+@Table(name = "RESSOURCEN", schema="SHAREEZY")
 public class Ressource implements Serializable {
 	private static final long serialVersionUID = 1L;
 
