@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -29,9 +28,9 @@ import org.shareezy.entities.Typ;
  * @version 12.12.2013
  */
 @ManagedBean
-@SessionScoped
 public class NeueRessourceBean {
 
+	@Inject
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	private Benutzer benutzer;
@@ -47,7 +46,9 @@ public class NeueRessourceBean {
 	private Typ typ;
 
 	public NeueRessourceBean() {
-		em = emf.createEntityManager();
+		
+		
+		
 	}
 
 	/**
@@ -59,6 +60,7 @@ public class NeueRessourceBean {
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
 	public String loescheRessource(Ressource ressource) {
+		em = emf.createEntityManager();
 		EntityTransaction ent = em.getTransaction();
 		ent.begin();
 		ressource = em.merge(ressource);
