@@ -58,9 +58,6 @@ public class RessourcenDetailBean {
 		Query q = em.createQuery("select re from Ressource re");
 		
 		List<Ressource> ressource = q.getResultList();
-		for(Ressource re : ressource){
-			System.out.println(re);
-		}
 	
 		return null;
 	}

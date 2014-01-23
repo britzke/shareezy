@@ -46,6 +46,16 @@
 			<artifactId>derby</artifactId>
 			<version>10.10.1.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derbynet</artifactId>
+			<version>10.10.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derbyclient</artifactId>
+			<version>10.10.1.1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.myfaces.core</groupId>

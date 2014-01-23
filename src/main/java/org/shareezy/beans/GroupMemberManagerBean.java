@@ -92,7 +92,6 @@ public class GroupMemberManagerBean {
 		em = emf.createEntityManager();
 		t = em.getTransaction();
 		t.begin();
-		user.setKurzname("aaa");
 		em.remove(user);
 		t.commit();
 		em.close();
