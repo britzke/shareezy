@@ -33,15 +33,23 @@
                 .ui-tabs {
                     border:0px none !important;
                 }
+                .vertAlign {
+    				vertical-align: top
+				}
             </style>
         </h:head>
 
         <h:body>
 
             <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="55">
+				<p:commandButton value="Gruppe Erstellen"
+					onclick="PF('addDlg').show()" type="button" icon="ui-icon-document" />
+			</p:layoutUnit>
                 <p:layoutUnit position="west" size="200" resizable="true" collapsible="true" header="My Groups">
                     <h:form>
-                        <p:commandButton  update=":grpView" value="TestGruppe" icon="ui-icon-document" title="testGrp"/>
+                        <p:commandButton  update=":grpView" value="Gruppe" icon="ui-icon-document" title="testGrp"/>
+                        <p:commandButton  update=":grpView" value="Gruppe2" icon="ui-icon-document" title="testGrp2"/>
                     </h:form>
                 </p:layoutUnit>
 
@@ -57,16 +65,15 @@
 
                                     <h:form>
 
-                                        <p:dataTable var="ressourcen" value="">
-
+                                        <p:dataTable var="ressourcen" value="#{groupManager.groupRessourcen}">
                                             <p:column headerText="Gruppen Ressourcen" sortBy="ressourcen">
                                                 <!-- Ressourcen auflisten -->
-                                                <h:outputText value="Hier werden die Ressourcen der jeweiligen Gruppe gelistet"/>
+                                                <h:outputText value="#{ressourcen.getName()}"/>
                                             </p:column>
-
+                                            
                                             <p:column>
                                                 <p:commandButton update=":grpView" icon="ui-icon-search" title="View">
-                                                    <f:setPropertyActionListener value="#{mail }" target="#{mailbox.mail}" />
+                                                    <f:setPropertyActionListener value="" target="#{mailbox.mail}" />
                                                 </p:commandButton>
                                             </p:column>
 
@@ -164,6 +171,30 @@
                 </h:form>
 
             </p:dialog>
+
+
+		<p:dialog widgetVar="addDlg" modal="true" header="Neue Gruppe"
+			width="530" showEffect="fade" hideEffect="fade">
+
+			<h:form>
+
+				<h:panelGrid columns="2" cellspacing="5">
+					<h:outputLabel for="grpName" value="Gruppen Name: " />
+					<p:inputText id="grpName" />
+
+					<h:outputLabel for="member" value="Add Member: " />
+					<p:inputText id="member" size="50" />
+				</h:panelGrid>
+
+				<p:commandButton value="Create" onclick="PF('addDlg').hide()"
+					actionListener="#{memberManager.sendRequest}" update=":grpView"
+					process="@this" />
+				<p:commandButton value="Cancel" onclick="PF('addDlg').hide()"
+					type="button" />
+
+			</h:form>
+
+		</p:dialog>
 
             <p:growl id="msg" />
 
