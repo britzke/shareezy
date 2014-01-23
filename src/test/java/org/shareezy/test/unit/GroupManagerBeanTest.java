@@ -173,7 +173,7 @@ public class GroupManagerBeanTest {
 	 */
 	@Test
 	public void testOnNewGroupClick() {
-		String antwort = proband.onNewGroupClick("StevensGruppe");
+		String antwort = proband.onNewGroupClick();
 		assertNull(antwort);
 	}
 

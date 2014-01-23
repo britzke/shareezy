@@ -19,10 +19,9 @@ package org.shareezy.beans;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -36,7 +35,7 @@ import org.shareezy.entities.Ressource;
  * 
  * @author Steven Müller
  */
-@ManagedBean(name = "groupManager")
+@Named("groupManager")
 @SessionScoped
 public class GroupManagerBean {
 
@@ -54,8 +53,7 @@ public class GroupManagerBean {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onNewGroupClick(String groupName) {
-		this.groupName = groupName;
+	public String onNewGroupClick() {
 		return null;
 	}
 
@@ -146,4 +144,11 @@ public class GroupManagerBean {
 		this.groupRessourcen = groupRessourcen;
 	}
 
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
 }
