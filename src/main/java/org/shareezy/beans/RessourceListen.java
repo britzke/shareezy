@@ -27,7 +27,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
-import org.shareezy.annotations.AktuelleRessource;
 import org.shareezy.entities.Ressource;
 
 /**
@@ -36,7 +35,7 @@ import org.shareezy.entities.Ressource;
  * EigeneRessourcen.xhtml, Gruppenverwaltung.xhtml und eigeneBuchungen.xhtml
  * gelistet.
  * 
- * @author e1_treibmann
+ * @author treibmann
  * 
  */
 @Named
@@ -45,9 +44,9 @@ public class RessourceListen {
 
 	@Inject
 	private EntityManagerFactory emf;
+
 	@Inject
-	@AktuelleRessource
-	private Ressource ressource;
+	private AktuelleRessourceBean aktuelleressource;
 
 	/**
 	 * Die Methode ressourceClicked leitet bei einem Klick auf den Namen der
@@ -57,7 +56,7 @@ public class RessourceListen {
 	 *         einen Ressourcennamen geklickt wurde.
 	 */
 	public String ressourceClicked(Ressource ressource) {
-		this.ressource=ressource;
+		aktuelleressource.setRessource(ressource);
 		return "ressourcendetail";
 	}
 

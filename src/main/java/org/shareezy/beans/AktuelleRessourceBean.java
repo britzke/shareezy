@@ -15,22 +15,43 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.shareezy.annotations;
+package org.shareezy.beans;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.io.Serializable;
 
-import javax.inject.Qualifier;
+import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Produces;
+import javax.inject.Named;
+
+import org.shareezy.annotations.AktuelleRessource;
+import org.shareezy.entities.Ressource;
 
 /**
+ * Diese Klasse beinhaltet die aktuelle Ressource, welche gerade in Benutzung
+ * ist.
+ * 
  * @author treibmann
  * 
+ * 
  */
-@Qualifier
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.TYPE, ElementType.METHOD, ElementType.FIELD,
-		ElementType.PARAMETER })
-public @interface AktuelleRessource {
+@Named
+@SessionScoped
+public class AktuelleRessourceBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Produces
+	@AktuelleRessource
+	private transient Ressource ressource;
+
+	public Ressource getRessource() {
+		return ressource;
+	}
+
+	public void setRessource(Ressource ressource) {
+		this.ressource = ressource;
+	}
+
 }
