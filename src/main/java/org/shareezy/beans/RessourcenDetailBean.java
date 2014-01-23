@@ -37,7 +37,7 @@ public class RessourcenDetailBean {
 	
 	private EntityManagerFactory emf;
 	private Ressource ressource;
-
+    private Ressource bestimmteRessource;
 	private Image pic;
 	private String summary;
 	
@@ -47,6 +47,9 @@ public class RessourcenDetailBean {
 	 */
 	public RessourcenDetailBean() {
 		ressource = new Ressource();
+		if(ressource == bestimmteRessource){
+			this.ressource.getId();
+		}
 	}
 	
 	/**
@@ -55,7 +58,7 @@ public class RessourcenDetailBean {
 	 */
 	public String selectDatensatz() {
 		EntityManager em = emf.createEntityManager();
-		Query q = em.createQuery("select re from Ressource re");
+		Query q = em.createQuery("select re from Ressource where id=bestimmteId");
 		
 		List<Ressource> ressource = q.getResultList();
 	
