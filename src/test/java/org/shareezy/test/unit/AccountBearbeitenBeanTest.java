@@ -126,6 +126,7 @@ public class AccountBearbeitenBeanTest {
 	@Test
 	public void testDatensatzÄndern() {
 		
+		proband.datensatzÄndern();
 		verify(emf).createEntityManager();
 		verify(em).getTransaction();
 		verify(transaction).begin();

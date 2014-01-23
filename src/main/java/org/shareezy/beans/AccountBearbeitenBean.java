@@ -43,6 +43,10 @@ public class AccountBearbeitenBean {
 	private EntityTransaction t;
 	private String altesPasswort;
 	private String eingabePasswort;
+	
+	
+	
+	
 
 	/**
 	 * Prüft die Eingabe des nutzer. Abhängig davon gibt er eine fehlermeldung
