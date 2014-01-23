@@ -19,6 +19,8 @@ package org.shareezy.beans;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.ManagedBean;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -33,7 +35,7 @@ import org.shareezy.entities.Ressource;
  * @author Vanessa Krohn 
  * @date 05/12/13
  */
-
+@Named
 public class TimePickerBean {
 
 	private Date timeframe;
@@ -65,7 +67,7 @@ public class TimePickerBean {
 		
 		List<Buchung> buchungList = q.getResultList();
 		for(Buchung b : buchungList){
-			System.out.println(b);
+			
 		}
 	
 		em.close();
@@ -98,8 +100,8 @@ public class TimePickerBean {
     } 
     
     public String action(){
-    	System.out.println("funtkioniert!");
-    	//addDatensatz();
+    	System.out.println("funktioniert!");
+    	addDatensatz();
 		return "";
     	
     }

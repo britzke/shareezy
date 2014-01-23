@@ -54,7 +54,7 @@ public class TestRessourcenListen {
 	private EntityTransaction transaction;
 	@Mock
 	private Query query;
-	private final String queryString = "SELECT r FROM RESSOURCE r";
+	private final String queryString = "select r from Ressource r";
 	@Mock
 	private List<Ressource> list;
 	private List<Ressource> listeRessourcen;

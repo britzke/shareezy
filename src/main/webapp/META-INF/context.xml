@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+        <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+       <Resource name="jdbc/shareezydb" auth="Container" type="javax.sql.DataSource"
+                username="shareezy"
+                password="shareezy"
+                maxActive="2" maxIdle="1" maxWait="10000" 
+                driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
+                url="jdbc:derby:db/shareezydb.jdb;create=true" />
+
+</Context>
