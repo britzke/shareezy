@@ -17,8 +17,8 @@
  */
 package org.shareezy.beans;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -40,7 +40,7 @@ import org.shareezy.entities.BenutzerGruppe;
  * @author Timo Kuchling
  */
 @SessionScoped
-@ManagedBean(name = "MemberManager")
+@Named("MemberManager")
 public class GroupMemberManagerBean {
 
 	private EntityManagerFactory emf;
