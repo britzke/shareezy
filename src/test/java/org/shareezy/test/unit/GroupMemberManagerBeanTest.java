@@ -31,6 +31,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentMatcher;
@@ -100,11 +101,27 @@ public class GroupMemberManagerBeanTest {
 		field = clazz.getDeclaredField("user");
 		field.setAccessible(true);
 		field.set(proband, user);
-		
+
 		field = clazz.getDeclaredField("userGrp");
 		field.setAccessible(true);
 		field.set(proband, userGrp);
+
 	}
+
+	/**
+	 * Überprüft nach jedem Test, ob bestimmte Nachrichten während des Tests
+	 * gesandt wurden.
+	 */
+	@After
+	public void tearDown() {
+		verify(emf).createEntityManager();
+		verify(em).getTransaction();
+		verify(transaction).begin();
+		//
+		verify(transaction).commit();
+		verify(em).close();
+	}
+
 	/**
 	 * Der BenutzerArgumentMatcher ist ein ArgumentMatcher, der sicherstellt, ob
 	 * ein Benutzer als Argument geliefert wurde, dessen hashCode dem Kode
@@ -127,7 +144,23 @@ public class GroupMemberManagerBeanTest {
 			if (argument instanceof Benutzer
 					&& (argument.hashCode() == testBenutzerHash)) {
 				return true;
-			} else if (argument instanceof BenutzerGruppe
+			} else {
+				return false;
+			}
+		}
+	}
+
+	class BenutzerGruppeArgumentMatcher extends ArgumentMatcher<BenutzerGruppe> {
+
+		/**
+		 * Stellt sicher, dass als Argument ein Benutzer mit dem hashCode
+		 * übergeben wurde, der in der variablen "testBenutzerHash gespeichert
+		 * wurde.
+		 * 
+		 * @see ArgumentMatcher#matches(Object)
+		 */
+		public boolean matches(Object argument) {
+			if (argument instanceof BenutzerGruppe
 					&& (argument.hashCode() == testUserGrpHash)) {
 				return true;
 			} else {
@@ -135,6 +168,7 @@ public class GroupMemberManagerBeanTest {
 			}
 		}
 	}
+
 	/**
 	 * Test method for
 	 * {@link org.shareezy.beans.GroupMemberManagerBean#addUser()}. Testet, ob
@@ -145,16 +179,8 @@ public class GroupMemberManagerBeanTest {
 		String antwort = proband.addUser();
 		assertNull("Die Antwort muss null sein", antwort);
 
-		verify(emf).createEntityManager();
-		verify(em).getTransaction();
-		verify(transaction).begin();
 		verify(em).persist(Mockito.argThat(new BenutzerArgumentMatcher()));
-		verify(transaction).commit();
-		verify(em).close();
-		System.out.println("user added");
 	}
-
-
 
 	/**
 	 * Test method for
@@ -165,14 +191,8 @@ public class GroupMemberManagerBeanTest {
 	public void testDeleteUser() {
 		String antwort = proband.deleteUser();
 		assertNull("Die Antwort muss null sein", antwort);
-
-		verify(emf).createEntityManager();
-		verify(em).getTransaction();
-		verify(transaction).begin();
+		
 		verify(em).remove(Mockito.argThat(new BenutzerArgumentMatcher()));
-		verify(transaction).commit();
-		verify(em).close();
-		System.out.println("user deleted");
 	}
 
 	/**
@@ -184,32 +204,20 @@ public class GroupMemberManagerBeanTest {
 	public void testDeleteRequest() {
 		String antwort = proband.deleteRequest();
 		assertNull(nullTest, antwort);
-		
-		verify(emf).createEntityManager();
-		verify(em).getTransaction();
-		verify(transaction).begin();
-		verify(em).remove(Mockito.argThat(new BenutzerArgumentMatcher()));
-		verify(transaction).commit();
-		verify(em).close();
-		System.out.println("request deleted");
+
+		verify(em).remove(Mockito.argThat(new BenutzerGruppeArgumentMatcher()));
 	}
 
 	/**
 	 * Test method for
-	 * {@link org.shareezy.beans.GroupMemberManagerBean#sendRequest()}. 
-	 * Testet, ob ein Request gesendet wird.
+	 * {@link org.shareezy.beans.GroupMemberManagerBean#sendRequest()}. Testet,
+	 * ob ein Request gesendet wird.
 	 */
 	@Test
 	public void testSendRequest() {
 		String antwort = proband.sendRequest();
 		assertNull(nullTest, antwort);
-		
-		verify(emf).createEntityManager();
-		verify(em).getTransaction();
-		verify(transaction).begin();
-		verify(em).persist(Mockito.argThat(new BenutzerArgumentMatcher()));
-		verify(transaction).commit();
-		verify(em).close();
-		System.out.println("request sent");
+
+		verify(em).persist(Mockito.argThat(new BenutzerGruppeArgumentMatcher()));
 	}
 }
