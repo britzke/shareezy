@@ -6,25 +6,29 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<!--Eine View für GroupMembership  -->
-<h:head>
-	<link type="text/css" rel="stylesheet" href="mystyle.css" />
-	<h:outputStylesheet library="default" name="mystyle.css" />
-</h:head>
+<h:head />
 <h:body class="content">
-<h:form>
-	<p:graphicImage value="http://dummyimage.com/192x200/000/fff" />
-	<br></br>
-	<h:commandButton value="Der Community beitreten"
-		actionListener="#{#}" update="messages">
-	</h:commandButton>
-	<br></br>
-	<br></br>
-	<p:graphicImage value="http://dummyimage.com/192x200/000/fff" />
-	<br></br>	
-	<h:commandButton value="Die Community verlassen"
-		actionListener="#{#}" update="messages">
-	</h:commandButton>
+	<h:form id="form">
+		<p:growl id="growl" showDetail="true" />
+		<p:dashboard id="board" model="#{buttonBean.model}">
+			<p:ajax event="reorder" listener="#{buttonBean.handleReorder}"
+				update="growl" />
+			<p:panel id="sports" header="Sports">
+				<h:commandButton value="Der Community beitreten" />
+			</p:panel>
+			<p:panel id="finance" header="Finance">
+				<h:commandButton value="Der Community beitreten" />
+			</p:panel>
+			<p:panel id="lifestyle" header="Lifestyle">
+				<h:commandButton value="Die Community verlassen" />
+			</p:panel>
+			<p:panel id="weather" header="Weather">
+				<h:commandButton value="Die Community verlassen" />
+			</p:panel>
+			<p:panel id="politics" header="Politics">
+				<h:commandButton value="Die Community verlassen" />
+			</p:panel>
+		</p:dashboard>
 	</h:form>
 </h:body>
 </html>
