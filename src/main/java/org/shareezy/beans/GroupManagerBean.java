@@ -22,6 +22,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -31,6 +32,7 @@ import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.Gruppe;
 import org.shareezy.entities.Ressource;
 
+
 /**
  * Guppenverwaltung, Gruppen hinzufügen & Gruppen editieren
  * 
@@ -38,6 +40,7 @@ import org.shareezy.entities.Ressource;
  */
 @Named("groupManager")
 @SessionScoped
+@ManagedBean
 public class GroupManagerBean implements Serializable {
 
 	/**
@@ -46,9 +49,10 @@ public class GroupManagerBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private EntityManagerFactory emf;
 	private String groupName;
+	private ArrayList<Gruppe> groups  = new ArrayList<Gruppe>();
 	private Benutzer benutzer;
 	private ArrayList<Ressource> groupRessourcen = new ArrayList<Ressource>();
-
+	
 
 	/**
 	 * Wird ausgeführt wenn der User auf "Neue Gruppe" (@issue9/Schritt 1)
@@ -63,10 +67,21 @@ public class GroupManagerBean implements Serializable {
 	}
 
 	public GroupManagerBean() {
+		//Test initialisierungen - TODO: Diese Daten sollen durch entsprechende Daten aus der Datenbank ersetzt werden
 		groupRessourcen.add(generateTestRessources());
 		groupRessourcen.add(generateTestRessources());
 		groupRessourcen.add(generateTestRessources());
 		groupRessourcen.add(generateTestRessources());
+		Gruppe test1 = new Gruppe();
+		test1.setName("Gruppe1");
+		Gruppe test2 = new Gruppe();
+		test2.setName("Gruppe2");
+		Gruppe test3 = new Gruppe();
+		test3.setName("Gruppe3");
+		groups.add(test1);
+		groups.add(test2);
+		groups.add(test3);
+		//TODO Gruppen als Buttons in der xhtml auflisten, bei onCreateNewGroupClick() eine neue gruppe hinzufügen (inkl. Button)
 	}
 	
 	public Ressource generateTestRessources(){
@@ -84,14 +99,15 @@ public class GroupManagerBean implements Serializable {
 	 * @return null - Soll in der selben View bleiben
 	 */
 	public String onCreateNewGroupClick() {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction t = em.getTransaction();
-		t.begin();
-		Gruppe gruppe = new Gruppe();
-		gruppe.setVerwalter(benutzer);
-		gruppe.setName(groupName);
-		em.persist(gruppe);
-
+		//EntityManager em = emf.createEntityManager();
+		//EntityTransaction t = em.getTransaction();
+		//t.begin();
+		//Gruppe gruppe = new Gruppe();
+		//gruppe.setVerwalter(benutzer);
+		//gruppe.setName(groupName);
+		//em.persist(gruppe);
+		System.out.println("groupName "+groupName);
+		
 		return null;
 	}
 
@@ -156,4 +172,13 @@ public class GroupManagerBean implements Serializable {
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
+
+	public ArrayList<Gruppe> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(ArrayList<Gruppe> groups) {
+		this.groups = groups;
+	}
+
 }
