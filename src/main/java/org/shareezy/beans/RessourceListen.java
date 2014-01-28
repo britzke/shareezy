@@ -20,7 +20,7 @@ package org.shareezy.beans;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -35,7 +35,7 @@ import org.shareezy.entities.Ressource;
  * EigeneRessourcen.xhtml, Gruppenverwaltung.xhtml und eigeneBuchungen.xhtml
  * gelistet.
  * 
- * @author e1_treibmann
+ * @author treibmann
  * 
  */
 @Named
@@ -45,6 +45,9 @@ public class RessourceListen {
 	@Inject
 	private EntityManagerFactory emf;
 
+	@Inject
+	private AktuelleRessourceBean aktuelleressource;
+
 	/**
 	 * Die Methode ressourceClicked leitet bei einem Klick auf den Namen der
 	 * Ressource, den Benutzer auf die Detailansicht der Ressource weiter.
@@ -52,7 +55,8 @@ public class RessourceListen {
 	 * @return "ressourcendetail" gibt die ressourcendetail zurück wenn auf
 	 *         einen Ressourcennamen geklickt wurde.
 	 */
-	public String ressourceClicked() {
+	public String ressourceClicked(Ressource ressource) {
+		aktuelleressource.setRessource(ressource);
 		return "ressourcendetail";
 	}
 

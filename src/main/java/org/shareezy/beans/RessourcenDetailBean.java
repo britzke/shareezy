@@ -37,7 +37,6 @@ public class RessourcenDetailBean {
 	
 	private EntityManagerFactory emf;
 	private Ressource ressource;
-
 	private Image pic;
 	private String summary;
 	
