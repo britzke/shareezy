@@ -1,38 +1,16 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-<h:head></h:head>
+	xmlns:f="http://java.sun.com/jsf/core">
 
-<h:body>
-	<h:form>
-			<p:panelGrid columns="2">
-				<p:outputLabel value="E-Mail:" />
-				<p:inputText value="#{accountBearbeitenBean.eMail}" />
-				
-					<p:outputLabel for="pwd1" value="Altes Password:" />
-				<p:password id="pwd1"
-					value="#{accountBearbeitenBean.eingabePasswortAlt}"  label = "pw1"/>
-
-				<h:outputLabel for="pwd2" value="Neues Passwort:" />
-				<p:password id="pwd2"
-					value="#{accountBearbeitenBean.eingabePasswort}" label="pw2" />
-
-				<h:outputLabel for="pwd3" value="Neues Passwort wiederholen:" />
-				<p:password id="pwd3"
-					value="#{accountBearbeitenBean.eingabePasswortWiederholen}" label="pw3"/>
-
-				<h:commandButton value="Abrechen"
-					action="/WEB-INF/templates/structure.xhtml" />
-				<h:commandButton value="Save"
-					action="#{accountBearbeitenBean.eingabePrüfen()}" />
-			</p:panelGrid>
-	</h:form>
-</h:body>
+<ui:composition template="/WEB-INF/templates/structure.xhtml">
+	<ui:define name="titel">Registrierung</ui:define>
+	<ui:define name="header">Registrierung</ui:define>
+	<ui:define name="content">
+	    <ui:include src="/WEB-INF/templates/accountBearbeiten.xhtml"></ui:include>
+	</ui:define>
+</ui:composition>
 </html>
