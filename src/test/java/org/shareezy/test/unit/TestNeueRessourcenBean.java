@@ -18,10 +18,14 @@
 package org.shareezy.test.unit;
 
 import static org.mockito.Mockito.*;
+
 import java.lang.reflect.Field;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+
+import org.eclipse.jdt.internal.compiler.ast.AssertStatement;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -94,5 +98,7 @@ public class TestNeueRessourcenBean {
 		verify(em, times(2)).getTransaction();
 		verify(em).persist(any());
 		verify(em).close();
+		
+	
 	}
 }

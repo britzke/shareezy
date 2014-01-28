@@ -32,7 +32,10 @@ public class NeueRessourceBean {
 
 	@Inject
 	private EntityManagerFactory emf;
-	private EntityManager em;
+	//@Inject
+	//private Ressource ress;
+	private Ressource ress = new Ressource();
+	private EntityManager em = emf.createEntityManager();
 	private Benutzer benutzer;
 	private String beschreibung;
 	private byte[] bild;
@@ -44,13 +47,7 @@ public class NeueRessourceBean {
 	private int id;
 	private Date startdatum;
 	private Typ typ;
-
-	public NeueRessourceBean() {
-		
-		
-		
-	}
-
+	
 	/**
 	 * Action-Routine für den View <code>neueRessource</code>. Wird
 	 * angesprochen, wenn der Benutzer die Schaltfläche <code>löschen</code>
@@ -60,8 +57,7 @@ public class NeueRessourceBean {
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
 	public String loescheRessource(Ressource ressource) {
-		em = emf.createEntityManager();
-		EntityTransaction ent = em.getTransaction();
+		EntityTransaction ent = em.getTransaction();	
 		ent.begin();
 		ressource = em.merge(ressource);
 		em.remove(ressource);
@@ -79,7 +75,7 @@ public class NeueRessourceBean {
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
 	public String speichern() {
-
+		
 		em.getTransaction().begin();
 		Ressource ress = new Ressource();// muss später Injected werden
 		ress.setBenutzer(benutzer);
@@ -185,5 +181,13 @@ public class NeueRessourceBean {
 
 	public void setTyp(Typ typ) {
 		this.typ = typ;
+	}
+
+	public Ressource getRess() {
+		return ress;
+	}
+
+	public void setRess(Ressource ress) {
+		this.ress = ress;
 	}
 }
