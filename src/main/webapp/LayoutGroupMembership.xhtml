@@ -8,48 +8,46 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head />
 <h:body class="content">
-	<h:form id="form">
+	<h:form id="form" style="width: 270px; font-size: 0.9em;">
 		<p:growl id="growl" showDetail="true" />
-		<p:dashboard id="board" model="#{buttonBean.model}">
-			<p:ajax event="reorder" listener="#{buttonBean.handleReorder}"
-				update="growl" />
-			<p:panel id="sports" header="Sports">
-				<h:commandButton value="Der Community beitreten" />
-			</p:panel>
-			<p:panel id="finance" header="Finance">
-				<h:commandButton value="Der Community beitreten" />
-			</p:panel>
-			<p:panel id="lifestyle" header="Lifestyle">
-				<h:commandButton value="Die Community verlassen!" />
-			</p:panel>
-			<p:panel id="weather" header="Weather">
-				<h:commandButton value="Die Community verlassen!" />
-			</p:panel>
-			<p:panel id="politics" header="Politics">
-				<h:commandButton value="Die Community verlassen!" />
-			</p:panel>
-		</p:dashboard>
-	<h:form id="form">
-		<p:growl id="growl" showDetail="true" />
-		<p:dashboard id="board" model="#{buttonBean.model}">
-			<p:ajax event="reorder" listener="#{buttonBean.handleReorder}"
-				update="growl" />
-			<p:panel id="sports" header="Sports">
-				<h:commandButton value="Der Community beitreten" />
-			</p:panel>
-			<p:panel id="finance" header="Finance">
-				<h:commandButton value="Der Community beitreten" />
-			</p:panel>
-			<p:panel id="lifestyle" header="Lifestyle">
-				<h:commandButton value="Der Community beitreten" />
-			</p:panel>
-			<p:panel id="weather" header="Weather">
-				<h:commandButton value="Der Community beitreten" />
-			</p:panel>
-			<p:panel id="politics" header="Politics">
-				<h:commandButton value="Die Community verlassen" />
-			</p:panel>
-		</p:dashboard>
+		<p:panel id="freizeitboote" header="Freizeitboote">
+			<p:commandButton value="Der Community beitreten" />
+		</p:panel>
+		<p:panel id="sportboote" header="Sportboote">
+			<p:commandButton value="Der Community beitreten" />
+		</p:panel>
+		<p:panel id="arctic_cruiser_motorboote"
+			header="Actic Cruiser Motorboote">
+			<p:commandButton value="Die Community verlassen"
+				actionListener="#{groupMembership.destroyWorld}">
+				<p:confirm header="Confirmation" message="Sind Sie sicher?"
+					icon="ui-icon-alert" />
+			</p:commandButton>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+				<p:commandButton value="Ja" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Nein" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</p:panel>
+
+		<p:panel id="weltreise" header="Weltreise auf dem Boot">
+			<p:commandButton value="Die Community verlassen"
+				actionListener="#{groupMembership.destroyWorld}">
+				<p:confirm header="Confirmation" message="Sind Sie sicher?"
+					icon="ui-icon-alert" />
+			</p:commandButton>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+				<p:commandButton value="Ja" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Nein" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+
+		</p:panel>
+
 	</h:form>
 </h:body>
 </html>

@@ -22,8 +22,10 @@ import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+
 import org.primefaces.event.DashboardReorderEvent;
 import org.primefaces.model.DashboardColumn;
 import org.primefaces.model.DashboardModel;
@@ -120,5 +122,11 @@ public class GroupMembership implements Serializable{
 
 	public String leaveTheGroupp() {  
 		return"Sie sind aus dies Community ausgetreten!";  
+    }  
+	/*Pop-Up Windows mit Bestätigung Button. */
+    public void destroyWorld(ActionEvent actionEvent){  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "System Error",  "Please try again later.");  
+          
+        FacesContext.getCurrentInstance().addMessage(null, message);  
     }  
 }
