@@ -15,7 +15,7 @@
 		</p:column>
 		<p:column>
 			<f:facet name="header">Autor</f:facet>
-			<h:outputText value="#{ressource.benutzer.kurzname}"/>
+			<h:outputText value="#{ressource.benutzer.kurzname}" />
 		</p:column>
 		<p:column>
 			<f:facet name="header">Einstellungsdatum</f:facet>
@@ -24,6 +24,10 @@
 		<p:column>
 			<f:facet name="header">Startdatum</f:facet>
 			<h:outputText value="#{resource.startdatum}" />
+		</p:column>
+		<p:column>
+			<p:commandButton icon="ui-icon-wrench" ajax="false"
+				action="#{ressourceListen.ressourceClicked(ressource)}"/>
 		</p:column>
 	</p:dataTable>
 </h:form>

@@ -17,13 +17,20 @@
  */
 package org.shareezy.beans;
 
+import java.io.Serializable;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.faces.event.ActionEvent; 
 
-
-
+import org.primefaces.event.DashboardReorderEvent;
+import org.primefaces.model.DashboardColumn;
+import org.primefaces.model.DashboardModel;
+import org.primefaces.model.DefaultDashboardColumn;
+import org.primefaces.model.DefaultDashboardModel;
 import org.shareezy.entities.Benutzer;
 
 
@@ -33,7 +40,7 @@ import org.shareezy.entities.Benutzer;
  * @author Maxim Slipachuk
  */
 @ManagedBean
-public class GroupMembership {
+public class GroupMembership implements Serializable{
 	
 	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;	
@@ -74,5 +81,11 @@ public class GroupMembership {
 
 	public String leaveTheGroupp() {  
 		return"Sie sind aus dies Community ausgetreten!";  
+    }  
+	/*Pop-Up Windows mit Bestätigung Button. */
+    public void destroyWorld(ActionEvent actionEvent){  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "System Error",  "Please try again later.");  
+          
+        FacesContext.getCurrentInstance().addMessage(null, message);  
     }  
 }

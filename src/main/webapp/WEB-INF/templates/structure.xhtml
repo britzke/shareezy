@@ -4,39 +4,64 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<title>[shareezy] - <ui:insert name="title" >ohne Titel</ui:insert></title>
+	<title>[shareezy] - <ui:insert name="title" >ohne Titel</ui:insert></title>
 </h:head>
 
 <h:body>
+<p:layout fullPage="true">
 	<ui:debug hotkey="x"
 		rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
 
 	<header>
 		<ui:insert name="header">
-    	Header area.  See comments below this line in the source.
+		<p:layoutUnit position="north" >
+			<nav><ui:include src="/WEB-INF/templates/navigation.xhtml"/></nav>
+		</p:layoutUnit>
+    	
     	<!--  include your header file or uncomment the include below and create header.xhtml in this directory -->
 			<!-- <ui:include src="header.xhtml"/> -->
 		</ui:insert>
 	</header>
 
-	<nav><ui:include src="/WEB-INF/templates/navigation.xhtml"/></nav>
+	<!-- <nav><ui:include src="/WEB-INF/templates/navigation.xhtml"/></nav> -->
 	<section id="messages"><p:messages/></section>
 	<section id="content">
 		<ui:insert name="content">
-    	Content area.  See comments below this line in the source.
-    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
-			<!-- <div> -->
-			<!-- <ui:include src="content.xhtml"/> -->
-			<!-- </div> -->
+    	<p:layoutUnit id="left" position="west" size="200"  resizable="false" closable="false" collapsible="true" header="Menü" minSize="200">
+			<p:accordionPanel>				
+				<p:tab title="Benutzerkonto">
+				<h:panelGrid columns="1">
+					<h:outputLink value="pages/registration.xhtml">Profil bearbeiten</h:outputLink>
+					<h:outputLink value="pages/registration.xhtml">Gruppenverwaltung</h:outputLink>
+					<h:outputLink value="pages/registration.xhtml">Eigene Resourcen</h:outputLink>
+					<h:outputLink value="pages/registration.xhtml">Eigene Buchungen</h:outputLink>	
+				</h:panelGrid>
+				</p:tab> 
+			</p:accordionPanel>
+                </p:layoutUnit>
+                <p:layoutUnit id="center" position="center">
+                    <h:form>
+						Content area.  See comments below this line in the source.1
+						Content area.  See comments below this line in the source.1
+						Content area.  See comments below this line in the source.1						
+                    </h:form>
+                </p:layoutUnit>
+                
+    	    	
+			<!--include your content file or uncomment the include below and create content.xhtml in this directory
+			 <div> 
+			 <ui:include src="content.xhtml"/> 
+			 </div>  -->
 		</ui:insert>
-	</section>
-
+	</section>	
 	<footer>
-		<ui:insert name="footer">
-    	Footer area.  See comments below this line in the source.
-    	<!--  include your header file or uncomment the include below and create footer.xhtml in this directory -->
-			<!--<ui:include src="footer.xhtml"/>  -->
-		</ui:insert>
+			<ui:insert name="footer">
+				<p:layoutUnit id="bottom" position="south" size="60">			
+					Footer area.  See comments below this line in the source.
+		        </p:layoutUnit>		
+				<!--<ui:include src="footer.xhtml"/>  -->			
+			</ui:insert>	
 	</footer>
+</p:layout>
 </h:body>
 </html>

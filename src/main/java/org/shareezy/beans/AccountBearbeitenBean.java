@@ -1,4 +1,3 @@
-
 /*
  * This file is part of shareezy, a software system for sharing resources.
  *
@@ -19,16 +18,17 @@
  */
 package org.shareezy.beans;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-
+import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 
 import org.shareezy.entities.Benutzer;
 
-
-import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+
 /**
  * Die Klasse AccountBearbeitenBean stellt Methoden zur Verfügung, die dafür
  * genutzt werden das der Nutzer seinen Account bearbeiten kann.
@@ -36,13 +36,21 @@ import javax.persistence.EntityTransaction;
  * @author Maurice Engelskirchen, Burak Cakir
  */
 @ManagedBean
-public class AccountBearbeitenBean {
+public class AccountBearbeitenBean
+
+{
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	private Benutzer user;
 	private EntityTransaction t;
 	private String altesPasswort;
 	private String eingabePasswort;
+	private String eingabePasswortWiederholen;
+	private String eingabePasswortAlt;
+	private String eMail;
+
+	@ManagedProperty("#{facesContext}")
+	FacesContext faces;
 
 	/**
 	 * Prüft die Eingabe des nutzer. Abhängig davon gibt er eine fehlermeldung
@@ -53,18 +61,44 @@ public class AccountBearbeitenBean {
 	 */
 
 	public String eingabePrüfen() {
+		// EntityManager em = emf.createEntityManager();
+		// EntityTransaction t = em.getTransaction();
+		// t.begin();
+		// Benutzer benutzer = new Benutzer();
+		// altesPasswort = benutzer.getKennwort();
+		// em.persist(benutzer);
+		altesPasswort = "123";
 
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction t = em.getTransaction();
-		t.begin();
-		Benutzer benutzer = new Benutzer();
-		altesPasswort = benutzer.getKennwort();
-		eingabePasswort = getEingabePasswort();
-
-		if (eingabePasswort.equals(altesPasswort)) {
+		if (eingabePasswort.equals("")) {
 			datensatzÄndern();
+		} else {
+			if (eingabePasswort.equals(eingabePasswortWiederholen)) {
+				if (eingabePasswort.equals(eingabePasswortAlt)) {
+					faces.addMessage(
+							null,
+							new FacesMessage(
+									FacesMessage.SEVERITY_ERROR,
+									"Altes passwort sollte nicht gleich neuen passwort sein",
+									"Sample error message"));
+				} else {
+					if (eingabePasswortAlt.equals(altesPasswort)) {
+						datensatzÄndern();
+
+					} else {
+						faces.addMessage(null, new FacesMessage(
+								FacesMessage.SEVERITY_ERROR,
+								"Das eingegebene Passwort ist falsch.",
+								"Sample error message"));
+					}
+
+				}
+			} else {
+				faces.addMessage(null, new FacesMessage(
+						FacesMessage.SEVERITY_ERROR,
+						"Die Passwörter müssen übereinstimmen.",
+						"Sample error message"));
+			}
 		}
-		em.persist(benutzer);
 
 		return null;
 	}
@@ -76,12 +110,13 @@ public class AccountBearbeitenBean {
 	 * @return null da kein Seitenwechsel stattfindet.
 	 */
 	public String datensatzÄndern() {
-		em = emf.createEntityManager();
-		t = em.getTransaction();
-		t.begin();
-		em.merge(user);
-		t.commit();
-		em.close();
+		System.out.println("Methode ausgeführt");
+		// em = emf.createEntityManager();
+		// t = em.getTransaction();
+		// t.begin();
+		// em.merge(user);
+		// t.commit();
+		// em.close();
 		return null;
 	}
 
@@ -98,5 +133,50 @@ public class AccountBearbeitenBean {
 	 */
 	public void setEingabePasswort(String eingabePasswort) {
 		this.eingabePasswort = eingabePasswort;
+	}
+
+	/**
+	 * @return the eingabePasswortAlt
+	 */
+	public String getEingabePasswortAlt() {
+		return eingabePasswortAlt;
+	}
+
+	/**
+	 * @param eingabePasswortAlt
+	 *            the eingabePasswortAlt to set
+	 */
+	public void setEingabePasswortAlt(String eingabePasswortAlt) {
+		this.eingabePasswortAlt = eingabePasswortAlt;
+	}
+
+	/**
+	 * @return the eMail
+	 */
+	public String geteMail() {
+		return eMail;
+	}
+
+	/**
+	 * @param eMail
+	 *            the eMail to set
+	 */
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
+	}
+
+	/**
+	 * @return the eingabePasswortWiederholen
+	 */
+	public String getEingabePasswortWiederholen() {
+		return eingabePasswortWiederholen;
+	}
+
+	/**
+	 * @param eingabePasswortWiederholen
+	 *            the eingabePasswortWiederholen to set
+	 */
+	public void setEingabePasswortWiederholen(String eingabePasswortWiederholen) {
+		this.eingabePasswortWiederholen = eingabePasswortWiederholen;
 	}
 }

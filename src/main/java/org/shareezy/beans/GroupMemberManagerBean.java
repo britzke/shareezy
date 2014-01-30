@@ -17,8 +17,10 @@
  */
 package org.shareezy.beans;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
+
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -40,9 +42,13 @@ import org.shareezy.entities.BenutzerGruppe;
  * @author Timo Kuchling
  */
 @SessionScoped
-@ManagedBean(name = "MemberManager")
-public class GroupMemberManagerBean {
+@Named("MemberManager")
+public class GroupMemberManagerBean implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	private EntityTransaction t;

@@ -33,6 +33,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.shareezy.beans.AktuelleRessourceBean;
 import org.shareezy.beans.RessourceListen;
 import org.shareezy.entities.Ressource;
 
@@ -57,7 +58,11 @@ public class TestRessourcenListen {
 	private final String queryString = "select r from Ressource r";
 	@Mock
 	private List<Ressource> list;
-	private List<Ressource> listeRessourcen;
+
+	@Mock
+	private Ressource ressource;
+	@Mock
+	private AktuelleRessourceBean aktRessourceBean;
 
 	/**
 	 * Diese Methode erstellt beim erstmaligen Testaufruf einen Probanden vom
@@ -80,6 +85,7 @@ public class TestRessourcenListen {
 		when(em.createQuery(queryString)).thenReturn(query);
 		when(query.getResultList()).thenReturn(list);
 		when(list.size()).thenReturn(0).thenReturn(1);
+		
 
 	}
 
@@ -88,10 +94,20 @@ public class TestRessourcenListen {
 	 * ob der Rückgabewert der Methode ressourceClicked mit ressourcendetail
 	 * übereinstimmt
 	 * {@link org.shareezy.beans.RessourceListen#ressourceClicked()}.
+	 * @throws IllegalAccessException 
+	 * @throws IllegalArgumentException 
+	 * @throws SecurityException 
+	 * @throws NoSuchFieldException 
 	 */
 	@Test
-	public void testRessourceClicked() {
-		String nav = proband.ressourceClicked();
+	public void testRessourceClicked() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
+		Class<? extends RessourceListen> klasse = proband.getClass();
+		Field field = klasse.getDeclaredField("aktuelleressource");
+		field.setAccessible(true);
+		field.set(proband, aktRessourceBean);
+		
+		String nav = proband.ressourceClicked(ressource);
+		verify(aktRessourceBean).setRessource(ressource);
 		assertEquals("ressourcendetail", nav);
 	}
 
