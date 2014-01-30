@@ -1,5 +1,5 @@
 /**
-* This file is part of shareezy, a software system for sharing resources.
+ * This file is part of shareezy, a software system for sharing resources.
  *
  * Copyright (C) 2013  	e1_herrmann
  * 						burghard.britzke (bubi@charmides.in-berlin.de)
@@ -15,21 +15,24 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 package org.shareezy.beans;
 
+import java.util.List;
 
 import javax.annotation.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import org.shareezy.beans.GruppenzuordnungBean;
+import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.Gruppe;
 
 /**
-* Bean für die Gruppenzuordnung. Es wird geprüft welche Mitglieder Ressourcen
+ * Bean für die Gruppenzuordnung. Es wird geprüft welche Mitglieder Ressourcen
  * innerhalb der Gruppe verwalten können. Abfrage des Status der Ressource Wenn
  * jemand aus der Gruppe entfernt wird/geht. Welche Ressource zur Gruppe
  * hinzugefügt wird. Nachträgliches bearbeiten der ressourcen zu gruppe/ID.
@@ -37,82 +40,89 @@ import org.shareezy.entities.Gruppe;
  * 
  * @author e1_hermann
  * @author burghard.britzke bubi@charmides.in-berlin.de
-*/
+ */
 @ManagedBean
 @SessionScoped
 public class GruppenzuordnungBean {
-	
-	/*
-	public class DriverManager{
-		
-		public ResultSet resultset;
-		Connection con=null;
-		
-		
-		public void getConnection(){
-			
-			Statement stmt = con.createStatement();
-			con = DriverManager.getConnection( "jdbc:derby://localhost:1527/sample", 
-			        "test");
-			
-		}
-	}
-	*/
-
-	
-	private String account_id;
 	private String accounts_id;
-    private EntityManagerFactory emf;
+	private EntityManagerFactory emf;
+	private boolean authenticated;
+	private Benutzer benutzer;
+
+	public GruppenzuordnungBean() {
+		benutzer = new Benutzer();
+	}
+
+	public boolean isAuthenticated() {
+		return authenticated;
+	}
+
+	public void setAuthenticated(boolean authenticated) {
+		this.authenticated = authenticated;
+	}
 
 	/**
-	 * @throws java.lang.Exception
+	 * Diese Methode soll prüfen, ob der Benutzer ein Mitglied der Gruppe ist.
+	 * Wenn ja, dann darf er Ressourcen verwalten.
+	 * 
+	 * @return null - immer
 	 */
-	
-	/**
-	 * Welches Mitglied ist berechtigt zum abfragen/erstellen/verwalten von Ressourcen
-	 * @return 
-	 */
-	
 	public String mitgliederabfragen() {
 		EntityManager em = emf.createEntityManager();
+		Gruppe gruppe = new Gruppe();
+		em.persist(gruppe);
+		Query qy = em
+				.createQuery("select b from Benutzer where benutzer= :benutzer and gruppe= :gruppe");
+		qy.setParameter("benutzer", benutzer.getKurzname());
+		@SuppressWarnings("unchecked")
+		List<Benutzer> benutzerList = qy.getResultList();
+		for (Benutzer b : benutzerList) {
+			// für jedes benutzerobjekt b in der benutzerliste
+			if (b.getKurzname().equals(benutzer.getKurzname())
+			// wird abgefragt ob der kurzname der benutzers b gleich ist mit dem
+			// eingetragenen benutzer aus der entity
+					&& b.getKennwort().equals(benutzer.getKennwort())) {
+				setAuthenticated(true);
+				break;
+			}
+		}
+		em.close();
 		EntityTransaction t = em.getTransaction();
 		t.begin();
-		Gruppe gruppe = new Gruppe();
-        em.persist(gruppe);
-		return account_id;
-	
+
+		return null;
 	}
 
-        /**
-         * Abfrage des Status der Ressource
-         */
-       
-        public String ressourcestatus() {
-        	return accounts_id;
-                
-        }
+	/**
+	 * Abfrage des Status der Ressource
+	 */
 
-        /**
-         * Welches Mitglied ist berechtigt zum abfragen/erstellen/verwalten von Ressourcen
-         */
-        public void mitgliedentfernen() {
-        }
+	public String ressourcestatus() {
+		return accounts_id;
 
-        /**
-         * Ressource zur gruppe hinzufügen. Erstmal aus der View abfragen, dann Datenbankabfrage
-         */
-        public void addressourcen(int ressourcenid) {
-        	return;
-               
-        }
+	}
 
-        /**
-         * Bearbeiten der Ressource
-         */
-        public void editressource() {
-        	return;
-               
-        }
+	/**
+	 * Welches Mitglied ist berechtigt zum abfragen/erstellen/verwalten von
+	 * Ressourcen
+	 */
+	public void mitgliedentfernen() {
+	}
 
+	/**
+	 * Ressource zur gruppe hinzufügen. Erstmal aus der View abfragen, dann
+	 * Datenbankabfrage
+	 */
+	public void addressourcen(int ressourcenid) {
+		return;
+
+	}
+
+	/**
+	 * Bearbeiten der Ressource
+	 */
+	public void editressource() {
+		return;
+
+	}
 }
-
