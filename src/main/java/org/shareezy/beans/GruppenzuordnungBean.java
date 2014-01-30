@@ -87,8 +87,6 @@ public class GruppenzuordnungBean {
 			}
 		}
 		em.close();
-		EntityTransaction t = em.getTransaction();
-		t.begin();
 
 		return null;
 	}
