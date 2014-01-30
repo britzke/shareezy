@@ -18,17 +18,13 @@
 package org.shareezy.beans;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.annotation.ManagedBean;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
 
 import org.shareezy.entities.Buchung;
-import org.shareezy.entities.Ressource;
 
 /**
  * Klasse ist zustaendig fuer den TimePicker und die vom User eingestellten
@@ -56,20 +52,16 @@ public class TimePickerBean {
 	 * fügt der Entität "Buchung" der Datenbank einen neuen Datensatz mit den im
 	 * TimePicker eingegebenen Daten hinzu.
 	 * 
+	 * @return null - immer
+	 * 
 	 */
 	public String addDatensatz() {
 		EntityManager em = emf.createEntityManager();
-		Query q = em.createQuery("select rückgabedatum from buchung");
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
 		buchung.setRückgabedatum(timeframe);
 		em.persist(buchung);
 		transaction.commit();
-
-		List<Buchung> buchungList = q.getResultList();
-		for (Buchung b : buchungList) {
-
-		}
 
 		em.close();
 		return null;

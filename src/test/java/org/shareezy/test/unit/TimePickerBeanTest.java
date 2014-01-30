@@ -18,31 +18,21 @@
 package org.shareezy.test.unit;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.*;
+import static org.mockito.Mockito.*;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.FlushModeType;
-import javax.persistence.LockModeType;
-import javax.persistence.Parameter;
 import javax.persistence.Query;
-import javax.persistence.TemporalType;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import org.shareezy.beans.TimePickerBean;
 import org.shareezy.entities.Buchung;
 
@@ -63,208 +53,6 @@ public class TimePickerBeanTest {
 	private EntityManagerFactory emf;
 	private Query q;
 	private List<Buchung> buchungList;
-
-	class MockQuery implements Query{
-
-		@Override
-		public List getResultList() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Object getSingleResult() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public int executeUpdate() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		@Override
-		public Query setMaxResults(int maxResult) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public int getMaxResults() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		@Override
-		public Query setFirstResult(int startPosition) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public int getFirstResult() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		@Override
-		public Query setHint(String hintName, Object value) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Map<String, Object> getHints() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public <T> Query setParameter(Parameter<T> param, T value) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Query setParameter(Parameter<Calendar> param, Calendar value,
-				TemporalType temporalType) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Query setParameter(Parameter<Date> param, Date value,
-				TemporalType temporalType) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Query setParameter(String name, Object value) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Query setParameter(String name, Calendar value,
-				TemporalType temporalType) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Query setParameter(String name, Date value,
-				TemporalType temporalType) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Query setParameter(int position, Object value) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Query setParameter(int position, Calendar value,
-				TemporalType temporalType) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Query setParameter(int position, Date value,
-				TemporalType temporalType) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Set<Parameter<?>> getParameters() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Parameter<?> getParameter(String name) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public <T> Parameter<T> getParameter(String name, Class<T> type) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Parameter<?> getParameter(int position) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public <T> Parameter<T> getParameter(int position, Class<T> type) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public boolean isBound(Parameter<?> param) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public <T> T getParameterValue(Parameter<T> param) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Object getParameterValue(String name) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Object getParameterValue(int position) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Query setFlushMode(FlushModeType flushMode) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public FlushModeType getFlushMode() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Query setLockMode(LockModeType lockMode) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public LockModeType getLockMode() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public <T> T unwrap(Class<T> cls) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-	}
 	
 	/**
 	 * Erzeugt einen neuen Probanden der zutestenden Klasse.
@@ -280,6 +68,8 @@ public class TimePickerBeanTest {
 		when(em.createQuery("select rückgabedatum from buchung")).thenReturn(q);
 		transaction = mock(EntityTransaction.class);
 		when(em.getTransaction()).thenReturn(transaction);
+		
+		buchung = new Buchung();
 
 		proband = new TimePickerBean();
 		
@@ -293,7 +83,7 @@ public class TimePickerBeanTest {
 		
 		field = clazz.getDeclaredField("buchung");
 		field.setAccessible(true);
-		field.set(proband, new Buchung());
+		field.set(proband, buchung);
 	}
 
 	/**
@@ -305,11 +95,11 @@ public class TimePickerBeanTest {
 	@Test
 	public void testAddDatensatz() {
 		String antwort = proband.addDatensatz();
+		assertNull(antwort);
 		verify(emf).createEntityManager();
-		verify(em).createQuery("select rückgabedatum from buchung");
 		verify(em).getTransaction();
 		verify(transaction).begin();
-		verify(em).persist(buchung);
+		verify(em).persist(eq(buchung));
 		verify(transaction).commit();
 		verify(em).close();
 	}
