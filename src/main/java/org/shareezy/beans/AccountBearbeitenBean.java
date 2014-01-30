@@ -61,12 +61,6 @@ public class AccountBearbeitenBean
 	 */
 
 	public String eingabePrüfen() {
-		// EntityManager em = emf.createEntityManager();
-		// EntityTransaction t = em.getTransaction();
-		// t.begin();
-		// Benutzer benutzer = new Benutzer();
-		// altesPasswort = benutzer.getKennwort();
-		// em.persist(benutzer);
 		altesPasswort = "123";
 
 		if (eingabePasswort.equals("")) {
@@ -110,12 +104,12 @@ public class AccountBearbeitenBean
 	 * @return null da kein Seitenwechsel stattfindet.
 	 */
 	public String datensatzÄndern() {
-		// em = emf.createEntityManager();
-		// t = em.getTransaction();
-		// t.begin();
-		// em.merge(user);
-		// t.commit();
-		// em.close();
+		 em = emf.createEntityManager();
+		 t = em.getTransaction();
+		 t.begin();
+		 em.merge(user);
+		 t.commit();
+		 em.close();
 		return null;
 	}
 
