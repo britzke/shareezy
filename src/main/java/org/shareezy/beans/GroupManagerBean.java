@@ -98,15 +98,7 @@ public class GroupManagerBean implements Serializable {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onCreateNewGroupClick() {
-		//EntityManager em = emf.createEntityManager();
-		//EntityTransaction t = em.getTransaction();
-		//t.begin();
-		//Gruppe gruppe = new Gruppe();
-		//gruppe.setVerwalter(benutzer);
-		//gruppe.setName(groupName);
-		//em.persist(gruppe);
-		
+	public String onCreateNewGroupClick() {	
 		return null;
 	}
 
