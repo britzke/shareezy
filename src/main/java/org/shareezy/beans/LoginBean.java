@@ -21,7 +21,7 @@ package org.shareezy.beans;
 
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
@@ -37,7 +37,7 @@ import org.shareezy.entities.Benutzer;
  * @author wegner
  * @author burghard.britzke bubi@charmides.in-berlin.de
  */
-@ManagedBean
+@Named
 public class LoginBean {
 
 	private EntityManagerFactory emf;
