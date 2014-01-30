@@ -106,7 +106,6 @@ public class GroupManagerBean implements Serializable {
 		//gruppe.setVerwalter(benutzer);
 		//gruppe.setName(groupName);
 		//em.persist(gruppe);
-		System.out.println("groupName "+groupName);
 		
 		return null;
 	}

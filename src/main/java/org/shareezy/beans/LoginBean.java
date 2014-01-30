@@ -91,7 +91,6 @@ public class LoginBean {
 			}
 		}
 		em.close();
-		System.out.println("Username: "+benutzername+"Kennwort: "+kennwort);
 		return null;
 	}
 	
