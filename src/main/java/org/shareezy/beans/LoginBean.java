@@ -21,6 +21,7 @@ package org.shareezy.beans;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -40,6 +41,7 @@ import org.shareezy.entities.Benutzer;
 @Named
 public class LoginBean {
 
+	@Inject
 	private EntityManagerFactory emf;
 	private Benutzer benutzer;
 	private boolean authenticated;
