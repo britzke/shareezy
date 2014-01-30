@@ -62,7 +62,7 @@ public class GroupManagerBean implements Serializable {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onNewGroupClick() {
+	public String newGroupClick() {
 		return null;
 	}
 
@@ -98,16 +98,16 @@ public class GroupManagerBean implements Serializable {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onCreateNewGroupClick() {
-		//EntityManager em = emf.createEntityManager();
-		//EntityTransaction t = em.getTransaction();
-		//t.begin();
-		//Gruppe gruppe = new Gruppe();
-		//gruppe.setVerwalter(benutzer);
-		//gruppe.setName(groupName);
-		//em.persist(gruppe);
-		System.out.println("groupName "+groupName);
-		
+	public String createNewGroupClick() {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction t = em.getTransaction();
+		t.begin();
+
+		Gruppe newGroup = new Gruppe();
+		newGroup.setName(getGroupName());
+		newGroup.setVerwalter(benutzer);
+		groups.add(newGroup);
+		em.persist(newGroup);
 		return null;
 	}
 
@@ -117,7 +117,7 @@ public class GroupManagerBean implements Serializable {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onCreateNewRessourceClick() {
+	public String createNewRessourceClick() {
 		return null;
 	}
 
@@ -129,7 +129,7 @@ public class GroupManagerBean implements Serializable {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onShowMembersClick() {
+	public String showMembersClick() {
 		return null;
 	}
 
@@ -141,7 +141,7 @@ public class GroupManagerBean implements Serializable {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onAddMembersClick() {
+	public String addMembersClick() {
 		
 		return null;
 	}
@@ -152,7 +152,7 @@ public class GroupManagerBean implements Serializable {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onInviteMembersClick() {
+	public String inviteMembersClick() {
 		return null;
 	}
 

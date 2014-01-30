@@ -3,7 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <f:view contentType="text/html">
 	<h:head>
@@ -246,7 +247,7 @@ form .dialogH2 {
 					<h:outputLabel for="invMails"
 						value="Mehrere E-Mail Adressen müssen durch ein Komma getrennt werden"
 						styleClass="dialogH2" />
-					<p:inputText id="invMails" />
+					<p:inputText id="invMails" pt:placeholder="example@mail.com, next@mail.com"/>
 					<h:outputLabel for="invText" value="Nachricht"
 						styleClass="dialogH1" />
 					<h:outputLabel for="invText"
