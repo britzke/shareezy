@@ -35,7 +35,7 @@ public class NeueRessourceBean {
 	//@Inject
 	//private Ressource ress;
 	private Ressource ress = new Ressource();
-	private EntityManager em = emf.createEntityManager();
+	private EntityManager em ;
 	private Benutzer benutzer;
 	private String beschreibung;
 	private byte[] bild;
@@ -56,11 +56,12 @@ public class NeueRessourceBean {
 	 * 
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
-	public String loescheRessource(Ressource ressource) {
+	public String loescheRessource(Ressource ress) {
+		em = emf.createEntityManager();
 		EntityTransaction ent = em.getTransaction();	
 		ent.begin();
-		ressource = em.merge(ressource);
-		em.remove(ressource);
+		ress = em.merge(ress);
+		em.remove(ress);
 		ent.commit();
 		em.close();
 		return null;
@@ -75,7 +76,7 @@ public class NeueRessourceBean {
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
 	public String speichern() {
-		
+		em = emf.createEntityManager();
 		em.getTransaction().begin();
 		Ressource ress = new Ressource();// muss später Injected werden
 		ress.setBenutzer(benutzer);
@@ -92,7 +93,7 @@ public class NeueRessourceBean {
 		em.persist(ress);
 		em.getTransaction().commit();
 		em.close();
-		return null;
+		return "RessourceListen.xhtml";
 	}
 
 	public Benutzer getBenutzer() {
