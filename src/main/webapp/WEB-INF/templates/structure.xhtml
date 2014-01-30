@@ -5,6 +5,8 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>[shareezy] - <ui:insert name="title" >ohne Titel</ui:insert></title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"></link>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
 </h:head>
 
 <h:body>
@@ -27,20 +29,17 @@
 	<section id="messages"><p:messages/></section>
 	<section id="content">
 		<ui:insert name="content">
-    	<p:layoutUnit id="left" position="west" size="200"  resizable="false" closable="false" collapsible="true" header="Menü" minSize="200">
-			<p:accordionPanel>				
-				<p:tab title="Benutzerkonto">
-				<h:panelGrid columns="1">
-					<h:outputLink value="pages/registration.xhtml">Profil bearbeiten</h:outputLink>
-					<h:outputLink value="pages/registration.xhtml">Gruppenverwaltung</h:outputLink>
-					<h:outputLink value="pages/registration.xhtml">Eigene Resourcen</h:outputLink>
-					<h:outputLink value="pages/registration.xhtml">Eigene Buchungen</h:outputLink>	
-				</h:panelGrid>
-				</p:tab> 
-			</p:accordionPanel>
+    	<p:layoutUnit id="left" position="west" size="170"  resizable="false" closable="false" collapsible="true" header="Menu" minSize="120">					
+					<h:form>	
+					<div class="btn-group-vertical">
+							<button type="button" class="btn btn-default">Konto bearbeiten</button>
+							<button type="button" class="btn btn-default">Eigene Buchungen</button>
+							<button type="button" class="btn btn-default">Gruppenverwaltung</button>						
+						</div>
+					</h:form>
                 </p:layoutUnit>
                 <p:layoutUnit id="center" position="center">
-                    <h:form>
+                    <h:form>    
 						Content area.  See comments below this line in the source.1
 						Content area.  See comments below this line in the source.1
 						Content area.  See comments below this line in the source.1						

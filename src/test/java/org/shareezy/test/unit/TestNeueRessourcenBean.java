@@ -18,7 +18,7 @@
 package org.shareezy.test.unit;
 
 import static org.mockito.Mockito.*;
-
+import static org.junit.Assert.*;
 import java.lang.reflect.Field;
 
 import javax.persistence.EntityManager;
@@ -44,7 +44,7 @@ public class TestNeueRessourcenBean {
 	@Mock
 	private EntityManagerFactory emf;
 	@Mock
-	private EntityManager em;
+	public EntityManager em;
 	@Mock
 	private EntityTransaction transaction;
 	@Mock
@@ -76,7 +76,6 @@ public class TestNeueRessourcenBean {
 	 */
 	@Test
 	public void testLoescheRessource() {
-
 		String rueckgabewert = proband.loescheRessource(ressource);
 		verify(emf).createEntityManager();
 		verify(em).getTransaction();
@@ -88,6 +87,8 @@ public class TestNeueRessourcenBean {
 		// verify(em).remove(em.merge(ressource));
 		verify(transaction).commit();
 		verify(em).close();
+		assertEquals(rueckgabewert,"RessourcenListen.xhtml");
+
 	}
 
 	@Test
