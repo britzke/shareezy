@@ -1,22 +1,21 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<f:phaseListener type="org.shareezy.DebugPhaseListener"></f:phaseListener>
+<!-- <f:phaseListener type="org.shareezy.DebugPhaseListener"></f:phaseListener>-->
 <ui:composition template="/WEB-INF/templates/structure.xhtml">
-<p:layout>
-	<ui:define name="header">
-	    Add your header here or delete to use the default-
-	</ui:define>
-	<ui:define name="content">
-	    Add your content here or delete to use the default..
-	</ui:define>
-	<ui:define name="footer">
-	    Add your footer here or delete to use the default1
-	</ui:define>
-</p:layout>
+	<p:layout>
+		<ui:define name="search">
+			<ui:include src="/WEB-INF/templates/search.xhtml" />
+		</ui:define>
+		<ui:define name="Login">
+			<ui:include src="/WEB-INF/templates/login.xhtml" />
+		</ui:define>
+
+	</p:layout>
 </ui:composition>
 </html>

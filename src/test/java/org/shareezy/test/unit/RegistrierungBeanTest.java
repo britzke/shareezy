@@ -556,13 +556,10 @@ public class RegistrierungBeanTest {
 		benutzerField.setAccessible(true);
 		benutzerField.set(proband,benutzer);
 		
-		FacesContext facesContext = org.mockito.Mockito
-				.mock(FacesContext.class);
+		FacesContext facesContext = org.mockito.Mockito.mock(FacesContext.class);
 
-		ExternalContext externalContext = org.mockito.Mockito
-				.mock(ExternalContext.class);
-		org.mockito.Mockito.when(facesContext.getExternalContext()).thenReturn(
-				externalContext);
+		ExternalContext externalContext = org.mockito.Mockito.mock(ExternalContext.class);
+		org.mockito.Mockito.when(facesContext.getExternalContext()).thenReturn(externalContext);
 
 		ServletContext servletContext = org.mockito.Mockito
 				.mock(ServletContext.class);
