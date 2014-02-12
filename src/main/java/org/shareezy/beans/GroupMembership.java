@@ -23,16 +23,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-
-import org.primefaces.event.DashboardReorderEvent;
-import org.primefaces.model.DashboardColumn;
-import org.primefaces.model.DashboardModel;
-import org.primefaces.model.DefaultDashboardColumn;
-import org.primefaces.model.DefaultDashboardModel;
-import org.shareezy.entities.Benutzer;
-
 
 /**
  * Eigene Gruppenzugehörigkeit beantragen/entfernen
@@ -41,20 +31,8 @@ import org.shareezy.entities.Benutzer;
  */
 @ManagedBean
 public class GroupMembership implements Serializable{
-	
-	private EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager;	
-	private Benutzer benutzer;
-	private boolean bestätigt;
-	private boolean administrator;
-	
-	public String GroupMembership(){
 
-		entityManagerFactory.createEntityManager();
-		entityManager.getTransaction().begin();
-		
-		return "";
-	}
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Wird bei Klick auf 'Hinzufuegen' aufgerufen.
