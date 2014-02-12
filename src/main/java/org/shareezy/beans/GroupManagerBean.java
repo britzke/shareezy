@@ -89,9 +89,7 @@ public class GroupManagerBean implements Serializable {
 		groups.add(test1);
 		groups.add(test2);
 		groups.add(test3);
-
-		//TODO Gruppen als Buttons in der xhtml auflisten, bei onCreateNewGroupClick() eine neue gruppe hinzufügen (inkl. Button)
-	}
+}
 	
 	
 	
@@ -113,6 +111,11 @@ public class GroupManagerBean implements Serializable {
 		groups.add(newGroup);
 		//em.persist(newGroup);
 		System.out.println("createNewGroupClick");
+		return null;
+	}
+	
+	public String groupClick(Gruppe g){
+		System.out.println("Gruppe: "+ g.getName());
 		return null;
 	}
 

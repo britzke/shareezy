@@ -84,7 +84,7 @@ form .dialogH2 {
 						<p:column sortBy="groups">
 							<!-- Gruppen auflisten -->
 							
-							<p:commandButton update=":grpView" value="#{groups.getName()}"
+							<p:commandButton update=":grpView" value="#{groups.getName()}" actionListener="#{groupManager.groupClick(groups)}"
 												title="View">
 
 											</p:commandButton>
