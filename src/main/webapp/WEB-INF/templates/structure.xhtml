@@ -1,74 +1,66 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>[shareezy] - <ui:insert name="title">ohne Titel</ui:insert></title>
-	<link rel="stylesheet"
-		href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"></link>
+	<title>[shareezy] - <ui:insert name="title" >ohne Titel</ui:insert></title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"></link>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
 </h:head>
 
 <h:body>
-	<p:layout fullPage="true">
-		<ui:debug hotkey="x"
-			rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
+<p:layout fullPage="true">
+	<ui:debug hotkey="x"
+		rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
 
-		<header>
-			<ui:insert name="header">
+	<header>
+		<ui:insert name="header">
+		<p:layoutUnit position="north" >
+			<nav><ui:include src="/WEB-INF/templates/login.xhtml"/></nav>
+		</p:layoutUnit>
+    	
+    	<!--  include your header file or uncomment the include below and create header.xhtml in this directory -->
+			<!-- <ui:include src="header.xhtml"/> -->
+		</ui:insert>
+	</header>
 
-				<p:layoutUnit position="north">
-					<nav>
-					<ui:include src="/WEB-INF/templates/navigation.xhtml" />
-					</nav>
-				</p:layoutUnit>
-
-				<!--  include your header file or uncomment the include below and create header.xhtml in this directory -->
-				<!-- <ui:include src="header.xhtml"/> -->
-			</ui:insert>
-		</header>
-
-		<!-- <nav><ui:include src="/WEB-INF/templates/navigation.xhtml"/></nav> -->
-		<section id="messages">
-			<p:messages />
-		</section>
-		<section id="content">
-			<ui:insert name="content">
-				<p:layoutUnit id="left" position="west" size="170" resizable="false"
-					closable="false" collapsible="true" header="Menu" minSize="120">
-					<h:form>
-						<div class="btn-group-vertical">
-							<button type="button" class="btn btn-default">Konto
-								bearbeiten</button>
-							<button type="button" class="btn btn-default">Eigene
-								Buchungen</button>
-							<button type="button" class="btn btn-default">Gruppenverwaltung</button>
+	<!-- <nav><ui:include src="/WEB-INF/templates/login.xhtml"/></nav> -->
+	<section id="messages"><p:messages/></section>
+	<section id="content">
+		<ui:insert name="content">
+    	<p:layoutUnit id="left" position="west" size="170"  resizable="false" closable="false" collapsible="true" header="Menu" minSize="120">					
+					<h:form>	
+					<div class="btn-group-vertical">
+							<button type="button" class="btn btn-default">Konto bearbeiten</button>
+							<button type="button" class="btn btn-default">Eigene Buchungen</button>
+							<button type="button" class="btn btn-default">Gruppenverwaltung</button>						
 						</div>
 					</h:form>
-				</p:layoutUnit>
-				<p:layoutUnit id="center" position="center">
-					<h:form>    
+                </p:layoutUnit>
+                <p:layoutUnit id="center" position="center">
+                    <h:form>    
 						Content area.  See comments below this line in the source.1
 						Content area.  See comments below this line in the source.1
 						Content area.  See comments below this line in the source.1						
                     </h:form>
-				</p:layoutUnit>
-
-
-				<!--include your content file or uncomment the include below and create content.xhtml in this directory
+                </p:layoutUnit>
+                
+    	    	
+			<!--include your content file or uncomment the include below and create content.xhtml in this directory
 			 <div> 
 			 <ui:include src="content.xhtml"/> 
 			 </div>  -->
-			</ui:insert>
-		</section>
-		<footer>
+		</ui:insert>
+	</section>	
+	<footer>
 			<ui:insert name="footer">
 				<p:layoutUnit id="bottom" position="south" size="60">			
 					Footer area.  See comments below this line in the source.
-		        </p:layoutUnit>
-				<!--<ui:include src="footer.xhtml"/>  -->
-			</ui:insert>
-		</footer>
-	</p:layout>
+		        </p:layoutUnit>		
+				<!--<ui:include src="footer.xhtml"/>  -->			
+			</ui:insert>	
+	</footer>
+</p:layout>
 </h:body>
 </html>
