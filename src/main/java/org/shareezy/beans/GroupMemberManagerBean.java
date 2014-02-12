@@ -150,7 +150,7 @@ public class GroupMemberManagerBean implements Serializable{
 		em.persist(userGrp);
 		t.commit();
 		em.close();
-		System.out.println("RequestSent");
+		//System.out.println("RequestSent");
 		return null;
 	}
 }
