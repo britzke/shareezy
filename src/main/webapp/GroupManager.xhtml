@@ -53,6 +53,17 @@ form .dialogH2 {
 	font-size: 14px !important;
 	font-style: italic !important;
 }
+
+.noheader.ui-datatable table thead {
+    display: none;
+}
+
+.ui-datatable.noheader .ui-datatable-data tr,
+.ui-datatable.noheader .ui-datatable-data-empty tr,
+.ui-datatable.noheader .ui-datatable-data td,
+.ui-datatable.noheader .ui-datatable-data-empty td {
+    border-style: none;
+}
 </style>
 	</h:head>
 
@@ -68,11 +79,15 @@ form .dialogH2 {
 				collapsible="true" header="My Groups">
 				<h:form>
 
-					<p:dataTable var="groups"
+					<p:dataTable var="groups"  styleClass="noheader"
 						value="#{groupManager.groups}">
-						<p:column headerText="Gruppen" sortBy="groups">
-							<!-- Ressourcen auflisten -->
-							<h:outputText value="#{groups.getName()}" />
+						<p:column sortBy="groups">
+							<!-- Gruppen auflisten -->
+							
+							<p:commandButton update=":grpView" value="#{groups.getName()}"
+												title="View">
+
+											</p:commandButton>
 						</p:column>
 					</p:dataTable>
 
