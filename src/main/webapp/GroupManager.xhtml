@@ -82,9 +82,18 @@ form .dialogH2 {
 					<p:dataTable var="groups"  styleClass="noheader"
 						value="#{groupManager.groups}">
 						<p:column sortBy="groups">
-							<!-- Gruppen auflisten -->
+							<!-- Gruppe auflisten -->
 							
 							<p:commandButton update=":grpView" value="#{groups.getName()}" actionListener="#{groupManager.groupClick(groups)}"
+												title="View">
+
+											</p:commandButton>
+						</p:column>
+						
+						<p:column>
+							<!-- Gruppe löschen -->
+							
+							<p:commandButton icon="ui-icon-closethick" actionListener="#{groupManager.deletGroupClick(groups)}"
 												title="View">
 
 											</p:commandButton>
