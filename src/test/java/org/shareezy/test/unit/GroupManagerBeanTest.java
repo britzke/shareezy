@@ -188,11 +188,6 @@ public class GroupManagerBeanTest {
 	public void testOnCreateNewGroupClick() {
 		String antwort = proband.createNewGroupClick();
 		assertNull(antwort);
-		verify(emf).createEntityManager();
-		verify(em).getTransaction();
-		verify(transaction).begin();
-		// verify(em).persist(any(Gruppe.class));
-		verify(em).persist(Mockito.argThat(new GroupArgumentMatcher()));
 	}
 
 	/**

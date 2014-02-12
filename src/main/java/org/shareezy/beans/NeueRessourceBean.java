@@ -32,10 +32,10 @@ public class NeueRessourceBean {
 
 	@Inject
 	private EntityManagerFactory emf;
-	//@Inject
-	//private Ressource ress;
+	// @Inject
+	// private Ressource ress;
 	private Ressource ress = new Ressource();
-	private EntityManager em = emf.createEntityManager();
+	public EntityManager em;
 	private Benutzer benutzer;
 	private String beschreibung;
 	private byte[] bild;
@@ -47,7 +47,7 @@ public class NeueRessourceBean {
 	private int id;
 	private Date startdatum;
 	private Typ typ;
-	
+
 	/**
 	 * Action-Routine für den View <code>neueRessource</code>. Wird
 	 * angesprochen, wenn der Benutzer die Schaltfläche <code>löschen</code>
@@ -56,17 +56,18 @@ public class NeueRessourceBean {
 	 * 
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
-	public String loescheRessource(Ressource ressource) {
-		EntityTransaction ent = em.getTransaction();	
+	public String loescheRessource(Ressource ress) {
+		em = emf.createEntityManager();
+		EntityTransaction ent = em.getTransaction();
 		ent.begin();
-		ressource = em.merge(ressource);
-		em.remove(ressource);
+		ress = em.merge(ress);
+		em.remove(ress);
 		ent.commit();
 		em.close();
-		return null;
+		return "RessourcenListen.xhtml";
 	}
 
-	/**
+	/*
 	 * Action-Routine für den View <code>neueRessource</code>. Wird
 	 * angesprochen, wenn der Benutzer die Schaltfläche <code>speichern</code>
 	 * anwählt. Sorgt dafür, dass die neu eingesetzten Werte für diese Ressource
@@ -75,7 +76,7 @@ public class NeueRessourceBean {
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
 	public String speichern() {
-		
+		em = emf.createEntityManager();
 		em.getTransaction().begin();
 		Ressource ress = new Ressource();// muss später Injected werden
 		ress.setBenutzer(benutzer);
@@ -92,7 +93,7 @@ public class NeueRessourceBean {
 		em.persist(ress);
 		em.getTransaction().commit();
 		em.close();
-		return null;
+		return "RessourceListen.xhtml";
 	}
 
 	public Benutzer getBenutzer() {

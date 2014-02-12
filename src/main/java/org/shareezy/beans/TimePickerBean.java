@@ -16,93 +16,86 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.shareezy.beans;
-import java.util.Date;
-import java.util.List;
 
-import javax.annotation.ManagedBean;
+import java.util.Date;
+
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
 
 import org.shareezy.entities.Buchung;
-import org.shareezy.entities.Ressource;
 
 /**
- * Klasse ist zustaendig fuer den TimePicker und die vom User eingestellten Daten (Datum + Uhrzeit)
+ * Klasse ist zustaendig fuer den TimePicker und die vom User eingestellten
+ * Daten (Datum + Uhrzeit)
  * 
- * @author Vanessa Krohn 
+ * @author Vanessa Krohn
  * @date 05/12/13
  */
 @Named
 public class TimePickerBean {
 
 	private Date timeframe;
-	
+
 	private EntityManagerFactory emf;
 	private Buchung buchung;
 
 	/**
-	 * erzeugt eine neue TimePickerBean
-	 * initialisiert Buchung
+	 * erzeugt eine neue TimePickerBean initialisiert Buchung
 	 */
 	public TimePickerBean() {
 		buchung = new Buchung();
 	}
-	
+
 	/**
-	 * fügt der Entität "Buchung" der Datenbank einen neuen Datensatz mit den
-	 * im TimePicker eingegebenen Daten hinzu.
+	 * fügt der Entität "Buchung" der Datenbank einen neuen Datensatz mit den im
+	 * TimePicker eingegebenen Daten hinzu.
+	 * 
+	 * @return null - immer
 	 * 
 	 */
 	public String addDatensatz() {
 		EntityManager em = emf.createEntityManager();
-		Query q = em.createQuery("select rückgabedatum from buchung");
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
 		buchung.setRückgabedatum(timeframe);
 		em.persist(buchung);
 		transaction.commit();
-		
-		List<Buchung> buchungList = q.getResultList();
-		for(Buchung b : buchungList){
-			
-		}
-	
+
 		em.close();
 		return null;
 	}
-	
+
 	/**
-	 * wird durch Verwendung des TimePickers ausgefuehrt
-	 * um den vom User ausgewaehlten Zeitraum im Textfeld auszugeben
+	 * wird durch Verwendung des TimePickers ausgefuehrt um den vom User
+	 * ausgewaehlten Zeitraum im Textfeld auszugeben
 	 */
-	
-	public Date getTimeframe(){
+
+	public Date getTimeframe() {
 		return timeframe;
 	}
 
-    /**
+	/**
 	 * um Doppelbuchungen zu verhindern
 	 * 
-	 * sucht Datensatz "ressourcen_id" in der Entitaet "Buchungen" und vergleicht die 
-	 * neuen Werte (Datum + Uhrzeit) mit den Werten aus der Datenbank
-	 * Fehlermeldung wenn Ressource in dem gewuenschtem Zeitraum bereits vergeben 
-	 * ist + alternativen Terminvorschlag
-	 * Ist die Reservierung erfolgreich, wird in der Entitaet "Buchungen" ein neuer Datensatz
-	 * (Datum + Uhrzeit) angelegt und die ressourcen_id und die user_id werden aktualisiert
+	 * sucht Datensatz "ressourcen_id" in der Entitaet "Buchungen" und
+	 * vergleicht die neuen Werte (Datum + Uhrzeit) mit den Werten aus der
+	 * Datenbank Fehlermeldung wenn Ressource in dem gewuenschtem Zeitraum
+	 * bereits vergeben ist + alternativen Terminvorschlag Ist die Reservierung
+	 * erfolgreich, wird in der Entitaet "Buchungen" ein neuer Datensatz (Datum
+	 * + Uhrzeit) angelegt und die ressourcen_id und die user_id werden
+	 * aktualisiert
 	 * 
 	 * wird beim Klick auf den Bestaetigungsbutton aufgerufen
 	 */
-	
-    public void checkDate(){
-    } 
-    
-    public String action(){
-    	System.out.println("funktioniert!");
-    	addDatensatz();
+
+	public void checkDate() {
+	}
+
+	public String action() {
+		addDatensatz();
 		return "";
-    	
-    }
+
+	}
 }
