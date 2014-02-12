@@ -240,17 +240,17 @@ form .dialogH2 {
 				</h:panelGrid>
 
 				<p:commandButton value="Erstellen"
-					action="#{groupManager.onCreateNewGroupClick()}"
+					actionListener="#{groupManager.createNewGroupClick()}" process="@this"
 					onclick="PF('newGroupDlg').hide();PF('inviteMembersDlg').show()"
 					styleClass="blueButton" />
-				<p:commandButton value="Abbrechen"
+				<p:commandButton value="Abbrechen" 
 					onclick="PF('newGroupDlg').hide()" type="button" />
 
 			</h:form>
 
 		</p:dialog>
 
-		<p:dialog widgetVar="inviteMembersDlg" modal="true"
+		<p:dialog widgetVar="inviteMembersDlg" modal="true" 
 			header="Mitglieder einladen" width="530" showEffect="fade"
 			hideEffect="fade">
 
@@ -273,10 +273,10 @@ form .dialogH2 {
 
 
 				<p:commandButton value="Einladen"
-					onclick="PF('inviteMembersDlg').hide()"
+					onclick="PF('inviteMembersDlg').hide()" ajax="true"
 					actionListener="#{memberManager.sendRequest}" update=":grpView"
-					process="@this" styleClass="blueButton" />
-				<p:commandButton value="Später"
+					 styleClass="blueButton" />
+				<p:commandButton value="Später" ajax="false"
 					onclick="PF('inviteMembersDlg').hide()" type="button" />
 
 			</h:form>
