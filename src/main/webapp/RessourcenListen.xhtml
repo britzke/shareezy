@@ -8,18 +8,31 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head></h:head>
 <h:form>
-	<p:dataTable var="ressource" value="#{ressourceListen.ressourcenListe}">
-		<p:column>
-			<f:facet name="header">Ressourcenname</f:facet>
+	<p:dataTable var="ressource" value="#{ressourceListen.ressourcenListe}"
+		emptyMessage="Keine Daten gefunden"
+		filteredValue="#{ressourceListen.filteredRessource}"
+		>
+
+
+		<p:column  filterBy="name" sortBy="name"
+			headerText="Ressourcenname" filterMatchMode="contains">
 			<h:outputText value="#{ressource.name}" />
 		</p:column>
+
 		<p:column>
 			<f:facet name="header">Autor</f:facet>
 			<h:outputText value="#{ressource.benutzer.kurzname}" />
 		</p:column>
 		<p:column>
 			<f:facet name="header">Einstellungsdatum</f:facet>
-			<h:outputText value="#{ressource.einstellungsdatum}" />
+			<h:outputText value="#{ressource.einstellungsdatum}">
+				<f:convertDateTime timeStyle="short" />
+				<f:convertDateTime locale="de" />
+			</h:outputText>
+		</p:column>
+		<p:column headerText="ID" sortBy="id">
+		<f:facet name="ID">ID</f:facet>
+<h:outputText value="#{ressource.id}"/>
 		</p:column>
 		<p:column>
 			<f:facet name="header">Startdatum</f:facet>
@@ -27,7 +40,7 @@
 		</p:column>
 		<p:column>
 			<p:commandButton icon="ui-icon-wrench" ajax="false"
-				action="#{ressourceListen.ressourceClicked(ressource)}"/>
+				action="#{ressourceListen.ressourceClicked(ressource)}" />
 		</p:column>
 	</p:dataTable>
 </h:form>

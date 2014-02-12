@@ -47,7 +47,7 @@ public class AktuelleRessourceBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Produces
 	@AktuelleRessource
-	private transient Ressource ressource;
+	private Ressource ressource;
 
 	public Ressource getRessource() {
 		return ressource;
