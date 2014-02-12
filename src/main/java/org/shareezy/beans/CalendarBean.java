@@ -48,7 +48,7 @@ public class CalendarBean {
 	 */
 	public String scheduleController() {
 		EntityManager em = emf.createEntityManager();
-		Query q = em.createQuery("select b from Buchung where rückgabedatum= :rückgabedatum and ausleiher= :ausleiher");
+		Query q = em.createQuery("...");
 		return null;
 	}
 

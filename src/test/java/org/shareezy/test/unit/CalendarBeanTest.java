@@ -18,13 +18,10 @@
 package org.shareezy.test.unit;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import java.lang.reflect.Field;
 import java.util.Calendar;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -74,7 +71,9 @@ public class CalendarBeanTest {
 	@Test
 	public void testScheduleController() {
 		String sc = proband.scheduleController();
+		assertNull("Die Methode scheduleController() muss mit Null antworten", sc);
 		verify(emf).createEntityManager();
+		verify(em).createQuery(eq("..."));
 	}
 
 	/**
