@@ -110,18 +110,18 @@ public class GroupManagerBean implements Serializable {
 		newGroup.setVerwalter(benutzer);
 		groups.add(newGroup);
 		//em.persist(newGroup);
-		System.out.println("createNewGroupClick");
+		//System.out.println("createNewGroupClick");
 		return null;
 	}
 	
 	public String groupClick(Gruppe g){
-		System.out.println("Gruppe: "+ g.getName());
+		//System.out.println("Gruppe: "+ g.getName());
 		return null;
 	}
 	
 	public String deleteGroupClick(Gruppe g){
 		groups.remove(g);
-		System.out.println("Gruppe: "+ g.getName());
+		//System.out.println("Gruppe: "+ g.getName());
 		return null;
 	}
 
