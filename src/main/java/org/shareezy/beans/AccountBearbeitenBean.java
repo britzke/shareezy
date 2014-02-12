@@ -61,7 +61,7 @@ public class AccountBearbeitenBean
 	 */
 
 	public String eingabePrüfen() {
-		altesPasswort = "123";
+		altesPasswort = "";
 
 		if (eingabePasswort.equals("")) {
 			datensatzÄndern();

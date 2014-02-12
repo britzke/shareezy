@@ -79,7 +79,7 @@ public class RegistrierungBean {
 	/**
 	 * Fügt der Entität "Benutzer" der Datenbank einen neuen Datensatz mit den
 	 * vom Benutzer eingegebenen Daten hinzu. Danach wird die Methode
-	 * dalidierungsEmail() aufgerufen.
+	 * validierungsEmail() aufgerufen.
 	 * 
 	 * @return null da kein Seitenwechsel stattfindet.
 	 */
