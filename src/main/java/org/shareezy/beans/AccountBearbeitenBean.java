@@ -53,6 +53,21 @@ public class AccountBearbeitenBean
 	FacesContext faces;
 
 	/**
+	 * Antwortet mit dem Wert des faces
+	 * @return the faces
+	 */
+	public FacesContext getFaces() {
+		return faces;
+	}
+
+	/**
+	 * @param faces the faces to set
+	 */
+	public void setFaces(FacesContext faces) {
+		this.faces = faces;
+	}
+
+	/**
 	 * Prüft die Eingabe des nutzer. Abhängig davon gibt er eine fehlermeldung
 	 * aus, prüftt die eingabe mit den in der Datenbank gespeicherten referens
 	 * Daten oder ruft direkt die Methode DatensatzÄndern() auf.
