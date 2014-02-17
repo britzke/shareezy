@@ -17,7 +17,8 @@
  */
 package org.shareezy.beans;
 
-import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -35,31 +36,50 @@ import org.shareezy.entities.Buchung;
 public class CalendarBean {
 	private EntityManagerFactory emf;
 	private Buchung buchung;
+	private boolean inCalendar;
+	private Date timeframe;
+
+	public CalendarBean() {
+		buchung = new Buchung();
+		timeframe = buchung.getRückgabedatum();
+	}
 
 	/**
-	 * Liest die neuen, vom User geaenderten Daten aus der Datenbank aus und
-	 * laesst sie im Kalender erscheinen. Die Methode wird durch
+	 * Bucht ein User eine bestimmte Ressource, werden die Werte Ausleihdatum
+	 * und Rückgabedatum in die Datenbank gespeichert. Diese Daten werden
+	 * ausgelesen, und dieser Zeitraum (vom Ausleihzeitpunkt bis zur Rückgabe)
+	 * wird im Kalender farblich (rot) markiert. Die Methode wird durch
 	 * <em>schedule.xhml</em> (View) angesprochen. Sie wird aufgerufen, sobald
 	 * ein Benutzer eine Ressource erfolgreich gebucht hat (Anwahl der
 	 * Schaltfläche zur Bestätigung unterhalb des <em>TimePickers</em>).
 	 * 
 	 * @returns null - immer, da keine Navigation zu einer anderen Seite
 	 *          eineleitet wird.
+	 *          
+	 * Diese Methode ist noch unfertig!
 	 */
 	public String scheduleController() {
 		EntityManager em = emf.createEntityManager();
-		Query q = em.createQuery("...");
+		Query q = em.createQuery("select b from Buchnung where ressourcen= :aktuelleRessource");
+		@SuppressWarnings("unchecked")
+		List<Buchung> buchungList = q.getResultList();
+		for (Buchung b : buchungList) {
+			if (b.getRückgabedatum().equals(buchung.getRückgabedatum())) {
+				setInCalendar(true);
+			}
+		}
 		return null;
 	}
 
-	/**
-	 * Markiert das aktuelle Datum im Kalender wird aufgerufen, wenn der, auf
-	 * der Detailressourcenansicht befindliche Kalender geladen wird
-	 * 
-	 * @returns null - immer, da keine Navigation zu einer anderen Seite
-	 *          eineleitet wird.
-	 */
-	public Calendar today() {
-		return null;
+	public Date getTimeframe() {
+		return timeframe;
+	}
+
+	public boolean isInCalendar() {
+		return inCalendar;
+	}
+
+	public void setInCalendar(boolean inCalendar) {
+		this.inCalendar = inCalendar;
 	}
 }
