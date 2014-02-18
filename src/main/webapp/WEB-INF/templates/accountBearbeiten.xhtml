@@ -12,7 +12,9 @@
 	<h:form>
 		<p:panelGrid columns="2">
 				<p:outputLabel value="E-Mail:" />
-				<p:inputText value="#{accountBearbeitenBean.eMail}" />
+				<p:inputText value="#{accountBearbeitenBean.eMail}">
+				<f:validator validatorId="AccountBearbeitenValidator"/>
+				</p:inputText>
 				
 					<p:outputLabel for="pwd1" value="Altes Password:" />
 				<p:password id="pwd1"

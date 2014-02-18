@@ -42,16 +42,8 @@ public class AccountBearbeitenBean
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	private Benutzer user;
-	private EntityTransaction t;
-	private String altesPasswort;
-	private String eingabePasswort;
-	private String eingabePasswortWiederholen;
-	private String eingabePasswortAlt;
 	private String eMail;
-
-	@ManagedProperty("#{facesContext}")
-	FacesContext faces;
-
+	private String eingabePasswort;
 	/**
 	 * Prüft die Eingabe des nutzer. Abhängig davon gibt er eine fehlermeldung
 	 * aus, prüftt die eingabe mit den in der Datenbank gespeicherten referens
@@ -62,43 +54,8 @@ public class AccountBearbeitenBean
 
 	public String eingabePrüfen() {
 		// EntityManager em = emf.createEntityManager();
-		// EntityTransaction t = em.getTransaction();
-		// t.begin();
-		// Benutzer benutzer = new Benutzer();
-		// altesPasswort = benutzer.getKennwort();
-		// em.persist(benutzer);
-		altesPasswort = "123";
-
-		if (eingabePasswort.equals("")) {
-			datensatzÄndern();
-		} else {
-			if (eingabePasswort.equals(eingabePasswortWiederholen)) {
-				if (eingabePasswort.equals(eingabePasswortAlt)) {
-					faces.addMessage(
-							null,
-							new FacesMessage(
-									FacesMessage.SEVERITY_ERROR,
-									"Altes passwort sollte nicht gleich neuen passwort sein",
-									"Sample error message"));
-				} else {
-					if (eingabePasswortAlt.equals(altesPasswort)) {
-						datensatzÄndern();
-
-					} else {
-						faces.addMessage(null, new FacesMessage(
-								FacesMessage.SEVERITY_ERROR,
-								"Das eingegebene Passwort ist falsch.",
-								"Sample error message"));
-					}
-
-				}
-			} else {
-				faces.addMessage(null, new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,
-						"Die Passwörter müssen übereinstimmen.",
-						"Sample error message"));
-			}
-		}
+		// altesPasswort = user.getKennwort();
+		// em.persist(user);
 
 		return null;
 	}
@@ -119,37 +76,6 @@ public class AccountBearbeitenBean
 		// em.close();
 		return null;
 	}
-
-	/**
-	 * @return the eingabePasswort
-	 */
-	public String getEingabePasswort() {
-		return eingabePasswort;
-	}
-
-	/**
-	 * @param eingabePasswort
-	 *            the eingabePasswort to set
-	 */
-	public void setEingabePasswort(String eingabePasswort) {
-		this.eingabePasswort = eingabePasswort;
-	}
-
-	/**
-	 * @return the eingabePasswortAlt
-	 */
-	public String getEingabePasswortAlt() {
-		return eingabePasswortAlt;
-	}
-
-	/**
-	 * @param eingabePasswortAlt
-	 *            the eingabePasswortAlt to set
-	 */
-	public void setEingabePasswortAlt(String eingabePasswortAlt) {
-		this.eingabePasswortAlt = eingabePasswortAlt;
-	}
-
 	/**
 	 * @return the eMail
 	 */
@@ -165,18 +91,11 @@ public class AccountBearbeitenBean
 		this.eMail = eMail;
 	}
 
-	/**
-	 * @return the eingabePasswortWiederholen
-	 */
-	public String getEingabePasswortWiederholen() {
-		return eingabePasswortWiederholen;
+	public String getEingabePasswort() {
+		return eingabePasswort;
 	}
 
-	/**
-	 * @param eingabePasswortWiederholen
-	 *            the eingabePasswortWiederholen to set
-	 */
-	public void setEingabePasswortWiederholen(String eingabePasswortWiederholen) {
-		this.eingabePasswortWiederholen = eingabePasswortWiederholen;
+	public void setEingabePasswort(String eingabePasswort) {
+		this.eingabePasswort = eingabePasswort;
 	}
 }
