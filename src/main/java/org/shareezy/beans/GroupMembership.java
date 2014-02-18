@@ -51,7 +51,8 @@ import org.shareezy.entities.Gruppe;
 @Named("GroupMembership")
 public class GroupMembership implements Serializable {
 
-	public @Inject
+	@Inject
+	private
 	EntityManagerFactoryBean emf;
 	private @Inject
 	Benutzer benutzer;
@@ -82,14 +83,14 @@ public class GroupMembership implements Serializable {
 			Message message = new MimeMessage(session);
 			message.setRecipients(Message.RecipientType.TO, addresses);
 			message.setSubject("[shareezy] Validierung der Registrierung");
-//
-//			String validationUrl = externalContext.getRequestPathInfo()
-//					+ getMD5emailValidationHash();
+			//
+			// String validationUrl = externalContext.getRequestPathInfo()
+			// + getMD5emailValidationHash();
 
 			message.setText("testEmail anfrage");
 
 			Transport.send(message);
-		} catch ( MessagingException e) {
+		} catch (MessagingException e) {
 			FacesMessage message = new FacesMessage();
 			message.setSummary("Fehler beim Versenden der E-Mail zur Valitation");
 			message.setDetail(e.getLocalizedMessage());
@@ -97,7 +98,7 @@ public class GroupMembership implements Serializable {
 			facesContext.addMessage(null, message);
 		}
 		return null;
-	
+
 	}
 
 	/**
