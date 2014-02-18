@@ -39,31 +39,31 @@ public class NeueRessourceBean implements Serializable{
 	private EntityManagerFactory emf;
 	@Inject
 	private Ressource ress;
-	@Inject
+	
 	public EntityManager em;
 	@Inject
 	private Benutzer benutzer;
-	@Inject
+	
 	private String beschreibung;
-	@Inject
+	
 	private byte[] bild;
-	@Inject
+	
 	private List<Buchung> buchungen;
-	@Inject
+	
 	private Date einstellungsdatum;
-	@Inject
+	
 	private Date enddatum;
-	@Inject
+	
 	private List<Gruppe> gruppen;
-	@Inject
+	
 	private String name;
-	@Inject
+	
 	private int id;
-	@Inject
+	
 	private Date startdatum;
-	@Inject
+	
 	private Typ typ;
-	@Inject
+	
 	private List<String> typOptionen;
 	/**
 	 * Action-Routine für den View <code>neueRessource</code>. Wird
