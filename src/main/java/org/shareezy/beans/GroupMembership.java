@@ -18,15 +18,12 @@
 package org.shareezy.beans;
 
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.mail.Address;
 import javax.mail.Message;
@@ -35,12 +32,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.persistence.EntityManager;
 import javax.servlet.ServletContext;
-
-import org.shareezy.entities.Benutzer;
-import org.shareezy.entities.BenutzerGruppe;
-import org.shareezy.entities.Gruppe;
 
 /**
  * Eigene Gruppenzugehörigkeit beantragen/entfernen
@@ -51,15 +43,7 @@ import org.shareezy.entities.Gruppe;
 @Named("GroupMembership")
 public class GroupMembership implements Serializable {
 
-	@Inject
-	private
-	EntityManagerFactoryBean emf;
-	private @Inject
-	Benutzer benutzer;
-	private @Inject
-	BenutzerGruppe benGruppe;
-	private @Inject
-	Gruppe gruppe;
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Wird bei Klick auf 'Hinzufuegen' aufgerufen.

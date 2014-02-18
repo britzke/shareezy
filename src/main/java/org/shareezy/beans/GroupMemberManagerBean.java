@@ -18,8 +18,6 @@
 package org.shareezy.beans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
@@ -27,12 +25,9 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
 
 import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.BenutzerGruppe;
-import org.shareezy.entities.Gruppe;
-import org.shareezy.entities.Ressource;
 
 /**
  * Beschreibung von GroupMemberManagerBean

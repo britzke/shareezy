@@ -18,16 +18,14 @@
  */
 package org.shareezy.beans;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
-
-import org.shareezy.entities.Benutzer;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+
+import org.shareezy.entities.Benutzer;
 
 /**
  * Die Klasse AccountBearbeitenBean stellt Methoden zur Verfügung, die dafür
@@ -43,7 +41,6 @@ public class AccountBearbeitenBean
 	private EntityManager em;
 	private Benutzer user;
 	private EntityTransaction t;
-	private String altesPasswort;
 	private String eingabePasswort;
 	private String eingabePasswortWiederholen;
 	private String eingabePasswortAlt;
