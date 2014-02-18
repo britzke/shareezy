@@ -66,7 +66,7 @@ public class GroupMembershipTest {
 	 */
 	@Test
 	public void testSendAnfrage() {
-		String antwort = proband.sendAnfrage();
+		String antwort = proband.sendAnfrage(null);
 		assertNull(antwort);
 	}
 

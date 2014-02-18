@@ -18,45 +18,47 @@
 package org.shareezy.beans;
 
 import java.io.Serializable;
-import java.util.List;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Properties;
 
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.servlet.ServletContext;
 
 import org.shareezy.entities.Benutzer;
+import org.shareezy.entities.BenutzerGruppe;
+import org.shareezy.entities.Gruppe;
 
 /**
  * Eigene Gruppenzugehörigkeit beantragen/entfernen
  * 
  * @author Maxim Slipachuk
  */
-@ManagedBean
-public class GroupMembership implements Serializable{
+@SessionScoped
+@Named("GroupMembership")
+public class GroupMembership implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	private static final String PERSISTENCE_UNIT_NAME = "shareezy";
-	  private static EntityManagerFactory factory;
-
-	  public static void main(String[] args) {
-	    factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-	    EntityManager em = factory.createEntityManager();
-	    // read the existing entries and write to console
-	    Query q = em.createQuery("select t from Todo t");
-	    List<Benutzer> benList = q.getResultList();
-	    for (Benutzer todo : benList) {
-	      System.out.println("benutzerID");
-	    }
-	    em.getTransaction().begin();
-	    Benutzer todo = new Benutzer();	    
-	    em.persist(todo);
-	    em.getTransaction().commit();
-
-	    em.close();
-	  }
-	
+	public @Inject
+	EntityManagerFactoryBean emf;
+	private @Inject
+	Benutzer benutzer;
+	private @Inject
+	BenutzerGruppe benGruppe;
+	private @Inject
+	Gruppe gruppe;
 
 	/**
 	 * Wird bei Klick auf 'Hinzufuegen' aufgerufen.
@@ -64,8 +66,38 @@ public class GroupMembership implements Serializable{
 	 * @return gibt nichts zurück damit sich die View nicht Verändert
 	 * 
 	 */
-	public String sendAnfrage() {
+
+	public String sendAnfrage(FacesContext facesContext) {
+
+		ExternalContext externalContext = facesContext.getExternalContext();
+		try {
+			ServletContext servletContext = (ServletContext) externalContext
+					.getContext();
+			Properties properties = (Properties) servletContext
+					.getAttribute("org.shareezy.MAIL_PROPERTIES");
+
+			Session session = Session.getInstance(properties);
+			Address[] addresses = InternetAddress.parse("testEmail");
+
+			Message message = new MimeMessage(session);
+			message.setRecipients(Message.RecipientType.TO, addresses);
+			message.setSubject("[shareezy] Validierung der Registrierung");
+//
+//			String validationUrl = externalContext.getRequestPathInfo()
+//					+ getMD5emailValidationHash();
+
+			message.setText("testEmail anfrage");
+
+			Transport.send(message);
+		} catch ( MessagingException e) {
+			FacesMessage message = new FacesMessage();
+			message.setSummary("Fehler beim Versenden der E-Mail zur Valitation");
+			message.setDetail(e.getLocalizedMessage());
+			message.setSeverity(FacesMessage.SEVERITY_FATAL);
+			facesContext.addMessage(null, message);
+		}
 		return null;
+	
 	}
 
 	/**
@@ -73,7 +105,8 @@ public class GroupMembership implements Serializable{
 	 * 
 	 * @return gibt nichts zurück damit sich die View nicht Veraendert
 	 */
+
 	public String knopfGruppeVerlassen() {
 		return null;
-	}	
+	}
 }
