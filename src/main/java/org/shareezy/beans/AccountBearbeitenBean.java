@@ -42,22 +42,22 @@ public class AccountBearbeitenBean
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	private Benutzer user;
-	private String eMail;
+	private EntityTransaction t;
+	private String altesPasswort;
 	private String eingabePasswort;
+	private String eingabePasswortWiederholen;
+	private String eingabePasswortAlt;
+	private String eMail;
+
+	@ManagedProperty("#{facesContext}")
+	FacesContext faces;
+
 	/**
-	 * Prüft die Eingabe des nutzer. Abhängig davon gibt er eine fehlermeldung
-	 * aus, prüftt die eingabe mit den in der Datenbank gespeicherten referens
-	 * Daten oder ruft direkt die Methode DatensatzÄndern() auf.
-	 * 
-	 * @return null da kein Seitenwechsel stattfindet.
+	 * Antwortet mit dem Wert des faces
+	 * @return the faces
 	 */
-
-	public String eingabePrüfen() {
-		// EntityManager em = emf.createEntityManager();
-		// altesPasswort = user.getKennwort();
-		// em.persist(user);
-
-		return null;
+	public FacesContext getFaces() {
+		return faces;
 	}
 
 	/**
@@ -67,15 +67,39 @@ public class AccountBearbeitenBean
 	 * @return null da kein Seitenwechsel stattfindet.
 	 */
 	public String datensatzÄndern() {
-		System.out.println("Methode ausgeführt");
-		// em = emf.createEntityManager();
-		// t = em.getTransaction();
-		// t.begin();
-		// em.merge(user);
-		// t.commit();
-		// em.close();
 		return null;
 	}
+
+	/**
+	 * @return the eingabePasswort
+	 */
+	public String getEingabePasswort() {
+		return eingabePasswort;
+	}
+
+	/**
+	 * @param eingabePasswort
+	 *            the eingabePasswort to set
+	 */
+	public void setEingabePasswort(String eingabePasswort) {
+		this.eingabePasswort = eingabePasswort;
+	}
+
+	/**
+	 * @return the eingabePasswortAlt
+	 */
+	public String getEingabePasswortAlt() {
+		return eingabePasswortAlt;
+	}
+
+	/**
+	 * @param eingabePasswortAlt
+	 *            the eingabePasswortAlt to set
+	 */
+	public void setEingabePasswortAlt(String eingabePasswortAlt) {
+		this.eingabePasswortAlt = eingabePasswortAlt;
+	}
+
 	/**
 	 * @return the eMail
 	 */
@@ -91,11 +115,18 @@ public class AccountBearbeitenBean
 		this.eMail = eMail;
 	}
 
-	public String getEingabePasswort() {
-		return eingabePasswort;
+	/**
+	 * @return the eingabePasswortWiederholen
+	 */
+	public String getEingabePasswortWiederholen() {
+		return eingabePasswortWiederholen;
 	}
 
-	public void setEingabePasswort(String eingabePasswort) {
-		this.eingabePasswort = eingabePasswort;
+	/**
+	 * @param eingabePasswortWiederholen
+	 *            the eingabePasswortWiederholen to set
+	 */
+	public void setEingabePasswortWiederholen(String eingabePasswortWiederholen) {
+		this.eingabePasswortWiederholen = eingabePasswortWiederholen;
 	}
 }

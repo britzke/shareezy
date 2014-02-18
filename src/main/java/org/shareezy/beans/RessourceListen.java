@@ -17,10 +17,14 @@
  */
 package org.shareezy.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -48,6 +52,10 @@ public class RessourceListen {
 	@Inject
 	private AktuelleRessourceBean aktuelleressource;
 
+	private List<Ressource> filteredRessource;
+
+	private List<Ressource> listeRessourcen;
+
 	/**
 	 * Die Methode ressourceClicked leitet bei einem Klick auf den Namen der
 	 * Ressource, den Benutzer auf die Detailansicht der Ressource weiter.
@@ -67,16 +75,41 @@ public class RessourceListen {
 	 * @return Liste von Ressourcenobjekten.
 	 */
 	public List<Ressource> getRessourcenListe() {
+		return listeRessourcen;
+	}
+
+	@PostConstruct
+	private void init() {
+		if (listeRessourcen == null) {
+			queryRessourcenListe();
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public void queryRessourcenListe() {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		Query q = em.createQuery("select r from Ressource r");
-		@SuppressWarnings("unchecked")
-		List<Ressource> listeRessourcen = q.getResultList();
+		listeRessourcen = q.getResultList();
 		em.getTransaction().commit();
 		if (listeRessourcen.size() == 0) {
 			listeRessourcen = new ArrayList<Ressource>();
 		}
-		return listeRessourcen;
+		
 	}
 
+	/**
+	 * @return the filteredRessource
+	 */
+	public List<Ressource> getFilteredRessource() {
+		return filteredRessource;
+	}
+
+	/**
+	 * @param filteredRessource
+	 *            the filteredRessource to set
+	 */
+	public void setFilteredRessource(List<Ressource> filteredRessource) {
+		this.filteredRessource = filteredRessource;
+	}
 }

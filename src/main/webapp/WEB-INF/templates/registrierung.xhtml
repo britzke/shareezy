@@ -10,21 +10,14 @@
 
 <h:body>
 	<h:form>
-		<p:panelGrid columns="2">
-			<p:outputLabel value="Vorname:" />
-			<p:inputText />
-			<p:outputLabel value="Nachname:" />
-			<p:inputText />
-			<p:outputLabel value="Benutzername:" />
-			<p:inputText />
-			<p:outputLabel value="E-Mail:" />
-			<p:inputText />
-			<p:outputLabel value="Password:" />
-			<p:inputText />
-			<p:outputLabel value="Password Wiederholen:" />
-			<p:inputText />
-			<h:commandButton value="Abrechen" />
-			<h:commandButton value="abschließen" />
+		<p:panelGrid columns="1">
+			<p:inputText placeholder="Vorname"/>
+			<p:inputText placeholder="Nachname" />
+			<p:inputText placeholder="Benutzername" />
+			<p:inputText placeholder="E-Mail"/>
+			<p:inputText placeholder="Password"/>
+			<p:inputText placeholder="Password Wiederholen" />
+			<h:commandButton value="absenden" />
 		</p:panelGrid>
 	</h:form>
 </h:body>

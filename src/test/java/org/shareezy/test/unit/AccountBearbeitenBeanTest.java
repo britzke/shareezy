@@ -19,8 +19,6 @@
  */
 package org.shareezy.test.unit;
 
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -79,40 +77,21 @@ public class AccountBearbeitenBeanTest {
 
 		transaction = mock(EntityTransaction.class);
 		when(em.getTransaction()).thenReturn(transaction);
-
-		Field field = clazz.getDeclaredField("emf");
+		
+		FacesContext faces = mock(FacesContext.class);
+		Field field = clazz.getDeclaredField("faces");
+		field.setAccessible(true);
+		field.set(proband, faces);
+		
+		field = clazz.getDeclaredField("emf");
 		field.setAccessible(true);
 		field.set(proband, emf);
 		
 		Field fiel = clazz.getDeclaredField("faces");
 		field.setAccessible(true);
 		field.set(proband, faces);
-
 	}
 
-	/**
-	 * Test-Methode für
-	 * {@link org.shareezy.beans.AccountBearbeitenBean#eingabePrüfen(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
-	 * . Testet, dass die Antwort <em>null</em> ist, d.h. es findet keine
-	 * Navigation zu einer andern Seite statt.
-	 */
-
-	@Test
-	public void testEingabePrüfen() {
-
-		final String PASSWORT = "123";
-		when(benutzer.getKennwort()).thenReturn(PASSWORT);
-		proband.setEingabePasswort(PASSWORT);
-
-		proband.eingabePrüfen();
-		verify(faces).addMessage(null,null);
-		verify(emf).createEntityManager();
-		verify(em).getTransaction();
-		verify(transaction).begin();
-		verify(benutzer).getKennwort();
-		verify(proband).datensatzÄndern();
-		verify(em).persist(any());
-	}
 
 	/**
 	 * Test-Methode für
@@ -122,15 +101,12 @@ public class AccountBearbeitenBeanTest {
 	 */
 	@Test
 	public void testDatensatzÄndern() {
-		
-//		proband.datensatzÄndern();
-//		verify(emf).createEntityManager();
-//		verify(em).getTransaction();
-//		verify(transaction).begin();
-//		verify(em).remove(any());
-//		verify(transaction).commit();
-//		verify(em).close();
-		//verify(em).remove(em.merge());
+		proband.datensatzÄndern();
+		verify(emf).createEntityManager();
+		verify(em).getTransaction();
+		verify(transaction).begin();
+		verify(transaction).commit();
+		verify(em).close();
 	}
 }
 

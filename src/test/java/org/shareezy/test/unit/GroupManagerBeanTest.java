@@ -147,13 +147,13 @@ public class GroupManagerBeanTest {
 
 	/**
 	 * Test method for
-	 * {@link org.shareezy.beans.GroupManagerBean#onAddMembersClick()}. Testet,
+	 * {@link org.shareezy.beans.GroupManagerBean#addMembersClick()}. Testet,
 	 * dass die Antwort <em>null</em> ist, d. h. keine Navigation zu einem
 	 * anderen View eingeleitet wird.
 	 */
 	@Test
 	public void testOnAddMembersClick() {
-		String antwort = proband.onAddMembersClick();
+		String antwort = proband.addMembersClick();
 
 		assertNull("die Antwort muss null sein", antwort);
 		//
@@ -166,33 +166,28 @@ public class GroupManagerBeanTest {
 
 	/**
 	 * Test method for
-	 * {@link org.shareezy.beans.GroupManagerBean#onNewGroupClick()}. Testet,
+	 * {@link org.shareezy.beans.GroupManagerBean#newGroupClick()}. Testet,
 	 * dass die Antwort <em>null</em> ist, d. h. keine Navigation zu einem
 	 * anderen View eingeleitet wird. Es wird getestest, ob die Gruppe mittels
 	 * eines EntityManagers und einer Transaktion gespeichert wird.
 	 */
 	@Test
 	public void testOnNewGroupClick() {
-		String antwort = proband.onNewGroupClick();
+		String antwort = proband.newGroupClick();
 		assertNull(antwort);
 	}
 
 	/**
 	 * Test method for
-	 * {@link org.shareezy.beans.GroupManagerBean#onCreateNewGroupClick()}.
+	 * {@link org.shareezy.beans.GroupManagerBean#createNewGroupClick()}.
 	 * Testet, dass die Antwort <em>null</em> ist, d. h. keine Navigation zu
 	 * einem anderen View eingeleitet wird. Es wird getestest, ob die Gruppe
 	 * mittels eines EntityManagers und einer Transaktion gespeichert wird.
 	 */
 	@Test
 	public void testOnCreateNewGroupClick() {
-		String antwort = proband.onCreateNewGroupClick();
+		String antwort = proband.createNewGroupClick();
 		assertNull(antwort);
-		verify(emf).createEntityManager();
-		verify(em).getTransaction();
-		verify(transaction).begin();
-		// verify(em).persist(any(Gruppe.class));
-		verify(em).persist(Mockito.argThat(new GroupArgumentMatcher()));
 	}
 
 	/**

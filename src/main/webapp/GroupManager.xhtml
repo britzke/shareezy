@@ -3,7 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <f:view contentType="text/html">
 	<h:head>
@@ -52,6 +53,17 @@ form .dialogH2 {
 	font-size: 14px !important;
 	font-style: italic !important;
 }
+
+.noheader.ui-datatable table thead {
+    display: none;
+}
+
+.ui-datatable.noheader .ui-datatable-data tr,
+.ui-datatable.noheader .ui-datatable-data-empty tr,
+.ui-datatable.noheader .ui-datatable-data td,
+.ui-datatable.noheader .ui-datatable-data-empty td {
+    border-style: none;
+}
 </style>
 	</h:head>
 
@@ -67,11 +79,24 @@ form .dialogH2 {
 				collapsible="true" header="My Groups">
 				<h:form>
 
-					<p:dataTable var="groups"
+					<p:dataTable var="groups"  styleClass="noheader"
 						value="#{groupManager.groups}">
-						<p:column headerText="Gruppen" sortBy="groups">
-							<!-- Ressourcen auflisten -->
-							<h:outputText value="#{groups.getName()}" />
+						<p:column sortBy="groups">
+							<!-- Gruppe auflisten -->
+							
+							<p:commandButton update=":grpView" value="#{groups.getName()}" actionListener="#{groupManager.groupClick(groups)}"
+												title="View">
+
+											</p:commandButton>
+						</p:column>
+						
+						<p:column>
+							<!-- Gruppe löschen -->
+							
+							<p:commandButton icon="ui-icon-closethick" actionListener="#{groupManager.deletGroupClick(groups)}"
+												title="View">
+
+											</p:commandButton>
 						</p:column>
 					</p:dataTable>
 
@@ -224,17 +249,17 @@ form .dialogH2 {
 				</h:panelGrid>
 
 				<p:commandButton value="Erstellen"
-					action="#{groupManager.onCreateNewGroupClick()}"
+					actionListener="#{groupManager.createNewGroupClick()}" process="@this"
 					onclick="PF('newGroupDlg').hide();PF('inviteMembersDlg').show()"
 					styleClass="blueButton" />
-				<p:commandButton value="Abbrechen"
+				<p:commandButton value="Abbrechen" 
 					onclick="PF('newGroupDlg').hide()" type="button" />
 
 			</h:form>
 
 		</p:dialog>
 
-		<p:dialog widgetVar="inviteMembersDlg" modal="true"
+		<p:dialog widgetVar="inviteMembersDlg" modal="true" 
 			header="Mitglieder einladen" width="530" showEffect="fade"
 			hideEffect="fade">
 
@@ -246,7 +271,7 @@ form .dialogH2 {
 					<h:outputLabel for="invMails"
 						value="Mehrere E-Mail Adressen müssen durch ein Komma getrennt werden"
 						styleClass="dialogH2" />
-					<p:inputText id="invMails" />
+					<p:inputText id="invMails" pt:placeholder="example@mail.com, next@mail.com"/>
 					<h:outputLabel for="invText" value="Nachricht"
 						styleClass="dialogH1" />
 					<h:outputLabel for="invText"
@@ -257,10 +282,10 @@ form .dialogH2 {
 
 
 				<p:commandButton value="Einladen"
-					onclick="PF('inviteMembersDlg').hide()"
+					onclick="PF('inviteMembersDlg').hide()" ajax="true"
 					actionListener="#{memberManager.sendRequest}" update=":grpView"
-					process="@this" styleClass="blueButton" />
-				<p:commandButton value="Später"
+					 styleClass="blueButton" />
+				<p:commandButton value="Später" ajax="false"
 					onclick="PF('inviteMembersDlg').hide()" type="button" />
 
 			</h:form>

@@ -1,10 +1,11 @@
 package org.shareezy.beans;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -27,27 +28,43 @@ import org.shareezy.entities.Typ;
  * @author ThomasKLawitter
  * @version 12.12.2013
  */
-@ManagedBean
-public class NeueRessourceBean {
+@Named("neueRessourcenBean")
+public class NeueRessourceBean implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Inject
 	private EntityManagerFactory emf;
-	//@Inject
-	//private Ressource ress;
-	private Ressource ress = new Ressource();
-	private EntityManager em = emf.createEntityManager();
+	@Inject
+	private Ressource ress;
+	@Inject
+	public EntityManager em;
+	@Inject
 	private Benutzer benutzer;
+	@Inject
 	private String beschreibung;
+	@Inject
 	private byte[] bild;
+	@Inject
 	private List<Buchung> buchungen;
+	@Inject
 	private Date einstellungsdatum;
+	@Inject
 	private Date enddatum;
+	@Inject
 	private List<Gruppe> gruppen;
+	@Inject
 	private String name;
+	@Inject
 	private int id;
+	@Inject
 	private Date startdatum;
+	@Inject
 	private Typ typ;
-	
+	@Inject
+	private List<String> typOptionen;
 	/**
 	 * Action-Routine für den View <code>neueRessource</code>. Wird
 	 * angesprochen, wenn der Benutzer die Schaltfläche <code>löschen</code>
@@ -56,17 +73,18 @@ public class NeueRessourceBean {
 	 * 
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
-	public String loescheRessource(Ressource ressource) {
-		EntityTransaction ent = em.getTransaction();	
+	public String loescheRessource(Ressource ress) {
+		em = emf.createEntityManager();
+		EntityTransaction ent = em.getTransaction();
 		ent.begin();
-		ressource = em.merge(ressource);
-		em.remove(ressource);
+		ress = em.merge(ress);
+		em.remove(ress);
 		ent.commit();
 		em.close();
-		return null;
+		return "RessourcenListen.xhtml";
 	}
 
-	/**
+	/*
 	 * Action-Routine für den View <code>neueRessource</code>. Wird
 	 * angesprochen, wenn der Benutzer die Schaltfläche <code>speichern</code>
 	 * anwählt. Sorgt dafür, dass die neu eingesetzten Werte für diese Ressource
@@ -75,7 +93,7 @@ public class NeueRessourceBean {
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
 	public String speichern() {
-		
+		em = emf.createEntityManager();
 		em.getTransaction().begin();
 		Ressource ress = new Ressource();// muss später Injected werden
 		ress.setBenutzer(benutzer);
@@ -92,7 +110,7 @@ public class NeueRessourceBean {
 		em.persist(ress);
 		em.getTransaction().commit();
 		em.close();
-		return null;
+		return "RessourceListen.xhtml";
 	}
 
 	public Benutzer getBenutzer() {
@@ -189,5 +207,13 @@ public class NeueRessourceBean {
 
 	public void setRess(Ressource ress) {
 		this.ress = ress;
+	}
+
+	public List<String> getTypOptionen() {
+		return typOptionen;
+	}
+
+	public void setTypOptionen(List<String> typOptionen) {
+		this.typOptionen = typOptionen;
 	}
 }

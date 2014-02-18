@@ -27,11 +27,14 @@ import org.shareezy.annotations.AktuelleRessource;
 import org.shareezy.entities.Ressource;
 
 /**
- * Diese Klasse beinhaltet die aktuelle Ressource, welche gerade in Benutzung
- * ist.
+ * Die AktuelleRessourceBean dient dafür, die vom Benutzer, aus der
+ * Ressourcenliste, ausgewählte Ressource zwischenzuspeichern und eine Session
+ * lang verfügbar zu machen. Somit wird verhindert, dass diese betimmte
+ * Ressource innerhalb einer Session verloren geht. Somit können mehrere Beans
+ * auf die vom Benutzer ausgewählte Ressource zugreifen.
  * 
  * @author treibmann
- * 
+ * @param ressource 	Speichert die aktuelle Ressource.
  * 
  */
 @Named
@@ -39,12 +42,12 @@ import org.shareezy.entities.Ressource;
 public class AktuelleRessourceBean implements Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	@Produces
 	@AktuelleRessource
-	private transient Ressource ressource;
+	private Ressource ressource;
 
 	public Ressource getRessource() {
 		return ressource;

@@ -18,21 +18,15 @@
 package org.shareezy.beans;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
-import org.primefaces.event.DashboardReorderEvent;
-import org.primefaces.model.DashboardColumn;
-import org.primefaces.model.DashboardModel;
-import org.primefaces.model.DefaultDashboardColumn;
-import org.primefaces.model.DefaultDashboardModel;
 import org.shareezy.entities.Benutzer;
-
 
 /**
  * Eigene Gruppenzugehörigkeit beantragen/entfernen
@@ -41,25 +35,34 @@ import org.shareezy.entities.Benutzer;
  */
 @ManagedBean
 public class GroupMembership implements Serializable{
-	
-	private EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager;	
-	private Benutzer benutzer;
-	private boolean bestätigt;
-	private boolean administrator;
-	
-	public String GroupMembership(){
 
-		entityManagerFactory.createEntityManager();
-		entityManager.getTransaction().begin();
-		
-		return "";
-	}
+	private static final long serialVersionUID = 1L;
+	private static final String PERSISTENCE_UNIT_NAME = "shareezy";
+	  private static EntityManagerFactory factory;
+
+	  public static void main(String[] args) {
+	    factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+	    EntityManager em = factory.createEntityManager();
+	    // read the existing entries and write to console
+	    Query q = em.createQuery("select t from Todo t");
+	    List<Benutzer> benList = q.getResultList();
+	    for (Benutzer todo : benList) {
+	      System.out.println("benutzerID");
+	    }
+	    em.getTransaction().begin();
+	    Benutzer todo = new Benutzer();	    
+	    em.persist(todo);
+	    em.getTransaction().commit();
+
+	    em.close();
+	  }
+	
 
 	/**
 	 * Wird bei Klick auf 'Hinzufuegen' aufgerufen.
 	 * 
 	 * @return gibt nichts zurück damit sich die View nicht Verändert
+	 * 
 	 */
 	public String sendAnfrage() {
 		return null;
@@ -72,20 +75,5 @@ public class GroupMembership implements Serializable{
 	 */
 	public String knopfGruppeVerlassen() {
 		return null;
-	}
-	
-	public String anfrageAbgesendet() {  
-        return "Anfrage an Verwalter gesendet!";  
-    } 
-      
-
-	public String leaveTheGroupp() {  
-		return"Sie sind aus dies Community ausgetreten!";  
-    }  
-	/*Pop-Up Windows mit Bestätigung Button. */
-    public void destroyWorld(ActionEvent actionEvent){  
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "System Error",  "Please try again later.");  
-          
-        FacesContext.getCurrentInstance().addMessage(null, message);  
-    }  
+	}	
 }

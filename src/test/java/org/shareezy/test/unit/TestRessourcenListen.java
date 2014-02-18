@@ -120,15 +120,12 @@ public class TestRessourcenListen {
 	 * Konditionen. Es wird der Rückgabewert überprüft.
 	 */
 	@Test
-	public void testGetRessourcenListe() {
-		List<Ressource> rueckgabe = proband.getRessourcenListe();
+	public void testQueryRessourcenListe() {
+		proband.queryRessourcenListe();
 		verify(emf).createEntityManager();
 		verify(em, times(2)).getTransaction();
 		verify(em).createQuery(queryString);
 		verify(query).getResultList();
-		proband.getRessourcenListe();
-		assertEquals(rueckgabe, new ArrayList<Ressource>());
-		assertNotNull(rueckgabe);
 	}
 
 }

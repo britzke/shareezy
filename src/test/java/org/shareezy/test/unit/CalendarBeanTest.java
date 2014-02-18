@@ -18,18 +18,11 @@
 package org.shareezy.test.unit;
 
 import static org.junit.Assert.*;
-
+import static org.mockito.Mockito.*;
 import java.lang.reflect.Field;
-import java.util.Calendar;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.shareezy.beans.CalendarBean;
@@ -57,7 +50,7 @@ public class CalendarBeanTest {
 		em = mock(EntityManager.class);
 		when(emf.createEntityManager()).thenReturn(em);
 		q = mock(Query.class);
-		when(em.createQuery("select b from Buchung where rückgabedatum= :rückgabedatum and ausleiher= :ausleiher")).thenReturn(q);
+		when(em.createQuery("select b from Buchnung where ressourcen= :aktuelleRessource")).thenReturn(q);
 		proband = new CalendarBean();
 		
 		Class<? extends CalendarBean> clazz = proband.getClass();
@@ -74,17 +67,8 @@ public class CalendarBeanTest {
 	@Test
 	public void testScheduleController() {
 		String sc = proband.scheduleController();
+		assertNull("Die Methode scheduleController() muss mit Null antworten", sc);
 		verify(emf).createEntityManager();
-	}
-
-	/**
-	 * Testmethode für die Methode today() testet ob der Rückgabewert null ist
-	 * wenn nicht, dann wird eine Error-Message angezeigt
-	 * {@link org.shareezy.beans.CalendarBean#today()}.
-	 */
-	@Test
-	public void testToday() {
-		Calendar today = proband.today();
-		assertNull(today);
+		verify(em).createQuery(eq("select b from Buchnung where ressourcen= :aktuelleRessource"));
 	}
 }

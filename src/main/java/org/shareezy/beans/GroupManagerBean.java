@@ -20,13 +20,24 @@ package org.shareezy.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.Cache;
+import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceUnitUtil;
+import javax.persistence.Query;
+import javax.persistence.SynchronizationType;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.metamodel.Metamodel;
 
 import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.Gruppe;
@@ -51,7 +62,7 @@ public class GroupManagerBean implements Serializable {
 	private String groupName;
 	private ArrayList<Gruppe> groups  = new ArrayList<Gruppe>();
 	private Benutzer benutzer;
-	private ArrayList<Ressource> groupRessourcen = new ArrayList<Ressource>();
+	private List<Ressource> groupRessourcen ;
 	
 
 	/**
@@ -62,16 +73,13 @@ public class GroupManagerBean implements Serializable {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onNewGroupClick() {
+	public String newGroupClick() {
 		return null;
 	}
 
 	public GroupManagerBean() {
 		//Test initialisierungen - TODO: Diese Daten sollen durch entsprechende Daten aus der Datenbank ersetzt werden
-		groupRessourcen.add(generateTestRessources());
-		groupRessourcen.add(generateTestRessources());
-		groupRessourcen.add(generateTestRessources());
-		groupRessourcen.add(generateTestRessources());
+		groupRessourcen = new ArrayList<Ressource>();
 		Gruppe test1 = new Gruppe();
 		test1.setName("Gruppe1");
 		Gruppe test2 = new Gruppe();
@@ -81,14 +89,8 @@ public class GroupManagerBean implements Serializable {
 		groups.add(test1);
 		groups.add(test2);
 		groups.add(test3);
-		//TODO Gruppen als Buttons in der xhtml auflisten, bei onCreateNewGroupClick() eine neue gruppe hinzufügen (inkl. Button)
-	}
+}
 	
-	public Ressource generateTestRessources(){
-		Ressource res = new Ressource();
-		res.setName("TestRessource");
-		return res;
-	}
 	
 	
 	/**
@@ -98,16 +100,28 @@ public class GroupManagerBean implements Serializable {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onCreateNewGroupClick() {
-		//EntityManager em = emf.createEntityManager();
-		//EntityTransaction t = em.getTransaction();
-		//t.begin();
-		//Gruppe gruppe = new Gruppe();
-		//gruppe.setVerwalter(benutzer);
-		//gruppe.setName(groupName);
-		//em.persist(gruppe);
-		System.out.println("groupName "+groupName);
-		
+	public String createNewGroupClick() {
+//		EntityManager em = emf.createEntityManager();
+//		EntityTransaction t = em.getTransaction();
+//		t.begin();
+
+		Gruppe newGroup = new Gruppe();
+		newGroup.setName(getGroupName());
+		newGroup.setVerwalter(benutzer);
+		groups.add(newGroup);
+		//em.persist(newGroup);
+		//System.out.println("createNewGroupClick");
+		return null;
+	}
+	
+	public String groupClick(Gruppe g){
+		//System.out.println("Gruppe: "+ g.getName());
+		return null;
+	}
+	
+	public String deleteGroupClick(Gruppe g){
+		groups.remove(g);
+		//System.out.println("Gruppe: "+ g.getName());
 		return null;
 	}
 
@@ -117,7 +131,7 @@ public class GroupManagerBean implements Serializable {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onCreateNewRessourceClick() {
+	public String createNewRessourceClick() {
 		return null;
 	}
 
@@ -129,7 +143,7 @@ public class GroupManagerBean implements Serializable {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onShowMembersClick() {
+	public String showMembersClick() {
 		return null;
 	}
 
@@ -141,7 +155,7 @@ public class GroupManagerBean implements Serializable {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onAddMembersClick() {
+	public String addMembersClick() {
 		
 		return null;
 	}
@@ -152,12 +166,12 @@ public class GroupManagerBean implements Serializable {
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
-	public String onInviteMembersClick() {
+	public String inviteMembersClick() {
 		return null;
 	}
 
 	
-	public ArrayList<Ressource> getGroupRessourcen() {
+	public List<Ressource> getGroupRessourcen() {
 		return groupRessourcen;
 	}
 
