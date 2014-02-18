@@ -24,10 +24,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -47,17 +50,23 @@ import org.shareezy.entities.Benutzer;
  * werden damit sich der Nutzer anmelden kann.
  * 
  * @author Maurice Engelskirchen
+ * @author e1_cakir
  * @author burghard.britzke bubi@charmides.in-berlin.de
  */
-@ManagedBean
-public class RegistrierungBean {
 
+@RequestScoped
+@Named
+public class RegistrierungBean {
+	
+	@Inject
 	private EntityManagerFactory emf;
+	@Inject
 	private Benutzer benutzer;
 
 	/**
 	 * Erzeugt eine neue RegistrierungBean. Initialisiert den Benutzer.
 	 */
+	
 	public RegistrierungBean() {
 		benutzer = new Benutzer();
 	}
