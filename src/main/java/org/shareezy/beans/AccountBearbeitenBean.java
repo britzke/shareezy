@@ -67,6 +67,12 @@ public class AccountBearbeitenBean
 	 * @return null da kein Seitenwechsel stattfindet.
 	 */
 	public String datensatzÄndern() {
+		 em = emf.createEntityManager();
+		 t = em.getTransaction();
+		 t.begin();
+		 em.merge(user);
+		 t.commit();
+		 em.close();
 		return null;
 	}
 

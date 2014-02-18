@@ -38,7 +38,7 @@ import org.shareezy.entities.Benutzer;
 /**
  * Testet die Übersetzungseinheit <i>(Compilation Unit)</i>
  * {@link org.shareezy.beans.AccountBearbeitenBean}.
- *   
+ * 
  * @author cakir
  * @author Maurice Engelskirchen
  * @author burghard.britzke bubi@charmides.in-berlin.de
@@ -77,21 +77,16 @@ public class AccountBearbeitenBeanTest {
 
 		transaction = mock(EntityTransaction.class);
 		when(em.getTransaction()).thenReturn(transaction);
-		
-		FacesContext faces = mock(FacesContext.class);
-		Field field = clazz.getDeclaredField("faces");
-		field.setAccessible(true);
-		field.set(proband, faces);
-		
-		field = clazz.getDeclaredField("emf");
+
+		Field field = clazz.getDeclaredField("emf");
 		field.setAccessible(true);
 		field.set(proband, emf);
-		
-		Field fiel = clazz.getDeclaredField("faces");
+
+		FacesContext faces = mock(FacesContext.class);
+		field = clazz.getDeclaredField("faces");
 		field.setAccessible(true);
 		field.set(proband, faces);
 	}
-
 
 	/**
 	 * Test-Methode für
@@ -109,11 +104,3 @@ public class AccountBearbeitenBeanTest {
 		verify(em).close();
 	}
 }
-
-
-
-
-
-
-
-
