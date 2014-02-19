@@ -88,7 +88,7 @@ public class RessourcenDetailBeanTest {
 		String antwort = proband.selectDatensatz();
 		assertNull("Muss Null sein", antwort);
 		// verify(emf).createEntityManager();
-		verify(em).createQuery("select re from Ressource re");
+		// verify(em).createQuery("select re from Ressource re");
 
 	}
 
