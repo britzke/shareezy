@@ -12,14 +12,21 @@
 	<h:form>
 		<f:phaseListener type="org.shareezy.DebugPhaseListener" />
 		<p:panelGrid columns="1">
-			<p:inputText placeholder="Vorname" />
-			<p:inputText placeholder="Nachname" />
-			<p:inputText placeholder="Benutzername" required="true" />
-			<p:inputText placeholder="E-Mail" required="true" />
-			<p:password placeholder="Kennwort" required="true" />
-			<p:password placeholder="Kennwort (wiederholen)" required="true" />
+			<p:inputText placeholder="Vorname"
+				value="#{registrierungBean.benutzer.vorname}" />
+			<p:inputText placeholder="Nachname"
+				value="#{registrierungBean.benutzer.nachname}" />
+			<p:inputText placeholder="Benutzername"
+				value="#{registrierungBean.benutzer.kurzname}" required="true" />
+			<p:inputText placeholder="E-Mail"
+				value="#{registrierungBean.benutzer.email}" 
+				required="true" feedback="true"/>
+			<p:password placeholder="Kennwort"
+				value="#{registrierungBean.benutzer.kennwort}" required="true" />
+			<p:password placeholder="Kennwort (wiederholen)"
+				validator="#{registrierungBean.validiereKennwort}" required="true" />
 			<p:commandButton value="absenden"
-				action="#{registrierungBean.datensatzEinfügen()}" />
+				action="#{registrierungBean.datensatzEinfügen}" />
 		</p:panelGrid>
 	</h:form>
 </h:body>
