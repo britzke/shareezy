@@ -23,10 +23,12 @@
 				value="#{registrierungBean.benutzer.email}" 
 				required="true" feedback="true"/> 
 			<p:password placeholder="Kennwort"
-			    feedback="true"   
-                promptLabel="Bitte geben Sie ihr Passwort ein" 
+			    feedback="true"
+			    promptLabel="Bitte geben Sie ihr Passwort ein" 
 				value="#{registrierungBean.benutzer.kennwort}" required="true" />
 			<p:password placeholder="Kennwort (wiederholen)"
+			    feedback="true"
+			    promptLabel="Bitte wiederholen Sie ihr Passwort" 
 			    validator="#{registrierungBean.validiereKennwort}" required="true" />
 			<p:commandButton value="absenden"
 				action="#{registrierungBean.datensatzEinfügen}" />

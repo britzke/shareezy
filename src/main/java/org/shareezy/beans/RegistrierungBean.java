@@ -116,7 +116,7 @@ public class RegistrierungBean {
 		em.close();
 		return null;
 	}
-
+	
 	/**
 	 * Versendet eine E-Mail zur Validierung der E-Mailadresse, die für den
 	 * Benutzer angegeben wurde. Die Parameter für die Kommunikation mit dem
