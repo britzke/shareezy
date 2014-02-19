@@ -38,7 +38,7 @@ import org.shareezy.entities.Benutzer;
 /**
  * Testet die Übersetzungseinheit <i>(Compilation Unit)</i>
  * {@link org.shareezy.beans.AccountBearbeitenBean}.
- *   
+ * 
  * @author cakir
  * @author Maurice Engelskirchen
  * @author burghard.britzke bubi@charmides.in-berlin.de
@@ -58,6 +58,7 @@ public class AccountBearbeitenBeanTest {
 	private EntityTransaction transaction;
 	private AccountBearbeitenBean proband;
 	private Benutzer benutzer;
+	private FacesContext faces;
 
 	@Before
 	public void setUp() throws Exception {
@@ -70,48 +71,21 @@ public class AccountBearbeitenBeanTest {
 		emf = mock(EntityManagerFactory.class);
 		em = mock(EntityManager.class);
 		benutzer = mock(Benutzer.class);
+		faces = mock(FacesContext.class);
 
 		when(emf.createEntityManager()).thenReturn(em);
 
 		transaction = mock(EntityTransaction.class);
 		when(em.getTransaction()).thenReturn(transaction);
-		
-		FacesContext faces = mock(FacesContext.class);
 
-		Field field = clazz.getDeclaredField("faces");
-		field.setAccessible(true);
-		field.set(proband, faces);
-		
-		field = clazz.getDeclaredField("emf");
+		Field field = clazz.getDeclaredField("emf");
 		field.setAccessible(true);
 		field.set(proband, emf);
 
-		field = clazz.getDeclaredField("altesPasswort");
+		FacesContext faces = mock(FacesContext.class);
+		field = clazz.getDeclaredField("faces");
 		field.setAccessible(true);
-		field.set(proband, "altesPasswort");
-
-		field = clazz.getDeclaredField("eingabePasswort");
-		field.setAccessible(true);
-		field.set(proband, "eingabePasswort");
-
-	}
-
-	/**
-	 * Test-Methode für
-	 * {@link org.shareezy.beans.AccountBearbeitenBean#eingabePrüfen(java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
-	 * . Testet, dass die Antwort <em>null</em> ist, d.h. es findet keine
-	 * Navigation zu einer andern Seite statt.
-	 */
-
-	@Test
-	public void testEingabePrüfen() {
-
-		final String PASSWORT = "123";
-		when(benutzer.getKennwort()).thenReturn(PASSWORT);
-		proband.setEingabePasswort(PASSWORT);
-
-		proband.eingabePrüfen();
-
+		field.set(proband, faces);
 	}
 
 	/**
@@ -122,7 +96,6 @@ public class AccountBearbeitenBeanTest {
 	 */
 	@Test
 	public void testDatensatzÄndern() {
-		
 		proband.datensatzÄndern();
 		verify(emf).createEntityManager();
 		verify(em).getTransaction();
@@ -131,11 +104,3 @@ public class AccountBearbeitenBeanTest {
 		verify(em).close();
 	}
 }
-
-
-
-
-
-
-
-

@@ -18,16 +18,14 @@
  */
 package org.shareezy.beans;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
-
-import org.shareezy.entities.Benutzer;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+
+import org.shareezy.entities.Benutzer;
 
 /**
  * Die Klasse AccountBearbeitenBean stellt Methoden zur Verfügung, die dafür
@@ -43,7 +41,6 @@ public class AccountBearbeitenBean
 	private EntityManager em;
 	private Benutzer user;
 	private EntityTransaction t;
-	private String altesPasswort;
 	private String eingabePasswort;
 	private String eingabePasswortWiederholen;
 	private String eingabePasswortAlt;
@@ -58,58 +55,6 @@ public class AccountBearbeitenBean
 	 */
 	public FacesContext getFaces() {
 		return faces;
-	}
-
-	/**
-	 * @param faces the faces to set
-	 */
-	public void setFaces(FacesContext faces) {
-		this.faces = faces;
-	}
-
-	/**
-	 * Prüft die Eingabe des nutzer. Abhängig davon gibt er eine fehlermeldung
-	 * aus, prüftt die eingabe mit den in der Datenbank gespeicherten referens
-	 * Daten oder ruft direkt die Methode DatensatzÄndern() auf.
-	 * 
-	 * @return null da kein Seitenwechsel stattfindet.
-	 */
-
-	public String eingabePrüfen() {
-		altesPasswort = "";
-
-		if (eingabePasswort.equals("")) {
-			datensatzÄndern();
-		} else {
-			if (eingabePasswort.equals(eingabePasswortWiederholen)) {
-				if (eingabePasswort.equals(eingabePasswortAlt)) {
-					faces.addMessage(
-							null,
-							new FacesMessage(
-									FacesMessage.SEVERITY_ERROR,
-									"Altes passwort sollte nicht gleich neuen passwort sein",
-									"Sample error message"));
-				} else {
-					if (eingabePasswortAlt.equals(altesPasswort)) {
-						datensatzÄndern();
-
-					} else {
-						faces.addMessage(null, new FacesMessage(
-								FacesMessage.SEVERITY_ERROR,
-								"Das eingegebene Passwort ist falsch.",
-								"Sample error message"));
-					}
-
-				}
-			} else {
-				faces.addMessage(null, new FacesMessage(
-						FacesMessage.SEVERITY_ERROR,
-						"Die Passwörter müssen übereinstimmen.",
-						"Sample error message"));
-			}
-		}
-
-		return null;
 	}
 
 	/**

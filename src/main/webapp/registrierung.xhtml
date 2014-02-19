@@ -8,9 +8,11 @@
 
 <ui:composition template="/WEB-INF/templates/structure.xhtml">
 	<ui:define name="titel">Registrierung</ui:define>
-	<ui:define name="header">Registrierung</ui:define>
+	<ui:define name="header">
+		<ui:include src="/WEB-INF/templates/login.xhtml"></ui:include>
+	</ui:define>
 	<ui:define name="content">
-	    <ui:include src="/WEB-INF/templates/registrierung.xhtml"></ui:include>
+		<ui:include src="/WEB-INF/templates/registrierung.xhtml"></ui:include>
 	</ui:define>
 </ui:composition>
 </html>

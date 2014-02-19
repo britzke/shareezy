@@ -11,13 +11,14 @@
 <h:body>
 	<h:form>
 		<p:panelGrid columns="1">
-			<p:inputText placeholder="Vorname"/>
+			<p:inputText placeholder="Vorname" />
 			<p:inputText placeholder="Nachname" />
-			<p:inputText placeholder="Benutzername" />
-			<p:inputText placeholder="E-Mail"/>
-			<p:inputText placeholder="Password"/>
-			<p:inputText placeholder="Password Wiederholen" />
-			<h:commandButton value="absenden" />
+			<p:inputText placeholder="Benutzername" required="true" />
+			<p:inputText placeholder="E-Mail" required="true" />
+			<p:password placeholder="Kennwort" required="true" />
+			<p:password placeholder="Kennwort (wiederholen)" required="true" />
+			<h:commandButton value="absenden"
+				action="#{registrierungBean.datensatzEinfügen}" />
 		</p:panelGrid>
 	</h:form>
 </h:body>

@@ -1,10 +1,11 @@
 package org.shareezy.beans;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -27,27 +28,43 @@ import org.shareezy.entities.Typ;
  * @author ThomasKLawitter
  * @version 12.12.2013
  */
-@ManagedBean
-public class NeueRessourceBean {
+@Named("neueRessourcenBean")
+public class NeueRessourceBean implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Inject
 	private EntityManagerFactory emf;
-	// @Inject
-	// private Ressource ress;
-	private Ressource ress = new Ressource();
+	@Inject
+	private Ressource ress;
+	
 	public EntityManager em;
+	@Inject
 	private Benutzer benutzer;
+	
 	private String beschreibung;
+	
 	private byte[] bild;
+	
 	private List<Buchung> buchungen;
+	
 	private Date einstellungsdatum;
+	
 	private Date enddatum;
+	
 	private List<Gruppe> gruppen;
+	
 	private String name;
+	
 	private int id;
+	
 	private Date startdatum;
+	
 	private Typ typ;
-
+	
+	private List<String> typOptionen;
 	/**
 	 * Action-Routine für den View <code>neueRessource</code>. Wird
 	 * angesprochen, wenn der Benutzer die Schaltfläche <code>löschen</code>
@@ -190,5 +207,13 @@ public class NeueRessourceBean {
 
 	public void setRess(Ressource ress) {
 		this.ress = ress;
+	}
+
+	public List<String> getTypOptionen() {
+		return typOptionen;
+	}
+
+	public void setTypOptionen(List<String> typOptionen) {
+		this.typOptionen = typOptionen;
 	}
 }

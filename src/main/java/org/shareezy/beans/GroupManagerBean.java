@@ -21,23 +21,10 @@ package org.shareezy.beans;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
-import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.Cache;
-import javax.persistence.EntityGraph;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceUnitUtil;
-import javax.persistence.Query;
-import javax.persistence.SynchronizationType;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.metamodel.Metamodel;
 
 import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.Gruppe;
@@ -57,7 +44,6 @@ public class GroupManagerBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private EntityManagerFactory emf;
 	private String groupName;
 	private ArrayList<Gruppe> groups  = new ArrayList<Gruppe>();
 	private Benutzer benutzer;
