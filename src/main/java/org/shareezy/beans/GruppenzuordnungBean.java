@@ -20,8 +20,9 @@ package org.shareezy.beans;
 
 import java.util.List;
 
-import javax.annotation.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
@@ -29,6 +30,7 @@ import javax.persistence.Query;
 import org.shareezy.beans.GruppenzuordnungBean;
 import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.Gruppe;
+import org.shareezy.entities.Ressource;
 
 /**
  * Bean für die Gruppenzuordnung. Es wird geprüft welche Mitglieder Ressourcen
@@ -40,12 +42,19 @@ import org.shareezy.entities.Gruppe;
  * @author e1_hermann
  * @author burghard.britzke bubi@charmides.in-berlin.de
  */
-@ManagedBean
 @SessionScoped
+@Named("GruppenzuordnungBean")
 public class GruppenzuordnungBean {
-	private String accounts_id;
+	@Inject
+	private List<Ressource> res;
+	@Inject
+	private List<Gruppe> grp;
+	@Inject
 	private EntityManagerFactory emf;
+	@Inject
+	public EntityManager em;
 	private boolean authenticated;
+	@Inject
 	private Benutzer benutzer;
 
 	public GruppenzuordnungBean() {
@@ -61,8 +70,6 @@ public class GruppenzuordnungBean {
 	}
 
 	/**
-	 * Diese Methode soll prüfen, ob der Benutzer ein Mitglied der Gruppe ist.
-	 * Wenn ja, dann darf er Ressourcen verwalten.
 	 * 
 	 * @return null - immer
 	 */
@@ -89,37 +96,8 @@ public class GruppenzuordnungBean {
 
 		return null;
 	}
-
-	/**
-	 * Abfrage des Status der Ressource
-	 */
-
-	public String ressourcestatus() {
-		return accounts_id;
-
-	}
-
-	/**
-	 * Welches Mitglied ist berechtigt zum abfragen/erstellen/verwalten von
-	 * Ressourcen
-	 */
-	public void mitgliedentfernen() {
-	}
-
-	/**
-	 * Ressource zur gruppe hinzufügen. Erstmal aus der View abfragen, dann
-	 * Datenbankabfrage
-	 */
-	public void addressourcen(int ressourcenid) {
-		return;
-
-	}
-
-	/**
-	 * Bearbeiten der Ressource
-	 */
-	public void editressource() {
-		return;
-
+	
+	public void ressourcegruppe(){
+		//benutzer.addRessource();
 	}
 }
