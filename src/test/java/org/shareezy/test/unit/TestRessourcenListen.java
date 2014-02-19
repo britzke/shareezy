@@ -17,12 +17,12 @@
  */
 package org.shareezy.test.unit;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+
+import static org.mockito.Mockito.*;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -64,6 +64,8 @@ public class TestRessourcenListen {
 	private Ressource ressource;
 	@Mock
 	private AktuelleRessourceBean aktRessourceBean;
+	private Method methode;
+	private String privateMethod = "init";
 
 	/**
 	 * Diese Methode erstellt beim erstmaligen Testaufruf einen Probanden vom
@@ -80,7 +82,7 @@ public class TestRessourcenListen {
 		Field field = klasse.getDeclaredField("emf");
 		field.setAccessible(true);
 		field.set(proband, emf);
-
+		
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
 		when(em.createQuery(queryString)).thenReturn(query);
@@ -107,9 +109,9 @@ public class TestRessourcenListen {
 		field.setAccessible(true);
 		field.set(proband, aktRessourceBean);
 		
-		String nav = proband.ressourceClicked(ressource);
+		proband.ressourceClicked(ressource);
 		verify(aktRessourceBean).setRessource(ressource);
-		assertEquals("ressourcendetail", nav);
+		
 	}
 
 	/**
@@ -127,6 +129,15 @@ public class TestRessourcenListen {
 		verify(em, times(2)).getTransaction();
 		verify(em).createQuery(queryString);
 		verify(query).getResultList();
+	}
+	@Test
+	public void testinit() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
+		
+		methode = proband.getClass().getDeclaredMethod(privateMethod);
+		methode.setAccessible(true);
+		methode.invoke(proband);
+		verify(query).getResultList();
+		
 	}
 
 }
