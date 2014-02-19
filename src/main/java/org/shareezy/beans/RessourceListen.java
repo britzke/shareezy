@@ -60,9 +60,8 @@ public class RessourceListen {
 	 * @return "ressourcendetail" gibt die ressourcendetail zurück wenn auf
 	 *         einen Ressourcennamen geklickt wurde.
 	 */
-	public String ressourceClicked(Ressource ressource) {
+	public void ressourceClicked(Ressource ressource) {
 		aktuelleressource.setRessource(ressource);
-		return "DetailRessourcenAnsicht";
 	}
 
 	/**
