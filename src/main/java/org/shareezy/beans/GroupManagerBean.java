@@ -51,7 +51,6 @@ import org.shareezy.entities.Ressource;
  */
 @Named("groupManager")
 @SessionScoped
-@ManagedBean
 public class GroupManagerBean implements Serializable {
 
 	/**
@@ -89,6 +88,7 @@ public class GroupManagerBean implements Serializable {
 		groups.add(test1);
 		groups.add(test2);
 		groups.add(test3);
+		
 }
 	
 	
