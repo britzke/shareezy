@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.enterprise.inject.Produces;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.mail.Message;
@@ -85,8 +86,8 @@ public class RegistrierungBeanTest {
 	 * 
 	 * @author burghard.britzke (bubi@charmides.in-berlin.de)
 	 */
+	
 	private class MockEntityTransaction implements EntityTransaction {
-
 		/**
 		 * Vermerkt, ob die Transaction gestartet wurde.
 		 */

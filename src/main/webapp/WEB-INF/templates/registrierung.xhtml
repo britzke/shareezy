@@ -13,7 +13,7 @@
 		<f:phaseListener type="org.shareezy.DebugPhaseListener" />
 		<p:panelGrid columns="1">
 			<p:inputText placeholder="Vorname"
-				value="#{registrierungBean.benutzer.vorname}" />
+			   	value="#{registrierungBean.benutzer.vorname}" />
 			<p:inputText placeholder="Nachname"
 				value="#{registrierungBean.benutzer.nachname}" />
 			<p:inputText placeholder="Benutzername"
@@ -21,11 +21,13 @@
 				required="true" feedback="true" />
 			<p:inputText placeholder="E-Mail"
 				value="#{registrierungBean.benutzer.email}" 
-				required="true" feedback="true"/>
+				required="true" feedback="true"/> 
 			<p:password placeholder="Kennwort"
+			    feedback="true"   
+                promptLabel="Bitte geben Sie ihr Passwort ein" 
 				value="#{registrierungBean.benutzer.kennwort}" required="true" />
 			<p:password placeholder="Kennwort (wiederholen)"
-				validator="#{registrierungBean.validiereKennwort}" required="true" />
+			    validator="#{registrierungBean.validiereKennwort}" required="true" />
 			<p:commandButton value="absenden"
 				action="#{registrierungBean.datensatzEinfügen}" />
 		</p:panelGrid>
