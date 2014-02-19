@@ -70,10 +70,10 @@ public class RessourcenDetailBeanTest {
 	    
 		proband = new RessourcenDetailBean();
 		
-		Class<? extends RessourcenDetailBean> clazz = proband.getClass();
-		Field field = clazz.getDeclaredField("emf");
-		field.setAccessible(true);
-		field.set(proband, emf);
+//		Class<? extends RessourcenDetailBean> clazz = proband.getClass();
+//		Field field = clazz.getDeclaredField("emf");
+//		field.setAccessible(true);
+//		field.set(proband, emf);
 	}
 
 	/**

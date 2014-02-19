@@ -129,14 +129,7 @@ public class GroupManagerBeanTest {
 
 		// Beschreibung der Klasse holen
 		Class<? extends GroupManagerBean> clazz = proband.getClass();
-		// Beschreibung der Eigenschaft holen
-		Field field = clazz.getDeclaredField("emf");
-		// Zugriff auf private Eigenschaft erlauben
-		field.setAccessible(true);
-		// EntityManagerFactory in den Proband inizieren
-		field.set(proband, emf);
-		// groupName
-		field = clazz.getDeclaredField("groupName");
+		Field field = clazz.getDeclaredField("groupName");
 		field.setAccessible(true);
 		field.set(proband, "Ste");
 		// benutzer
