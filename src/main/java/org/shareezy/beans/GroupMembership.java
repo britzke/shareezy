@@ -18,21 +18,8 @@
 package org.shareezy.beans;
 
 import java.io.Serializable;
-import java.util.Properties;
-
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.mail.Address;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.servlet.ServletContext;
 
 /**
  * Eigene Gruppenzugehörigkeit beantragen/entfernen
@@ -52,35 +39,7 @@ public class GroupMembership implements Serializable {
 	 * 
 	 */
 
-	public String sendAnfrage(FacesContext facesContext) {
-
-		ExternalContext externalContext = facesContext.getExternalContext();
-		try {
-			ServletContext servletContext = (ServletContext) externalContext
-					.getContext();
-			Properties properties = (Properties) servletContext
-					.getAttribute("org.shareezy.MAIL_PROPERTIES");
-
-			Session session = Session.getInstance(properties);
-			Address[] addresses = InternetAddress.parse("testEmail");
-
-			Message message = new MimeMessage(session);
-			message.setRecipients(Message.RecipientType.TO, addresses);
-			message.setSubject("[shareezy] Validierung der Registrierung");
-			//
-			// String validationUrl = externalContext.getRequestPathInfo()
-			// + getMD5emailValidationHash();
-
-			message.setText("testEmail anfrage");
-
-			Transport.send(message);
-		} catch (MessagingException e) {
-			FacesMessage message = new FacesMessage();
-			message.setSummary("Fehler beim Versenden der E-Mail zur Valitation");
-			message.setDetail(e.getLocalizedMessage());
-			message.setSeverity(FacesMessage.SEVERITY_FATAL);
-			facesContext.addMessage(null, message);
-		}
+	public String sendAnfrage() {		
 		return null;
 
 	}
