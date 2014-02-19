@@ -53,7 +53,7 @@ public class GroupMembershipTest {
 		emf = mock(EntityManagerFactory.class);
 		em = mock(EntityManager.class);
 		transaction = mock(EntityTransaction.class);
-
+		
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
 
@@ -66,7 +66,7 @@ public class GroupMembershipTest {
 	 */
 	@Test
 	public void testSendAnfrage() {
-		String antwort = proband.sendAnfrage(null);
+		String antwort = proband.sendAnfrage();
 		assertNull(antwort);
 	}
 

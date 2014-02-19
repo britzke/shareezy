@@ -62,7 +62,7 @@ public class RessourceListen {
 	 */
 	public String ressourceClicked(Ressource ressource) {
 		aktuelleressource.setRessource(ressource);
-		return "ressourcendetail";
+		return "DetailRessourcenAnsicht";
 	}
 
 	/**
