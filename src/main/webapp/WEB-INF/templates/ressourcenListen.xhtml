@@ -18,28 +18,31 @@
 			<h:outputText value="#{ressource.name}" />
 		</p:column>
 
-		<p:column>
-			<f:facet name="header">Autor</f:facet>
+		<p:column filterBy="benutzer.kurzname" sortBy="benutzer.kurzname"
+			headerText="Autor" filterMatchMode="contains">
 			<h:outputText value="#{ressource.benutzer.kurzname}" />
 		</p:column>
-		<p:column>
-			<f:facet name="header">Einstellungsdatum</f:facet>
+		<p:column sortBy="einstellungsdatum" headerText="Einstellungsdatum">
 			<h:outputText value="#{ressource.einstellungsdatum}">
 				<f:convertDateTime timeStyle="short" />
 				<f:convertDateTime locale="de" />
 			</h:outputText>
 		</p:column>
-		<p:column headerText="ID" sortBy="id">
-			<f:facet name="ID">ID</f:facet>
-			<h:outputText value="#{ressource.id}" />
+		<p:column sortBy="startdatum" headerText="Startdatum">
+			<h:outputText value="#{ressource.startdatum}">
+				<f:convertDateTime timeStyle="short" />
+				<f:convertDateTime locale="de" />
+			</h:outputText>
 		</p:column>
-		<p:column>
-			<f:facet name="header">Startdatum</f:facet>
-			<h:outputText value="#{resource.startdatum}" />
+		<p:column sortBy="enddatum" headerText="EndDatum">
+			<h:outputText value="#{ressource.enddatum}">
+				<f:convertDateTime timeStyle="short" />
+				<f:convertDateTime locale="de" />
+			</h:outputText>
 		</p:column>
-		<p:column>
-			<p:commandButton icon="ui-icon-wrench" ajax="false"
-				action="#{ressourceListen.ressourceClicked(ressource)}" />
+		<p:column headerText="Detailansicht">
+			<p:button icon="ui-icon-search" ajax="false"
+				outcome="DetailRessourcenAnsicht.xhtml" />
 		</p:column>
 	</p:dataTable>
 </h:form>
