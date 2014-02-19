@@ -24,12 +24,12 @@
 	
 	<section id="menu">
     	<p:layoutUnit id="left" position="west" size="170"  resizable="false" closable="false" collapsible="true" header="Menu" minSize="120">					
-					<h:form>	
-					<div class="btn-group-vertical">
-							<button type="button" class="btn btn-default">Konto bearbeiten</button>
-							<button type="button" class="btn btn-default">Eigene Buchungen</button>
-							<button type="button" class="btn btn-default">Gruppenverwaltung</button>						
-						</div>
+					<h:form>
+					<ul>
+						<li><p:commandLink action="index?faces-redirect=true" value="Home" /></li>	
+						<li><p:commandLink action="AccountBearbeiten?faces-redirect=true" value="Konto bearbeiten(funktioniert noch nicht)"/></li>
+						<li><p:commandLink action="ressourcenList?faces-redirect=true" value="Ressourcen Liste"/></li>						
+					</ul>
 					</h:form>
                 </p:layoutUnit>
      </section>
@@ -37,9 +37,7 @@
                 <p:layoutUnit id="center" position="center">
                     <h:form>   
                     <ui:insert name="content"> 
-						Content area.  See comments below this line in the source.1
-						Content area.  See comments below this line in the source.1
-						Content area.  See comments below this line in the source.1						
+						Content area.					
                    </ui:insert>
                     </h:form>
                 </p:layoutUnit>
@@ -47,7 +45,7 @@
 	<footer>
 				<p:layoutUnit id="bottom" position="south" size="60">	
 					<ui:insert name="footer">		
-					Footer area.  See comments below this line in the source.
+						<ui:include src="/WEB-INF/templates/footer.xhtml"></ui:include>
 					</ui:insert>
 		        </p:layoutUnit>						
 	</footer>
