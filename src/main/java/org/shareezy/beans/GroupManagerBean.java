@@ -17,7 +17,6 @@
  */
 package org.shareezy.beans;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,6 @@ import javax.inject.Named;
 import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.Gruppe;
 import org.shareezy.entities.Ressource;
-
 
 /**
  * Guppenverwaltung, Gruppen hinzufügen & Gruppen editieren
@@ -41,16 +39,14 @@ public class GroupManagerBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String groupName;
-	private ArrayList<Gruppe> groups  = new ArrayList<Gruppe>();
+	private ArrayList<Gruppe> groups = new ArrayList<Gruppe>();
 	private Benutzer benutzer;
 	private List<Ressource> groupRessourcen;
-	
 
 	/**
 	 * Wird ausgeführt wenn der User auf "Neue Gruppe" (@issue9/Schritt 1)
-	 * klickt.
-	 * Öffnet einen Dialog (@issue9/Schritt 2) und der user wird aufgefordert
-	 * eine Gruppen-ID einzugeben
+	 * klickt. Öffnet einen Dialog (@issue9/Schritt 2) und der user wird
+	 * aufgefordert eine Gruppen-ID einzugeben
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
@@ -59,7 +55,8 @@ public class GroupManagerBean implements Serializable {
 	}
 
 	public GroupManagerBean() {
-		//Test initialisierungen - TODO: Diese Daten sollen durch entsprechende Daten aus der Datenbank ersetzt werden
+		// Test initialisierungen - TODO: Diese Daten sollen durch entsprechende
+		// Daten aus der Datenbank ersetzt werden
 		groupRessourcen = new ArrayList<Ressource>();
 		Gruppe test1 = new Gruppe();
 		test1.setName("Gruppe1");
@@ -70,8 +67,8 @@ public class GroupManagerBean implements Serializable {
 		groups.add(test1);
 		groups.add(test2);
 		groups.add(test3);
-		
-}
+
+	}
 
 	/**
 	 * Wird ausgeführt wenn der User auf "Erstellen" (@issue9/Schritt 2) klickt.
@@ -81,27 +78,26 @@ public class GroupManagerBean implements Serializable {
 	 * @return null - Soll in der selben View bleiben
 	 */
 	public String createNewGroupClick() {
-//		EntityManager em = emf.createEntityManager();
-//		EntityTransaction t = em.getTransaction();
-//		t.begin();
+		// EntityManager em = emf.createEntityManager();
+		// EntityTransaction t = em.getTransaction();
+		// t.begin();
 
 		Gruppe newGroup = new Gruppe();
 		newGroup.setName(groupName);
 		newGroup.setVerwalter(benutzer);
 		groups.add(newGroup);
-		//em.persist(newGroup);
-		System.out.println("createNewGroupClick "+ groupName);
+		// em.persist(newGroup);
 		return null;
 	}
-	
-	public String groupClick(Gruppe g){
-		System.out.println("Gruppe: "+ g.getName());
+
+	public String groupClick(Gruppe g) {
+		System.out.println("Gruppe: " + g.getName());
 		return null;
 	}
-	
-	public String deleteGroupClick(Gruppe g){
+
+	public String deleteGroupClick(Gruppe g) {
 		groups.remove(g);
-		System.out.println("Gruppe: "+ g.getName());
+		System.out.println("Gruppe: " + g.getName());
 		return null;
 	}
 
@@ -136,13 +132,13 @@ public class GroupManagerBean implements Serializable {
 	 * @return null - Soll in der selben View bleiben
 	 */
 	public String addMembersClick() {
-		
+
 		return null;
 	}
 
 	/**
-	 * Wird ausgeführt wenn der User auf "Einladen" (@issue9/Schritt 3.2) klickt.
-	 * Versendet entsprechende Einladungen an Benutzer.
+	 * Wird ausgeführt wenn der User auf "Einladen" (@issue9/Schritt 3.2)
+	 * klickt. Versendet entsprechende Einladungen an Benutzer.
 	 * 
 	 * @return null - Soll in der selben View bleiben
 	 */
@@ -150,7 +146,6 @@ public class GroupManagerBean implements Serializable {
 		return null;
 	}
 
-	
 	public List<Ressource> getGroupRessourcen() {
 		return groupRessourcen;
 	}
@@ -159,7 +154,6 @@ public class GroupManagerBean implements Serializable {
 		this.groupRessourcen = groupRessourcen;
 	}
 
-
 	public ArrayList<Gruppe> getGroups() {
 		return groups;
 	}
@@ -167,16 +161,15 @@ public class GroupManagerBean implements Serializable {
 	public void setGroups(ArrayList<Gruppe> groups) {
 		this.groups = groups;
 	}
-	
+
 	public String getGroupName() {
-		System.out.println("getGroupName: "+groupName);
+		System.out.println("getGroupName: " + groupName);
 		return groupName;
 	}
 
 	public void setGroupName(String groupName) throws RuntimeException {
-		System.out.println("setGroupName: "+groupName);
+		System.out.println("setGroupName: " + groupName);
 		this.groupName = groupName;
 	}
-
 
 }
