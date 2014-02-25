@@ -1175,4 +1175,14 @@ Theme .ui-widget-shadow {
 	opacity: .6;
 	filter: Alpha(Opacity=60);
 	border-radius: 8px;
+	
+	
 }
+/* CSS eigende codes */
+	
+.ui-insert name="header"{
+	
+	margin: 60%;
+	filter: Alpha(Opacity=60);
+	border-radius: 0px;
+	}

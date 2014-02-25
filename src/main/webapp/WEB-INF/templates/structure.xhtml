@@ -3,6 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
+	 <style type="theme/css">
 <h:head>
 	<title>[shareezy] - <ui:insert name="title">ohne Titel</ui:insert></title>
 	<link rel="stylesheet"
@@ -14,9 +15,8 @@
 	<p:layout fullPage="true">
 		<ui:debug hotkey="x"
 			rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
-
 		<header>
-			<p:layoutUnit position="north">
+			<p:layoutUnit position="north" size="100">
 				<ui:insert name="header">
 					<ui:include src="/WEB-INF/templates/login.xhtml" />
 				</ui:insert>
@@ -61,4 +61,5 @@
 		</footer>
 	</p:layout>
 </h:body>
+</style>
 </html>
