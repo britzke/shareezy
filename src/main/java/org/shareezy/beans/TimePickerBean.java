@@ -19,6 +19,8 @@ package org.shareezy.beans;
 
 import java.util.Date;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -34,18 +36,18 @@ import org.shareezy.entities.Buchung;
  * @date 05/12/13
  */
 @Named
+@RequestScoped
 public class TimePickerBean {
 
 	private Date timeframe;
-
 	private EntityManagerFactory emf;
+	@Inject
 	private Buchung buchung;
 
 	/**
 	 * erzeugt eine neue TimePickerBean initialisiert Buchung
 	 */
 	public TimePickerBean() {
-		buchung = new Buchung();
 	}
 
 	/**
