@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
 import org.shareezy.entities.Benutzer;
@@ -40,14 +39,11 @@ import org.shareezy.entities.Ressource;
 @SessionScoped
 public class GroupManagerBean implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String groupName;
 	private ArrayList<Gruppe> groups  = new ArrayList<Gruppe>();
 	private Benutzer benutzer;
-	private List<Ressource> groupRessourcen ;
+	private List<Ressource> groupRessourcen;
 	
 
 	/**
@@ -76,9 +72,7 @@ public class GroupManagerBean implements Serializable {
 		groups.add(test3);
 		
 }
-	
-	
-	
+
 	/**
 	 * Wird ausgeführt wenn der User auf "Erstellen" (@issue9/Schritt 2) klickt.
 	 * Erzeugt eine neue Gruppe in der Datenbank Leitet den User zur
@@ -92,22 +86,22 @@ public class GroupManagerBean implements Serializable {
 //		t.begin();
 
 		Gruppe newGroup = new Gruppe();
-		newGroup.setName(getGroupName());
+		newGroup.setName(groupName);
 		newGroup.setVerwalter(benutzer);
 		groups.add(newGroup);
 		//em.persist(newGroup);
-		//System.out.println("createNewGroupClick");
+		System.out.println("createNewGroupClick "+ groupName);
 		return null;
 	}
 	
 	public String groupClick(Gruppe g){
-		//System.out.println("Gruppe: "+ g.getName());
+		System.out.println("Gruppe: "+ g.getName());
 		return null;
 	}
 	
 	public String deleteGroupClick(Gruppe g){
 		groups.remove(g);
-		//System.out.println("Gruppe: "+ g.getName());
+		System.out.println("Gruppe: "+ g.getName());
 		return null;
 	}
 
@@ -165,13 +159,6 @@ public class GroupManagerBean implements Serializable {
 		this.groupRessourcen = groupRessourcen;
 	}
 
-	public String getGroupName() {
-		return groupName;
-	}
-
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
-	}
 
 	public ArrayList<Gruppe> getGroups() {
 		return groups;
@@ -180,5 +167,16 @@ public class GroupManagerBean implements Serializable {
 	public void setGroups(ArrayList<Gruppe> groups) {
 		this.groups = groups;
 	}
+	
+	public String getGroupName() {
+		System.out.println("getGroupName: "+groupName);
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) throws RuntimeException {
+		System.out.println("setGroupName: "+groupName);
+		this.groupName = groupName;
+	}
+
 
 }
