@@ -45,16 +45,16 @@ import org.shareezy.entities.Ressource;
 @SessionScoped
 @Named("GruppenzuordnungBean")
 public class GruppenzuordnungBean {
-	@Inject
+
 	private List<Ressource> res;
-	@Inject
+
 	private List<Gruppe> grp;
-	@Inject
+
 	private EntityManagerFactory emf;
-	@Inject
+
 	public EntityManager em;
 	private boolean authenticated;
-	@Inject
+
 	private Benutzer benutzer;
 
 	public GruppenzuordnungBean() {
