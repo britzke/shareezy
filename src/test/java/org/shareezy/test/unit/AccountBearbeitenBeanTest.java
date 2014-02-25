@@ -33,7 +33,6 @@ import javax.persistence.EntityTransaction;
 import org.junit.Before;
 import org.junit.Test;
 import org.shareezy.beans.AccountBearbeitenBean;
-import org.shareezy.entities.Benutzer;
 
 /**
  * Testet die Übersetzungseinheit <i>(Compilation Unit)</i>
@@ -57,8 +56,6 @@ public class AccountBearbeitenBeanTest {
 	private EntityManager em;
 	private EntityTransaction transaction;
 	private AccountBearbeitenBean proband;
-	private Benutzer benutzer;
-	private FacesContext faces;
 
 	@Before
 	public void setUp() throws Exception {
@@ -70,8 +67,6 @@ public class AccountBearbeitenBeanTest {
 
 		emf = mock(EntityManagerFactory.class);
 		em = mock(EntityManager.class);
-		benutzer = mock(Benutzer.class);
-		faces = mock(FacesContext.class);
 
 		when(emf.createEntityManager()).thenReturn(em);
 

@@ -20,7 +20,6 @@ package org.shareezy.test.unit;
 
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.lang.reflect.Field;
@@ -32,7 +31,6 @@ import javax.persistence.EntityTransaction;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentMatcher;
-import org.mockito.Mockito;
 import org.shareezy.beans.GroupManagerBean;
 import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.Gruppe;
@@ -129,14 +127,7 @@ public class GroupManagerBeanTest {
 
 		// Beschreibung der Klasse holen
 		Class<? extends GroupManagerBean> clazz = proband.getClass();
-		// Beschreibung der Eigenschaft holen
-		Field field = clazz.getDeclaredField("emf");
-		// Zugriff auf private Eigenschaft erlauben
-		field.setAccessible(true);
-		// EntityManagerFactory in den Proband inizieren
-		field.set(proband, emf);
-		// groupName
-		field = clazz.getDeclaredField("groupName");
+		Field field = clazz.getDeclaredField("groupName");
 		field.setAccessible(true);
 		field.set(proband, "Ste");
 		// benutzer

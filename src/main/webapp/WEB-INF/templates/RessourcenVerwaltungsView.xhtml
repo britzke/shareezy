@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<h:head>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Beschreibung:" />
+			<p:inputTextarea value="#{neueRessourcenBean.beschreibung}" />
+			<p:outputLabel value="Bild:" />
+			<p:inputText value="#{neueRessourcenBean.bild}" />
+			<p:outputLabel value="Enddatum:" />
+			<p:inputText value="#{neueRessourcenBean.enddatum}" />
+			<p:outputLabel value="Name:" />
+			<p:inputText value="#{neueRessourcenBean.name}" />
+			<p:outputLabel value="Startdatum:" />
+			<p:inputText value="#{neueRessourcenBean.startdatum}" />
+			<p:outputLabel value="Typ" />
+			<p:selectManyCheckbox id="Typ"
+				value="#{neueRessourcenBean.typOptionen}" layout="pageDirection">
+				<f:selectItem itemLabel="Werkzeug" itemValue="Werkzeug" />
+				<f:selectItem itemLabel="Auto" itemValue="Auto" />
+				<f:selectItem itemLabel="Boot" itemValue="Boot" />
+			</p:selectManyCheckbox>
+			<p:commandButton value="Ressource veröffentlichen" update="anzeige" oncomplete="PF('dlg').show()"
+				action="#{neueRessourcenBean.speichern}" />
+		</p:panelGrid>
+		
+		<p:separator />  
+		
+				<p:dialog header="Ausgewählte Typen" modal="true" showEffect="fade" hideEffect="fade" widgetVar="dlg">  
+        <p:outputPanel id="anzeige">  
+            <p:dataList value="#{neueRessourcenBean.typOptionen}" var="option">  
+                #{option}  
+            </p:dataList>  
+  
+            <p:dataList value="#{neueRessourcenBean.typOptionen}" var="option2">  
+                #{option2}  
+            </p:dataList>   
+            
+        </p:outputPanel>  
+    </p:dialog>  
+	</h:form>
+</h:body>
+</html>

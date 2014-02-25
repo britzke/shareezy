@@ -26,8 +26,10 @@ import java.util.Properties;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.mail.Address;
@@ -56,7 +58,7 @@ import org.shareezy.entities.Benutzer;
 @RequestScoped
 @Named
 public class RegistrierungBean {
-	
+
 	@Inject
 	private EntityManagerFactory emf;
 	@Inject
@@ -65,9 +67,23 @@ public class RegistrierungBean {
 	/**
 	 * Erzeugt eine neue RegistrierungBean. Initialisiert den Benutzer.
 	 */
-	
+
 	public RegistrierungBean() {
 		benutzer = new Benutzer();
+	}
+
+	/**
+	 * Validiert, ob beide Kennworte übereinstimmen.
+	 * @param ctx Der FacesContext
+	 * @param component Die Komponente, die validiert werden soll
+	 * @param value Der Wert, der validiert werden soll
+	 * @throws ValidatorException
+	 */
+	public void validiereKennwort(FacesContext ctx, UIComponent component,
+			Object value) throws ValidatorException {
+		// Zunächst die Komponente für das erste Kennwort aus dem View holen
+		System.out.println("vaidiereKennwort");
+
 	}
 
 	/**
@@ -100,7 +116,7 @@ public class RegistrierungBean {
 		em.close();
 		return null;
 	}
-
+	
 	/**
 	 * Versendet eine E-Mail zur Validierung der E-Mailadresse, die für den
 	 * Benutzer angegeben wurde. Die Parameter für die Kommunikation mit dem
@@ -139,7 +155,8 @@ public class RegistrierungBean {
 					+ validationUrl + "\r\r" + "Mit freundlichem Gruß\r");
 
 			Transport.send(message);
-		} catch ( MessagingException | UnsupportedEncodingException | NoSuchAlgorithmException e) {
+		} catch (MessagingException | UnsupportedEncodingException
+				| NoSuchAlgorithmException e) {
 			FacesMessage message = new FacesMessage();
 			message.setSummary("Fehler beim Versenden der E-Mail zur Valitation");
 			message.setDetail(e.getLocalizedMessage());
@@ -173,4 +190,22 @@ public class RegistrierungBean {
 		result = new String(digest);
 		return result;
 	}
+
+	/**
+	 * Antwortet mit dem Wert des benutzer
+	 * 
+	 * @return the benutzer
+	 */
+	public Benutzer getBenutzer() {
+		return benutzer;
+	}
+
+	/**
+	 * @param benutzer
+	 *            the benutzer to set
+	 */
+	public void setBenutzer(Benutzer benutzer) {
+		this.benutzer = benutzer;
+	}
+
 }

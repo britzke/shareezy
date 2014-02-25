@@ -52,6 +52,9 @@ public class DebugPhaseListener implements PhaseListener {
 		for (FacesMessage m:ml){
 			System.out.println("after Phase Message: "+m.getSummary()+": "+m.getDetail());
 		}
+		if (event.getPhaseId() == PhaseId.RENDER_RESPONSE) {
+			System.out.println("---Request-Processing Zyklus beendet----");
+		}
 	}
 
 	/**
