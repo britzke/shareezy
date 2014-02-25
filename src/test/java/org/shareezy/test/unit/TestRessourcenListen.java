@@ -17,8 +17,9 @@
  */
 package org.shareezy.test.unit;
 
-
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -65,7 +66,7 @@ public class TestRessourcenListen {
 	@Mock
 	private AktuelleRessourceBean aktRessourceBean;
 	private Method methode;
-	private String privateMethod = "init";
+	private final String privateMethod = "init";
 
 	/**
 	 * Diese Methode erstellt beim erstmaligen Testaufruf einen Probanden vom
@@ -82,40 +83,41 @@ public class TestRessourcenListen {
 		Field field = klasse.getDeclaredField("emf");
 		field.setAccessible(true);
 		field.set(proband, emf);
-		
+
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.getTransaction()).thenReturn(transaction);
 		when(em.createQuery(queryString)).thenReturn(query);
 		when(query.getResultList()).thenReturn(list);
 		when(list.size()).thenReturn(0).thenReturn(1);
-		
 
 	}
 
 	/**
 	 * Dies ist eine Testmethode für die ressourceClickedmethode. Sie überprüft
-	 * ob der Rückgabewert der Methode ressourceClicked mit ressourcendetail
-	 * übereinstimmt
+	 * ob der übergebene Wert der Methode ressourceClicked in die entsprechende
+	 * Eigenschaft geschrieben wird.
 	 * {@link org.shareezy.beans.RessourceListen#ressourceClicked()}.
-	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
-	 * @throws SecurityException 
-	 * @throws NoSuchFieldException 
+	 * 
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws SecurityException
+	 * @throws NoSuchFieldException
 	 */
 	@Test
-	public void testRessourceClicked() throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
+	public void testRessourceClicked() throws IllegalArgumentException,
+			IllegalAccessException, NoSuchFieldException, SecurityException {
 		Class<? extends RessourceListen> klasse = proband.getClass();
 		Field field = klasse.getDeclaredField("aktuelleressource");
 		field.setAccessible(true);
 		field.set(proband, aktRessourceBean);
-		
+
 		proband.ressourceClicked(ressource);
 		verify(aktRessourceBean).setRessource(ressource);
-		
+
 	}
 
 	/**
-	 * Dies ist eine Testmethode für die GetRessourcenListemethode. Es wird
+	 * Dies ist eine Testmethode für die QueryRessourcenListeMethode. Es wird
 	 * überprüft ob ein EntityManager erzeugt wird. Es wird überprüft ob
 	 * Transactions ausgeführt werden. Es wird überprüft ob eine bestimmte Query
 	 * durchgeführt wird. Es wird überprüft ob ein Resultset erstellt wird. Es
@@ -130,14 +132,28 @@ public class TestRessourcenListen {
 		verify(em).createQuery(queryString);
 		verify(query).getResultList();
 	}
+
+	/**
+	 * Dies ist eine Testmethode für die Methode init(). Es wird überprüft, ob
+	 * die private Methode ausgeführt wird und ob innerhalb dieser Methode eine
+	 * query mit entsprechendem Ergebnis vollzogen wird.
+	 * 
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 */
 	@Test
-	public void testinit() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
-		
+	public void testinit() throws IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException,
+			NoSuchMethodException, SecurityException {
+
 		methode = proband.getClass().getDeclaredMethod(privateMethod);
 		methode.setAccessible(true);
 		methode.invoke(proband);
 		verify(query).getResultList();
-		
+
 	}
 
 }
