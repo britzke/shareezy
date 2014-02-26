@@ -114,9 +114,9 @@ public class RegistrierungBeanTest {
 	 */
 	@Test(expected = ValidatorException.class)
 	public void testValidiereKennwortUnterschiedlich() {
-		String value = "secret"; // kennwort1
-		kennwort2.setValue("notSecret");
-		proband.validiereKennwort(facesContext, kennwort1, value);
+		kennwort1.setSubmittedValue("secret");
+		kennwort2.setSubmittedValue("notSecret");
+		proband.validiereKennwort(facesContext, kennwort1, null);
 	}
 
 	/**
@@ -125,11 +125,12 @@ public class RegistrierungBeanTest {
 	 */
 	@Test
 	public void testValidiereKennwortGleich() {
-		String value = "secret"; // kennwort1
-		kennwort2.setValue("secret");
+		kennwort1.setSubmittedValue("secret");
+		kennwort2.setSubmittedValue("secret");
 		try {
-			proband.validiereKennwort(facesContext, kennwort1, value);
+			proband.validiereKennwort(facesContext, kennwort1, null);
 		} catch (ValidatorException e) {
+			e.printStackTrace();
 			fail("Die Validierung darf für gleiche Kennwort nicht fehlschlagen");
 		}
 	}

@@ -86,15 +86,18 @@ public class RegistrierungBean {
 	 */
 	public void validiereKennwort(FacesContext ctx, UIComponent component,
 			Object value) throws ValidatorException {
+		String kennwort1 = (String) ((EditableValueHolder) component)
+				.getSubmittedValue();
 		UIComponent parent = component.getParent();
 		List<UIComponent> siblings = parent.getChildren();
 		for (UIComponent sibling : siblings) {
 			if (sibling.getId().equals("kennwort2")) {
 				String kennwort2 = (String) ((EditableValueHolder) sibling)
-						.getValue();
-				if (!value.equals(kennwort2)) {
+						.getSubmittedValue();
+				if (!kennwort1.equals(kennwort2)) {
 					FacesMessage message = new FacesMessage(
-							"Die Kennworte stimmen nicht überein");
+							"Die Kennworte stimmen nicht überein " + value
+									+ " " + kennwort2);
 					throw new ValidatorException(message);
 				}
 			}
