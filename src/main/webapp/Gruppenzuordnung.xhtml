@@ -9,28 +9,46 @@
 
 <!--  
 <body>
-<h:>
-<p:commandButton value="" update="panel,display" id="ajax"  
-             actionListener="#{Gruppenzuordnung.}" />  
+
 -->
-  
-<h:head />
+
+<h:head>
+</h:head>
+
 <h:body>
-  	<h:form id="form1">
-		<h:panelGroup id="haupt" style="css">
-			<h:panelGrid columns="2">
-				<h:commandButton
-					value="#{GruppenzuordnungBean.mitgliederabfragen}"/>
-					<f:ajax/>
-				</h:selectBooleanCheckbox>
-				<h:outputLabel for="ausGruppeentfernen" value="AusGruppeEntfernen"/>
-				<h:inputText value="#{GruppenzuordnungBean.mitgliederabfragen[account_id]}" required="true"></h:inputText>
-			 	<h:inputText></h:inputText>
-				</h:panelGrid>
-		</h:panelGroup>
-		
-	</h:form>
-	
+	<div class="list-group"  id="listgroupid">
+		<a type="" href="#" class="list-group-item active"><span
+			class="badge" id="2"></span> Ressource 1</a> <a href="#"
+			class="list-group-item active"><span class="badge" id="3"></span>Ressource 2</a>
+			<ul>
+			<li> </li>
+			</ul>
+		<script type="text/javascript">
+			var listgroupid = document.getElementById('listgroupid');
+		</script>
+
+	</div>
+	<h:commandLink></h:commandLink>
 </h:body>
 </html>
- 
+
+<!--  
+	<h:>
+<p:commandButton value="" update="panel,display" id="ajax"  
+             actionListener="#{Gruppenzuordnung.}" />  
+	<h:form id="form1">
+		<h:panelGroup id="haupt" style="css">
+			<h:panelGrid columns="2">
+				<h:commandButton value="#{GruppenzuordnungBean.mitgliederabfragen}" />
+				<f:ajax />
+				</h:selectBooleanCheckbox>
+				<h:outputLabel for="ausGruppeentfernen" value="AusGruppeEntfernen" />
+				<h:inputText
+					value="#{GruppenzuordnungBean.mitgliederabfragen[account_id]}"
+					required="true"></h:inputText>
+				<h:inputText></h:inputText>
+			</h:panelGrid>
+		</h:panelGroup>
+
+	</h:form>
+-->

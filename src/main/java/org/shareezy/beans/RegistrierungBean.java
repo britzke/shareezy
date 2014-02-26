@@ -59,6 +59,9 @@ import org.shareezy.entities.Benutzer;
 public class RegistrierungBean {
 	static final char[] HEX_DIGIT = "0123456789ABCDEF".toCharArray();
 
+
+//@FacesValidator(value = "emailAddressValidator")
+
 	@Inject
 	private EntityManagerFactory emf;
 
