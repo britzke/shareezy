@@ -3,12 +3,14 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-	 <style type="theme/css">
+
 <h:head>
 	<title>[shareezy] - <ui:insert name="title">ohne Titel</ui:insert></title>
-	<link rel="stylesheet"
+	<link type="text/css" rel="stylesheet" 
+		  href="resources/primefaces-yourtheme/theme.css?ln=css" />
+<!--  <link rel="stylesheet"
 		href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"></link>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>-->
 </h:head>
 
 <h:body>
@@ -16,14 +18,16 @@
 		<ui:debug hotkey="x"
 			rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
 		<header>
-			<p:layoutUnit position="north" size="100">
-				<ui:insert name="header">
-					<ui:include src="/WEB-INF/templates/login.xhtml" />
-				</ui:insert>
+			<p:layoutUnit position="north" styleClass="theme">
+				<DIV style="float: right;">
+					<ui:insert name="header">
+						<ui:include src="/WEB-INF/templates/login.xhtml" />
+					</ui:insert>
+				</DIV>
 			</p:layoutUnit>
 		</header>
 
-		<section id="menu">
+		<section id="menu" >
 			<p:layoutUnit id="left" position="west" size="220" resizable="false"
 				closable="false" collapsible="true" header="Menu" minSize="220">
 				<h:form>
@@ -59,5 +63,4 @@
 		</footer>
 	</p:layout>
 </h:body>
-</style>
 </html>
