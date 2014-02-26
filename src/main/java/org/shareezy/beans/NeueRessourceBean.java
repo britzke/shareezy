@@ -9,6 +9,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.Buchung;
@@ -31,9 +32,6 @@ import org.shareezy.entities.Typ;
 @Named("neueRessourcenBean")
 public class NeueRessourceBean implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Inject
 	private EntityManagerFactory emf;
@@ -62,13 +60,28 @@ public class NeueRessourceBean implements Serializable{
 	
 	private Date startdatum;
 	
+	@Inject
+	private List<Typ> typOptionen;
+	
 	private Typ typ;
 	
-	private List<String> typOptionen;
+	
+public NeueRessourceBean() {
+		
+		
+		Typ einTyp = new Typ();
+		einTyp.setName("TypEins");
+		typOptionen.add(einTyp);
+		
+		
+		
+		
+		
+	}
 	/**
 	 * Action-Routine für den View <code>neueRessource</code>. Wird
 	 * angesprochen, wenn der Benutzer die Schaltfläche <code>löschen</code>
-	 * anwählt. Sorgt dafür, dass Ressourcen aus der Ressourcenliste gelöscht
+	 * anwähquery daten auslsenlt. Sorgt dafür, dass Ressourcen aus der Ressourcenliste gelöscht
 	 * werden können.
 	 * 
 	 * @return null - d. h. der View wird nicht gewechselt.
@@ -83,6 +96,8 @@ public class NeueRessourceBean implements Serializable{
 		em.close();
 		return "RessourcenListen.xhtml";
 	}
+	
+	
 
 	/*
 	 * Action-Routine für den View <code>neueRessource</code>. Wird
@@ -111,6 +126,17 @@ public class NeueRessourceBean implements Serializable{
 		em.getTransaction().commit();
 		em.close();
 		return "RessourceListen.xhtml";
+	}
+	
+	
+	public void queryTypOptionen () {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Query query = em.createQuery("select r from Typ r");
+		typOptionen = query.getResultList();
+		em.getTransaction().commit();
+		
+	
 	}
 
 	public Benutzer getBenutzer() {
@@ -209,11 +235,13 @@ public class NeueRessourceBean implements Serializable{
 		this.ress = ress;
 	}
 
-	public List<String> getTypOptionen() {
+	public List<Typ> getTypOptionen() {
 		return typOptionen;
 	}
 
-	public void setTypOptionen(List<String> typOptionen) {
+	public void setTypOptionen(List<Typ> typOptionen) {
 		this.typOptionen = typOptionen;
 	}
+	
+
 }
