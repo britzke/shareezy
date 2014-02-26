@@ -17,21 +17,21 @@
  */
 package org.shareezy.test.unit;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import java.awt.Image;
+import static org.junit.Assert.*;
+import static org.mockito.Matchers.*;
+import static org.mockito.Mockito.*;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.shareezy.beans.RessourcenDetailBean;
-import org.shareezy.entities.Ressource;
+import org.shareezy.entities.Buchung;
 
 /**
  * JUnit-Test zum Testen der Beans und dessen Methoden
@@ -39,20 +39,18 @@ import org.shareezy.entities.Ressource;
  * @author Vanessa Krohn
  * 
  */
+
 public class RessourcenDetailBeanTest {
 
+	private Date timeframe;
+	private Buchung buchung;
 	private RessourcenDetailBean proband;
-	private Image pic;
-	private String summary;
-
-	public boolean createEntityManagerSent;
-	public boolean createQuerySent;
-	public Ressource ressource;
-	public Query q;
-	public List<Ressource> ressourceList;
+	private EntityTransaction transaction;
 	private EntityManager em;
 	private EntityManagerFactory emf;
-
+	private Query q;
+	private List<Buchung> buchungList;
+	
 	/**
 	 * Erzeugt einen neuen Probanden der zutestenden Klasse.
 	 * 
@@ -64,60 +62,61 @@ public class RessourcenDetailBeanTest {
 		em = mock(EntityManager.class);
 		when(emf.createEntityManager()).thenReturn(em);
 		q = mock(Query.class);
-		when(em.createQuery("select re from Ressource re")).thenReturn(q);
-		// ressourceList = mock(List.class);
-		when(q.getResultList()).thenReturn(ressourceList);
+		when(em.createQuery("select rückgabedatum from buchung")).thenReturn(q);
+		transaction = mock(EntityTransaction.class);
+		when(em.getTransaction()).thenReturn(transaction);
+		
+		buchung = new Buchung();
 
 		proband = new RessourcenDetailBean();
+		
+		buchungList = new ArrayList<Buchung>();
+		buchungList.add(buchung);
 
-		// Class<? extends RessourcenDetailBean> clazz = proband.getClass();
-		// Field field = clazz.getDeclaredField("emf");
-		// field.setAccessible(true);
-		// field.set(proband, emf);
+		Class<? extends RessourcenDetailBean> clazz = proband.getClass();
+		Field field = clazz.getDeclaredField("emf");
+		field.setAccessible(true);
+		field.set(proband, emf);
+		
+		field = clazz.getDeclaredField("buchung");
+		field.setAccessible(true);
+		field.set(proband, buchung);
 	}
 
 	/**
-	 * Testmethode für selectDatensatz()
-	 * {@link org.shareezy.beans.TimePickerBean#addDatensatz()}.
+	 * Testmethode für addDatensatz()
+	 * {@link org.shareezy.beans.RessourcenDetailBean#addDatensatz()}. Testet mittels
+	 * eines EntityManagers und einer Transaction, ob ein Datensatz hinzugefügt
+	 * wird.
 	 */
 	@Test
-	public void testSelectDatensatz() {
-
-		// String antwort = proband.selectDatensatz();
-		// assertNull("Muss Null sein", antwort);
-		// verify(emf).createEntityManager();
-		// verify(em).createQuery("select re from Ressource re");
-
+	public void testAddDatensatz() {
+		String antwort = proband.addDatensatz();
+		assertNull(antwort);
+		verify(emf).createEntityManager();
+		verify(em).getTransaction();
+		verify(transaction).begin();
+		verify(em).persist(eq(buchung));
+		verify(transaction).commit();
+		verify(em).close();
 	}
 
 	/**
-	 * Testmethode für testTimePicker()
-	 * {@link org.shareezy.beans.RessourcenDetailBean#timePicker()}.
+	 * Testmethode für getTimeframe() überprüft den Rückgabewert timeframe
+	 * {@link org.shareezy.beans.RessourcenDetailBean#getTimeframe()}.
 	 */
 	@Test
-	public void testTimePicker() {
-		String picker = proband.timePicker();
-		assertEquals(null, picker);
+	public void testGetTimeframe() {
+		Date tframe = proband.getTimeframe();
+		assertEquals(timeframe, tframe);
 	}
 
 	/**
-	 * Testmethode für resourcePic() überprüft den Rückgabewert pic
-	 * {@link org.shareezy.beans.RessourcenDetailBean#resourcePic()}.
+	 * Testmethode für checkDate(); hat keinen Rückgabewert
+	 * {@link org.shareezy.beans.RessourcenDetailBean#checkDate()}.
 	 */
 	@Test
-	public void testResourcePic() {
-		Image bild = proband.resourcePic();
-		assertEquals(pic, bild);
-	}
-
-	/**
-	 * Testmethode für resourceSummary() überprüft den Rückgabewert summary
-	 * {@link org.shareezy.beans.RessourcenDetailBean#resourceSummary()}.
-	 */
-	@Test
-	public void testResourceSummary() {
-		String sum = proband.resourceSummary();
-		assertEquals(summary, sum);
+	public void testCheckDate() {
 	}
 
 }
