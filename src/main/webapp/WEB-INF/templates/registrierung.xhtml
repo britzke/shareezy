@@ -1,6 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE HTML>
 <h:form xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -18,10 +16,10 @@
 		<p:inputText placeholder="E-Mail"
 			value="#{registrierungBean.benutzer.email}" required="true"
 			feedback="true" />
-		<p:password placeholder="Kennwort" feedback="true"
+		<p:password id="kennwort1" placeholder="Kennwort" feedback="true"
 			promptLabel="Bitte geben Sie ihr Passwort ein"
-			value="#{registrierungBean.benutzer.kennwort}" required="true" />
-		<p:password placeholder="Kennwort (wiederholen)" feedback="true"
+			value="#{registrierungBean.kennwort}" required="true" />
+		<p:password id="kennwort2" placeholder="Kennwort (wiederholen)" feedback="true"
 			promptLabel="Bitte wiederholen Sie ihr Passwort"
 			validator="#{registrierungBean.validiereKennwort}" required="true" />
 		<p:commandButton value="absenden"

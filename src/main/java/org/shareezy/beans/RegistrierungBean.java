@@ -22,10 +22,12 @@ package org.shareezy.beans;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Properties;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.EditableValueHolder;
 import javax.faces.component.UIComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -54,36 +56,49 @@ import org.shareezy.entities.Benutzer;
  * @author e1_cakir
  * @author burghard.britzke bubi@charmides.in-berlin.de
  */
-
 @RequestScoped
 @Named
 public class RegistrierungBean {
 
 	@Inject
 	private EntityManagerFactory emf;
-	@Inject
+
 	private Benutzer benutzer;
+	private String kennwort;
 
 	/**
 	 * Erzeugt eine neue RegistrierungBean. Initialisiert den Benutzer.
 	 */
-
 	public RegistrierungBean() {
 		benutzer = new Benutzer();
 	}
 
 	/**
 	 * Validiert, ob beide Kennworte übereinstimmen.
-	 * @param ctx Der FacesContext
-	 * @param component Die Komponente, die validiert werden soll
-	 * @param value Der Wert, der validiert werden soll
+	 * 
+	 * @param ctx
+	 *            Der FacesContext
+	 * @param component
+	 *            Die Komponente, die validiert werden soll
+	 * @param value
+	 *            Der Wert, der validiert werden soll
 	 * @throws ValidatorException
 	 */
 	public void validiereKennwort(FacesContext ctx, UIComponent component,
 			Object value) throws ValidatorException {
-		// Zunächst die Komponente für das erste Kennwort aus dem View holen
-		System.out.println("vaidiereKennwort");
-
+		UIComponent parent = component.getParent();
+		List<UIComponent> siblings = parent.getChildren();
+		for (UIComponent sibling : siblings) {
+			if (sibling.getId().equals("kennwort2")) {
+				String kennwort2 = (String) ((EditableValueHolder) sibling)
+						.getValue();
+				if (!value.equals(kennwort2)) {
+					FacesMessage message = new FacesMessage(
+							"Die Kennworte stimmen nicht überein");
+					throw new ValidatorException(message);
+				}
+			}
+		}
 	}
 
 	/**
@@ -97,7 +112,6 @@ public class RegistrierungBean {
 	 */
 	public String datensatzPrüfen() {
 		return null;
-
 	}
 
 	/**
@@ -116,7 +130,7 @@ public class RegistrierungBean {
 		em.close();
 		return null;
 	}
-	
+
 	/**
 	 * Versendet eine E-Mail zur Validierung der E-Mailadresse, die für den
 	 * Benutzer angegeben wurde. Die Parameter für die Kommunikation mit dem
@@ -192,20 +206,40 @@ public class RegistrierungBean {
 	}
 
 	/**
-	 * Antwortet mit dem Wert des benutzer
+	 * Antwortet mit dem Wert des benutzers.
 	 * 
-	 * @return the benutzer
+	 * @return der Benutzer, der gerade registriert werde möchte.
 	 */
 	public Benutzer getBenutzer() {
 		return benutzer;
 	}
 
 	/**
+	 * Setzt den Benutzer, der registriert werden möchte.
+	 * 
 	 * @param benutzer
-	 *            the benutzer to set
+	 *            der Benutzer, der registriert werden möchte.
 	 */
 	public void setBenutzer(Benutzer benutzer) {
 		this.benutzer = benutzer;
 	}
 
+	/**
+	 * Antwortet mit dem Wert des kennwort
+	 * 
+	 * @return das Kennwort
+	 */
+	public String getKennwort() {
+		return kennwort;
+	}
+
+	/**
+	 * Setzt de Wert für das Kennwort.
+	 * 
+	 * @param kennwort
+	 *            der Wert für das Kennwort, das gesetzt werden soll
+	 */
+	public void setKennwort(String kennwort) {
+		this.kennwort = kennwort;
+	}
 }
