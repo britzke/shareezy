@@ -23,6 +23,9 @@
 	border: 1px solid #A8A8A8 !important;
 }
 
+.ui-tree-item span {
+	float: left !important;
+}
 
 .ui-tree {
 	border: 0px none !important;
@@ -30,10 +33,6 @@
 
 .ui-tabs {
 	border: 0px none !important;
-}
-
-.ui-tree-item span {
-	float: left !important;
 }
 
 .vertAlign {
@@ -73,11 +72,11 @@ form .dialogH2 {
 		<p:layout fullPage="true">
 			<p:layoutUnit position="north" size="55">
 				<p:commandButton value="Gruppe Erstellen"
-					onclick="PF('neueGruppeDialog').show()" type="button"
+					onclick="PF('newGroupDlg').show()" type="button"
 					icon="ui-icon-document" />
 			</p:layoutUnit>
 			<p:layoutUnit position="west" size="200" resizable="true"
-				collapsible="true" header="Meine Gruppen">
+				collapsible="true" header="My Groups">
 				<h:form>
 
 					<p:dataTable var="groups"  styleClass="noheader"
@@ -86,7 +85,7 @@ form .dialogH2 {
 							<!-- Gruppe auflisten -->
 							
 							<p:commandButton update=":grpView" value="#{groups.getName()}" actionListener="#{groupManager.groupClick(groups)}"
-												title="#{groups.getName()}">
+												title="View">
 
 											</p:commandButton>
 						</p:column>
@@ -94,8 +93,8 @@ form .dialogH2 {
 						<p:column>
 							<!-- Gruppe löschen -->
 							
-							<p:commandButton icon="ui-icon-closethick" actionListener="#{groupManager.deleteGroupClick(groups)}"
-												title="Löschen">
+							<p:commandButton icon="ui-icon-closethick" actionListener="#{groupManager.deletGroupClick(groups)}"
+												title="View">
 
 											</p:commandButton>
 						</p:column>
@@ -238,23 +237,23 @@ form .dialogH2 {
 		</p:dialog>
 
 
-		<p:dialog widgetVar="neueGruppeDialog" modal="true" header="Neue Gruppe"
+		<p:dialog widgetVar="newGroupDlg" modal="true" header="Neue Gruppe"
 			width="530" showEffect="fade" hideEffect="fade">
- <h:messages /> 
-			<h:form >
-				
-				<h:panelGrid columns="2">
+
+			<h:form>
+
+				<h:panelGrid columns="2" cellspacing="5">
 					<h:outputLabel for="grpName" value="Gruppen Name (Gruppen-ID): "
 						styleClass="dialogH1" />
-					<p:inputText id="grpName" value="#{groupManager.groupName}"/>
+					<p:inputText id="grpName" value="#{groupManager.groupName}" />
 				</h:panelGrid>
 
 				<p:commandButton value="Erstellen"
 					actionListener="#{groupManager.createNewGroupClick()}" process="@this"
-					onclick="PF('neueGruppeDialog').hide();PF('inviteMembersDlg').show();" 
+					onclick="PF('newGroupDlg').hide();PF('inviteMembersDlg').show()"
 					styleClass="blueButton" />
 				<p:commandButton value="Abbrechen" 
-					onclick="PF('neueGruppeDialog').hide()" type="button" />
+					onclick="PF('newGroupDlg').hide()" type="button" />
 
 			</h:form>
 

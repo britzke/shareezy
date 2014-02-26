@@ -25,6 +25,21 @@ import java.awt.Image;
 //import javax.persistence.Query;
 //import org.shareezy.entities.Ressource;
 
+
+
+
+
+
+import java.util.List;
+
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
+import org.shareezy.entities.Ressource;
+
 /**
  * Klasse ist zustaendig fuer die detailierte Ansicht der Ressourcen. Ansicht
  * besteht aus Bild, Beschreibung, Kalender und dem Buchungsbutton
@@ -33,10 +48,13 @@ import java.awt.Image;
  * @date 05/12/13
  */
 
+@Named
+@RequestScoped
 public class RessourcenDetailBean {
 	
-//	private EntityManagerFactory emf;
-//	private Ressource ressource;
+	private EntityManagerFactory emf;
+	@Inject
+	private Ressource ressource;
 	private Image pic;
 	private String summary;
 	
@@ -45,7 +63,6 @@ public class RessourcenDetailBean {
 	 * initialisiert Ressource
 	 */
 	public RessourcenDetailBean() {
-//		ressource = new Ressource();
 	}
 	
 	/**
@@ -53,11 +70,16 @@ public class RessourcenDetailBean {
 	 * 
 	 */
 	public String selectDatensatz() {
-//		EntityManager em = emf.createEntityManager();
-//		Query q = em.createQuery("select re from Ressource re");
+		EntityManager em = emf.createEntityManager();
+		ressource.getName();
+		ressource.getBeschreibung();
+		ressource.getBild();
+		Query q = em.createQuery("select re from Ressource re");
+		@SuppressWarnings({ "unchecked", "unused" })
+		List<Ressource> ressourceList = q.getResultList();
+		//for (Ressource b : ressourceList) {
+		//}
 		
-//		List<Ressource> ressource = q.getResultList();
-	
 		return null;
 	}
 	

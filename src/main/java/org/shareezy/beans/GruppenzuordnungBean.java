@@ -77,23 +77,12 @@ public class GruppenzuordnungBean {
 		EntityManager em = emf.createEntityManager();
 		Gruppe gruppe = new Gruppe();
 		em.persist(gruppe);
-		Query qy = em
-				.createQuery("select b from Benutzer where benutzer= :benutzer and gruppe= :gruppe");
-		qy.setParameter("benutzer", benutzer.getKurzname());
-		@SuppressWarnings("unchecked")
-		List<Benutzer> benutzerList = qy.getResultList();
-		for (Benutzer b : benutzerList) {
-			// für jedes benutzerobjekt b in der benutzerliste
-			if (b.getKurzname().equals(benutzer.getKurzname())
-			// wird abgefragt ob der kurzname der benutzers b gleich ist mit dem
-			// eingetragenen benutzer aus der entity
-					&& b.getKennwort().equals(benutzer.getKennwort())) {
-				setAuthenticated(true);
-				break;
-			}
-		}
-		em.close();
-
+		Query qr = em.createQuery("SELECT a FROM Ressource ");
+		List<Ressource> abgleich = qr.getResultList();
+		/*
+		Query qr2 = em.createQuery("SELECT b FROM Gruppe b");
+		List<Gruppe> abgleich2 = qr.getResultList();
+ 		*/
 		return null;
 	}
 	

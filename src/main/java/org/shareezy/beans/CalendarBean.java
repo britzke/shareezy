@@ -20,6 +20,9 @@ package org.shareezy.beans;
 import java.util.Date;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
@@ -33,15 +36,16 @@ import org.shareezy.entities.Buchung;
  * @author Vanessa Krohn
  */
 
+@Named
+@RequestScoped
 public class CalendarBean {
 	private EntityManagerFactory emf;
+	@Inject
 	private Buchung buchung;
 	private boolean inCalendar;
 	private Date timeframe;
 
 	public CalendarBean() {
-		buchung = new Buchung();
-		timeframe = buchung.getRückgabedatum();
 	}
 
 	/**

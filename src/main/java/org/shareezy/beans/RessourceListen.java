@@ -54,8 +54,10 @@ public class RessourceListen {
 	private List<Ressource> listeRessourcen;
 
 	/**
-	 * Die Methode ressourceClicked leitet bei einem Klick auf den Namen der
-	 * Ressource, den Benutzer auf die Detailansicht der Ressource weiter.
+	 * Die Methode ressourceClicked speichert die vom User, in der
+	 * Ressourcenliste, angewählte Ressource in der Eigenschat aktuelle
+	 * Ressource ab. Damit wird ein Wiederverwenden der angewählte Ressource
+	 * ermöglicht.
 	 * 
 	 * @return "ressourcendetail" gibt die ressourcendetail zurück wenn auf
 	 *         einen Ressourcennamen geklickt wurde.
@@ -74,6 +76,10 @@ public class RessourceListen {
 		return listeRessourcen;
 	}
 
+	/**
+	 * Die Methode init initialisiert einmalig eine RessourcenListe. Dies
+	 * geschieht durch den Aufruf der Methode queryRessourcenListe().
+	 */
 	@PostConstruct
 	private void init() {
 		if (listeRessourcen == null) {
@@ -81,6 +87,12 @@ public class RessourceListen {
 		}
 	}
 
+	/**
+	 * Die Methode queryRessourcenListe erstellt einen Datenbankzugriff und
+	 * liefert über ein Select Statement alle, in die Datenbank eingetragenen
+	 * Ressourcenobjekte zurück und speichert dieses Resultset in die Variable
+	 * listeRessourcen.
+	 */
 	@SuppressWarnings("unchecked")
 	public void queryRessourcenListe() {
 		EntityManager em = emf.createEntityManager();
@@ -91,10 +103,13 @@ public class RessourceListen {
 		if (listeRessourcen.size() == 0) {
 			listeRessourcen = new ArrayList<Ressource>();
 		}
-		
+
 	}
 
 	/**
+	 * Gettermethode für die Eigenschaft FilteredRessource. Wird benötigt um das
+	 * Filtern von Ressourcen auf XML-Ebene zu ermöglichen.
+	 * 
 	 * @return the filteredRessource
 	 */
 	public List<Ressource> getFilteredRessource() {
@@ -102,6 +117,9 @@ public class RessourceListen {
 	}
 
 	/**
+	 * Settermethode für die Eigenschaft FilteredRessource. Wird benötigt um das
+	 * Filtern von Ressourcen auf XML-Ebene zu ermöglichen.
+	 * 
 	 * @param filteredRessource
 	 *            the filteredRessource to set
 	 */
