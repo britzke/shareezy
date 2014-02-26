@@ -22,8 +22,9 @@
 				
 		<p:inputText id="email" placeholder="E-Mail"
 			value="#{registrierungBean.benutzer.email}" required="true"
-			feedback="true"/>
-			<p:message for="vorname"/>
+			feedback="true"><f:validator validatorId="emailAddressValidator" /></p:inputText>
+			<p:message for="vorname" value="#{customerController.customer.emailAddress}"/>
+	        
 			
 		<p:password id="kennwort1" placeholder="Kennwort" feedback="true"
 			promptLabel="Bitte geben Sie ihr Passwort ein"
@@ -40,6 +41,6 @@
 			action="#{registrierungBean.datensatzEinfügen}"
 			actionListener="#{registrierungBean.validiereKennwort}" update="grid" />
 	</p:panelGrid>
- <!-- 	<p:messages id="message" autoUpdate="true"/>  -->
+<p:messages id="message" autoUpdate="true"/> 
  	
 </h:form>

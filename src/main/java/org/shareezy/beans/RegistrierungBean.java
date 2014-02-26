@@ -23,6 +23,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.enterprise.context.RequestScoped;
@@ -31,6 +32,8 @@ import javax.faces.component.EditableValueHolder;
 import javax.faces.component.UIComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.FacesValidator;
+import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -48,6 +51,9 @@ import javax.servlet.ServletContext;
 
 import org.shareezy.entities.Benutzer;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
+import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector.Matcher;
+
 /**
  * Die Klasse RegestrieurungsBean stellt Methoden zur Verfügung die dazu genutzt
  * werden damit sich der Nutzer anmelden kann.
@@ -58,9 +64,31 @@ import org.shareezy.entities.Benutzer;
  */
 @RequestScoped
 @Named
-public class RegistrierungBean {
-
-	@Inject
+@FacesValidator(value = "emailAddressValidator")
+public class RegistrierungBean implements Validator  {
+	
+		@Override
+	    public void validate(FacesContext context, UIComponent component,
+	            Object value) throws ValidatorException {
+	        String email = String.valueOf(value);
+	        boolean valid = true;
+	        if (value == null) {
+	            valid = false;
+	        } else if (!email.contains("@")) {
+	            valid = false;
+	        } else if (!email.contains(".")) {
+	            valid = false;
+	        } else if (email.contains(" ")) {
+	            valid = false;
+	        }
+	        if (!valid) {
+	            FacesMessage message = new FacesMessage(
+	                    FacesMessage.SEVERITY_ERROR, "Invalid email address",
+	                    "The email address you entered is not valid.");
+	            throw new ValidatorException(message);}
+	        }
+	
+    @Inject
 	private EntityManagerFactory emf;
 
 	private Benutzer benutzer;
@@ -69,9 +97,12 @@ public class RegistrierungBean {
 	/**
 	 * Erzeugt eine neue RegistrierungBean. Initialisiert den Benutzer.
 	 */
+	
 	public RegistrierungBean() {
 		benutzer = new Benutzer();
 	}
+	
+	 
 
 	/**
 	 * Validiert, ob beide Kennworte übereinstimmen.
@@ -84,6 +115,7 @@ public class RegistrierungBean {
 	 *            Der Wert, der validiert werden soll
 	 * @throws ValidatorException
 	 */
+	
 	public void validiereKennwort(FacesContext ctx, UIComponent component,
 			Object value) throws ValidatorException {
 		String kennwort1 = (String) ((EditableValueHolder) component)
