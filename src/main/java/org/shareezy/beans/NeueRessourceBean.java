@@ -30,59 +30,53 @@ import org.shareezy.entities.Typ;
  * @version 12.12.2013
  */
 @Named("neueRessourcenBean")
-public class NeueRessourceBean implements Serializable{
+public class NeueRessourceBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Inject
 	private EntityManagerFactory emf;
 	@Inject
 	private Ressource ress;
-	
+
 	public EntityManager em;
 	@Inject
 	private Benutzer benutzer;
-	
+
 	private String beschreibung;
-	
+
 	private byte[] bild;
-	
+
 	private List<Buchung> buchungen;
-	
+
 	private Date einstellungsdatum;
-	
+
 	private Date enddatum;
-	
+
 	private List<Gruppe> gruppen;
-	
+
 	private String name;
-	
+
 	private int id;
-	
+
 	private Date startdatum;
-	
-	@Inject
+
 	private List<Typ> typOptionen;
-	
+
 	private Typ typ;
-	
-	
-public NeueRessourceBean() {
-		
-		
-		Typ einTyp = new Typ();
-		einTyp.setName("TypEins");
-		typOptionen.add(einTyp);
-		
-		
-		
-		
-		
+
+	public NeueRessourceBean() {
+
+		/**
+		 * Typ einTyp = new Typ(); einTyp.setName("TypEins");
+		 * typOptionen.add(einTyp);
+		 */
 	}
+
 	/**
 	 * Action-Routine für den View <code>neueRessource</code>. Wird
 	 * angesprochen, wenn der Benutzer die Schaltfläche <code>löschen</code>
-	 * anwähquery daten auslsenlt. Sorgt dafür, dass Ressourcen aus der Ressourcenliste gelöscht
-	 * werden können.
+	 * anwähquery daten auslsenlt. Sorgt dafür, dass Ressourcen aus der
+	 * Ressourcenliste gelöscht werden können.
 	 * 
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
@@ -96,8 +90,6 @@ public NeueRessourceBean() {
 		em.close();
 		return "RessourcenListen.xhtml";
 	}
-	
-	
 
 	/*
 	 * Action-Routine für den View <code>neueRessource</code>. Wird
@@ -127,16 +119,14 @@ public NeueRessourceBean() {
 		em.close();
 		return "RessourceListen.xhtml";
 	}
-	
-	
-	public void queryTypOptionen () {
+
+	public void queryTypOptionen() {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		Query query = em.createQuery("select r from Typ r");
 		typOptionen = query.getResultList();
 		em.getTransaction().commit();
-		
-	
+
 	}
 
 	public Benutzer getBenutzer() {
@@ -242,6 +232,5 @@ public NeueRessourceBean() {
 	public void setTypOptionen(List<Typ> typOptionen) {
 		this.typOptionen = typOptionen;
 	}
-	
 
 }
