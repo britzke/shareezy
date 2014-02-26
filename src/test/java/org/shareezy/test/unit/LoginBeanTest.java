@@ -262,7 +262,7 @@ public class LoginBeanTest {
 		Benutzer b;
 		b = new Benutzer();
 		b.setKurzname(TESTBENUTZER);
-		b.setKennwort(TESTKENNWORT);
+		b.setKennwortHash(TESTKENNWORT);
 		return b;
 	}
 
@@ -295,7 +295,7 @@ public class LoginBeanTest {
 
 				for (Benutzer b : benutzerList) {
 					if (b.getKurzname().equals(nameParameter)
-							&& b.getKennwort().equals(kennwortParameter)) {
+							&& b.getKennwortHash().equals(kennwortParameter)) {
 						antwort.add(b);
 					}
 				}
@@ -312,7 +312,7 @@ public class LoginBeanTest {
 		field.setAccessible(true);
 		// EntityManagerFactory in den Proband injizieren
 		field.set(proband, emf);
-		
+
 		field = clazz.getDeclaredField("benutzer");
 		field.setAccessible(true);
 		b = neuerBenutzerMitTestkurznameUndTestkennwort();
@@ -321,7 +321,7 @@ public class LoginBeanTest {
 
 	/**
 	 * Test method for {@link org.shareezy.beans.LoginBean#login()}. Testet, ob
-	 * <i>keine</i> Navigation zu einem anderen View eingeleitet wird. 
+	 * <i>keine</i> Navigation zu einem anderen View eingeleitet wird.
 	 */
 	@Test
 	public void testLogin() {
@@ -331,17 +331,17 @@ public class LoginBeanTest {
 		verify(emf).createEntityManager();
 		verify(em).createQuery(eq(QUERY_STRING));
 		verify(q).getResultList();
-		
+
 		verify(q).setParameter(eq("kurzname"), eq(TESTBENUTZER));
 		verify(q).setParameter(eq("kennwort"), eq(TESTKENNWORT));
 
 		verify(em).close();
 	}
-	
+
 	/**
-	 * Testet, dass die LoginBean ihre private Eigenschaft
-	 * boolean authenticated auf den Wert „true“ setzt, wenn in der Datenbank
-	 * ein Datensatz mit einem entsprechenden Benutzer vorhanden ist.
+	 * Testet, dass die LoginBean ihre private Eigenschaft boolean authenticated
+	 * auf den Wert „true“ setzt, wenn in der Datenbank ein Datensatz mit einem
+	 * entsprechenden Benutzer vorhanden ist.
 	 * 
 	 * @throws NoSuchFieldException
 	 *             Wenn keine Eigenschaft "authenticated" in der LoginBean
@@ -373,9 +373,9 @@ public class LoginBeanTest {
 	}
 
 	/**
-	 * Testet, dass die LoginBean ihre private Eigenschaft
-	 * boolean authenticated auf den Wert „false“ setzt, wenn in der Datenbank
-	 * ein Datensatz mit einem entsprechenden Benutzer nicht vorhanden ist.
+	 * Testet, dass die LoginBean ihre private Eigenschaft boolean authenticated
+	 * auf den Wert „false“ setzt, wenn in der Datenbank ein Datensatz mit einem
+	 * entsprechenden Benutzer nicht vorhanden ist.
 	 * 
 	 * @throws NoSuchFieldException
 	 *             Wenn keine Eigenschaft "authenticated" in der LoginBean
@@ -391,8 +391,8 @@ public class LoginBeanTest {
 		// falschen Benutzer in der LoginBean initialisieren
 		Benutzer wrongBenutzer = new Benutzer();
 		wrongBenutzer.setKurzname("falscher kurzname");
-		wrongBenutzer.setKennwort("falsches Kennwort");
-		
+		wrongBenutzer.setKennwortHash("falsches Kennwort");
+
 		Field benutzerField = proband.getClass().getDeclaredField("benutzer");
 		benutzerField.setAccessible(true);
 		benutzerField.set(proband, wrongBenutzer);

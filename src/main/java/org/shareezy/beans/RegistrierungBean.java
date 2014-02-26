@@ -19,9 +19,7 @@
  */
 package org.shareezy.beans;
 
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Properties;
 
@@ -59,6 +57,7 @@ import org.shareezy.entities.Benutzer;
 @RequestScoped
 @Named
 public class RegistrierungBean {
+	static final char[] HEX_DIGIT = "0123456789ABCDEF".toCharArray();
 
 	@Inject
 	private EntityManagerFactory emf;
@@ -125,12 +124,29 @@ public class RegistrierungBean {
 	 * @return null da kein Seitenwechsel stattfindet.
 	 */
 	public String datensatzEinfügen() {
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction et = em.getTransaction();
-		et.begin();
-		em.persist(benutzer);
-		et.commit();
-		em.close();
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+
+			byte[] bytesOfDigestSource = kennwort.getBytes("UTF-8");
+			byte[] digest = md.digest(bytesOfDigestSource);
+			benutzer.setKennwortHash(hexDigitString(digest));
+
+			String digestSource = "" + benutzer.getRegistration()
+					+ benutzer.getVorname() + benutzer.getNachname()
+					+ benutzer.getKurzname() + benutzer.getEmail();
+			bytesOfDigestSource = digestSource.getBytes("UTF-8");
+			digest = md.digest(bytesOfDigestSource);
+
+			benutzer.setValidationHash(hexDigitString(digest));
+			EntityManager em = emf.createEntityManager();
+			EntityTransaction et = em.getTransaction();
+			et.begin();
+			em.persist(benutzer);
+			et.commit();
+			em.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -159,8 +175,9 @@ public class RegistrierungBean {
 			message.setRecipients(Message.RecipientType.TO, addresses);
 			message.setSubject("[shareezy] Validierung der Registrierung");
 
+			// TODO check validationHash (nach ascii konvertieren)
 			String validationUrl = externalContext.getRequestPathInfo()
-					+ getMD5emailValidationHash();
+					+ benutzer.getValidationHash();
 
 			message.setText("Hallo,\r"
 					+ "auf dem Portal [shareezy] wurde eine Registrierung "
@@ -172,8 +189,7 @@ public class RegistrierungBean {
 					+ validationUrl + "\r\r" + "Mit freundlichem Gruß\r");
 
 			Transport.send(message);
-		} catch (MessagingException | UnsupportedEncodingException
-				| NoSuchAlgorithmException e) {
+		} catch (MessagingException e) {
 			FacesMessage message = new FacesMessage();
 			message.setSummary("Fehler beim Versenden der E-Mail zur Valitation");
 			message.setDetail(e.getLocalizedMessage());
@@ -184,28 +200,21 @@ public class RegistrierungBean {
 	}
 
 	/**
-	 * Erzeugt einen Hashwert zum Validieren der E-Mailadresse des Benutzers.
+	 * Konvertiert das angegebene Byte-Array in eine Zeichenkette mit
+	 * hexadezimalen Ziffern.
 	 * 
-	 * @return der Hashwert, der über das Internet an den Registrator versandt
-	 *         werden kann, ohne dass Dritte damit validiert werden können.
-	 * @throws UnsupportedEncodingException
-	 *             wenn das System die Kodierung UTF-8 nicht unterstützt
-	 *             (unwahrscheinlich)
-	 * @throws NoSuchAlgorithmException
-	 *             wenn das Systen den Digest-Algorithmus MD5 nicht unterstützt
-	 *             (unwahrscheinlich)
+	 * @param bytes
+	 *            das zu konvertierende Byte-Array
+	 * @return Hexadezimale Zeichenkette mit des Byte-Array
 	 */
-	private String getMD5emailValidationHash()
-			throws UnsupportedEncodingException, NoSuchAlgorithmException {
-		String digestSource = "" + benutzer.getRegistration()
-				+ benutzer.getVorname() + benutzer.getNachname()
-				+ benutzer.getKurzname() + benutzer.getEmail();
-		String result = null;
-		byte[] bytesOfDigestSource = digestSource.getBytes("UTF-8");
-		MessageDigest md = MessageDigest.getInstance("MD5");
-		byte[] digest = md.digest(bytesOfDigestSource);
-		result = new String(digest);
-		return result;
+	private String hexDigitString(byte[] bytes) {
+		char[] hexChars = new char[bytes.length * 2];
+		for (int j = 0; j < bytes.length; j++) {
+			int v = bytes[j] & 0xFF;
+			hexChars[j * 2] = HEX_DIGIT[v >>> 4];
+			hexChars[j * 2 + 1] = HEX_DIGIT[v & 0x0F];
+		}
+		return new String(hexChars);
 	}
 
 	/**

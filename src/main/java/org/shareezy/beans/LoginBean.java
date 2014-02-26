@@ -43,11 +43,11 @@ public class LoginBean {
 
 	@Inject
 	private EntityManagerFactory emf;
-	private Benutzer benutzer;
+	private final Benutzer benutzer;
 	private boolean authenticated;
-	
-	private String benutzername="";
-	private String kennwort ="";
+
+	private String benutzername = "";
+	private String kennwort = "";
 
 	public LoginBean() {
 		benutzer = new Benutzer();
@@ -81,11 +81,11 @@ public class LoginBean {
 		Query q = em
 				.createQuery("select b from Benutzer where kurzname= :kurzname and kennwort= :kennwort");
 		q.setParameter("kurzname", benutzer.getKurzname());
-		q.setParameter("kennwort", benutzer.getKennwort());
+		q.setParameter("kennwort", benutzer.getKennwortHash());
 		List<Benutzer> benutzerList = q.getResultList();
 		for (Benutzer b : benutzerList) {
 			if (b.getKurzname().equals(benutzer.getKurzname())
-					&& b.getKennwort().equals(benutzer.getKennwort())) {
+					&& b.getKennwortHash().equals(benutzer.getKennwortHash())) {
 				setAuthenticated(true);
 				break;
 			}
@@ -93,7 +93,7 @@ public class LoginBean {
 		em.close();
 		return null;
 	}
-	
+
 	// ++++++++++++++++ Getter & Setter +++++++++++++++++++++++
 	/**
 	 * @return the benutzername
@@ -103,7 +103,8 @@ public class LoginBean {
 	}
 
 	/**
-	 * @param benutzername the benutzername to set
+	 * @param benutzername
+	 *            the benutzername to set
 	 */
 	public void setBenutzername(String benutzername) {
 		this.benutzername = benutzername;
@@ -117,7 +118,8 @@ public class LoginBean {
 	}
 
 	/**
-	 * @param kennwort the kennwort to set
+	 * @param kennwort
+	 *            the kennwort to set
 	 */
 	public void setKennwort(String kennwort) {
 		this.kennwort = kennwort;

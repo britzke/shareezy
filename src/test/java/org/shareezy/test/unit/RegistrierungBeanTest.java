@@ -90,6 +90,7 @@ public class RegistrierungBeanTest {
 		when(em.getTransaction()).thenReturn(et);
 
 		proband = new RegistrierungBean();
+		proband.setKennwort("secret");
 
 		Class<? extends RegistrierungBean> clazz = proband.getClass();
 		Field field = clazz.getDeclaredField("emf");
