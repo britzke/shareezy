@@ -9,6 +9,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.Buchung;
@@ -29,47 +30,53 @@ import org.shareezy.entities.Typ;
  * @version 12.12.2013
  */
 @Named("neueRessourcenBean")
-public class NeueRessourceBean implements Serializable{
+public class NeueRessourceBean implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Inject
 	private EntityManagerFactory emf;
 	@Inject
 	private Ressource ress;
-	
+
 	public EntityManager em;
 	@Inject
 	private Benutzer benutzer;
-	
+
 	private String beschreibung;
-	
+
 	private byte[] bild;
-	
+
 	private List<Buchung> buchungen;
-	
+
 	private Date einstellungsdatum;
-	
+
 	private Date enddatum;
-	
+
 	private List<Gruppe> gruppen;
-	
+
 	private String name;
-	
+
 	private int id;
-	
+
 	private Date startdatum;
-	
+
+	private List<Typ> typOptionen;
+
 	private Typ typ;
-	
-	private List<String> typOptionen;
+
+	public NeueRessourceBean() {
+
+		/**
+		 * Typ einTyp = new Typ(); einTyp.setName("TypEins");
+		 * typOptionen.add(einTyp);
+		 */
+	}
+
 	/**
 	 * Action-Routine für den View <code>neueRessource</code>. Wird
 	 * angesprochen, wenn der Benutzer die Schaltfläche <code>löschen</code>
-	 * anwählt. Sorgt dafür, dass Ressourcen aus der Ressourcenliste gelöscht
-	 * werden können.
+	 * anwähquery daten auslsenlt. Sorgt dafür, dass Ressourcen aus der
+	 * Ressourcenliste gelöscht werden können.
 	 * 
 	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
@@ -111,6 +118,15 @@ public class NeueRessourceBean implements Serializable{
 		em.getTransaction().commit();
 		em.close();
 		return "RessourceListen.xhtml";
+	}
+
+	public void queryTypOptionen() {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Query query = em.createQuery("select r from Typ r");
+		typOptionen = query.getResultList();
+		em.getTransaction().commit();
+
 	}
 
 	public Benutzer getBenutzer() {
@@ -209,11 +225,12 @@ public class NeueRessourceBean implements Serializable{
 		this.ress = ress;
 	}
 
-	public List<String> getTypOptionen() {
+	public List<Typ> getTypOptionen() {
 		return typOptionen;
 	}
 
-	public void setTypOptionen(List<String> typOptionen) {
+	public void setTypOptionen(List<Typ> typOptionen) {
 		this.typOptionen = typOptionen;
 	}
+
 }

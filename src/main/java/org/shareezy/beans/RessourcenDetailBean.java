@@ -25,19 +25,11 @@ import java.awt.Image;
 //import javax.persistence.Query;
 //import org.shareezy.entities.Ressource;
 
-
-
-
-
-
-import java.util.List;
-
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
+
 import org.shareezy.entities.Ressource;
 
 /**
@@ -51,38 +43,37 @@ import org.shareezy.entities.Ressource;
 @Named
 @RequestScoped
 public class RessourcenDetailBean {
-	
+
 	private EntityManagerFactory emf;
 	@Inject
 	private Ressource ressource;
 	private Image pic;
 	private String summary;
-	
+
 	/**
-	 * erzeugt eine neue RessourcenDetailBean
-	 * initialisiert Ressource
+	 * erzeugt eine neue RessourcenDetailBean initialisiert Ressource
 	 */
 	public RessourcenDetailBean() {
 	}
-	
+
 	/**
 	 * liest aus der Entität "Ressource" der Datenbank einen Datensatz aus
 	 * 
 	 */
 	public String selectDatensatz() {
-		EntityManager em = emf.createEntityManager();
-		ressource.getName();
-		ressource.getBeschreibung();
-		ressource.getBild();
-		Query q = em.createQuery("select re from Ressource re");
-		@SuppressWarnings({ "unchecked", "unused" })
-		List<Ressource> ressourceList = q.getResultList();
-		//for (Ressource b : ressourceList) {
-		//}
-		
+		// EntityManager em = emf.createEntityManager();
+		// ressource.getName();
+		// ressource.getBeschreibung();
+		// ressource.getBild();
+		// Query q = em.createQuery("select re from Ressource re");
+		// @SuppressWarnings({ "unchecked", "unused" })
+		// List<Ressource> ressourceList = q.getResultList();
+		// for (Ressource b : ressourceList) {
+		// }
+
 		return null;
 	}
-	
+
 	/**
 	 * Um den TimePicker zu oeffnen wird beim Klick auf den Buchungsbutton
 	 * (Detailressourcenansicht) ausgefuehrt
