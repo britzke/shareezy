@@ -52,8 +52,9 @@ public class GruppenzuordnungBean {
 	public EntityManager em;
 	private boolean authenticated;
 	private Benutzer benutzer;
+	private Gruppe gruppe;
 	private EntityTransaction tr;
-	
+
 	public GruppenzuordnungBean() {
 		benutzer = new Benutzer();
 	}
@@ -72,8 +73,7 @@ public class GruppenzuordnungBean {
 	 */
 	@SuppressWarnings("unchecked")
 	public String mitgliederabfragen() {
-		
-		Gruppe gruppe = new Gruppe();
+
 		EntityManager em = emf.createEntityManager();
 		tr = em.getTransaction();
 		tr.begin();
@@ -84,18 +84,19 @@ public class GruppenzuordnungBean {
 		/*
 		 * Query qr = em.createQuery(
 		 * "SELECT a.ID FROM Ressource a, b.ID FROM Gruppe b FROM Ressource b "
-		 * );
-		 * SELECT shareezy.RESSORCEN.ID, shareezy.GRUPPEN.ID FROM shareezy.VERFÜGBARKEITEN INNER JOIN shareezy.VERFÜGBARKEITEN ON shareezy.GRUPPEN.ID=shareezy.RESSORCEN.ID;
+		 * ); SELECT shareezy.RESSORCEN.ID, shareezy.GRUPPEN.ID FROM
+		 * shareezy.VERFÜGBARKEITEN INNER JOIN shareezy.VERFÜGBARKEITEN ON
+		 * shareezy.GRUPPEN.ID=shareezy.RESSORCEN.ID;
 		 */
 		Query qr = em
 				.createQuery("SELECT shareezy.RESSORCEN.ID, shareezy.GRUPPEN.ID FROM shareezy.VERFÜGBARKEITEN WHERE shareezy.GRUPPEN.ID=shareezy.RESSORCEN.ID;");
-		@SuppressWarnings({"unused" })
+		@SuppressWarnings({ "unused" })
 		List<Ressource> abgleich = qr.getResultList();
 		res = (List<Ressource>) qr;
 		System.out.println(qr);
 		tr.commit();
-		
-		//abgleich.add(index, element);
+
+		// abgleich.add(index, element);
 		/*
 		 * Query qr2 = em.createQuery("SELECT b FROM Gruppe b"); List<Gruppe>
 		 * abgleich2 = qr.getResultList();
