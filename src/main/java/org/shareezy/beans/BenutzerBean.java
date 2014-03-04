@@ -66,6 +66,7 @@ public class BenutzerBean {
 
 	private Benutzer benutzer;
 	private String kennwort;
+	private String kennwortAlt;
 
 	/**
 	 * Erzeugt eine neue RegistrierungBean. Initialisiert den Benutzer.
@@ -296,5 +297,22 @@ public class BenutzerBean {
 	 */
 	public void setKennwort(String kennwort) {
 		this.kennwort = kennwort;
+	}
+
+	/**
+	 * Antwortet mit dem Wert des kennwortAlt
+	 * 
+	 * @return the kennwortAlt
+	 */
+	public String getKennwortAlt() {
+		return kennwortAlt;
+	}
+
+	/**
+	 * @param kennwortAlt
+	 *            the kennwortAlt to set
+	 */
+	public void setKennwortAlt(String kennwortAlt) {
+		this.kennwortAlt = kennwortAlt;
 	}
 }
