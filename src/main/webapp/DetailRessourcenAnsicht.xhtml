@@ -25,18 +25,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head></h:head>
-<h:body>
 	<h:form>
-		<h3>Ressource</h3>
-		<h:outputText value="#{ressourcenDetailBean.ressource}"/>
-		<h:outputText value="#{aktuelleressource.ressource.name}"/>
-		<h:outputText value="#{aktuelleressource.ressource.beschreibung}"/>
-		<p><input type="text" readonly="readonly" value="#{aktuelleressource.ressource.beschreibung};"/></p>
-		<p><h:outputText binding="#{aktuelleressource.ressource.beschreibung}"></h:outputText></p>
-		<p><img src="#{aktuelleressource.ressource.bild}"/></p>
+		<h:outputText value="#{aktuelleRessourceBean.ressource.name}"/>
+		<h:outputText value="#{aktuelleRessourceBean.ressource.startdatum}"/>
+        <p:graphicImage value="{aktuelleRessourceBean.ressource.bild}" />  
 	</h:form>
-</h:body>
 </html>
