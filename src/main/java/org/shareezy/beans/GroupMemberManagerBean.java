@@ -59,8 +59,7 @@ public class GroupMemberManagerBean implements Serializable{
 	private EntityTransaction t;
 	private Benutzer user = new Benutzer();
 	private BenutzerGruppe userGrp = new BenutzerGruppe();
-	private List<Ressource> grpUserListe;
-	private List<Ressource> grpResListe;
+	private List<Ressource> grpDataListe;
 	private List<Ressource> grpAnfListe;
 
 	/**
@@ -168,52 +167,26 @@ public class GroupMemberManagerBean implements Serializable{
 	 * getGrpRes hol sich aus der Datenbank die Ressourcen der jeweiligen Gruppe und
 	 * listet diese in der View
 	 */
-	public void getGrpRes(){
+	public void getGrpData(){
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		Query q = em.createQuery("select r from Gruppe r");
-		grpResListe = q.getResultList();
+		grpDataListe = q.getResultList();
 		em.getTransaction().commit();
-	}
-	
-	/**
-	 * getGrpUser hol sich aus der Datenbank die Benutzer der jeweiligen Gruppe und
-	 * listet diese in der View
-	 */
-	public void getGrpUser(){
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		Query q = em.createQuery("select r from Gruppe r");
-		grpUserListe = q.getResultList();
-		em.getTransaction().commit();
-	}
-
-	/**
-	 * @return the grpUserListe
-	 */
-	public List<Ressource> getGrpUserListe() {
-		return grpUserListe;
-	}
-
-	/**
-	 * @param grpUserListe the grpUserListe to set
-	 */
-	public void setGrpUserListe(List<Ressource> grpUserListe) {
-		this.grpUserListe = grpUserListe;
 	}
 
 	/**
 	 * @return the grpResListe
 	 */
-	public List<Ressource> getGrpResListe() {
-		return grpResListe;
+	public List<Ressource> getGrpDataListe() {
+		return grpDataListe;
 	}
 
 	/**
 	 * @param grpResListe the grpResListe to set
 	 */
-	public void setGrpResListe(List<Ressource> grpResListe) {
-		this.grpResListe = grpResListe;
+	public void setGrpDataListe(List<Ressource> grpDataListe) {
+		this.grpDataListe = grpDataListe;
 	}
 
 	/**
