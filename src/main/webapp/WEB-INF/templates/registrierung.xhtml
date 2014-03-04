@@ -5,44 +5,49 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<style>
-.regGrid tr, .regGrid td {border: none;}
+	<style>
+.regGrid tr,.regGrid td {
+	border: none;
+}
 </style>
+
 	<p:panelGrid id="grid" columns="2" styleClass="regGrid">
 		<p:inputText id="vorname" placeholder="Vorname"
-			value="#{benutzerBean.benutzer.vorname}"/>
-			<p:message for="vorname"/>
-			
+			value="#{benutzerBean.benutzer.vorname}" />
+		<p:message for="vorname" />
+
 		<p:inputText id="nachname" placeholder="Nachname"
-			value="#{benutzerBean.benutzer.nachname}"/>
-			<p:message for="nachname"/>
-			
+			value="#{benutzerBean.benutzer.nachname}" />
+		<p:message for="nachname" />
+
 		<p:inputText id="benutzername" placeholder="Benutzername"
 			value="#{benutzerBean.benutzer.kurzname}" required="true"
-			feedback="true"/>
-			<p:message for="benutzername"/>
-				
+			feedback="true" />
+		<p:message for="benutzername" display="default"
+			showSummary="Geben sie Ihren benutzernamen an" showDetail="abc" />
+
 		<p:inputText id="email" placeholder="E-Mail"
-			value="#{benutzerBean.benutzer.email}" required="true"
-			feedback="true"/>
-			<p:message for="vorname" value="#{customerController.customer.emailAddress}"/>
-	        
-			
+			value="#{benutzerBean.benutzer.email}" feedback="true"
+			validator="#{benutzerBean.validateEmail}" required="true">
+			<f:validateRegex pattern="[-0-9a-zA-Z.+_]+@[a-z]+\.[a-z]{2,4}" />
+		</p:inputText>
+		<p:message for="email"
+			value="#{customerController.customer.emailAddress}" />
+
 		<p:password id="kennwort1" placeholder="Kennwort" feedback="true"
 			promptLabel="Bitte geben Sie ihr Passwort ein"
 			value="#{benutzerBean.kennwort}"
-			validator="#{benutzerBean.validiereKennwort}" required="true"/>
-			<p:message for="kennwort1"/>
-			
+			validator="#{benutzerBean.validiereKennwort}" required="true" />
+		<p:message for="kennwort1" />
+
 		<p:password id="kennwort2" placeholder="Kennwort (wiederholen)"
-			promptLabel="Bitte wiederholen Sie ihr Passwort"
-			required="true"/>
-		<p:message for="kennwort2"/>
-		
+			promptLabel="Bitte wiederholen Sie ihr Passwort" required="true" />
+		<p:message for="kennwort2" />
+
 		<p:commandButton value="absenden"
 			action="#{benutzerBean.datensatzEinfügen}"
 			actionListener="#{benutzerBean.validiereKennwort}" update="grid" />
 	</p:panelGrid>
-<p:messages id="message" autoUpdate="true"/> 
- 	
+	<p:messages id="message" autoUpdate="true" />
+
 </h:form>
