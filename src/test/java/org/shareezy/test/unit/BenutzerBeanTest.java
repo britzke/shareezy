@@ -65,7 +65,7 @@ import org.shareezy.entities.Benutzer;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ Session.class, Transport.class })
-public class RegistrierungBeanTest {
+public class BenutzerBeanTest {
 
 	private RegistrierungBean proband;
 	private EntityManagerFactory emf;
