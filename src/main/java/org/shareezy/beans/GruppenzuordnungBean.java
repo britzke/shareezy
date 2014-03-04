@@ -46,8 +46,6 @@ import org.shareezy.entities.Ressource;
 @Named("GruppenzuordnungBean")
 public class GruppenzuordnungBean {
 
-	private List<Ressource> res;
-	private List<Gruppe> grp;
 	private EntityManagerFactory emf;
 	public EntityManager em;
 	private boolean authenticated;
@@ -91,9 +89,7 @@ public class GruppenzuordnungBean {
 		Query qr = em
 				.createQuery("SELECT shareezy.RESSORCEN.ID, shareezy.GRUPPEN.ID FROM shareezy.VERFÜGBARKEITEN WHERE shareezy.GRUPPEN.ID=shareezy.RESSORCEN.ID;");
 		@SuppressWarnings({ "unused" })
-		List<Ressource> abgleich = qr.getResultList();
-		res = (List<Ressource>) qr;
-		System.out.println(qr);
+		List<Ressource> res = qr.getResultList();
 		tr.commit();
 
 		// abgleich.add(index, element);

@@ -28,6 +28,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -36,8 +37,9 @@ import javax.persistence.Query;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.shareezy.beans.GroupMemberManagerBean;
 import org.shareezy.beans.GruppenzuordnungBean;
+import org.shareezy.entities.Gruppe;
+import org.shareezy.entities.Ressource;
  
 /**
  * Testet die GruppenzuordnungsBean.
@@ -51,6 +53,9 @@ public class GruppenzuordnungBeanTest {
 	private EntityManager em;
 	private EntityManagerFactory emf;
 	private GruppenzuordnungBean proband;
+	private List<Ressource> res;
+	private List<Gruppe> grp;
+	
 	private String qstring = "SELECT shareezy.RESSORCEN.ID, shareezy.GRUPPEN.ID FROM shareezy.VERFÜGBARKEITEN WHERE shareezy.GRUPPEN.ID=shareezy.RESSORCEN.ID";
 	private Query query;
 
@@ -87,8 +92,9 @@ public class GruppenzuordnungBeanTest {
 	 */
 	@Test
 	public void testMitgliederabfragen() {
-		String qstring = proband.mitgliederabfragen();
-		assertNull(qstring);
+		String antwort = proband.mitgliederabfragen();
+		assertNull("die Antwort muss null sein", antwort);
+		
 		verify(emf).createEntityManager();
 		verify(em).createQuery(eq(qstring));
 		verify(em).close();
