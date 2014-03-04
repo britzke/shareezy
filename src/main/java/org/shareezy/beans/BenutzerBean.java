@@ -59,8 +59,7 @@ import org.shareezy.entities.Benutzer;
 public class BenutzerBean {
 	static final char[] HEX_DIGIT = "0123456789ABCDEF".toCharArray();
 
-
-//@FacesValidator(value = "emailAddressValidator")
+	// @FacesValidator(value = "emailAddressValidator")
 
 	@Inject
 	private EntityManagerFactory emf;
@@ -93,7 +92,7 @@ public class BenutzerBean {
 		UIComponent parent = component.getParent();
 		List<UIComponent> siblings = parent.getChildren();
 		for (UIComponent sibling : siblings) {
-			
+
 			if (sibling.getId().equals("kennwort2")) {
 				String kennwort2 = (String) ((EditableValueHolder) sibling)
 						.getSubmittedValue();
@@ -104,17 +103,46 @@ public class BenutzerBean {
 					throw new ValidatorException(message);
 				}
 			}
-			
+
 			if (sibling.getId().equals("kennwort3")) {
 				String kennwort3 = (String) ((EditableValueHolder) sibling)
 						.getSubmittedValue();
 				if (kennwort1.equals(kennwort3)) {
 					FacesMessage message = new FacesMessage(
-							"Das neue kennwort sollte nicht mit dem allten Kennwort übereinstimmen. " + value
-									+ " " + kennwort3);
+							"Das neue kennwort sollte nicht mit dem allten Kennwort übereinstimmen. "
+									+ value + " " + kennwort3);
 					throw new ValidatorException(message);
 				}
 			}
+		}
+	}
+
+	/**
+	 * Validiert die E-Mail des Benutzers
+	 * 
+	 * @param context
+	 * @param component
+	 * @param value
+	 * @throws ValidatorException
+	 */
+	public void validateEmail(FacesContext context, UIComponent component,
+			Object value) throws ValidatorException {
+		String email = String.valueOf(value);
+		boolean valid = true;
+		if (value == null) {
+			valid = false;
+		} else if (!email.contains("@")) {
+			valid = false;
+		} else if (!email.contains(".")) {
+			valid = false;
+		} else if (email.contains(" ")) {
+			valid = false;
+		}
+		if (!valid) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "Invalid email address",
+					"The email address you entered is not valid.");
+			throw new ValidatorException(message);
 		}
 	}
 

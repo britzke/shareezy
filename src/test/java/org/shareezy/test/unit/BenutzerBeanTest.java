@@ -54,7 +54,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.shareezy.beans.RegistrierungBean;
+import org.shareezy.beans.BenutzerBean;
 import org.shareezy.entities.Benutzer;
 
 /**
@@ -65,9 +65,9 @@ import org.shareezy.entities.Benutzer;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ Session.class, Transport.class })
-public class RegistrierungBeanTest {
+public class BenutzerBeanTest {
 
-	private RegistrierungBean proband;
+	private BenutzerBean proband;
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	private EntityTransaction et;
@@ -89,10 +89,10 @@ public class RegistrierungBeanTest {
 		et = mock(EntityTransaction.class);
 		when(em.getTransaction()).thenReturn(et);
 
-		proband = new RegistrierungBean();
+		proband = new BenutzerBean();
 		proband.setKennwort("secret");
 
-		Class<? extends RegistrierungBean> clazz = proband.getClass();
+		Class<? extends BenutzerBean> clazz = proband.getClass();
 		Field field = clazz.getDeclaredField("emf");
 		field.setAccessible(true);
 		field.set(proband, emf);

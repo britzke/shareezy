@@ -4,31 +4,34 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-	<p:panelGrid id="grid" columns="2">
+
+<style>
+.regGrid tr, .regGrid td {border: none;}
+</style>
+	<p:panelGrid id="grid" columns="2" styleClass="regGrid">
 		<p:inputText id="vorname" placeholder="Vorname"
-			value="#{registrierungBean.benutzer.vorname}"/>
+			value="#{benutzerBean.benutzer.vorname}"/>
 			<p:message for="vorname"/>
 			
 		<p:inputText id="nachname" placeholder="Nachname"
-			value="#{registrierungBean.benutzer.nachname}"/>
+			value="#{benutzerBean.benutzer.nachname}"/>
 			<p:message for="nachname"/>
 			
 		<p:inputText id="benutzername" placeholder="Benutzername"
-			value="#{registrierungBean.benutzer.kurzname}" required="true"
+			value="#{benutzerBean.benutzer.kurzname}" required="true"
 			feedback="true"/>
-			<p:message for="benutzername" display="default"
-				showSummary="Geben sie Ihren benutzernamen an" showDetail="abc" />
+			<p:message for="benutzername"/>
 				
 		<p:inputText id="email" placeholder="E-Mail"
-			value="#{registrierungBean.benutzer.email}" required="true"
+			value="#{benutzerBean.benutzer.email}" required="true"
 			feedback="true"/>
 			<p:message for="vorname" value="#{customerController.customer.emailAddress}"/>
 	        
 			
 		<p:password id="kennwort1" placeholder="Kennwort" feedback="true"
 			promptLabel="Bitte geben Sie ihr Passwort ein"
-			value="#{registrierungBean.kennwort}"
-			validator="#{registrierungBean.validiereKennwort}" required="true"/>
+			value="#{benutzerBean.kennwort}"
+			validator="#{benutzerBean.validiereKennwort}" required="true"/>
 			<p:message for="kennwort1"/>
 			
 		<p:password id="kennwort2" placeholder="Kennwort (wiederholen)"
@@ -37,8 +40,8 @@
 		<p:message for="kennwort2"/>
 		
 		<p:commandButton value="absenden"
-			action="#{registrierungBean.datensatzEinfügen}"
-			actionListener="#{registrierungBean.validiereKennwort}" update="grid" />
+			action="#{benutzerBean.datensatzEinfügen}"
+			actionListener="#{benutzerBean.validiereKennwort}" update="grid" />
 	</p:panelGrid>
 <p:messages id="message" autoUpdate="true"/> 
  	
