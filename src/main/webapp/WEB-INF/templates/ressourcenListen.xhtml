@@ -41,9 +41,11 @@
 			</h:outputText>
 		</p:column>
 		<p:column headerText="Detailansicht">
-			<p:button icon="ui-icon-search" ajax="false"
-				outcome="DetailRessourcenAnsicht.xhtml" />
+			<p:commandButton
+				action="#{ressourceListen.ressourceClicked(ressource)}"
+				icon="ui-icon-search" ajax="false" />
 		</p:column>
+
 	</p:dataTable>
 </h:form>
 </html>
