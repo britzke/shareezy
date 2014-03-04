@@ -6,21 +6,21 @@
 	xmlns:p="http://primefaces.org/ui">
 	<p:panelGrid id="grid" columns="2">
 		<p:inputText id="vorname" placeholder="Vorname"
-			value="#{registrierungBean.benutzer.vorname}"/>
+			value="#{benutzerBean.benutzer.vorname}"/>
 			<p:message for="vorname"/>
 			
 		<p:inputText id="nachname" placeholder="Nachname"
-			value="#{registrierungBean.benutzer.nachname}"/>
+			value="#{benutzerBean.benutzer.nachname}"/>
 			<p:message for="nachname"/>
 			
 		<p:inputText id="benutzername" placeholder="Benutzername"
-			value="#{registrierungBean.benutzer.kurzname}" required="true"
+			value="#{benutzerBean.benutzer.kurzname}" required="true"
 			feedback="true"/>
 			<p:message for="benutzername" display="default"
 				showSummary="Geben sie Ihren benutzernamen an" showDetail="abc" />
 				
 		<p:inputText id="email" placeholder="E-Mail"
-			value="#{registrierungBean.benutzer.email}" required="true"
+			value="#{benutzerBean.benutzer.email}" required="true"
 			feedback="true"/>
 			<p:message for="vorname" value="#{customerController.customer.emailAddress}"/>
 	        
