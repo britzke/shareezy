@@ -13,7 +13,7 @@
 			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
 			<title>Shareezy - Groups</title>
 		</f:facet>
-
+<!--
 		<style type="text/css">
 .nestedUnit {
 	border: 0px none !important;
@@ -66,6 +66,7 @@ form .dialogH2 {
     border-style: none;
 }
 </style>
+ -->
 	</h:head>
 
 	<h:body>
@@ -76,7 +77,7 @@ form .dialogH2 {
 					onclick="PF('neueGruppeDialog').show()" type="button"
 					icon="ui-icon-document" />
 			</p:layoutUnit>
-			<p:layoutUnit position="west" size="200" resizable="true"
+			<p:layoutUnit id="westGrps" position="west" size="200" resizable="true"
 				collapsible="true" header="Meine Gruppen">
 				<h:form>
 
@@ -121,7 +122,7 @@ form .dialogH2 {
 										value="#{groupManager.groupRessourcen}">
 										<p:column headerText="Gruppen Ressourcen" sortBy="ressourcen">
 											<!-- Ressourcen auflisten -->
-											<h:outputText value="#{ressourcen.getName()}" />
+											<h:outputText value="#{ressourcen.getName()}"  />
 										</p:column>
 
 										<p:column>
@@ -287,7 +288,10 @@ form .dialogH2 {
 					actionListener="#{memberManager.sendRequest}" update=":grpView"
 					 styleClass="blueButton" />
 				<p:commandButton value="Später" ajax="false"
-					onclick="PF('inviteMembersDlg').hide()" type="button" />
+					onclick="PF('inviteMembersDlg').hide()" type="button" >
+					
+					<f:ajax render="westGrps"/>
+					</p:commandButton>
 
 			</h:form>
 

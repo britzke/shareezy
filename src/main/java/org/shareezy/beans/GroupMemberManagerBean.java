@@ -18,16 +18,20 @@
 package org.shareezy.beans;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.BenutzerGruppe;
+import org.shareezy.entities.Ressource;
 
 /**
  * Beschreibung von GroupMemberManagerBean
@@ -44,7 +48,6 @@ import org.shareezy.entities.BenutzerGruppe;
  */
 @SessionScoped
 @Named("memberManager")
-@ManagedBean
 public class GroupMemberManagerBean implements Serializable{
 
 	/**
@@ -56,6 +59,9 @@ public class GroupMemberManagerBean implements Serializable{
 	private EntityTransaction t;
 	private Benutzer user = new Benutzer();
 	private BenutzerGruppe userGrp = new BenutzerGruppe();
+	private List<Ressource> grpUserListe;
+	private List<Ressource> grpResListe;
+	private List<Ressource> grpAnfListe;
 
 	/**
 	 * Die Methode AddUser dient dazu dem Benutzer eine Gruppe zuzuweisen
@@ -145,7 +151,82 @@ public class GroupMemberManagerBean implements Serializable{
 		em.persist(userGrp);
 		t.commit();
 		em.close();
-		//System.out.println("RequestSent");
 		return null;
+	}
+	/**
+	 * getGrpAnf hol sich aus der Datenbank die Anfragen der jeweiligen Gruppe und
+	 * listet diese in der View
+	 */
+	public void getGrpAnf(){
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Query q = em.createQuery("select r from BenutzerGruppe r");
+		grpAnfListe = q.getResultList();
+		em.getTransaction().commit();
+	}
+	/**
+	 * getGrpRes hol sich aus der Datenbank die Ressourcen der jeweiligen Gruppe und
+	 * listet diese in der View
+	 */
+	public void getGrpRes(){
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Query q = em.createQuery("select r from Gruppe r");
+		grpResListe = q.getResultList();
+		em.getTransaction().commit();
+	}
+	
+	/**
+	 * getGrpUser hol sich aus der Datenbank die Benutzer der jeweiligen Gruppe und
+	 * listet diese in der View
+	 */
+	public void getGrpUser(){
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Query q = em.createQuery("select r from Gruppe r");
+		grpUserListe = q.getResultList();
+		em.getTransaction().commit();
+	}
+
+	/**
+	 * @return the grpUserListe
+	 */
+	public List<Ressource> getGrpUserListe() {
+		return grpUserListe;
+	}
+
+	/**
+	 * @param grpUserListe the grpUserListe to set
+	 */
+	public void setGrpUserListe(List<Ressource> grpUserListe) {
+		this.grpUserListe = grpUserListe;
+	}
+
+	/**
+	 * @return the grpResListe
+	 */
+	public List<Ressource> getGrpResListe() {
+		return grpResListe;
+	}
+
+	/**
+	 * @param grpResListe the grpResListe to set
+	 */
+	public void setGrpResListe(List<Ressource> grpResListe) {
+		this.grpResListe = grpResListe;
+	}
+
+	/**
+	 * @return the grpAnfListe
+	 */
+	public List<Ressource> getGrpAnfListe() {
+		return grpAnfListe;
+	}
+
+	/**
+	 * @param grpAnfListe the grpAnfListe to set
+	 */
+	public void setGrpAnfListe(List<Ressource> grpAnfListe) {
+		this.grpAnfListe = grpAnfListe;
 	}
 }
