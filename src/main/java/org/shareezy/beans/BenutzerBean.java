@@ -22,8 +22,6 @@ package org.shareezy.beans;
 import java.security.MessageDigest;
 import java.util.List;
 import java.util.Properties;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -58,7 +56,6 @@ import org.shareezy.entities.Benutzer;
  */
 @RequestScoped
 @Named
-
 public class BenutzerBean {
 	static final char[] HEX_DIGIT = "0123456789ABCDEF".toCharArray();
 
@@ -71,10 +68,9 @@ public class BenutzerBean {
 	private String kennwort;
 	private String kennwortAlt;
 
-	private static final String EMAIL_PATTERN = 
-			"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-	
+
 	/**
 	 * Erzeugt eine neue RegistrierungBean. Initialisiert den Benutzer.
 	 */
@@ -93,7 +89,7 @@ public class BenutzerBean {
 	 *            Der Wert, der validiert werden soll
 	 * @throws ValidatorException
 	 */
-	
+
 	public void validiereKennwort(FacesContext ctx, UIComponent component,
 			Object value) throws ValidatorException {
 		String kennwort1 = (String) ((EditableValueHolder) component)
@@ -134,22 +130,21 @@ public class BenutzerBean {
 	 * @param value
 	 * @throws ValidatorException
 	 */
-	
-	
+
 	public void validateEmail(FacesContext context, UIComponent component,
-		Object value) throws ValidatorException {
+			Object value) throws ValidatorException {
 		String email = String.valueOf(value);
 		boolean valid = true;
-		
-//		if (value == null) {
-//			valid = false;
-//		} else if (!email.contains("@")) {
-//			valid = false;
-//		} else if (!email.contains(".")) {
-//			valid = false;
-//		} else if (email.contains(" ")) {
-//			valid = false;
-//		}
+
+		// if (value == null) {
+		// valid = false;
+		// } else if (!email.contains("@")) {
+		// valid = false;
+		// } else if (!email.contains(".")) {
+		// valid = false;
+		// } else if (email.contains(" ")) {
+		// valid = false;
+		// }
 		if (!valid) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, "Invalid email address",
