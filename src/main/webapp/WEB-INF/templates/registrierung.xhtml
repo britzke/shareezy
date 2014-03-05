@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 <h:form xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
@@ -34,15 +33,15 @@
 		<p:message for="email"
 			value="#{customerController.customer.emailAddress}" />
 
-		<p:password id="kennwort1" placeholder="Kennwort" feedback="true"
+		<p:password id="kennwort" placeholder="Kennwort" feedback="true"
 			promptLabel="Bitte geben Sie ihr Passwort ein"
 			value="#{benutzerBean.kennwort}"
 			validator="#{benutzerBean.validiereKennwort}" required="true" />
-		<p:message for="kennwort1" />
+		<p:message for="kennwort" />
 
-		<p:password id="kennwort2" placeholder="Kennwort (wiederholen)"
+		<p:password id="kennwortWiederholung" placeholder="Kennwort (wiederholen)"
 			promptLabel="Bitte wiederholen Sie ihr Passwort" required="true" />
-		<p:message for="kennwort2" />
+		<p:message for="kennwortWiederholung" />
 
 		<p:commandButton value="absenden"
 			action="#{benutzerBean.datensatzEinfügen}"
