@@ -1,30 +1,53 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE HTML>
 <h:form xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-	<f:phaseListener type="org.shareezy.DebugPhaseListener" />
-	<p:panelGrid columns="1">
-		<p:inputText placeholder="Vorname"
-			value="#{registrierungBean.benutzer.vorname}" />
-		<p:inputText placeholder="Nachname"
-			value="#{registrierungBean.benutzer.nachname}" />
-		<p:inputText placeholder="Benutzername"
-			value="#{registrierungBean.benutzer.kurzname}" required="true"
+
+	<style>
+.regGrid tr,.regGrid td {
+	border: none;
+}
+</style>
+
+	<p:panelGrid id="grid" columns="2" styleClass="regGrid">
+		<p:inputText id="vorname" placeholder="Vorname"
+			value="#{benutzerBean.benutzer.vorname}" />
+		<p:message for="vorname" />
+
+		<p:inputText id="nachname" placeholder="Nachname"
+			value="#{benutzerBean.benutzer.nachname}" />
+		<p:message for="nachname" />
+
+		<p:inputText id="benutzername" placeholder="Benutzername"
+			value="#{benutzerBean.benutzer.kurzname}" required="true"
 			feedback="true" />
-		<p:inputText placeholder="E-Mail"
-			value="#{registrierungBean.benutzer.email}" required="true"
-			feedback="true" />
-		<p:password placeholder="Kennwort" feedback="true"
+		<p:message for="benutzername" display="default"
+			showSummary="Geben sie Ihren benutzernamen an" showDetail="abc" />
+
+		<p:inputText id="email" placeholder="E-Mail"
+			value="#{benutzerBean.benutzer.email}" feedback="true"
+			validator="#{benutzerBean.validateEmail}" required="true">
+			<f:validateRegex pattern="[-0-9a-zA-Z.+_]+@[a-z]+\.[a-z]{2,4}" />
+		</p:inputText>
+		<p:message for="email"
+			value="#{customerController.customer.emailAddress}" />
+
+		<p:password id="kennwort1" placeholder="Kennwort" feedback="true"
 			promptLabel="Bitte geben Sie ihr Passwort ein"
-			value="#{registrierungBean.benutzer.kennwort}" required="true" />
-		<p:password placeholder="Kennwort (wiederholen)" feedback="true"
-			promptLabel="Bitte wiederholen Sie ihr Passwort"
-			validator="#{registrierungBean.validiereKennwort}" required="true" />
+			value="#{benutzerBean.kennwort}"
+			validator="#{benutzerBean.validiereKennwort}" required="true" />
+		<p:message for="kennwort1" />
+
+		<p:password id="kennwort2" placeholder="Kennwort (wiederholen)"
+			promptLabel="Bitte wiederholen Sie ihr Passwort" required="true" />
+		<p:message for="kennwort2" />
+
 		<p:commandButton value="absenden"
-			action="#{registrierungBean.datensatzEinfügen}" />
+			action="#{benutzerBean.datensatzEinfügen}"
+			actionListener="#{benutzerBean.validiereKennwort}" update="grid" />
 	</p:panelGrid>
+	<p:messages id="message" autoUpdate="true" />
+
 </h:form>

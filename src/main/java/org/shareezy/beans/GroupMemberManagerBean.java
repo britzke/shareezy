@@ -18,16 +18,18 @@
 package org.shareezy.beans;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.BenutzerGruppe;
+import org.shareezy.entities.Ressource;
 
 /**
  * Beschreibung von GroupMemberManagerBean
@@ -44,8 +46,7 @@ import org.shareezy.entities.BenutzerGruppe;
  */
 @SessionScoped
 @Named("memberManager")
-@ManagedBean
-public class GroupMemberManagerBean implements Serializable{
+public class GroupMemberManagerBean implements Serializable {
 
 	/**
 	 * Für die Bean benötigte Eigenschaften
@@ -54,8 +55,10 @@ public class GroupMemberManagerBean implements Serializable{
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	private EntityTransaction t;
-	private Benutzer user = new Benutzer();
-	private BenutzerGruppe userGrp = new BenutzerGruppe();
+	private final Benutzer user = new Benutzer();
+	private final BenutzerGruppe userGrp = new BenutzerGruppe();
+	private List<Ressource> grpDataListe;
+	private List<Ressource> grpAnfListe;
 
 	/**
 	 * Die Methode AddUser dient dazu dem Benutzer eine Gruppe zuzuweisen
@@ -126,10 +129,9 @@ public class GroupMemberManagerBean implements Serializable{
 		em.close();
 		return null;
 	}
-	
+
 	/**
-	 * Die Methode sendRequest dient dazu eine Anfrage an den
-	 * Benutzer zu senden
+	 * Die Methode sendRequest dient dazu eine Anfrage an den Benutzer zu senden
 	 * <ol>
 	 * <li>
 	 * wird bei Klick auf Ablehnen aufgerufen<br>
@@ -138,14 +140,69 @@ public class GroupMemberManagerBean implements Serializable{
 	 * 
 	 * @return gibt nichts zurück damit sich die View nicht ändert
 	 */
-	public String sendRequest(){
+	public String sendRequest() {
 		em = emf.createEntityManager();
 		t = em.getTransaction();
 		t.begin();
 		em.persist(userGrp);
 		t.commit();
 		em.close();
-		//System.out.println("RequestSent");
 		return null;
+	}
+
+	/**
+	 * getGrpAnf hol sich aus der Datenbank die Anfragen der jeweiligen Gruppe
+	 * und listet diese in der View
+	 */
+	@SuppressWarnings("unchecked")
+	public void getGrpAnf() {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Query q = em.createQuery("select r from BenutzerGruppe r");
+		grpAnfListe = q.getResultList();
+		em.getTransaction().commit();
+	}
+
+	/**
+	 * getGrpRes hol sich aus der Datenbank die Ressourcen der jeweiligen Gruppe
+	 * und listet diese in der View
+	 */
+	@SuppressWarnings("unchecked")
+	public void getGrpData() {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Query q = em.createQuery("select r from Gruppe r");
+		grpDataListe = q.getResultList();
+		em.getTransaction().commit();
+	}
+
+	/**
+	 * @return the grpResListe
+	 */
+	public List<Ressource> getGrpDataListe() {
+		return grpDataListe;
+	}
+
+	/**
+	 * @param grpResListe
+	 *            the grpResListe to set
+	 */
+	public void setGrpDataListe(List<Ressource> grpDataListe) {
+		this.grpDataListe = grpDataListe;
+	}
+
+	/**
+	 * @return the grpAnfListe
+	 */
+	public List<Ressource> getGrpAnfListe() {
+		return grpAnfListe;
+	}
+
+	/**
+	 * @param grpAnfListe
+	 *            the grpAnfListe to set
+	 */
+	public void setGrpAnfListe(List<Ressource> grpAnfListe) {
+		this.grpAnfListe = grpAnfListe;
 	}
 }

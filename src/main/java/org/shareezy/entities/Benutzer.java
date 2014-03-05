@@ -48,7 +48,7 @@ public class Benutzer implements Serializable {
 
 	private String email;
 
-	private String kennwort;
+	private String kennwortHash;
 
 	private String kurzname;
 
@@ -59,8 +59,8 @@ public class Benutzer implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date registration;
 
-	private String hash;
-	
+	private String validationHash;
+
 	boolean validiert;
 
 	boolean gesperrt;
@@ -68,7 +68,7 @@ public class Benutzer implements Serializable {
 	// bi-directional many-to-many association to Gruppen
 	@ManyToMany(mappedBy = "benutzer")
 	private List<Gruppe> gruppen;
-	
+
 	@OneToMany(mappedBy = "benutzer")
 	private List<BenutzerGruppe> benutzerGruppe;
 
@@ -123,8 +123,8 @@ public class Benutzer implements Serializable {
 	 * 
 	 * @return Das Kennwort des Benutzers
 	 */
-	public String getKennwort() {
-		return this.kennwort;
+	public String getKennwortHash() {
+		return this.kennwortHash;
 	}
 
 	/**
@@ -133,8 +133,8 @@ public class Benutzer implements Serializable {
 	 * @param kennwort
 	 *            Das Kennwort, das gesetzt werden soll.
 	 */
-	public void setKennwort(String kennwort) {
-		this.kennwort = kennwort;
+	public void setKennwortHash(String kennwortHash) {
+		this.kennwortHash = kennwortHash;
 	}
 
 	/**
@@ -212,15 +212,16 @@ public class Benutzer implements Serializable {
 	/**
 	 * @return the hash
 	 */
-	public String getHash() {
-		return hash;
+	public String getValidationHash() {
+		return validationHash;
 	}
 
 	/**
-	 * @param hash the hash to set
+	 * @param hash
+	 *            the hash to set
 	 */
-	public void setHash(String hash) {
-		this.hash = hash;
+	public void setValidationHash(String validationHash) {
+		this.validationHash = validationHash;
 	}
 
 	/**

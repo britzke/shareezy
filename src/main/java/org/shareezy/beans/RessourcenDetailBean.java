@@ -25,19 +25,16 @@ import java.awt.Image;
 //import javax.persistence.Query;
 //import org.shareezy.entities.Ressource;
 
-
-
-
-
-
-import java.util.List;
+import java.util.Date;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
+import javax.persistence.EntityTransaction;
+
+import org.shareezy.entities.Buchung;
 import org.shareezy.entities.Ressource;
 
 /**
@@ -51,38 +48,14 @@ import org.shareezy.entities.Ressource;
 @Named
 @RequestScoped
 public class RessourcenDetailBean {
-	
+
 	private EntityManagerFactory emf;
 	@Inject
 	private Ressource ressource;
-	private Image pic;
-	private String summary;
-	
-	/**
-	 * erzeugt eine neue RessourcenDetailBean
-	 * initialisiert Ressource
-	 */
-	public RessourcenDetailBean() {
-	}
-	
-	/**
-	 * liest aus der Entität "Ressource" der Datenbank einen Datensatz aus
-	 * 
-	 */
-	public String selectDatensatz() {
-		EntityManager em = emf.createEntityManager();
-		ressource.getName();
-		ressource.getBeschreibung();
-		ressource.getBild();
-		Query q = em.createQuery("select re from Ressource re");
-		@SuppressWarnings({ "unchecked", "unused" })
-		List<Ressource> ressourceList = q.getResultList();
-		//for (Ressource b : ressourceList) {
-		//}
-		
-		return null;
-	}
-	
+	private Date timeframe;
+	@Inject
+	private Buchung buchung;
+
 	/**
 	 * Um den TimePicker zu oeffnen wird beim Klick auf den Buchungsbutton
 	 * (Detailressourcenansicht) ausgefuehrt
@@ -90,20 +63,54 @@ public class RessourcenDetailBean {
 	public String timePicker() {
 		return null;
 	}
-
+	
 	/**
-	 * zeigt ein Bild der Ressource an
+	 * fügt der Entität "Buchung" der Datenbank einen neuen Datensatz mit den im
+	 * TimePicker eingegebenen Daten hinzu.
+	 * 
+	 * @return null - immer
 	 * 
 	 */
-	public Image resourcePic() {
-		return pic;
+	public String addDatensatz() {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		buchung.setRückgabedatum(timeframe);
+		em.persist(buchung);
+		transaction.commit();
+
+		em.close();
+		return null;
 	}
 
 	/**
-	 * zustaendig fuer die Beschreibung der Ressource
-	 * 
+	 * wird durch Verwendung des TimePickers ausgefuehrt um den vom User
+	 * ausgewaehlten Zeitraum im Textfeld auszugeben
 	 */
-	public String resourceSummary() {
-		return summary;
+
+	public Date getTimeframe() {
+		return timeframe;
+	}
+
+	/**
+	 * um Doppelbuchungen zu verhindern
+	 * sucht Datensatz "ressourcen_id" in der Entitaet "Buchungen" und
+	 * vergleicht die neuen Werte (Datum + Uhrzeit) mit den Werten aus der
+	 * Datenbank Fehlermeldung wenn Ressource in dem gewuenschtem Zeitraum
+	 * bereits vergeben ist + alternativen Terminvorschlag. Ist die Reservierung
+	 * erfolgreich, wird in der Entitaet "Buchungen" ein neuer Datensatz (Datum
+	 * + Uhrzeit) angelegt und die ressourcen_id und die user_id werden
+	 * aktualisiert
+	 * 
+	 * wird beim Klick auf den Bestaetigungsbutton aufgerufen
+	 */
+
+	public void checkDate() {
+	}
+
+	public String action() {
+		addDatensatz();
+		return "";
+
 	}
 }

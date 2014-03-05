@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
@@ -15,6 +16,7 @@
 </h:head>
 
 <h:body>
+	<f:phaseListener type="org.shareezy.DebugPhaseListener" />
 	<p:layout fullPage="true">
 		<ui:debug hotkey="x"
 			rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
@@ -44,6 +46,7 @@
 						<li><p:commandLink
 								action="ressourcenVerwaltung?faces-redirect=true"
 								value="Ressourcenverwaltung" /></li>
+						<li><p:commandLink action="gruppen" value="Gruppen" /></li>
 					</ul>
 				</h:form>
 			</p:layoutUnit>

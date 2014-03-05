@@ -21,6 +21,8 @@ package org.shareezy.beans;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -43,11 +45,15 @@ public class LoginBean {
 
 	@Inject
 	private EntityManagerFactory emf;
-	private Benutzer benutzer;
+
+	@Inject
+	FacesContext facesContext;
+
+	private final Benutzer benutzer;
 	private boolean authenticated;
-	
-	private String benutzername="";
-	private String kennwort ="";
+
+	private String benutzername = "";
+	private String kennwort = "";
 
 	public LoginBean() {
 		benutzer = new Benutzer();
@@ -79,21 +85,26 @@ public class LoginBean {
 	public String login() {
 		EntityManager em = emf.createEntityManager();
 		Query q = em
-				.createQuery("select b from Benutzer where kurzname= :kurzname and kennwort= :kennwort");
+				.createQuery("select b.kurzname,b.kennwortHash from Benutzer b where b.kurzname= :kurzname and b.kennwortHash= :kennwortHash");
 		q.setParameter("kurzname", benutzer.getKurzname());
-		q.setParameter("kennwort", benutzer.getKennwort());
+		q.setParameter("kennwortHash", benutzer.getKennwortHash());
 		List<Benutzer> benutzerList = q.getResultList();
 		for (Benutzer b : benutzerList) {
 			if (b.getKurzname().equals(benutzer.getKurzname())
-					&& b.getKennwort().equals(benutzer.getKennwort())) {
+					&& b.getKennwortHash().equals(benutzer.getKennwortHash())) {
 				setAuthenticated(true);
 				break;
 			}
 		}
 		em.close();
+		if (!authenticated) {
+			FacesMessage message = new FacesMessage("Anmeldung fehlgeschlagen",
+					"Die Kombination aus 'Name' und 'Kennwort' passt nicht.");
+			facesContext.addMessage("Anmeldung Fehlgeschlagen", message);
+		}
 		return null;
 	}
-	
+
 	// ++++++++++++++++ Getter & Setter +++++++++++++++++++++++
 	/**
 	 * @return the benutzername
@@ -103,7 +114,8 @@ public class LoginBean {
 	}
 
 	/**
-	 * @param benutzername the benutzername to set
+	 * @param benutzername
+	 *            the benutzername to set
 	 */
 	public void setBenutzername(String benutzername) {
 		this.benutzername = benutzername;
@@ -117,7 +129,8 @@ public class LoginBean {
 	}
 
 	/**
-	 * @param kennwort the kennwort to set
+	 * @param kennwort
+	 *            the kennwort to set
 	 */
 	public void setKennwort(String kennwort) {
 		this.kennwort = kennwort;

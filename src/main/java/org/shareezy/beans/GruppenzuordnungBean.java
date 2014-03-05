@@ -21,10 +21,10 @@ package org.shareezy.beans;
 import java.util.List;
 
 import javax.faces.bean.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import org.shareezy.beans.GruppenzuordnungBean;
@@ -46,16 +46,12 @@ import org.shareezy.entities.Ressource;
 @Named("GruppenzuordnungBean")
 public class GruppenzuordnungBean {
 
-	private List<Ressource> res;
-
-	private List<Gruppe> grp;
-
 	private EntityManagerFactory emf;
-
 	public EntityManager em;
 	private boolean authenticated;
-
 	private Benutzer benutzer;
+	private Gruppe gruppe;
+	private EntityTransaction tr;
 
 	public GruppenzuordnungBean() {
 		benutzer = new Benutzer();
@@ -73,20 +69,38 @@ public class GruppenzuordnungBean {
 	 * 
 	 * @return null - immer
 	 */
+	@SuppressWarnings("unchecked")
 	public String mitgliederabfragen() {
+
 		EntityManager em = emf.createEntityManager();
-		Gruppe gruppe = new Gruppe();
+		tr = em.getTransaction();
+		tr.begin();
+		em.persist(benutzer);
 		em.persist(gruppe);
-		Query qr = em.createQuery("SELECT a FROM Ressource ");
-		List<Ressource> abgleich = qr.getResultList();
+		tr.commit();
+		em.close();
 		/*
-		Query qr2 = em.createQuery("SELECT b FROM Gruppe b");
-		List<Gruppe> abgleich2 = qr.getResultList();
- 		*/
+		 * Query qr = em.createQuery(
+		 * "SELECT a.ID FROM Ressource a, b.ID FROM Gruppe b FROM Ressource b "
+		 * ); SELECT shareezy.RESSORCEN.ID, shareezy.GRUPPEN.ID FROM
+		 * shareezy.VERFÜGBARKEITEN INNER JOIN shareezy.VERFÜGBARKEITEN ON
+		 * shareezy.GRUPPEN.ID=shareezy.RESSORCEN.ID;
+		 */
+		Query qr = em
+				.createQuery("SELECT shareezy.RESSORCEN.ID, shareezy.GRUPPEN.ID FROM shareezy.VERFÜGBARKEITEN WHERE shareezy.GRUPPEN.ID=shareezy.RESSORCEN.ID;");
+		@SuppressWarnings({ "unused" })
+		List<Ressource> res = qr.getResultList();
+		tr.commit();
+
+		// abgleich.add(index, element);
+		/*
+		 * Query qr2 = em.createQuery("SELECT b FROM Gruppe b"); List<Gruppe>
+		 * abgleich2 = qr.getResultList();
+		 */
 		return null;
 	}
-	
-	public void ressourcegruppe(){
-		//benutzer.addRessource();
+
+	public void ressourcegruppe() {
+		// benutzer.addRessource();
 	}
 }

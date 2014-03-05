@@ -21,6 +21,7 @@ package org.shareezy.test.unit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.eq;
@@ -33,8 +34,12 @@ import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 import java.lang.reflect.Field;
 import java.util.Properties;
 
+import javax.faces.component.UIComponent;
+import javax.faces.component.html.HtmlInputSecret;
+import javax.faces.component.html.HtmlPanelGrid;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -49,7 +54,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.shareezy.beans.RegistrierungBean;
+import org.shareezy.beans.BenutzerBean;
 import org.shareezy.entities.Benutzer;
 
 /**
@@ -60,12 +65,15 @@ import org.shareezy.entities.Benutzer;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ Session.class, Transport.class })
-public class RegistrierungBeanTest {
+public class BenutzerBeanTest {
 
-	private RegistrierungBean proband;
+	private BenutzerBean proband;
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	private EntityTransaction et;
+	private FacesContext facesContext;
+	private HtmlInputSecret kennwort1;
+	private HtmlInputSecret kennwort2;
 
 	/**
 	 * Setzt den Probanden auf.
@@ -81,12 +89,51 @@ public class RegistrierungBeanTest {
 		et = mock(EntityTransaction.class);
 		when(em.getTransaction()).thenReturn(et);
 
-		proband = new RegistrierungBean();
+		proband = new BenutzerBean();
+		proband.setKennwort("secret");
 
-		Class<? extends RegistrierungBean> clazz = proband.getClass();
+		Class<? extends BenutzerBean> clazz = proband.getClass();
 		Field field = clazz.getDeclaredField("emf");
 		field.setAccessible(true);
 		field.set(proband, emf);
+
+		facesContext = mock(FacesContext.class);
+
+		kennwort1 = new HtmlInputSecret();
+		kennwort1.setId("kennwort1");
+		kennwort2 = new HtmlInputSecret();
+		kennwort2.setId("kennwort2");
+
+		UIComponent parent = new HtmlPanelGrid();
+		parent.getChildren().add(kennwort2);
+		kennwort1.setParent(parent);
+	}
+
+	/**
+	 * Test method for
+	 * {@link org.shareezy.beans.RegestrierungsBean#validiereKennwort()}.
+	 */
+	@Test(expected = ValidatorException.class)
+	public void testValidiereKennwortUnterschiedlich() {
+		kennwort1.setSubmittedValue("secret");
+		kennwort2.setSubmittedValue("notSecret");
+		proband.validiereKennwort(facesContext, kennwort1, null);
+	}
+
+	/**
+	 * Test method for
+	 * {@link org.shareezy.beans.RegestrierungsBean#validiereKennwort()}.
+	 */
+	@Test
+	public void testValidiereKennwortGleich() {
+		kennwort1.setSubmittedValue("secret");
+		kennwort2.setSubmittedValue("secret");
+		try {
+			proband.validiereKennwort(facesContext, kennwort1, null);
+		} catch (ValidatorException e) {
+			e.printStackTrace();
+			fail("Die Validierung darf für gleiche Kennwort nicht fehlschlagen");
+		}
 	}
 
 	/**

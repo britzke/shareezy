@@ -23,30 +23,19 @@
 			<p:outputLabel value="Startdatum:" />
 			<p:inputText value="#{neueRessourcenBean.startdatum}" />
 			<p:outputLabel value="Typ" />
-			<p:selectManyCheckbox id="Typ"
-				value="#{neueRessourcenBean.typOptionen}" layout="pageDirection">
-				<f:selectItem itemLabel="Werkzeug" itemValue="Werkzeug" />
-				<f:selectItem itemLabel="Auto" itemValue="Auto" />
-				<f:selectItem itemLabel="Boot" itemValue="Boot" />
-			</p:selectManyCheckbox>
-			<p:commandButton value="Ressource veröffentlichen" update="anzeige" oncomplete="PF('dlg').show()"
+
+			<p:dataTable var="typen" value="#{neueRessourcenBean.typOptionen}">
+				<p:column>
+					<h:outputText value="#{typen.getName()}" />
+				</p:column>
+
+			</p:dataTable>
+
+
+			<p:commandButton value="Ressource veröffentlichen"
 				action="#{neueRessourcenBean.speichern}" />
 		</p:panelGrid>
-		
-		<p:separator />  
-		
-				<p:dialog header="Ausgewählte Typen" modal="true" showEffect="fade" hideEffect="fade" widgetVar="dlg">  
-        <p:outputPanel id="anzeige">  
-            <p:dataList value="#{neueRessourcenBean.typOptionen}" var="option">  
-                #{option}  
-            </p:dataList>  
-  
-            <p:dataList value="#{neueRessourcenBean.typOptionen}" var="option2">  
-                #{option2}  
-            </p:dataList>   
-            
-        </p:outputPanel>  
-    </p:dialog>  
+
 	</h:form>
 </h:body>
 </html>
