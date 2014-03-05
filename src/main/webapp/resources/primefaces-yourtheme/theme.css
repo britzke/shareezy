@@ -29,7 +29,7 @@
     height: 1%;
 }
 .ui-helper-clearfix {
-    display: block;
+    display.ui-layout-unit: block;
 }
 .ui-helper-zfix {
     height: 100%;
@@ -1974,7 +1974,7 @@ div.ui-button, .ui-splitbutton {
 .ui-panelgrid td {
     border-color: inherit;
     border-style: solid;
-    border-width: 1px;
+    border-width: auto;
     padding: 4px 10px;
 }
 .ui-paginator {
