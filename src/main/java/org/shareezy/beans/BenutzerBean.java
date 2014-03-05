@@ -158,7 +158,7 @@ public class BenutzerBean {
 
 	public void validateEmail(FacesContext context, UIComponent component,
 			Object value) throws ValidatorException {
-		String.valueOf(value);
+		String email = String.valueOf(value);
 		boolean valid = true;
 
 		// if (value == null) {

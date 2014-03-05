@@ -7,8 +7,8 @@
 
 <h:head>
 	<title>[shareezy] - <ui:insert name="title">ohne Titel</ui:insert></title>
- <link type="text/css" rel="stylesheet" 
-		  href="resources/primefaces-yourtheme/theme.css?ln=css" />
+	<link type="text/css" rel="stylesheet"
+		href="resources/primefaces-yourtheme/theme.css?ln=css" />
 </h:head>
 <h:body>
 	<f:phaseListener type="org.shareezy.DebugPhaseListener" />
@@ -17,18 +17,16 @@
 			rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
 		<header>
 			<p:layoutUnit position="north">
-				<DIV style="float: right;">
-					<ui:insert name="header">
-						<ui:include src="/WEB-INF/templates/login.xhtml" />
-					</ui:insert>
-				</DIV>
+				<ui:insert name="header">
+					<ui:include src="/WEB-INF/templates/login.xhtml" />
+				</ui:insert>
 			</p:layoutUnit>
 		</header>
-		<section id="menu" >
-			<p:layoutUnit id="left" position="west" size="220" resizable="false"
-				closable="false" collapsible="true" header="Menu" minSize="220">
+		<section id="menu">
+			<p:layoutUnit id="left" position="west" size="240" resizable="false"
+				closable="false" collapsible="false" header="Menu">
 				<h:form>
-					<ul>
+					<ul style="list-style: none;">
 						<li><p:commandLink action="index?faces-redirect=true"
 								value="Home" /></li>
 						<li><p:commandLink
@@ -40,7 +38,7 @@
 						<li><p:commandLink
 								action="ressourcenVerwaltung?faces-redirect=true"
 								value="Ressourcenverwaltung" /></li>
-						<li><p:commandLink action="gruppen" value="Gruppen" /></li>
+						<!-- <li><p:commandLink action="gruppen" value="Gruppen" /></li> -->
 					</ul>
 				</h:form>
 			</p:layoutUnit>

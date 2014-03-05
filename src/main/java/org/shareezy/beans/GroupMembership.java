@@ -18,8 +18,20 @@
 package org.shareezy.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
+
+import org.shareezy.entities.Benutzer;
+import org.shareezy.entities.Gruppe;
+import org.shareezy.entities.Ressource;
 
 /**
  * Eigene Gruppenzugehörigkeit beantragen/entfernen
@@ -31,6 +43,13 @@ import javax.inject.Named;
 public class GroupMembership implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	@Inject private Benutzer benutzer;
+	@Inject private EntityManagerFactory emf;
+	@Inject private Gruppe gruppe;	
+	private List<Gruppe> gruppenliste;
+	private List<Gruppe> filteredgruppen;
+
+	
 
 	/**
 	 * Wird bei Klick auf 'Hinzufuegen' aufgerufen.
@@ -39,9 +58,45 @@ public class GroupMembership implements Serializable {
 	 * 
 	 */
 
-	public String sendAnfrage() {		
-		return null;
-
+	public String sendAnfrage() {				
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		//Query q = em.createQuery("select r from Gruppe r");		
+		gruppe.getVerwalter().getEmail(); //email von Verwalter
+		em.getTransaction().commit();
+		return null;		
+	}
+	
+	@PostConstruct
+	private void init() {
+		if (gruppenliste == null) {
+			queryGruppenliste();
+		}
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void queryGruppenliste() {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Query q = em.createQuery("select r from Gruppe r");
+		gruppenliste = q.getResultList();
+		em.getTransaction().commit();
+		if (gruppenliste.size() == 0) {
+			gruppenliste = new ArrayList<Gruppe>();
+		}		
+	}
+	/**
+	 * getGrListe hol sich aus der Datenbank die gruppenlise 
+	 * und listet diese in der View
+	 */
+	@SuppressWarnings("unchecked")
+	public void getGrListe() {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Query q = em.createQuery("select r from Gruppe r");
+		gruppenliste = q.getResultList();
+		em.getTransaction().commit();
 	}
 
 	/**
@@ -52,5 +107,24 @@ public class GroupMembership implements Serializable {
 
 	public String knopfGruppeVerlassen() {
 		return null;
+	}
+	
+	
+	public List<Gruppe> getGruppenliste() {
+		return gruppenliste;
+	}
+
+	public void setGruppenliste(List<Gruppe> gruppenliste) {
+		this.gruppenliste = gruppenliste;
+	}
+
+
+	public List<Gruppe> getFilteredgruppen() {
+		return filteredgruppen;
+	}
+
+
+	public void setFilteredgruppen(List<Gruppe> filteredgruppen) {
+		this.filteredgruppen = filteredgruppen;
 	}
 }
