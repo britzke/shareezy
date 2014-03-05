@@ -4,28 +4,27 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
+
 <h:head>
 	<title>[shareezy] - <ui:insert name="title">ohne Titel</ui:insert></title>
-	<link rel="stylesheet"
-		href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"></link>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+ <link type="text/css" rel="stylesheet" 
+		  href="resources/primefaces-yourtheme/theme.css?ln=css" />
 </h:head>
-
 <h:body>
 	<f:phaseListener type="org.shareezy.DebugPhaseListener" />
 	<p:layout fullPage="true">
 		<ui:debug hotkey="x"
 			rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
-
 		<header>
 			<p:layoutUnit position="north">
-				<ui:insert name="header">
-					<ui:include src="/WEB-INF/templates/login.xhtml" />
-				</ui:insert>
+				<DIV style="float: right;">
+					<ui:insert name="header">
+						<ui:include src="/WEB-INF/templates/login.xhtml" />
+					</ui:insert>
+				</DIV>
 			</p:layoutUnit>
 		</header>
-
-		<section id="menu">
+		<section id="menu" >
 			<p:layoutUnit id="left" position="west" size="220" resizable="false"
 				closable="false" collapsible="true" header="Menu" minSize="220">
 				<h:form>
