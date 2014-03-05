@@ -10,7 +10,7 @@
 	border: none;
 }
 </style>
-
+	<p:messages id="message" autoUpdate="true" />
 	<p:panelGrid id="grid" columns="2" styleClass="regGrid">
 		<p:inputText id="vorname" placeholder="Vorname"
 			value="#{benutzerBean.benutzer.vorname}" />
@@ -22,13 +22,15 @@
 
 		<p:inputText id="benutzername" placeholder="Benutzername"
 			value="#{benutzerBean.benutzer.kurzname}" required="true"
-			feedback="true" />
-		<p:message for="benutzername" display="default"
-			showSummary="Geben sie Ihren benutzernamen an" showDetail="abc" />
+			feedback="true"
+			requiredMessage="Sie müssen einen Benutzernamen eingeben!" />
+		<p:message for="benutzername" />
 
 		<p:inputText id="email" placeholder="E-Mail"
 			value="#{benutzerBean.benutzer.email}" feedback="true"
-			validator="#{benutzerBean.validateEmail}" required="true">
+			validator="#{benutzerBean.validateEmail}" required="true"
+			requiredMessage="Sie müssen eine e-Mail Addresse eingeben!"
+			validatorMessage="Die von Ihnen eingegebene e-Mail Addresse entspricht keinem gültigen Muster!">
 			<f:validateRegex pattern="[-0-9a-zA-Z.+_]+@[a-z]+\.[a-z]{2,4}" />
 		</p:inputText>
 		<p:message for="email"
@@ -37,17 +39,17 @@
 		<p:password id="kennwort1" placeholder="Kennwort" feedback="true"
 			promptLabel="Bitte geben Sie ihr Passwort ein"
 			value="#{benutzerBean.kennwort}"
-			validator="#{benutzerBean.validiereKennwort}" required="true" />
+			validator="#{benutzerBean.validiereKennwort}" required="true"
+			requiredMessage="Sie müssen ein Kennwort eingeben!" />
 		<p:message for="kennwort1" />
 
 		<p:password id="kennwort2" placeholder="Kennwort (wiederholen)"
-			promptLabel="Bitte wiederholen Sie ihr Passwort" required="true" />
+			promptLabel="Bitte wiederholen Sie ihr Passwort" required="true"
+			requiredMessage="Sie müssen ein Kennwort eingeben!" />
 		<p:message for="kennwort2" />
 
 		<p:commandButton value="absenden"
 			action="#{benutzerBean.datensatzEinfügen}"
 			actionListener="#{benutzerBean.validiereKennwort}" update="grid" />
 	</p:panelGrid>
-	<p:messages id="message" autoUpdate="true" />
-
 </h:form>
