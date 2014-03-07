@@ -60,7 +60,8 @@ import org.shareezy.entities.Benutzer;
 /**
  * Testet die RegistrierungBean
  * 
- * @author e1_cakir, Maurice Engelskirchen
+ * @author e1_cakir
+ * @author Maurice Engelskirchen
  * @author burghard.britzke (bubi@charmides.in-berlin.de)
  */
 @RunWith(PowerMockRunner.class)
@@ -72,8 +73,10 @@ public class BenutzerBeanTest {
 	private EntityManager em;
 	private EntityTransaction et;
 	private FacesContext facesContext;
-	private HtmlInputSecret kennwort1;
-	private HtmlInputSecret kennwort2;
+	private HtmlInputSecret kennwort;
+	private HtmlInputSecret kennwortWiederholung;
+	private HtmlInputSecret altesKennwort;
+	private UIComponent parent;
 
 	/**
 	 * Setzt den Probanden auf.
@@ -99,41 +102,71 @@ public class BenutzerBeanTest {
 
 		facesContext = mock(FacesContext.class);
 
-		kennwort1 = new HtmlInputSecret();
-		kennwort1.setId("kennwort1");
-		kennwort2 = new HtmlInputSecret();
-		kennwort2.setId("kennwort2");
+		kennwort = new HtmlInputSecret();
+		kennwort.setId("kennwort");
+		kennwortWiederholung = new HtmlInputSecret();
+		kennwortWiederholung.setId("kennwortWiederholung");
+		altesKennwort = new HtmlInputSecret();
+		altesKennwort.setId("altesKennwort");
 
-		UIComponent parent = new HtmlPanelGrid();
-		parent.getChildren().add(kennwort2);
-		kennwort1.setParent(parent);
+		parent = new HtmlPanelGrid();
+		kennwort.setParent(parent);
 	}
 
 	/**
-	 * Test method for
+	 * Testet, ob der Validator eine ValidatorException wirft, wenn die Werte
+	 * der Komponente mit der ID "kennwort" sich unterscheiden vom Wert in der
+	 * Komponente mit der ID kennwortWiederholung.
 	 * {@link org.shareezy.beans.RegestrierungsBean#validiereKennwort()}.
 	 */
-	@Test(expected = ValidatorException.class)
+	@Test
+	// (expected = ValidatorException.class)
 	public void testValidiereKennwortUnterschiedlich() {
-		kennwort1.setSubmittedValue("secret");
-		kennwort2.setSubmittedValue("notSecret");
-		proband.validiereKennwort(facesContext, kennwort1, null);
+		parent.getChildren().add(kennwortWiederholung);
+		parent.getChildren().add(altesKennwort);
+		kennwortWiederholung.setValue("notSecret");
+		proband.validiereKennwort(facesContext, kennwort, "secret");
 	}
 
 	/**
-	 * Test method for
+	 * Test testet, ob der Validator <i>keine<i> ValidatorException wirft, wenn
+	 * der Wert in der Komponente "kennwort" gleich dem Wert in der Komponente
+	 * "kennwortWiederholung"
 	 * {@link org.shareezy.beans.RegestrierungsBean#validiereKennwort()}.
 	 */
 	@Test
 	public void testValidiereKennwortGleich() {
-		kennwort1.setSubmittedValue("secret");
-		kennwort2.setSubmittedValue("secret");
+		parent.getChildren().add(kennwortWiederholung);
+		parent.getChildren().add(altesKennwort);
+		kennwortWiederholung.setValue("secret");
 		try {
-			proband.validiereKennwort(facesContext, kennwort1, null);
+			proband.validiereKennwort(facesContext, kennwort, "secret");
 		} catch (ValidatorException e) {
 			e.printStackTrace();
 			fail("Die Validierung darf für gleiche Kennwort nicht fehlschlagen");
 		}
+	}
+
+	/**
+	 * Testet, ob der Validator eine ValidatorException wirft, wenn die
+	 * Kompoente mit der ID "kennwortWiederholen" nicht im View vorhanden ist.
+	 */
+	@Test(expected = ValidatorException.class)
+	public void testValidiereKennwortWiederholenKomponenteNichtImView() {
+		parent.getChildren().add(altesKennwort);
+
+		proband.validiereKennwort(facesContext, kennwort, "secret");
+	}
+
+	/**
+	 * Testet, ob der Validator eine ValidatorException wirft, wenn die
+	 * Kompoente mit der ID "altesKennwort" nicht im View vorhanden ist.
+	 */
+	@Test(expected = ValidatorException.class)
+	public void testValidiereAltesKennwortKomponenteNichtImView() {
+		parent.getChildren().add(kennwortWiederholung);
+		kennwortWiederholung.setValue("secret");
+		proband.validiereKennwort(facesContext, kennwort, "secret");
 	}
 
 	/**
