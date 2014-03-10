@@ -94,12 +94,10 @@ public class BenutzerBean {
 	 *            Der Wert, der validiert werden soll
 	 * @throws ValidatorException
 	 */
-	public void validiereKennwort(FacesContext ctx, UIComponent component,
-			Object value) throws ValidatorException {
+	public void validiereKennwort(FacesContext facesContext,
+			UIComponent component, Object value) throws ValidatorException {
 		boolean kennwortWiederholungVorhanden = false;
 		boolean altesKennwortVorhanden = false;
-
-		EditableValueHolder kennwortComponent = (EditableValueHolder) component;
 
 		String kennwort = (String) value;
 		if (kennwort != null && !kennwort.equals("")) {
@@ -131,31 +129,25 @@ public class BenutzerBean {
 				}
 			}
 			if (!altesKennwortVorhanden) {
-				FacesMessage message = new FacesMessage(
+				new FacesMessage(
 						FacesMessage.SEVERITY_WARN,
 						"Eingabefeld 'altesKennwort' fehlt",
 						"Das Eingabefeld mit der ID 'altesKennwort' ist in dem Formular nicht vorhanden."
 								+ "Die Validierung kann nicht durchgeführt werden.");
-				throw new ValidatorException(message);
 
 			}
 			if (!kennwortWiederholungVorhanden) {
-				FacesMessage message = new FacesMessage(
+				new FacesMessage(
 						FacesMessage.SEVERITY_WARN,
 						"Eingabefeld 'kennwortWiederholung' fehlt",
 						"Das Eingabefeld mit der ID 'kennwortWiederholung' ist in dem Formular nicht vorhanden."
 								+ "Die Validierung kann nicht durchgeführt werden.");
-				throw new ValidatorException(message);
 			}
 		} else {
-			if (kennwortComponent.getSubmittedValue() == null) {
-				//
-				FacesMessage message = new FacesMessage(
-						FacesMessage.SEVERITY_WARN,
-						"Kennwort-Feld nicht'required'",
-						"Das Kennwort-Feld sollte als 'required' markiert sein");
-				throw new ValidatorException(message);
-			}
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
+					"Kennwort-Feld nicht'required'",
+					"Das Kennwort-Feld sollte im View mit dem Attribut 'required' markiert sein");
+			facesContext.addMessage("", message);
 		}
 	}
 

@@ -21,6 +21,7 @@ package org.shareezy.test.unit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyObject;
@@ -32,8 +33,10 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 import java.lang.reflect.Field;
+import java.util.Iterator;
 import java.util.Properties;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlInputSecret;
 import javax.faces.component.html.HtmlPanelGrid;
@@ -56,6 +59,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.shareezy.beans.BenutzerBean;
 import org.shareezy.entities.Benutzer;
+import org.shareezy.test.unit.mock.MockFacesContext;
 
 /**
  * Testet die RegistrierungBean
@@ -100,7 +104,7 @@ public class BenutzerBeanTest {
 		field.setAccessible(true);
 		field.set(proband, emf);
 
-		facesContext = mock(FacesContext.class);
+		facesContext = new MockFacesContext();
 
 		kennwort = new HtmlInputSecret();
 		kennwort.setId("kennwort");
@@ -114,13 +118,38 @@ public class BenutzerBeanTest {
 	}
 
 	/**
+	 * Testet, ob der Validator eine FacesMessage zum FacesContext hinzufügt,
+	 * wenn die Werte der Komponente mit der ID "kennwort" den Wert 'null
+	 * enthält.
+	 * {@link org.shareezy.beans.RegestrierungsBean#validiereKennwort()}.
+	 */
+	@Test
+	public void testValidiereKennwortSubmittedValueIsNull() {
+		parent.getChildren().add(kennwortWiederholung);
+		parent.getChildren().add(altesKennwort);
+		kennwortWiederholung.setValue("notSecret");
+		proband.validiereKennwort(facesContext, kennwort, null);
+
+		Iterator<FacesMessage> mi = facesContext.getMessages();
+		boolean warningSet = false;
+		while (mi.hasNext()) {
+			FacesMessage m = mi.next();
+			if (m.getSeverity().equals(FacesMessage.SEVERITY_WARN)) {
+				warningSet = true;
+			}
+		}
+		assertTrue(
+				"Es muss ein Warnhinweis gesetzt werden, wenn das Kennwort den Wert 'null' hat",
+				warningSet);
+	}
+
+	/**
 	 * Testet, ob der Validator eine ValidatorException wirft, wenn die Werte
 	 * der Komponente mit der ID "kennwort" sich unterscheiden vom Wert in der
 	 * Komponente mit der ID kennwortWiederholung.
 	 * {@link org.shareezy.beans.RegestrierungsBean#validiereKennwort()}.
 	 */
-	@Test
-	// (expected = ValidatorException.class)
+	@Test(expected = ValidatorException.class)
 	public void testValidiereKennwortUnterschiedlich() {
 		parent.getChildren().add(kennwortWiederholung);
 		parent.getChildren().add(altesKennwort);
@@ -151,11 +180,23 @@ public class BenutzerBeanTest {
 	 * Testet, ob der Validator eine ValidatorException wirft, wenn die
 	 * Kompoente mit der ID "kennwortWiederholen" nicht im View vorhanden ist.
 	 */
-	@Test(expected = ValidatorException.class)
+	@Test
 	public void testValidiereKennwortWiederholenKomponenteNichtImView() {
 		parent.getChildren().add(altesKennwort);
 
 		proband.validiereKennwort(facesContext, kennwort, "secret");
+
+		Iterator<FacesMessage> mi = facesContext.getMessages();
+		boolean warningSet = false;
+		while (mi.hasNext()) {
+			FacesMessage m = mi.next();
+			if (m.getSeverity().equals(FacesMessage.SEVERITY_WARN)) {
+				warningSet = true;
+			}
+		}
+		assertTrue(
+				"Es muss ein Warnhinweis gesetzt werden, wenn kein Feld mit dem Namen 'kennwortWiederholen' im View vorhanden ist",
+				warningSet);
 	}
 
 	/**
@@ -167,6 +208,18 @@ public class BenutzerBeanTest {
 		parent.getChildren().add(kennwortWiederholung);
 		kennwortWiederholung.setValue("secret");
 		proband.validiereKennwort(facesContext, kennwort, "secret");
+
+		Iterator<FacesMessage> mi = facesContext.getMessages();
+		boolean warningSet = false;
+		while (mi.hasNext()) {
+			FacesMessage m = mi.next();
+			if (m.getSeverity().equals(FacesMessage.SEVERITY_WARN)) {
+				warningSet = true;
+			}
+		}
+		assertTrue(
+				"Es muss ein Warnhinweis gesetzt werden, wenn kein Feld mit dem Namen 'altesKennwort' im View vorhanden ist",
+				warningSet);
 	}
 
 	/**
