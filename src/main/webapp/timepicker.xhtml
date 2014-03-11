@@ -17,20 +17,16 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
- <!-- Detailierte Ansicht der aktuellen Ressource -->
  
- 
- <!-- #{aktuelleressource.ressource.name} -->
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-	<h:form>
-		<h:outputText value="#{aktuelleRessourceBean.ressource.name}"/>
-		<h:outputText value="#{aktuelleRessourceBean.ressource.startdatum}"/>
-        <p:graphicImage value="{aktuelleRessourceBean.ressource.bild}" />  
-	</h:form>
+<ui:composition template="/WEB-INF/templates/structure.xhtml">
+	<ui:define name="title">DetailAnsicht</ui:define>
+	<ui:define name="content">
+		<ui:include src="/WEB-INF/templates/picker.xhtml"></ui:include>
+	</ui:define>
+</ui:composition>
 </html>

@@ -30,7 +30,7 @@
 			validator="#{benutzerBean.validateEmail}" required="true"
 			requiredMessage="Sie müssen eine e-Mail Addresse eingeben!"
 			validatorMessage="Die von Ihnen eingegebene e-Mail Addresse entspricht keinem gültigen Muster!">
-			<f:validateRegex pattern="[-0-9a-zA-Z.+_]+@[a-z]+\.[a-z]{2,4}" />
+			<f:validateRegex pattern="([a-zA-Z0-9]+(?:[._+-][a-zA-Z0-9]+)*)@([a-zA-Z0-9]+(?:[.-][a-zA-Z0-9]+)*[.][a-zA-Z]{2,})" />
 		</p:inputText>
 		<p:message for="email"
 			value="#{customerController.customer.emailAddress}" />

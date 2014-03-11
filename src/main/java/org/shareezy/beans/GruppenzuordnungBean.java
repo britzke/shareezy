@@ -66,6 +66,10 @@ public class GruppenzuordnungBean {
 	}
 
 	/**
+	 * Der Datensatz wird durch das select * from Statement als Objekt in der
+	 * Query gespeichert.
+	 * Durch getResultList() wird es in einer Liste vom Typ Ressource gespeichert.
+	 * Es soll geprüft werden ob in der Entität Verfügbarkeiten 
 	 * 
 	 * @return null - immer
 	 */
@@ -79,9 +83,9 @@ public class GruppenzuordnungBean {
 		em.persist(gruppe);
 		tr.commit();
 		em.close();
-	
+
 		Query qr = em
-				.createQuery("SELECT shareezy.RESSORCEN.ID, shareezy.GRUPPEN.ID FROM shareezy.VERFÜGBARKEITEN WHERE shareezy.GRUPPEN.ID=shareezy.RESSORCEN.ID;");
+				.createQuery("SELECT * from RESSOURCEN, VERFÜGBARKEITEN where ID!=RESSORCEN_ID;");
 		@SuppressWarnings({ "unused" })
 		List<Ressource> res = qr.getResultList();
 		tr.commit();
