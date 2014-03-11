@@ -29,4 +29,3 @@ select * from TYPEN;
 select * from BENUTZER;
 
 
-SELECT * from RESSOURCEN, VERFÜGBARKEITEN where ID!=RESSORCEN_ID;
