@@ -11,20 +11,50 @@
 <h:body>
 	<h:form>
 		<p:panelGrid columns="2">
+<<<<<<< HEAD
+			<p:inputText
+				placeholder="Bitte geben sie ihre E-Mail addresse ein ein"
+				value="#{accountBearbeitenBean.eMail}" />
+				
+			<p:password id="kennwort1" placeholder="neues Kennwort"
+				feedback="true" promptLabel="Bitte geben Sie ihr neues Passwort ein"
+				value="#{benutzerBean.kennwort}"
+				validator="#{benutzerBean.validiereKennwort}" />
+			<p:message for="kennwort1" />
+=======
 			<p:outputLabel value="E-Mail:" />
 			<p:inputText value="#{benutzerBean.benutzer.email}"
 				validator="#{benutzerBean.validateEmail}">
 			</p:inputText>
+>>>>>>> branch 'master' of https://github.com/britzke/shareezy.git
 
+<<<<<<< HEAD
+			<p:password id="kennwort2" placeholder="neues Kennwort (wiederholen)"
+				promptLabel="Bitte wiederholen Sie ihr neues Passwort" />
+			<p:message for="kennwort2" />
+=======
 			<p:outputLabel for="altesKennwort" value="Altes Password:" />
 			<p:password id="altesKennwort" value="#{benutzerBean.kennwortAlt}"
 				label="altes Kennwort" required="true" />
+>>>>>>> branch 'master' of https://github.com/britzke/shareezy.git
 
+<<<<<<< HEAD
+			<p:password id="kennwort3" placeholder="altes Kennwort"
+				feedback="true" promptLabel="Bitte geben sie ihr altes Passwort ein" />
+			<p:message for="kennwort3" />
+=======
 			<h:outputLabel for="kennwort" value="Neues Passwort:" />
 			<p:password id="kennwort" value="#{benutzerBean.kennwort}"
 				validator="#{benutzerBean.validiereKennwort}" required="true"
 				label="Kennwort" />
+>>>>>>> branch 'master' of https://github.com/britzke/shareezy.git
 
+<<<<<<< HEAD
+			<h:commandButton value="Abrechen"
+				action="/WEB-INF/templates/index.xhtml" />
+			<h:commandButton value="Save"
+				action="#{accountBearbeitenBean.action}" />
+=======
 			<h:outputLabel for="kennwortWiederholung" />
 			<p:password id="kennwortWiederholung" label="Kennwortwiederholung" required="true" />
 
@@ -33,6 +63,7 @@
 			<h:commandButton value="Save"
 				action="#{benutzerBean.datensatzPrüfen}" />
 
+>>>>>>> branch 'master' of https://github.com/britzke/shareezy.git
 		</p:panelGrid>
 	</h:form>
 </h:body>
