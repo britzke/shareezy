@@ -7,47 +7,21 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head />
-<h:body class="content">
-	<h:form id="form" style="width: 270px; font-size: 0.9em;">
-		<p:growl id="growl" showDetail="true" />
-		<p:panel id="freizeitboote" header="Freizeitboote">
-			<p:commandButton value="Der Community beitreten" />
-		</p:panel>
-		<p:panel id="sportboote" header="Sportboote">
-			<p:commandButton value="Der Community beitreten" />
-		</p:panel>
-		<p:panel id="arctic_cruiser_motorboote"
-			header="Actic Cruiser Motorboote">
-			<p:commandButton value="Die Community verlassen"
-				actionListener="#{groupMembership.destroyWorld}">
-				<p:confirm header="Confirmation" message="Sind Sie sicher?"
-					icon="ui-icon-alert" />
-			</p:commandButton>
+<h:body>
+<h:form>
+<p:dataTable var="gruppe" value="#{groupMembership.gruppenliste}"
+		emptyMessage="Keine Daten gefunden"
+		filteredValue="#{groupMembership.filteredgruppen}">
 
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-				<p:commandButton value="Ja" type="button"
-					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-				<p:commandButton value="Nein" type="button"
-					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			</p:confirmDialog>
-		</p:panel>
+		<p:column filterBy="name" sortBy="name" headerText="Gruppenname"
+			filterMatchMode="contains">
+			<h:outputText value="#{gruppe.name}" />
+		</p:column>
+		<p:column headerText="Sende Anfrage">
+			<p:button icon="ui-icon-search" ajax="false" />
+		</p:column>
+	</p:dataTable>
 
-		<p:panel id="weltreise" header="Weltreise auf dem Boot">
-			<p:commandButton value="Die Community verlassen"
-				actionListener="#{groupMembership.destroyWorld}">
-				<p:confirm header="Confirmation" message="Sind Sie sicher?"
-					icon="ui-icon-alert" />
-			</p:commandButton>
-
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-				<p:commandButton value="Ja" type="button"
-					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-				<p:commandButton value="Nein" type="button"
-					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			</p:confirmDialog>
-
-		</p:panel>
-
-	</h:form>
+</h:form>
 </h:body>
 </html>
