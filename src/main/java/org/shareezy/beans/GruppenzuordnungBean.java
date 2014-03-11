@@ -79,13 +79,7 @@ public class GruppenzuordnungBean {
 		em.persist(gruppe);
 		tr.commit();
 		em.close();
-		/*
-		 * Query qr = em.createQuery(
-		 * "SELECT a.ID FROM Ressource a, b.ID FROM Gruppe b FROM Ressource b "
-		 * ); SELECT shareezy.RESSORCEN.ID, shareezy.GRUPPEN.ID FROM
-		 * shareezy.VERFÜGBARKEITEN INNER JOIN shareezy.VERFÜGBARKEITEN ON
-		 * shareezy.GRUPPEN.ID=shareezy.RESSORCEN.ID;
-		 */
+	
 		Query qr = em
 				.createQuery("SELECT shareezy.RESSORCEN.ID, shareezy.GRUPPEN.ID FROM shareezy.VERFÜGBARKEITEN WHERE shareezy.GRUPPEN.ID=shareezy.RESSORCEN.ID;");
 		@SuppressWarnings({ "unused" })
