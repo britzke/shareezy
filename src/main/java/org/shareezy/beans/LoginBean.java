@@ -21,6 +21,8 @@ package org.shareezy.beans;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -43,6 +45,10 @@ public class LoginBean {
 
 	@Inject
 	private EntityManagerFactory emf;
+
+	@Inject
+	FacesContext facesContext;
+
 	private final Benutzer benutzer;
 	private boolean authenticated;
 
@@ -79,9 +85,9 @@ public class LoginBean {
 	public String login() {
 		EntityManager em = emf.createEntityManager();
 		Query q = em
-				.createQuery("select b from Benutzer where kurzname= :kurzname and kennwort= :kennwort");
+				.createQuery("select b.kurzname,b.kennwortHash from Benutzer b where b.kurzname= :kurzname and b.kennwortHash= :kennwortHash");
 		q.setParameter("kurzname", benutzer.getKurzname());
-		q.setParameter("kennwort", benutzer.getKennwortHash());
+		q.setParameter("kennwortHash", benutzer.getKennwortHash());
 		List<Benutzer> benutzerList = q.getResultList();
 		for (Benutzer b : benutzerList) {
 			if (b.getKurzname().equals(benutzer.getKurzname())
@@ -91,6 +97,11 @@ public class LoginBean {
 			}
 		}
 		em.close();
+		if (!authenticated) {
+			FacesMessage message = new FacesMessage("Anmeldung fehlgeschlagen",
+					"Die Kombination aus 'Name' und 'Kennwort' passt nicht.");
+			facesContext.addMessage("Anmeldung Fehlgeschlagen", message);
+		}
 		return null;
 	}
 

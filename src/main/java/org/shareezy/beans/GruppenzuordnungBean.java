@@ -46,16 +46,12 @@ import org.shareezy.entities.Ressource;
 @Named("GruppenzuordnungBean")
 public class GruppenzuordnungBean {
 
-	private List<Ressource> res;
-
-	private List<Gruppe> grp;
-
 	private EntityManagerFactory emf;
-
 	public EntityManager em;
 	private boolean authenticated;
-
 	private Benutzer benutzer;
+	private Gruppe gruppe;
+	private EntityTransaction tr;
 
 	public GruppenzuordnungBean() {
 		benutzer = new Benutzer();
@@ -73,24 +69,30 @@ public class GruppenzuordnungBean {
 	 * 
 	 * @return null - immer
 	 */
+	@SuppressWarnings("unchecked")
 	public String mitgliederabfragen() {
+
 		EntityManager em = emf.createEntityManager();
-		EntityTransaction tr = em.getTransaction();
+		tr = em.getTransaction();
 		tr.begin();
-		Gruppe gruppe = new Gruppe();
+		em.persist(benutzer);
 		em.persist(gruppe);
+		tr.commit();
+		em.close();
 		/*
 		 * Query qr = em.createQuery(
 		 * "SELECT a.ID FROM Ressource a, b.ID FROM Gruppe b FROM Ressource b "
-		 * );
+		 * ); SELECT shareezy.RESSORCEN.ID, shareezy.GRUPPEN.ID FROM
+		 * shareezy.VERFÜGBARKEITEN INNER JOIN shareezy.VERFÜGBARKEITEN ON
+		 * shareezy.GRUPPEN.ID=shareezy.RESSORCEN.ID;
 		 */
 		Query qr = em
-				.createQuery("SELECT shareezy.RESSOURCEN.ID, shareezy.GRUPPEN.ID FROM shareezy.RESSOURCEN INNER JOIN shareezy.GRUPPEN ON shareezy.GRUPPEN.ID=shareezy.RESSOURCEN.ID;");
-		List<Ressource> abgleich = qr.getResultList();
-		System.out.println(qr);
+				.createQuery("SELECT shareezy.RESSORCEN.ID, shareezy.GRUPPEN.ID FROM shareezy.VERFÜGBARKEITEN WHERE shareezy.GRUPPEN.ID=shareezy.RESSORCEN.ID;");
+		@SuppressWarnings({ "unused" })
+		List<Ressource> res = qr.getResultList();
 		tr.commit();
-		
-		//abgleich.add(index, element);
+
+		// abgleich.add(index, element);
 		/*
 		 * Query qr2 = em.createQuery("SELECT b FROM Gruppe b"); List<Gruppe>
 		 * abgleich2 = qr.getResultList();
