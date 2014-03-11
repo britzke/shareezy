@@ -19,18 +19,21 @@
  -->
  <!-- Detailierte Ansicht der aktuellen Ressource -->
  
- 
- <!-- #{aktuelleressource.ressource.name} -->
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
-
+ 
 	<h:form>
+		<h3>TESTTESTEST</h3>
 		<h:outputText value="#{aktuelleRessourceBean.ressource.name}"/>
+		<h:outputText value="#{aktuelleRessourceBean.ressource.beschreibung}"/>
 		<h:outputText value="#{aktuelleRessourceBean.ressource.startdatum}"/>
         <p:graphicImage value="{aktuelleRessourceBean.ressource.bild}" />  
+	
+		<p:commandButton
+				action="#{ressourcenDetailBean.buchenClicked(ressource)}" name="Buchen" ajax="false" />
 	</h:form>
 </html>

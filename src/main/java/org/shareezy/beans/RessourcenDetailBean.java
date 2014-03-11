@@ -113,4 +113,16 @@ public class RessourcenDetailBean {
 		return "";
 
 	}
+	/**
+	 * Die Methode ressourceClicked speichert die vom User, in der
+	 * Ressourcenliste, angewählte Ressource in der Eigenschat aktuelle
+	 * Ressource ab. Damit wird ein Wiederverwenden der angewählte Ressource
+	 * ermöglicht.
+	 * 
+	 * @return "ressourcendetail" gibt die ressourcendetail zurück wenn auf
+	 *         einen Ressourcennamen geklickt wurde.
+	 */
+	public String buchenClicked(Ressource ressource) {
+		return "timepicker.xhtml";
+	}
 }
