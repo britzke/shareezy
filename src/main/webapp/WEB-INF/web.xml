@@ -136,10 +136,10 @@
       		javax.enterprise.inject.spi.BeanManager
    		</resource-env-ref-type>
 	</resource-env-ref>
-<context-param>
+	<context-param>
         <param-name>primefaces.THEME</param-name>
         <param-value>yourtheme</param-value>
-  </context-param>
+	</context-param>
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -148,5 +148,9 @@
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.faces</url-pattern>
 	</servlet-mapping>
 </web-app>

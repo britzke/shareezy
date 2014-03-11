@@ -79,7 +79,12 @@ public class BenutzerBean {
 	}
 
 	/**
-	 * Validiert, ob beide Kennworte übereinstimmen.
+	 * Validiert, ob das eingegebene Kennwort mit dem Kennwort in dem Feld
+	 * "kennwortWiederholung" übereinstimmt, und ob es sich von dem Kennwort in
+	 * dem Feld "altesKennwort" unterscheidet. Wenn im Formular kein Feld mit
+	 * der ID "kennwortWiederholung" existiert, wird eine Warnung angezeigt.
+	 * Wenn im Formular kein Feld mit der ID "altesKennwort" existiert, wird
+	 * eine Warnung angezeigt.
 	 * 
 	 * @param ctx
 	 *            Der FacesContext
@@ -89,36 +94,60 @@ public class BenutzerBean {
 	 *            Der Wert, der validiert werden soll
 	 * @throws ValidatorException
 	 */
+	public void validiereKennwort(FacesContext facesContext,
+			UIComponent component, Object value) throws ValidatorException {
+		boolean kennwortWiederholungVorhanden = false;
+		boolean altesKennwortVorhanden = false;
 
-	public void validiereKennwort(FacesContext ctx, UIComponent component,
-			Object value) throws ValidatorException {
-		String kennwort1 = (String) ((EditableValueHolder) component)
-				.getSubmittedValue();
-		UIComponent parent = component.getParent();
-		List<UIComponent> siblings = parent.getChildren();
-		for (UIComponent sibling : siblings) {
+		String kennwort = (String) value;
+		if (kennwort != null && !kennwort.equals("")) {
+			UIComponent parent = component.getParent();
+			List<UIComponent> siblings = parent.getChildren();
+			for (UIComponent sibling : siblings) {
 
-			if (sibling.getId().equals("kennwort2")) {
-				String kennwort2 = (String) ((EditableValueHolder) sibling)
-						.getSubmittedValue();
-				if (!kennwort1.equals(kennwort2)) {
-					FacesMessage message = new FacesMessage(
-							"Die Kennworte stimmen nicht überein " + value
-									+ " " + kennwort2);
-					throw new ValidatorException(message);
+				if (sibling.getId().equals("kennwortWiederholung")) {
+					kennwortWiederholungVorhanden = true;
+					String kennwortWiederholung = (String) ((EditableValueHolder) sibling)
+							.getValue();
+					if (!kennwort.equals(kennwortWiederholung)) {
+						FacesMessage message = new FacesMessage(
+								FacesMessage.SEVERITY_ERROR,
+								"Die Kennworte stimmen nicht überein", "");
+						throw new ValidatorException(message);
+					}
+				}
+
+				if (sibling.getId().equals("altesKennwort")) {
+					altesKennwortVorhanden = true;
+					String altesKennwort = (String) ((EditableValueHolder) sibling)
+							.getValue();
+					if (kennwort.equals(altesKennwort)) {
+						FacesMessage message = new FacesMessage(
+								"Neues und altes Kennwort dürfen nich übereinstimmen.");
+						throw new ValidatorException(message);
+					}
 				}
 			}
+			if (!altesKennwortVorhanden) {
+				new FacesMessage(
+						FacesMessage.SEVERITY_WARN,
+						"Eingabefeld 'altesKennwort' fehlt",
+						"Das Eingabefeld mit der ID 'altesKennwort' ist in dem Formular nicht vorhanden."
+								+ "Die Validierung kann nicht durchgeführt werden.");
 
-			if (sibling.getId().equals("kennwort3")) {
-				String kennwort3 = (String) ((EditableValueHolder) sibling)
-						.getSubmittedValue();
-				if (kennwort1.equals(kennwort3)) {
-					FacesMessage message = new FacesMessage(
-							"Das neue kennwort sollte nicht mit dem allten Kennwort übereinstimmen. "
-									+ value + " " + kennwort3);
-					throw new ValidatorException(message);
-				}
 			}
+			if (!kennwortWiederholungVorhanden) {
+				new FacesMessage(
+						FacesMessage.SEVERITY_WARN,
+						"Eingabefeld 'kennwortWiederholung' fehlt",
+						"Das Eingabefeld mit der ID 'kennwortWiederholung' ist in dem Formular nicht vorhanden."
+								+ "Die Validierung kann nicht durchgeführt werden.");
+			}
+		} else {
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
+					"Kennwort-Feld nicht'required'",
+					"Das Kennwort-Feld sollte im View mit dem Attribut 'required' markiert sein");
+			facesContext.addMessage("", message);
 		}
 	}
 
@@ -130,10 +159,9 @@ public class BenutzerBean {
 	 * @param value
 	 * @throws ValidatorException
 	 */
-
 	public void validateEmail(FacesContext context, UIComponent component,
 			Object value) throws ValidatorException {
-		String email = String.valueOf(value);
+		String.valueOf(value);
 		boolean valid = true;
 
 		// if (value == null) {
