@@ -17,25 +17,18 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
- <!-- Detailierte Ansicht der aktuellen Ressource -->
- 
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
- 
-	<h:form>
-		<h3>TESTTESTEST</h3>
-		<h:outputText value="#{aktuelleRessourceBean.ressource.name}"/>
-		<h:outputText value="#{aktuelleRessourceBean.ressource.beschreibung}"/>
-		<h:outputText value="#{aktuelleRessourceBean.ressource.startdatum}"/>
-        <p:graphicImage value="{aktuelleRessourceBean.ressource.bild}" />
- 		<h:graphicImage url="test.jpg" width="100" height="130" />
-        <p><img src="testbild.jpg" width="180" height="180" /></p>
-	
-		<p:commandButton
-				action="#{ressourcenDetailBean.buchenClicked(ressource)}" value="Buchen" ajax="false" />
-	</h:form>
+
+<ui:composition template="/WEB-INF/templates/structure.xhtml">
+	<ui:define name="title">DetailAnsicht</ui:define>
+	<ui:define name="content">
+		<ui:include src="/WEB-INF/templates/detailRessourcenAnsicht.xhtml"></ui:include>
+		<br/><br/><br/>
+		<ui:include src="/WEB-INF/templates/schedule.xhtml"></ui:include>
+	</ui:define>
+</ui:composition>
 </html>
