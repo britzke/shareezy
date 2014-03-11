@@ -11,28 +11,28 @@
 <h:body>
 	<h:form>
 		<p:panelGrid columns="2">
-				<p:outputLabel value="E-Mail:" />
-				<p:inputText value="#{accountBearbeitenBean.eMail}">
-				<f:validator validatorId="AccountBearbeitenValidator"/>
-				</p:inputText>
+			<p:inputText
+				placeholder="Bitte geben sie ihre E-Mail addresse ein ein"
+				value="#{accountBearbeitenBean.eMail}" />
 				
-					<p:outputLabel for="pwd1" value="Altes Password:" />
-				<p:password id="pwd1"
-					value="#{accountBearbeitenBean.eingabePasswortAlt}"  label = "pw1"/>
+			<p:password id="kennwort1" placeholder="neues Kennwort"
+				feedback="true" promptLabel="Bitte geben Sie ihr neues Passwort ein"
+				value="#{benutzerBean.kennwort}"
+				validator="#{benutzerBean.validiereKennwort}" />
+			<p:message for="kennwort1" />
 
-				<h:outputLabel for="pwd2" value="Neues Passwort:" />
-				<p:password id="pwd2"
-					value="#{accountBearbeitenBean.eingabePasswort}" label="pw2" />
+			<p:password id="kennwort2" placeholder="neues Kennwort (wiederholen)"
+				promptLabel="Bitte wiederholen Sie ihr neues Passwort" />
+			<p:message for="kennwort2" />
 
-				<h:outputLabel for="pwd3" value="Neues Passwort wiederholen:" />
-				<p:password id="pwd3"
-					value="#{accountBearbeitenBean.eingabePasswortWiederholen}" label="pw3"/>
+			<p:password id="kennwort3" placeholder="altes Kennwort"
+				feedback="true" promptLabel="Bitte geben sie ihr altes Passwort ein" />
+			<p:message for="kennwort3" />
 
-				<h:commandButton value="Abrechen"
-					action="/WEB-INF/templates/structure.xhtml" />
-				<h:commandButton value="Save"
-					action="#{accountBearbeitenBean.eingabePrüfen()}" />
-
+			<h:commandButton value="Abrechen"
+				action="/WEB-INF/templates/index.xhtml" />
+			<h:commandButton value="Save"
+				action="#{accountBearbeitenBean.action}" />
 		</p:panelGrid>
 	</h:form>
 </h:body>
