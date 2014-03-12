@@ -2,6 +2,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
 
@@ -12,20 +13,21 @@
 	<h:form>
 		<p:panelGrid columns="2">
 			<p:outputLabel value="Beschreibung:" />
-			<p:inputTextarea value="#{neueRessourcenBean.beschreibung}" />
+			<p:inputTextarea value="#{neueRessourcenBean.ressource.beschreibung}" />
 			<p:outputLabel value="Bild:" />
-			<p:inputText value="#{neueRessourcenBean.bild}" />
+			<p:inputText value="#{neueRessourcenBean.ressource.bild}" />
 			<p:outputLabel value="Enddatum:" />
-			<p:inputText value="#{neueRessourcenBean.enddatum}" />
+			<p:inputText value="#{neueRessourcenBean.ressource.enddatum}" />
 			<p:outputLabel value="Name:" />
-			<p:inputText value="#{neueRessourcenBean.name}" />
+			<p:inputText value="#{neueRessourcenBean.ressource.name}" />
 			<p:outputLabel value="Startdatum:" />
-			<p:inputText value="#{neueRessourcenBean.startdatum}" />
+			<p:inputText value="#{neueRessourcenBean.ressource.startdatum}" />
 			<h:outputText value="Typen:" />
-			<p:selectOneMenu value="#{neueRessourcenBean.typ}">
-				<f:selectItem itemLabel="#{neueRessourcenBean.typ}" itemValue="#{neueRessourcenBean.typ}" />
+			<p:selectOneMenu value="#{neueRessourcenBean.ressource.typ}">
+				<f:selectItem itemLabel="#{neueRessourcenBean.ressource.typ}"
+					itemValue="" />
 			</p:selectOneMenu>
-			<p:commandButton value="Ressource veröffentlichen" 
+			<p:commandButton value="Ressource veröffentlichen"
 				action="#{neueRessourcenBean.speichern}" />
 		</p:panelGrid>
 	</h:form>
