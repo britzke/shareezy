@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
 
 
 <h:head>
@@ -14,21 +14,22 @@
 		<p:panelGrid columns="2">
 			<p:outputLabel value="Beschreibung:" />
 			<p:inputTextarea value="#{neueRessourcenBean.ressource.beschreibung}" />
+			<p:outputLabel value="Bild:" />
+			<p:inputText value="#{neueRessourcenBean.ressource.bild}" />
 			<p:outputLabel value="Enddatum:" />
-			<p:calendar value="#{neueRessourcenBean.ressource.enddatum}" pattern="MM/dd/yyyy" />  
+			<p:inputText value="#{neueRessourcenBean.ressource.enddatum}" />
 			<p:outputLabel value="Name:" />
 			<p:inputText value="#{neueRessourcenBean.ressource.name}" />
 			<p:outputLabel value="Startdatum:" />
-			<p:calendar value="#{neueRessourcenBean.ressource.startdatum}" pattern="MM/dd/yyyy" />  
-			<p:outputLabel value="Typ" />
-		    <p:selectOneMenu value="#{neueRessourcenBean.typ.name}">
-				<f:selectItems value="#{neueRessourcenBean.typListe}" var="typ"
-					itemLabel="#{typ.name}" itemValue="#{typ.id}" />
+			<p:inputText value="#{neueRessourcenBean.ressource.startdatum}" />
+			<h:outputText value="Typen:" />
+			<p:selectOneMenu value="#{neueRessourcenBean.ressource.typ}">
+				<f:selectItem itemLabel="#{neueRessourcenBean.ressource.typ}"
+					itemValue="" />
 			</p:selectOneMenu>
 			<p:commandButton value="Ressource veröffentlichen"
 				action="#{neueRessourcenBean.speichern}" />
 		</p:panelGrid>
-		
 	</h:form>
 </h:body>
 </html>
