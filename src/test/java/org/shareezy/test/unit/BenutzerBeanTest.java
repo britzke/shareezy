@@ -175,6 +175,22 @@ public class BenutzerBeanTest {
 			fail("Die Validierung darf für gleiche Kennwort nicht fehlschlagen");
 		}
 	}
+	
+	/**
+	 * Test testet, ob der Validator eine ValidatorException wirft, wenn
+	 * der Wert in der Komponente "altesKennwort" gleich dem Wert in der Komponente
+	 * "kennwort"
+	 * {@link org.shareezy.beans.RegestrierungsBean#validiereKennwort()}.
+	 */
+	@Test
+	public void testValidiereKennwortGleichAlt() {
+		parent.getChildren().add(kennwortWiederholung);
+		parent.getChildren().add(altesKennwort);
+		kennwortWiederholung.setSubmittedValue("secret");
+		altesKennwort.setSubmittedValue("secret");
+		
+			proband.validiereKennwort(facesContext, kennwort, "secret");
+	}
 
 	/**
 	 * Testet, ob der Validator eine ValidatorException wirft, wenn die

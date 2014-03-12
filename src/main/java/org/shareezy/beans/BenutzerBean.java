@@ -112,7 +112,8 @@ public class BenutzerBean {
 					if (!kennwort.equals(kennwortWiederholung)) {
 						FacesMessage message = new FacesMessage(
 								FacesMessage.SEVERITY_ERROR,
-								"Die Kennworte stimmen nicht überein", "");
+								"Kennworte unterschiedlich",
+								"Das Kennwort und die Kennwortwiederholung stimmen nicht überein.");
 						throw new ValidatorException(message);
 					}
 				}
@@ -124,8 +125,8 @@ public class BenutzerBean {
 					if (kennwort.equals(altesKennwort)) {
 						FacesMessage message = new FacesMessage(
 								FacesMessage.SEVERITY_ERROR,
-								"Kennworte unterschiedlich",
-								"Neues und altes Kennwort dürfen nich übereinstimmen.");
+								"Kennworte gleich",
+								"Neues und altes Kennwort dürfen nicht übereinstimmen.");
 						throw new ValidatorException(message);
 					}
 				}
