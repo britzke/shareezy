@@ -10,8 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-
-import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.Ressource;
 import org.shareezy.entities.Typ;
 
@@ -34,9 +32,7 @@ public class NeueRessourceBean {
 	private EntityManager em;
 	private Typ typ;
 	private List<Typ> typListe;
-	@Inject
-	private Benutzer benutzer;
-
+	
 	/**
 	 * Die init() Methode dient zum erzeugen des ressource Objekts, das mit
 	 * Inhalten befüllt wird
