@@ -91,13 +91,13 @@ public class GroupManagerBean implements Serializable {
 	}
 
 	public String groupClick(Gruppe g) {
-		System.out.println("Gruppe: " + g.getName());
+		System.out.println("Select Gruppe: " + g.getName());
 		return null;
 	}
 
 	public String deleteGroupClick(Gruppe g) {
 		groups.remove(g);
-		System.out.println("Gruppe: " + g.getName());
+		System.out.println("Lösche Gruppe: " + g.getName());
 		return null;
 	}
 
@@ -167,8 +167,8 @@ public class GroupManagerBean implements Serializable {
 		return groupName;
 	}
 
-	public void setGroupName(String groupName) throws RuntimeException {
-		System.out.println("setGroupName: " + groupName);
+	public void setGroupName(String groupName){
+
 		this.groupName = groupName;
 	}
 
