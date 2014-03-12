@@ -81,7 +81,7 @@ form .dialogH2 {
 				collapsible="true" header="Meine Gruppen">
 				<h:form>
 
-					<p:dataTable var="groups"  styleClass="noheader"
+					<p:dataTable id="groupTable" var="groups"  styleClass="noheader"
 						value="#{groupManager.groups}">
 						<p:column sortBy="groups">
 							<!-- Gruppe auflisten -->
@@ -251,11 +251,11 @@ form .dialogH2 {
 				</h:panelGrid>
 
 				<p:commandButton value="Erstellen"
-					actionListener="#{groupManager.createNewGroupClick()}" process="@this"
+					actionListener="#{groupManager.createNewGroupClick()}"
 					onclick="PF('neueGruppeDialog').hide();PF('inviteMembersDlg').show();" 
 					styleClass="blueButton" />
 				<p:commandButton value="Abbrechen" 
-					onclick="PF('neueGruppeDialog').hide()" type="button" />
+					onclick="PF('neueGruppeDialog').hide()"/>
 
 			</h:form>
 
@@ -284,13 +284,13 @@ form .dialogH2 {
 
 
 				<p:commandButton value="Einladen"
-					onclick="PF('inviteMembersDlg').hide()" ajax="true"
+					onclick="PF('inviteMembersDlg').hide()" 
 					actionListener="#{memberManager.sendRequest}" update=":grpView"
 					 styleClass="blueButton" />
-				<p:commandButton value="Später" ajax="false"
-					onclick="PF('inviteMembersDlg').hide()" type="button" >
+				<p:commandButton value="Später" actionListener="#{groupManager.inviteLaterClick()}"
+					onclick="PF('inviteMembersDlg').hide()" update=":groupTable" >
 					
-					<f:ajax render="westGrps"/>
+					
 					</p:commandButton>
 
 			</h:form>
