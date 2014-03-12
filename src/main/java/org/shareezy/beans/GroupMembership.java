@@ -20,31 +20,16 @@ package org.shareezy.beans;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.mail.Address;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
-import javax.servlet.ServletContext;
 
-import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.Gruppe;
-import org.shareezy.entities.Ressource;
 
 /**
  * Eigene Gruppenzugehörigkeit beantragen/entfernen

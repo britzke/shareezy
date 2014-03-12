@@ -38,7 +38,7 @@ import org.shareezy.entities.Ressource;
 public class GroupManagerBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private String groupName;
+	private String groupName = "Gruppen Name";
 	private ArrayList<Gruppe> groups = new ArrayList<Gruppe>();
 	private Benutzer benutzer;
 	private List<Ressource> groupRessourcen;
@@ -91,7 +91,7 @@ public class GroupManagerBean implements Serializable {
 	}
 
 	public String groupClick(Gruppe g) {
-		//System.out.println("Select Gruppe: " + g.getName());
+		System.out.println("Select Gruppe: " + g.getName());
 		return null;
 	}
 
@@ -135,6 +135,11 @@ public class GroupManagerBean implements Serializable {
 
 		return null;
 	}
+	
+	public String inviteLaterClick() {
+		System.out.println("inviteLaterClick");
+		return "groupmanager";
+	}
 
 	/**
 	 * Wird ausgeführt wenn der User auf "Einladen" (@issue9/Schritt 3.2)
@@ -167,7 +172,7 @@ public class GroupManagerBean implements Serializable {
 	}
 
 	public void setGroupName(String groupName){
-
+		System.out.println("setGroupName "+groupName) ;
 		this.groupName = groupName;
 	}
 
