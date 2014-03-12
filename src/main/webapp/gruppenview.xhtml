@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/structure.xhtml">
+	<ui:define name="title">GruppenManager</ui:define>
+	<ui:define name="content">
+
+		<p:tabView>
+
+			<p:tab title="Ressourcen">
+
+				<h:form>
+
+					<p:dataTable var="ressourcen" value="#{memberManager.grpDataListe}">
+						<p:column headerText="Gruppen Ressourcen" sortBy="ressourcen">
+							<!-- Ressourcen auflisten -->
+							<h:outputText value="#{ressourcen.getRessourcens()}" />
+						</p:column>
+
+						<p:column>
+							<p:commandButton update=":grpView" icon="ui-icon-search"
+								title="View">
+
+							</p:commandButton>
+						</p:column>
+
+					</p:dataTable>
+
+				</h:form>
+
+			</p:tab>
+
+			<p:tab title="User">
+
+				<h:form>
+
+					<p:dataTable var="user" value="#{memberManager.grpDataListe}">
+
+						<p:column headerText="Gruppen User" sortBy="user">
+							<!-- Benutzer auflisten -->
+							<h:outputText value="#{user.getBenutzers()}" />
+						</p:column>
+					</p:dataTable>
+
+				</h:form>
+
+			</p:tab>
+
+			<p:tab title="Anfragen">
+
+				<h:form>
+
+					<p:dataTable var="requests" value="#{memberManager.grpAnfListe}">
+
+						<p:column headerText="Benutzer Anfragen" sortBy="requests">
+							<!-- Requests auflisten -->
+							<h:outputText value="#{requests.getBenutzerId()}" />
+							<h:outputText value="#{requests.getGruppenId()}" />
+							<h:outputText value="#{requests.isBestätigt()}" />
+						</p:column>
+					</p:dataTable>
+
+				</h:form>
+
+			</p:tab>
+
+		</p:tabView>
+	</ui:define>
+</ui:composition>
+</html>
