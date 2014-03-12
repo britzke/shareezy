@@ -68,9 +68,6 @@ public class BenutzerBean {
 	private String kennwort;
 	private String kennwortAlt;
 
-	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
 	/**
 	 * Erzeugt eine neue RegistrierungBean. Initialisiert den Benutzer.
 	 */
@@ -168,15 +165,6 @@ public class BenutzerBean {
 		String.valueOf(value);
 		boolean valid = true;
 
-		// if (value == null) {
-		// valid = false;
-		// } else if (!email.contains("@")) {
-		// valid = false;
-		// } else if (!email.contains(".")) {
-		// valid = false;
-		// } else if (email.contains(" ")) {
-		// valid = false;
-		// }
 		if (!valid) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, "Invalid email address",
