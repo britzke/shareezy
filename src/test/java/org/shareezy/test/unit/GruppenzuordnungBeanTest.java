@@ -56,7 +56,7 @@ public class GruppenzuordnungBeanTest {
 	private List<Ressource> res;
 	private List<Gruppe> grp;
 	
-	private String qstring = "SELECT shareezy.RESSORCEN.ID, shareezy.GRUPPEN.ID FROM shareezy.VERFÜGBARKEITEN WHERE shareezy.GRUPPEN.ID=shareezy.RESSORCEN.ID";
+	private String qstring = "SELECT * from RESSOURCEN, VERFÜGBARKEITEN where ID!=RESSORCEN_ID;";
 	private Query query;
 
 	/**

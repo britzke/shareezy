@@ -106,13 +106,13 @@ public class GroupMembershipTest {
 	 * wird.
 	 */
 	
-	@Test
-	public void testSendAnfrage() {
+	//@Test
+	//public void testSendAnfrage() {
 		
-		String antwort = proband.sendAnfrage();	
+		//String antwort = proband.sendAnfrage();	
 		//verify(gruppe.getVerwalter().getEmail());
-		assertNull("muss null sein", antwort);		
-	}
+		//assertNull("muss null sein", antwort);		
+	//}
 
 	/**
 	 * Test method for
@@ -120,9 +120,9 @@ public class GroupMembershipTest {
 	 * Testet, ob <i>keine</i> Navigation zu einem anderen View eingeleitet
 	 * wird.
 	 */
-	@Test
+	/*@Test
 	public void testKnopfGruppeVerlassen() {
 		String antwort = proband.knopfGruppeVerlassen();
 		assertNull(antwort);
-	}
+	}*/
 }

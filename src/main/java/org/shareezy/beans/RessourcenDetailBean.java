@@ -63,7 +63,7 @@ public class RessourcenDetailBean {
 	public String timePicker() {
 		return null;
 	}
-	
+
 	/**
 	 * fügt der Entität "Buchung" der Datenbank einen neuen Datensatz mit den im
 	 * TimePicker eingegebenen Daten hinzu.
@@ -93,14 +93,13 @@ public class RessourcenDetailBean {
 	}
 
 	/**
-	 * um Doppelbuchungen zu verhindern
-	 * sucht Datensatz "ressourcen_id" in der Entitaet "Buchungen" und
-	 * vergleicht die neuen Werte (Datum + Uhrzeit) mit den Werten aus der
-	 * Datenbank Fehlermeldung wenn Ressource in dem gewuenschtem Zeitraum
-	 * bereits vergeben ist + alternativen Terminvorschlag. Ist die Reservierung
-	 * erfolgreich, wird in der Entitaet "Buchungen" ein neuer Datensatz (Datum
-	 * + Uhrzeit) angelegt und die ressourcen_id und die user_id werden
-	 * aktualisiert
+	 * um Doppelbuchungen zu verhindern sucht Datensatz "ressourcen_id" in der
+	 * Entitaet "Buchungen" und vergleicht die neuen Werte (Datum + Uhrzeit) mit
+	 * den Werten aus der Datenbank Fehlermeldung wenn Ressource in dem
+	 * gewuenschtem Zeitraum bereits vergeben ist + alternativen
+	 * Terminvorschlag. Ist die Reservierung erfolgreich, wird in der Entitaet
+	 * "Buchungen" ein neuer Datensatz (Datum + Uhrzeit) angelegt und die
+	 * ressourcen_id und die user_id werden aktualisiert
 	 * 
 	 * wird beim Klick auf den Bestaetigungsbutton aufgerufen
 	 */
@@ -112,5 +111,14 @@ public class RessourcenDetailBean {
 		addDatensatz();
 		return "";
 
+	}
+
+	/**
+	 * Über die Methode buchenClicked gelangt der User zum TimePicker um die
+	 * ausgewählte Ressource buchen zu können.
+	 * 
+	 */
+	public String buchenClicked(Ressource ressource) {
+		return "timepicker.xhtml";
 	}
 }
