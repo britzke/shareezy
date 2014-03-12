@@ -108,7 +108,7 @@ public class BenutzerBean {
 				if (sibling.getId().equals("kennwortWiederholung")) {
 					kennwortWiederholungVorhanden = true;
 					String kennwortWiederholung = (String) ((EditableValueHolder) sibling)
-							.getValue();
+							.getSubmittedValue();
 					if (!kennwort.equals(kennwortWiederholung)) {
 						FacesMessage message = new FacesMessage(
 								FacesMessage.SEVERITY_ERROR,
@@ -120,28 +120,31 @@ public class BenutzerBean {
 				if (sibling.getId().equals("altesKennwort")) {
 					altesKennwortVorhanden = true;
 					String altesKennwort = (String) ((EditableValueHolder) sibling)
-							.getValue();
+							.getSubmittedValue();
 					if (kennwort.equals(altesKennwort)) {
 						FacesMessage message = new FacesMessage(
+								FacesMessage.SEVERITY_ERROR,
+								"Kennworte unterschiedlich",
 								"Neues und altes Kennwort dürfen nich übereinstimmen.");
 						throw new ValidatorException(message);
 					}
 				}
 			}
 			if (!altesKennwortVorhanden) {
-				new FacesMessage(
+				FacesMessage m = new FacesMessage(
 						FacesMessage.SEVERITY_WARN,
 						"Eingabefeld 'altesKennwort' fehlt",
 						"Das Eingabefeld mit der ID 'altesKennwort' ist in dem Formular nicht vorhanden."
 								+ "Die Validierung kann nicht durchgeführt werden.");
-
+				facesContext.addMessage(null, m);
 			}
 			if (!kennwortWiederholungVorhanden) {
-				new FacesMessage(
+				FacesMessage m = new FacesMessage(
 						FacesMessage.SEVERITY_WARN,
 						"Eingabefeld 'kennwortWiederholung' fehlt",
 						"Das Eingabefeld mit der ID 'kennwortWiederholung' ist in dem Formular nicht vorhanden."
 								+ "Die Validierung kann nicht durchgeführt werden.");
+				facesContext.addMessage(null, m);
 			}
 		} else {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,

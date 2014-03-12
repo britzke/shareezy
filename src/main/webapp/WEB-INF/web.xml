@@ -138,7 +138,7 @@
 	</resource-env-ref>
 	<context-param>
         <param-name>primefaces.THEME</param-name>
-        <param-value>yourtheme</param-value>
+        <param-value>shareezy</param-value>
 	</context-param>
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>

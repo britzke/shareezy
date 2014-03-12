@@ -50,6 +50,7 @@
 		<p:commandButton value="absenden"
 			action="#{benutzerBean.datensatzEinfügen}"
 			actionListener="#{benutzerBean.validiereKennwort}" update="grid" />
-		</p:panelGrid>
-		<p:outputLabel value= " * : Pflichtfeld" />
+		<h:inputHidden id="altesKennwort" />
+	</p:panelGrid>
+	<p:outputLabel value=" * : Pflichtfeld" />
 </h:form>
