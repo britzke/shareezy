@@ -153,7 +153,7 @@ public class BenutzerBeanTest {
 	public void testValidiereKennwortUnterschiedlich() {
 		parent.getChildren().add(kennwortWiederholung);
 		parent.getChildren().add(altesKennwort);
-		kennwortWiederholung.setValue("notSecret");
+		kennwortWiederholung.setSubmittedValue("notSecret");
 		proband.validiereKennwort(facesContext, kennwort, "secret");
 	}
 
@@ -167,7 +167,7 @@ public class BenutzerBeanTest {
 	public void testValidiereKennwortGleich() {
 		parent.getChildren().add(kennwortWiederholung);
 		parent.getChildren().add(altesKennwort);
-		kennwortWiederholung.setValue("secret");
+		kennwortWiederholung.setSubmittedValue("secret");
 		try {
 			proband.validiereKennwort(facesContext, kennwort, "secret");
 		} catch (ValidatorException e) {
