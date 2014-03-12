@@ -81,7 +81,7 @@ public class GroupManagerBean implements Serializable {
 		// EntityManager em = emf.createEntityManager();
 		// EntityTransaction t = em.getTransaction();
 		// t.begin();
-
+		
 		Gruppe newGroup = new Gruppe();
 		newGroup.setName(groupName);
 		newGroup.setVerwalter(benutzer);
@@ -91,13 +91,13 @@ public class GroupManagerBean implements Serializable {
 	}
 
 	public String groupClick(Gruppe g) {
-		System.out.println("Select Gruppe: " + g.getName());
+		//System.out.println("Select Gruppe: " + g.getName());
 		return null;
 	}
 
 	public String deleteGroupClick(Gruppe g) {
 		groups.remove(g);
-		System.out.println("Lösche Gruppe: " + g.getName());
+		//System.out.println("Lösche Gruppe: " + g.getName());
 		return null;
 	}
 
@@ -163,7 +163,6 @@ public class GroupManagerBean implements Serializable {
 	}
 
 	public String getGroupName() {
-		System.out.println("getGroupName: " + groupName);
 		return groupName;
 	}
 
