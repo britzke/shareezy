@@ -29,7 +29,7 @@
 			value="#{benutzerBean.benutzer.email}" feedback="true"
 			validator="#{benutzerBean.validateEmail}" required="true"
 			requiredMessage="E-Mail Addresse eingeben!"
-			validatorMessage="Ungülite E-Mail!">
+			validatorMessage="Ungültige E-Mail-Addresse!">
 			<f:validateRegex pattern="([a-zA-Z0-9]+(?:[._+-][a-zA-Z0-9]+)*)@([a-zA-Z0-9]+(?:[.-][a-zA-Z0-9]+)*{1,2}[a-zA-Z]{2,})" />
 		</p:inputText>
 		<p:message for="email"
