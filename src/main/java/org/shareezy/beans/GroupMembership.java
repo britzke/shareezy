@@ -23,25 +23,22 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.shareezy.entities.Benutzer;
 import org.shareezy.entities.BenutzerGruppe;
 import org.shareezy.entities.Gruppe;
-import org.shareezy.entities.Ressource;
 
 /**
  * Eigene Gruppenzugehörigkeit beantragen/entfernen
- * 
+ * @author Tim Treibmann
  * @author Maxim Slipachuk
- */
+ */ 
 @RequestScoped
 @Named
 public class GroupMembership implements Serializable {
@@ -56,7 +53,6 @@ public class GroupMembership implements Serializable {
 	private EntityManager em;
 	@Inject
 	private Benutzer benutzer;
-
 	/**
 	 * Wird bei Klick auf 'Anfrage' aufgerufen. Es wird dem Gruppeneigentümer
 	 * eine AnfrageMessage zugesendet. Diese Message wird in der Datenbank
