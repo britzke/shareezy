@@ -65,6 +65,7 @@ public class BenutzerBean {
 	private Benutzer benutzer;
 	private String kennwort;
 	private String kennwortAlt;
+	private boolean navNextPage;
 
 	/**
 	 * Erzeugt eine neue RegistrierungBean. Initialisiert den Benutzer.
@@ -89,7 +90,7 @@ public class BenutzerBean {
 	 *            Der Wert, der validiert werden soll
 	 * @throws ValidatorException
 	 */
-	public void validiereKennwort(FacesContext facesContext,
+	public String validiereKennwort(FacesContext facesContext,
 			UIComponent component, Object value) throws ValidatorException {
 		boolean kennwortWiederholungVorhanden = false;
 		boolean altesKennwortVorhanden = false;
@@ -109,7 +110,10 @@ public class BenutzerBean {
 								FacesMessage.SEVERITY_ERROR,
 								"Kennworte unterschiedlich",
 								"Das Kennwort und die Kennwortwiederholung stimmen nicht überein.");
-						throw new ValidatorException(message);
+						throw new ValidatorException(message);						
+					}else{
+						navNextPage=true;
+						System.out.println("navnextPage setzen");
 					}
 				}
 
@@ -122,7 +126,7 @@ public class BenutzerBean {
 								FacesMessage.SEVERITY_ERROR,
 								"Kennworte gleich",
 								"Neues und altes Kennwort dürfen nicht übereinstimmen.");
-						throw new ValidatorException(message);
+							throw new ValidatorException(message);
 					}
 				}
 			}
@@ -148,6 +152,7 @@ public class BenutzerBean {
 					"Das Kennwort-Feld sollte im View mit dem Attribut 'required' markiert sein");
 			facesContext.addMessage("", message);
 		}
+		return null;
 	}
 
 	/**
@@ -214,7 +219,12 @@ public class BenutzerBean {
 			em.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+			
+			
+		}if(navNextPage==true){
+			System.out.println("nav"); 
+			return "index.xhtml";
+		 }
 		return null;
 	}
 
@@ -264,8 +274,8 @@ public class BenutzerBean {
 			message.setSeverity(FacesMessage.SEVERITY_FATAL);
 			facesContext.addMessage(null, message);
 		}
-		return null;
-	}
+		return "index.xhtml";
+		}
 
 	/**
 	 * Konvertiert das angegebene Byte-Array in eine Zeichenkette mit

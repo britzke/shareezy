@@ -25,12 +25,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Index;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 /**
  * Klasse für Persistenz-Objekte der Datenbanktabelle BENUTZER.
@@ -38,7 +38,7 @@ import javax.persistence.TemporalType;
  * @author burghard.britzke (bubi@charmides.in-berlin.de)
  */
 @Entity
-@Table(indexes = { @Index(columnList = "kurzname") })
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "kurzname" }) })
 public class Benutzer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
