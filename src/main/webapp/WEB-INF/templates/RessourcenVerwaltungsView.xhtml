@@ -13,11 +13,15 @@
 	<h:form>
 		<p:panelGrid columns="2">
 			<p:outputLabel value="Beschreibung:" />
-			<p:inputTextarea value="#{neueRessourcenBean.ressource.beschreibung}" />
+			<p:inputTextarea value="#{neueRessourcenBean.ressource.beschreibung}">
+				<f:validateLength minimum="1" maximum="30" />
+			</p:inputTextarea>
 			<p:outputLabel value="Bild:" />
 			<p:inputText value="#{neueRessourcenBean.ressource.bild}" />
 			<p:outputLabel value="Enddatum:" />
-			<p:inputText value="#{neueRessourcenBean.ressource.enddatum}" />
+			<p:inputText value="#{neueRessourcenBean.ressource.enddatum}">
+				<f:validate />
+			</p:inputText>
 			<p:outputLabel value="Name:" />
 			<p:inputText value="#{neueRessourcenBean.ressource.name}" />
 			<p:outputLabel value="Startdatum:" />

@@ -48,8 +48,7 @@
 		<p:message for="kennwortWiederholung" />
 
 		<p:commandButton value="absenden"
-			action="#{benutzerBean.datensatzEinfügen}"
-			actionListener="#{benutzerBean.validiereKennwort}" update="grid" />
+			action="#{benutzerBean.datensatzEinfügen}" update="grid" />
 		<h:inputHidden id="altesKennwort" />
 	</p:panelGrid>
 	<p:outputLabel value=" * : Pflichtfeld" />
