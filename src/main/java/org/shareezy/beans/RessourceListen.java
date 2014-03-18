@@ -65,7 +65,7 @@ public class RessourceListen {
 	public String ressourceClicked(Ressource ressource) {
 		aktuelleressource.setRessource(ressource);
 
-		return "DetailRessourcenAnsicht.xhtml";
+		return "detailAnsicht.xhtml";
 	}
 
 	/**

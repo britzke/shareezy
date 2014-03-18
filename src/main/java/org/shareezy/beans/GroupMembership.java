@@ -20,37 +20,25 @@ package org.shareezy.beans;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.mail.Address;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import javax.servlet.ServletContext;
 
 import org.shareezy.entities.Benutzer;
+import org.shareezy.entities.BenutzerGruppe;
 import org.shareezy.entities.Gruppe;
-import org.shareezy.entities.Ressource;
 
 /**
  * Eigene Gruppenzugehörigkeit beantragen/entfernen
- * 
+ * @author Tim Treibmann
  * @author Maxim Slipachuk
- */
+ */ 
 @RequestScoped
 @Named
 public class GroupMembership implements Serializable {
@@ -60,7 +48,11 @@ public class GroupMembership implements Serializable {
 	private EntityManagerFactory emf;
 	private List<Gruppe> gruppenliste;
 	private List<Gruppe> filteredgruppen;
-
+	@Inject
+	private BenutzerGruppe benutzerGruppe;
+	private EntityManager em;
+	@Inject
+	private Benutzer benutzer;
 	/**
 	 * Wird bei Klick auf 'Anfrage' aufgerufen. Es wird dem Gruppeneigentümer
 	 * eine AnfrageMessage zugesendet. Diese Message wird in der Datenbank
@@ -83,6 +75,58 @@ public class GroupMembership implements Serializable {
 	 */
 
 	public String sendAnfrage(Gruppe gruppe) {
+		em = emf.createEntityManager();
+	/*	FacesContext fc = FacesContext.getCurrentInstance();
+		String angemeldeterBenutzer = fc.getExternalContext().getRemoteUser();
+
+		
+		em.getTransaction().begin();
+		Query queryAngemeldeterBenutzer = em
+				.createQuery("SELECT b FROM Benutzer b where b.kurzname = :benutzername");
+		queryAngemeldeterBenutzer.setParameter("benutzername",
+				angemeldeterBenutzer);
+		try {
+			benutzer = (Benutzer) queryAngemeldeterBenutzer.getSingleResult();
+		}
+		//
+		// Dummy catch um zu testen, ob der Datensatz geschrieben wird. Es ist
+		// noch unklar ob der angemeldete Benutzer wirklich selektiert wird.
+		
+			catch (NoResultException nre) {
+			benutzer = new Benutzer();
+			benutzer.setId(1);
+		}
+		em.getTransaction().commit();
+*/
+		em.getTransaction().begin();
+		Query queryAlleBenutzerGruppen = em
+				.createQuery("SELECT r FROM BenutzerGruppe r");
+		@SuppressWarnings("unchecked")
+		List<BenutzerGruppe> alleBenutzerGruppen = queryAlleBenutzerGruppen
+				.getResultList();
+		if (alleBenutzerGruppen.size() == 0) {
+			alleBenutzerGruppen = new ArrayList<BenutzerGruppe>();
+		}
+		em.getTransaction().commit();
+		em.close();
+
+		benutzerGruppe.setGruppenId(gruppe.getId());
+		benutzerGruppe.setBenutzerId(benutzer.getId());
+		benutzerGruppe.setBestätigt(false);
+
+		for (BenutzerGruppe bg : alleBenutzerGruppen) {
+			if ((benutzerGruppe.getBenutzerId() == bg.getBenutzerId())
+					&& (benutzerGruppe.getGruppenId() == bg.getGruppenId())) {
+
+			} else {
+				em = emf.createEntityManager();
+				EntityTransaction ent = em.getTransaction();
+				ent.begin();
+				em.persist(benutzerGruppe);
+				ent.commit();
+				em.close();
+			}
+		}
 
 		return null;
 	}

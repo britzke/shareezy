@@ -7,7 +7,7 @@
 		<p:inputText value="#{loginBean.benutzername}" placeholder="Name" />
 		<p:password value="#{loginBean.kennwort}" placeholder="Kennwort" />
 		<p:commandButton value="anmelden" action="#{loginBean.login}" />
-		<p:commandLink value="registrieren" action="registrierung"/>
+		<p:commandLink value="registrieren" action="registrierung?faces-redirect=true"/>
 	</p:panelGrid>
 
 </h:form>

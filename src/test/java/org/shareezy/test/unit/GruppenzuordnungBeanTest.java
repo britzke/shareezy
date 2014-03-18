@@ -18,17 +18,13 @@
  */
 package org.shareezy.test.unit;
 
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.*;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.lang.reflect.Field;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -38,8 +34,8 @@ import javax.persistence.Query;
 import org.junit.Before;
 import org.junit.Test;
 import org.shareezy.beans.GruppenzuordnungBean;
-import org.shareezy.entities.Gruppe;
-import org.shareezy.entities.Ressource;
+//import org.shareezy.entities.Gruppe;
+//import org.shareezy.entities.Ressource;
  
 /**
  * Testet die GruppenzuordnungsBean.
@@ -53,8 +49,10 @@ public class GruppenzuordnungBeanTest {
 	private EntityManager em;
 	private EntityManagerFactory emf;
 	private GruppenzuordnungBean proband;
-	private List<Ressource> res;
-	private List<Gruppe> grp;
+	
+/*VARIABLE res & grp WIRD (NOCH) NICHT BENUTZT?!?*/	
+// 	private List<Ressource> res;
+// 	private List<Gruppe> grp;
 	
 	private String qstring = "SELECT * from RESSOURCEN, VERFÜGBARKEITEN where ID!=RESSORCEN_ID;";
 	private Query query;
@@ -70,14 +68,16 @@ public class GruppenzuordnungBeanTest {
 		emf = mock(EntityManagerFactory.class);
 		em = mock(EntityManager.class);
 		et = mock(EntityTransaction.class);
+
 		query = mock(Query.class);
 		when(emf.createEntityManager()).thenReturn(em);
 		when(em.createQuery(eq(qstring))).thenReturn(query);
 		when(em.getTransaction()).thenReturn(et);
 		
+	
 		Class<? extends GruppenzuordnungBean> clazz = proband.getClass();
 		
-		Field f = proband.getClass().getDeclaredField("emf");
+		Field f = clazz.getDeclaredField("emf");
 		f.setAccessible(true);
 		f.set(proband, emf);
 		

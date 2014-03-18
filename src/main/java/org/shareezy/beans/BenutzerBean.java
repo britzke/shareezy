@@ -59,17 +59,12 @@ import org.shareezy.entities.Benutzer;
 public class BenutzerBean {
 	static final char[] HEX_DIGIT = "0123456789ABCDEF".toCharArray();
 
-	// @FacesValidator(value = "emailAddressValidator")
-
 	@Inject
 	private EntityManagerFactory emf;
 
 	private Benutzer benutzer;
 	private String kennwort;
 	private String kennwortAlt;
-
-	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 	/**
 	 * Erzeugt eine neue RegistrierungBean. Initialisiert den Benutzer.
@@ -112,7 +107,8 @@ public class BenutzerBean {
 					if (!kennwort.equals(kennwortWiederholung)) {
 						FacesMessage message = new FacesMessage(
 								FacesMessage.SEVERITY_ERROR,
-								"Die Kennworte stimmen nicht überein", "");
+								"Kennworte unterschiedlich",
+								"Das Kennwort und die Kennwortwiederholung stimmen nicht überein.");
 						throw new ValidatorException(message);
 					}
 				}
@@ -124,8 +120,8 @@ public class BenutzerBean {
 					if (kennwort.equals(altesKennwort)) {
 						FacesMessage message = new FacesMessage(
 								FacesMessage.SEVERITY_ERROR,
-								"Kennworte unterschiedlich",
-								"Neues und altes Kennwort dürfen nich übereinstimmen.");
+								"Kennworte gleich",
+								"Neues und altes Kennwort dürfen nicht übereinstimmen.");
 						throw new ValidatorException(message);
 					}
 				}
@@ -167,15 +163,6 @@ public class BenutzerBean {
 		String.valueOf(value);
 		boolean valid = true;
 
-		// if (value == null) {
-		// valid = false;
-		// } else if (!email.contains("@")) {
-		// valid = false;
-		// } else if (!email.contains(".")) {
-		// valid = false;
-		// } else if (email.contains(" ")) {
-		// valid = false;
-		// }
 		if (!valid) {
 			FacesMessage message = new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, "Invalid email address",

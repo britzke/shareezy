@@ -17,14 +17,6 @@
  */
 package org.shareezy.beans;
 
-import java.awt.Image;
-//import java.util.List;
-//
-//import javax.persistence.EntityManager;
-//import javax.persistence.EntityManagerFactory;
-//import javax.persistence.Query;
-//import org.shareezy.entities.Ressource;
-
 import java.util.Date;
 
 import javax.enterprise.context.RequestScoped;
@@ -50,8 +42,6 @@ import org.shareezy.entities.Ressource;
 public class RessourcenDetailBean {
 
 	private EntityManagerFactory emf;
-	@Inject
-	private Ressource ressource;
 	private Date timeframe;
 	@Inject
 	private Buchung buchung;
