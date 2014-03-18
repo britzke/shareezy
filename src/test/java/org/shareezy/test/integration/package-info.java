@@ -1,7 +1,7 @@
 /*
  * This file is part of shareezy, a software system for sharing resources.
  *
- * Copyright (C) 2013  	burghard.britzke (bubi@charmides.in-berlin.de)
+ * Copyright (C) 2014  	burghard.britzke (bubi@charmides.in-berlin.de)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
