@@ -10,21 +10,21 @@
 </h:head>
 <h:body>
 	<f:phaseListener type="org.shareezy.DebugPhaseListener" />
-	<h:form>
-		<p:layout fullPage="true">
-			<ui:debug hotkey="x"
-				rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
-			<header>
-				<p:layoutUnit position="north">
-					<ui:insert name="header">
-						<ui:include src="/WEB-INF/templates/login.xhtml" />
-					</ui:insert>
-					<p:messages autoUpdate="true" />
-				</p:layoutUnit>
-			</header>
-			<section id="menu">
-				<p:layoutUnit id="left" position="west" size="240" resizable="false"
-					closable="false" collapsible="false" header="Menu">
+	<p:layout fullPage="true">
+		<ui:debug hotkey="x"
+			rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
+		<header>
+			<p:layoutUnit position="north">
+				<ui:insert name="header">
+					<ui:include src="/WEB-INF/templates/login.xhtml" />
+				</ui:insert>
+				<p:messages autoUpdate="true" />
+			</p:layoutUnit>
+		</header>
+		<section id="menu">
+			<p:layoutUnit id="left" position="west" size="240" resizable="false"
+				closable="false" collapsible="false" header="Menu">
+				<h:form>
 					<ul style="list-style: none;">
 						<li><p:commandLink action="index?faces-redirect=true"
 								value="Home" /></li>
@@ -38,23 +38,23 @@
 								action="ressourcenVerwaltung?faces-redirect=true"
 								value="Ressourcenverwaltung" /></li>
 					</ul>
-				</p:layoutUnit>
-			</section>
-			<section id="content">
-				<p:layoutUnit id="center" position="center">
-					<ui:insert name="content"> 
+				</h:form>
+			</p:layoutUnit>
+		</section>
+		<section id="content">
+			<p:layoutUnit id="center" position="center">
+				<ui:insert name="content"> 
 						Content area.					
                    </ui:insert>
-				</p:layoutUnit>
-			</section>
-			<footer>
-				<p:layoutUnit id="bottom" position="south" size="60">
-					<ui:insert name="footer">
-						<ui:include src="/WEB-INF/templates/footer.xhtml"></ui:include>
-					</ui:insert>
-				</p:layoutUnit>
-			</footer>
-		</p:layout>
-	</h:form>
+			</p:layoutUnit>
+		</section>
+		<footer>
+			<p:layoutUnit id="bottom" position="south" size="60">
+				<ui:insert name="footer">
+					<ui:include src="/WEB-INF/templates/footer.xhtml"></ui:include>
+				</ui:insert>
+			</p:layoutUnit>
+		</footer>
+	</p:layout>
 </h:body>
 </html>
