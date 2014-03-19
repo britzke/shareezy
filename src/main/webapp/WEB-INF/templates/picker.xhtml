@@ -31,6 +31,7 @@
 	<h:form>
 
 		<h3>Time-Picker</h3>
+		<h:outputText value="Ausleihdatum: " />
 		<p:calendar value="#{timePickerBean.timeframe}" pattern="MM/dd/yyyy HH:mm" />
 
 		<p:dialog header="Selected Dates" widgetVar="dialog" showEffect="fold"
@@ -38,7 +39,23 @@
 
 			<h:panelGrid id="display" columns="1">
 
-				<h:outputText value="Time Picker: " />
+				<h:outputText value="Ausleihdatum: " />
+				<h:outputText value="#{timePickerBean.timeframe}">
+					<f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
+				</h:outputText>
+
+			</h:panelGrid>
+		</p:dialog>
+		<br/><br/>
+		<h:outputText value="Rückgabedatum: " />
+		<p:calendar value="#{timePickerBean.timeframe}" pattern="MM/dd/yyyy HH:mm" />
+
+		<p:dialog header="Selected Dates" widgetVar="dialog" showEffect="fold"
+			hideEffect="fold">
+
+			<h:panelGrid id="display2" columns="1">
+
+				<h:outputText value="Rückgabedatum: " />
 				<h:outputText value="#{timePickerBean.timeframe}">
 					<f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
 				</h:outputText>
@@ -46,7 +63,7 @@
 			</h:panelGrid>
 		</p:dialog>
 	</h:form>
-	<h:commandButton style="margin-top:20px;" value="Submit" update="display" 
+	<h:commandButton value="Submit" update="display" 
 	oncomplete="PF('dialog').show()" action="#{timePickerBean.action}"/>
 	
 </h:body>
