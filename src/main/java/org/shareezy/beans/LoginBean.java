@@ -95,17 +95,17 @@ public class LoginBean {
 			FacesMessage message = new FacesMessage(
 					"Keine UTF-8 Unterstützung",
 					"Das UTF-8 Encoding wird auf diesem System nicht unterstützt'.");
-			facesContext.addMessage("Anmeldung Fehlgeschlagen", message);
+			facesContext.addMessage(null, message);
 
 		} catch (UnsupportedEncodingException e) {
 			FacesMessage message = new FacesMessage("Kein MD5 Algorithmus",
 					"Auf diesem System existiert keine Implementierung des MD5-Algorithmus'.");
-			facesContext.addMessage("Anmeldung Fehlgeschlagen", message);
+			facesContext.addMessage(null, message);
 		}
 		if (!benutzerStatus.isAuthenticated()) {
 			FacesMessage message = new FacesMessage("Anmeldung fehlgeschlagen",
 					"Die Kombination aus 'Name' und 'Kennwort' passt nicht.");
-			facesContext.addMessage("Anmeldung Fehlgeschlagen", message);
+			facesContext.addMessage(null, message);
 		}
 		return null;
 	}
