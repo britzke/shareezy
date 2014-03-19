@@ -64,6 +64,7 @@ public class LoginBeanTest {
 
 	private static final String QUERY_STRING = "select b.kurzname,b.kennwortHash from Benutzer b where b.kurzname= :kurzname and b.kennwortHash= :kennwortHash";
 	private static final String TESTKENNWORT = "testkennwort";
+	private static final String TESTKENNWORT_HASH = "D801D9C80080A0FB41264C18EE0E1105";
 	private static final String TESTBENUTZER = "testbenutzer";
 	private LoginBean proband;
 	public Benutzer benutzer;
@@ -248,27 +249,6 @@ public class LoginBeanTest {
 	}
 
 	/**
-	 * Antwortet mit einer neuen Instanz eines Testbenutzers, d. h. einem
-	 * Benutzer-Objekt, dass als Kurzname den TESTBENUTZER hat und als Kenntowrt
-	 * das TESTKENNWORT.
-	 * <p>
-	 * Eigentlich kann hierfür ein Konstruktor mit den Parametern kurzname und
-	 * kennwort in der Klasse Benutzer dienen. Da aber zu Testzwecken nicht die
-	 * Businessklassen geändert werden sollen, wird das in dieser
-	 * testspezifischen Methode initialisiert.
-	 * </p>
-	 * 
-	 * @return Neuer Benutzer mit Testkurzname und Testkennwort
-	 */
-	private Benutzer neuerBenutzerMitTestkurznameUndTestkennwort() {
-		Benutzer b;
-		b = new Benutzer();
-		b.setKurzname(TESTBENUTZER);
-		b.setKennwortHash(TESTKENNWORT);
-		return b;
-	}
-
-	/**
 	 * Setzt den Probanden und die Testumgebung vor jedem Test auf.
 	 * 
 	 * @throws java.lang.Exception
@@ -286,7 +266,9 @@ public class LoginBeanTest {
 		when(em.createQuery(anyString())).thenReturn(q);
 
 		benutzerList = new ArrayList<Benutzer>();
-		Benutzer b = neuerBenutzerMitTestkurznameUndTestkennwort();
+		Benutzer b = new Benutzer();
+		b.setKurzname(TESTBENUTZER);
+		b.setKennwortHash(TESTKENNWORT_HASH);
 		benutzerList.add(b);
 
 		Answer<List<Benutzer>> antwortListe = new Answer<List<Benutzer>>() {
@@ -315,11 +297,6 @@ public class LoginBeanTest {
 		// EntityManagerFactory in den Proband injizieren
 		field.set(proband, emf);
 
-		field = clazz.getDeclaredField("benutzer");
-		field.setAccessible(true);
-		b = neuerBenutzerMitTestkurznameUndTestkennwort();
-		field.set(proband, b);
-
 		FacesContext facesContext = mock(FacesContext.class);
 		field = clazz.getDeclaredField("facesContext");
 		field.setAccessible(true);
@@ -333,6 +310,9 @@ public class LoginBeanTest {
 	 */
 	@Test
 	public void testLogin() {
+		proband.setBenutzername(TESTBENUTZER);
+		proband.setKennwort(TESTKENNWORT);
+
 		String antwort = proband.login();
 		assertNull("muss null sein.", antwort);
 
@@ -341,7 +321,7 @@ public class LoginBeanTest {
 		verify(q).getResultList();
 
 		verify(q).setParameter(eq("kurzname"), eq(TESTBENUTZER));
-		verify(q).setParameter(eq("kennwortHash"), eq(TESTKENNWORT));
+		verify(q).setParameter(eq("kennwortHash"), eq(TESTKENNWORT_HASH));
 
 		verify(em).close();
 	}
@@ -350,34 +330,17 @@ public class LoginBeanTest {
 	 * Testet, dass die LoginBean ihre private Eigenschaft boolean authenticated
 	 * auf den Wert „true“ setzt, wenn in der Datenbank ein Datensatz mit einem
 	 * entsprechenden Benutzer vorhanden ist.
-	 * 
-	 * @throws NoSuchFieldException
-	 *             Wenn keine Eigenschaft "authenticated" in der LoginBean
-	 *             vorhanden ist.
-	 * @throws IllegalArgumentException
-	 *             Wenn das Objekt, aus dem der Inhalt des Fields geholt werden
-	 *             soll ,nicht zu dem Field-Objekt passt
 	 */
 	@Test
-	public void testLoginWithRightParametersSuccedes()
-			throws NoSuchFieldException, IllegalAccessException {
-
-		// initalisiere einen validen Benutzer in der LoginBean
-		Benutzer rightBenutzer = neuerBenutzerMitTestkurznameUndTestkennwort();
-		;
-		Field benutzerField = proband.getClass().getDeclaredField("benutzer");
-		benutzerField.setAccessible(true);
-		benutzerField.set(proband, rightBenutzer);
+	public void testLoginWithRightParametersSuccedes() {
+		proband.setBenutzername(TESTBENUTZER);
+		proband.setKennwort(TESTKENNWORT);
 
 		proband.login(); // teste
 
 		// überprüfe, ob die Eigenschaft 'authenticated' den Wert 'true' hat
-		Field authenticatedField = proband.getClass().getDeclaredField(
-				"authenticated");
-		authenticatedField.setAccessible(true);
-		boolean authenticated = (Boolean) authenticatedField.get(proband);
 		assertTrue("Die Eigenschaft 'authenticated' muss 'true' sein",
-				authenticated);
+				proband.isAuthenticated());
 	}
 
 	/**
@@ -397,13 +360,8 @@ public class LoginBeanTest {
 			throws NoSuchFieldException, IllegalAccessException {
 
 		// falschen Benutzer in der LoginBean initialisieren
-		Benutzer wrongBenutzer = new Benutzer();
-		wrongBenutzer.setKurzname("falscher kurzname");
-		wrongBenutzer.setKennwortHash("falsches Kennwort");
-
-		Field benutzerField = proband.getClass().getDeclaredField("benutzer");
-		benutzerField.setAccessible(true);
-		benutzerField.set(proband, wrongBenutzer);
+		proband.setBenutzername("falscher kurzname");
+		proband.setKennwort("falsches Kennwort");
 
 		proband.login(); // testen
 

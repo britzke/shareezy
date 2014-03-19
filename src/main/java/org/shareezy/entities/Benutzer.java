@@ -40,6 +40,9 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "kurzname" }) })
 public class Benutzer implements Serializable {
+
+	static final char[] HEX_DIGIT = "0123456789ABCDEF".toCharArray();
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -79,6 +82,24 @@ public class Benutzer implements Serializable {
 	// bi-directional many-to-one association to Ressourcen
 	@OneToMany(mappedBy = "benutzer")
 	private List<Ressource> ressourcen;
+
+	/**
+	 * Konvertiert das angegebene Byte-Array in eine Zeichenkette mit
+	 * hexadezimalen Ziffern.
+	 * 
+	 * @param bytes
+	 *            das zu konvertierende Byte-Array
+	 * @return Hexadezimale Zeichenkette mit des Byte-Array
+	 */
+	public static String hexDigitString(byte[] bytes) {
+		char[] hexChars = new char[bytes.length * 2];
+		for (int j = 0; j < bytes.length; j++) {
+			int v = bytes[j] & 0xFF;
+			hexChars[j * 2] = HEX_DIGIT[v >>> 4];
+			hexChars[j * 2 + 1] = HEX_DIGIT[v & 0x0F];
+		}
+		return new String(hexChars);
+	}
 
 	/**
 	 * Antwortet mit der Id des Benutzers.
