@@ -21,7 +21,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
+import static org.junit.Assert.*;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
@@ -96,7 +96,7 @@ public class TestNeueRessourcenBean {
 		proband.speichern();
 		verify(emf).createEntityManager();
 		verify(em, times(2)).getTransaction();
-		verify(em).merge(any());
+		verify(em).persist(any());
 		verify(em).close();
 
 	}
@@ -109,10 +109,12 @@ public class TestNeueRessourcenBean {
 	public void testInit(){
 		
 		proband.init();
+		assertNotNull(proband.getRessource());
 		verify(emf).createEntityManager();
 		verify(em).getTransaction();
-		verify(em).persist(any());
 		verify(em).close();
 	}
+	
+	 
 
 }
