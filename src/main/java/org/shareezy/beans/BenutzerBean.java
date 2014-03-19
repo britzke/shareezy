@@ -64,7 +64,6 @@ public class BenutzerBean {
 	private Benutzer benutzer;
 	private String kennwort;
 	private String kennwortAlt;
-	private boolean navNextPage;
 
 	/**
 	 * Erzeugt eine neue RegistrierungBean. Initialisiert den Benutzer.
@@ -89,7 +88,7 @@ public class BenutzerBean {
 	 *            Der Wert, der validiert werden soll
 	 * @throws ValidatorException
 	 */
-	public String validiereKennwort(FacesContext facesContext,
+	public void validiereKennwort(FacesContext facesContext,
 			UIComponent component, Object value) throws ValidatorException {
 		boolean kennwortWiederholungVorhanden = false;
 		boolean altesKennwortVorhanden = false;
@@ -110,9 +109,6 @@ public class BenutzerBean {
 								"Kennworte unterschiedlich",
 								"Das Kennwort und die Kennwortwiederholung stimmen nicht überein.");
 						throw new ValidatorException(message);
-					} else {
-						navNextPage = true;
-						System.out.println("navnextPage setzen");
 					}
 				}
 
@@ -151,7 +147,6 @@ public class BenutzerBean {
 					"Das Kennwort-Feld sollte im View mit dem Attribut 'required' markiert sein");
 			facesContext.addMessage("", message);
 		}
-		return null;
 	}
 
 	/**
@@ -219,10 +214,6 @@ public class BenutzerBean {
 		} catch (Exception e) {
 			e.printStackTrace();
 
-		}
-		if (navNextPage == true) {
-			System.out.println("nav");
-			return "index.xhtml";
 		}
 		return null;
 	}
