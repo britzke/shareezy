@@ -54,7 +54,8 @@ public class LoginBean {
 	@Inject
 	FacesContext facesContext;
 
-	private boolean authenticated;
+	@Inject
+	BenutzerStatus benutzerStatus;
 
 	private String benutzername;
 	private String kennwort;
@@ -62,21 +63,6 @@ public class LoginBean {
 	public LoginBean() {
 		kennwort = "";
 		benutzername = "";
-	}
-
-	/**
-	 * @return the authenticated
-	 */
-	public boolean isAuthenticated() {
-		return authenticated;
-	}
-
-	/**
-	 * @param authenticated
-	 *            the authenticated to set
-	 */
-	public void setAuthenticated(boolean authenticated) {
-		this.authenticated = authenticated;
 	}
 
 	/**
@@ -102,7 +88,7 @@ public class LoginBean {
 			q.setParameter("kennwortHash", hexStringDiggest);
 			List<Benutzer> benutzerList = q.getResultList();
 			if (benutzerList != null && !benutzerList.isEmpty()) {
-				setAuthenticated(true);
+				benutzerStatus.setAuthenticated(true);
 			}
 			em.close();
 		} catch (NoSuchAlgorithmException e) {
@@ -116,7 +102,7 @@ public class LoginBean {
 					"Auf diesem System existiert keine Implementierung des MD5-Algorithmus'.");
 			facesContext.addMessage("Anmeldung Fehlgeschlagen", message);
 		}
-		if (!authenticated) {
+		if (!benutzerStatus.isAuthenticated()) {
 			FacesMessage message = new FacesMessage("Anmeldung fehlgeschlagen",
 					"Die Kombination aus 'Name' und 'Kennwort' passt nicht.");
 			facesContext.addMessage("Anmeldung Fehlgeschlagen", message);
