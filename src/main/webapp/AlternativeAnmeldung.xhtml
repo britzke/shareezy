@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+<script src="//code.jquery.com/jquery-1.9.1.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<script>
+	$(function() {
+		$("#dialog").dialog({
+			autoOpen : false,
+			show : {
+				effect : "blind",
+				duration : 1000
+			}
+		});
+		$("#opener").click(function() {
+			$("#dialog").dialog("open");
+		});
+
+	});
+</script>
+</head>
+<body>
+	<div id="dialog" title="Anmeldung">
+		<div id="dialog-form" >
+			<form>			
+				<fieldset>
+					<label for="name">Name</label> 
+					<input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all"/>
+					<label for="password">Password</label> 
+					<input type="password" name="password" id="password" value=""
+						class="text ui-widget-content ui-corner-all"/> 				
+						<button id="anmeldenBtn">Anmelden</button>						
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	<button id="opener">Anmeldung</button>
+</body>
+</html>

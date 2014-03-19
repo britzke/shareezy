@@ -6,9 +6,18 @@
 
 
 /*CSS */
-.ui-panelgrid{
-		border-width: 0px;
-		
+#LoginGrid{
+
+    border-bottom-style: none !important ;
+    border-bottom-width: 0px !important;
+    border-left-width-value: 0px !important;
+    border-right-width-value: 0px !important ;
+    border-top-width: 0px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    
 }
 
 
@@ -22,7 +31,16 @@
 	clip: rect(0 0 0 0);
 	height: 1px;
 	margin: -1px;
-	overflow: hidden;
+	overflow: hidden;	border-bottom-color: inherit;
+    border-bottom-style: solid;
+    border-bottom-width: 0px;
+    border-left-width-value: 0px;
+    border-right-width-value: 0px;
+    border-top-width: 0px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
 	padding: 0;
 	position: absolute;
 	width: 1px;
@@ -267,10 +285,10 @@ input.ui-button {
 	
 	border-bottom-color: inherit;
     border-bottom-style: solid;
-    border-bottom-width: 0px;
-    border-left-width-value: 0px;
-    border-right-width-value: 0px;
-    border-top-width: 0px;
+    border-bottom-width: 0px	!important;
+    border-left-width-value: 0px !important;
+    border-right-width-value: 0px !important;
+    border-top-width: 0px	!important;
     padding-bottom: 4px;
     padding-left: 10px;
     padding-right: 10px;
