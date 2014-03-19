@@ -110,6 +110,16 @@ public class LoginBean {
 		return null;
 	}
 
+	/**
+	 * Meldet den Benutzer ab.
+	 * 
+	 * @return null - immer
+	 */
+	public String logout() {
+		benutzerStatus.setAuthenticated(false);
+		return null;
+	}
+
 	// ++++++++++++++++ Getter & Setter +++++++++++++++++++++++
 	/**
 	 * Antwortet mit dem Wert des benutzername

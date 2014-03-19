@@ -7,4 +7,7 @@
 		<p:commandLink value="registrieren" action="registrierung"
 			update="@all" />
 	</p:panelGrid>
+	<p:panelGrid columns="1" rendered="#{benutzerStatus.authenticated}">
+		<p:commandButton value="abmelden" action="#{loginBean.logout}" />
+	</p:panelGrid>
 </h:form>
