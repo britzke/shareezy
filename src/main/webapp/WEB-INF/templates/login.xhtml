@@ -1,13 +1,14 @@
 <h:form xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-
-	<p:panelGrid columns="4" rendered="#{!loginBean.authenticated}"
-		style=" border-width: 0px;">
-		<p:inputText value="#{loginBean.benutzername}" placeholder="Name" />
-		<p:password value="#{loginBean.kennwort}" placeholder="Kennwort" />
-		<p:commandButton value="anmelden" action="#{loginBean.login}" />
-		<p:commandLink value="registrieren" action="registrierung?faces-redirect=true"/>
-	</p:panelGrid>
-
+	<head>
+		<p:panelGrid columns="4" rendered="#{!loginBean.authenticated}"
+			styleClass="LoginGrid">
+			<p:inputText value="#{loginBean.benutzername}" placeholder="Name" />
+			<p:password value="#{loginBean.kennwort}" placeholder="Kennwort" />
+			<p:commandButton id="opener" value="anmelden" />
+			<p:commandLink value="registrieren"
+				action="registrierung?faces-redirect=true" />
+		</p:panelGrid>
+	</head>
 </h:form>
