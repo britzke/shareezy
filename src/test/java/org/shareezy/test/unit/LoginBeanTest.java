@@ -18,12 +18,11 @@
  */
 package org.shareezy.test.unit;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -49,6 +48,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+import org.shareezy.beans.BenutzerStatus;
 import org.shareezy.beans.LoginBean;
 import org.shareezy.entities.Benutzer;
 
@@ -75,6 +75,7 @@ public class LoginBeanTest {
 	private String nameParameter;
 	private String kennwortParameter;
 	private ArrayList<Benutzer> benutzerList;
+	private BenutzerStatus benutzerStatus;
 
 	/**
 	 * MockQueries speichern die gesetzten Parameter "name" und "kennwort" in
@@ -288,19 +289,20 @@ public class LoginBeanTest {
 		};
 		when(q.getResultList()).then(antwortListe);
 
-		// Beschreibung der Klasse holen
 		Class<? extends LoginBean> clazz = proband.getClass();
-		// Beschreibung der Eigenschaft holen
 		Field field = clazz.getDeclaredField("emf");
-		// Zugriff auf private Eigenschaft erlauben
 		field.setAccessible(true);
-		// EntityManagerFactory in den Proband injizieren
 		field.set(proband, emf);
 
 		FacesContext facesContext = mock(FacesContext.class);
 		field = clazz.getDeclaredField("facesContext");
 		field.setAccessible(true);
 		field.set(proband, facesContext);
+
+		benutzerStatus = mock(BenutzerStatus.class);
+		field = clazz.getDeclaredField("benutzerStatus");
+		field.setAccessible(true);
+		field.set(proband, benutzerStatus);
 
 	}
 
@@ -339,8 +341,7 @@ public class LoginBeanTest {
 		proband.login(); // teste
 
 		// überprüfe, ob die Eigenschaft 'authenticated' den Wert 'true' hat
-		assertTrue("Die Eigenschaft 'authenticated' muss 'true' sein",
-				proband.isAuthenticated());
+		verify(benutzerStatus).setAuthenticated(eq(true));
 	}
 
 	/**
@@ -366,12 +367,6 @@ public class LoginBeanTest {
 		proband.login(); // testen
 
 		// auswerten
-		Field authenticatedField = proband.getClass().getDeclaredField(
-				"authenticated");
-		authenticatedField.setAccessible(true);
-
-		boolean authenticated = (Boolean) authenticatedField.get(proband);
-		assertFalse("Die Eigenschaft 'authenticated' muss 'false' sein",
-				authenticated);
+		verify(benutzerStatus, never()).setAuthenticated(eq(true));
 	}
 }

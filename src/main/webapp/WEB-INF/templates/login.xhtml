@@ -1,10 +1,10 @@
-<h:panelGrid xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui" columns="4"
-	rendered="#{!loginBean.authenticated}">
-
-	<p:inputText value="#{loginBean.benutzername}" placeholder="Name" />
-	<p:password  value="#{loginBean.kennwort}" placeholder="Kennwort" />
-	<p:commandButton value="anmelden" action="#{loginBean.login}" />
-	<p:commandLink value="registrieren"
-		action="registrierung" />
-</h:panelGrid>
+<h:form xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<p:panelGrid columns="4" rendered="#{!benutzerStatus.authenticated}">
+		<p:inputText value="#{loginBean.benutzername}" placeholder="Name" />
+		<p:password value="#{loginBean.kennwort}" placeholder="Kennwort" />
+		<p:commandButton value="anmelden" action="#{loginBean.login}" />
+		<p:commandLink value="registrieren" action="registrierung"
+			update="@all" />
+	</p:panelGrid>
+</h:form>
