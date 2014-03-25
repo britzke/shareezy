@@ -15,7 +15,7 @@
 <column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e93" mandatory="true" name="EMAIL">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e92" mandatory="true" name="KENNWORT">
+<column auto-increment="false" column-size="32" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e92" mandatory="true" name="KENNWORTHASH">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 <column auto-increment="false" column-size="128" decimal-digits="0" default-value="" id="16f7abd:1426f37016b:-7e91" mandatory="true" name="VORNAME">
@@ -27,7 +27,7 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="30be7b79:1434392c637:-7fe5" mandatory="false" name="REGISTRATION">
 <data-type name="TIMESTAMP" selected-variant-pattern="TIMESTAMP"/>
 </column>
-<column auto-increment="false" column-size="50" decimal-digits="0" default-value="" id="1ddc5d0:14394d74771:-7fb3" mandatory="true" name="HASH">
+<column auto-increment="false" column-size="32" decimal-digits="0" default-value="" id="1ddc5d0:14394d74771:-7fb3" mandatory="true" name="VALIDATIONHASH">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="0" id="30be7b79:1434392c637:-7fe4" mandatory="true" name="VALIDIERT">

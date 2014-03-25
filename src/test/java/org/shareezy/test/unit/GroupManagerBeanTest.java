@@ -23,6 +23,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -105,6 +106,7 @@ public class GroupManagerBeanTest {
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	private EntityTransaction transaction;
+	private Gruppe testGruppe;
 
 	/**
 	 * Setzt den Probanden und die Testumgebung für ihn auf.
@@ -178,6 +180,39 @@ public class GroupManagerBeanTest {
 	@Test
 	public void testOnCreateNewGroupClick() {
 		String antwort = proband.createNewGroupClick();
+		assertNull(antwort);
+	}
+	
+	@Test
+	public void testGroupClick(){
+		testGruppe = new Gruppe();
+			testGruppe.setName("JUnit-TestGruppe");
+		String antwort = proband.groupClick(testGruppe);
+		assertNull(antwort);
+	}
+	
+	@Test
+	public void testDeleteGroupClick(){
+				testGruppe = new Gruppe();
+		String antwort = proband.deleteGroupClick(testGruppe);
+		assertNull(antwort);
+	}
+	
+	@Test
+	public void testCreateNewRessourceClick(){
+		String antwort = proband.createNewRessourceClick();
+		assertNull(antwort);
+	}
+	
+	@Test
+	public void testShowMembersClick(){
+		String antwort = proband.showMembersClick();
+		assertNull(antwort);
+	}
+	
+	@Test
+	public void testInviiteMembersClick(){
+		String antwort = proband.inviteMembersClick();
 		assertNull(antwort);
 	}
 

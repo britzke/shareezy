@@ -38,7 +38,7 @@ import org.shareezy.entities.Ressource;
 public class GroupManagerBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private String groupName;
+	private String groupName = "Gruppen Name";
 	private ArrayList<Gruppe> groups = new ArrayList<Gruppe>();
 	private Benutzer benutzer;
 	private List<Ressource> groupRessourcen;
@@ -81,7 +81,7 @@ public class GroupManagerBean implements Serializable {
 		// EntityManager em = emf.createEntityManager();
 		// EntityTransaction t = em.getTransaction();
 		// t.begin();
-
+		
 		Gruppe newGroup = new Gruppe();
 		newGroup.setName(groupName);
 		newGroup.setVerwalter(benutzer);
@@ -91,13 +91,13 @@ public class GroupManagerBean implements Serializable {
 	}
 
 	public String groupClick(Gruppe g) {
-		System.out.println("Gruppe: " + g.getName());
+		System.out.println("Select Gruppe: " + g.getName());
 		return null;
 	}
 
 	public String deleteGroupClick(Gruppe g) {
 		groups.remove(g);
-		System.out.println("Gruppe: " + g.getName());
+		//System.out.println("Lösche Gruppe: " + g.getName());
 		return null;
 	}
 
@@ -135,6 +135,11 @@ public class GroupManagerBean implements Serializable {
 
 		return null;
 	}
+	
+	public String inviteLaterClick() {
+		System.out.println("inviteLaterClick");
+		return "groupmanager";
+	}
 
 	/**
 	 * Wird ausgeführt wenn der User auf "Einladen" (@issue9/Schritt 3.2)
@@ -163,12 +168,11 @@ public class GroupManagerBean implements Serializable {
 	}
 
 	public String getGroupName() {
-		System.out.println("getGroupName: " + groupName);
 		return groupName;
 	}
 
-	public void setGroupName(String groupName) throws RuntimeException {
-		System.out.println("setGroupName: " + groupName);
+	public void setGroupName(String groupName){
+		System.out.println("setGroupName "+groupName) ;
 		this.groupName = groupName;
 	}
 

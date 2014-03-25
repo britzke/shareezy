@@ -21,6 +21,7 @@ package org.shareezy.test.unit;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -35,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.FlushModeType;
@@ -60,7 +62,7 @@ import org.shareezy.entities.Benutzer;
  */
 public class LoginBeanTest {
 
-	private static final String QUERY_STRING = "select b from Benutzer where kurzname= :kurzname and kennwort= :kennwort";
+	private static final String QUERY_STRING = "select b.kurzname,b.kennwortHash from Benutzer b where b.kurzname= :kurzname and b.kennwortHash= :kennwortHash";
 	private static final String TESTKENNWORT = "testkennwort";
 	private static final String TESTBENUTZER = "testbenutzer";
 	private LoginBean proband;
@@ -100,7 +102,7 @@ public class LoginBeanTest {
 			case "kurzname":
 				nameParameter = (String) value;
 				break;
-			case "kennwort":
+			case "kennwortHash":
 				kennwortParameter = (String) value;
 			}
 			return null;
@@ -281,7 +283,7 @@ public class LoginBeanTest {
 
 		q = new MockQuery();
 		q = spy(q);
-		when(em.createQuery(eq(QUERY_STRING))).thenReturn(q);
+		when(em.createQuery(anyString())).thenReturn(q);
 
 		benutzerList = new ArrayList<Benutzer>();
 		Benutzer b = neuerBenutzerMitTestkurznameUndTestkennwort();
@@ -317,6 +319,12 @@ public class LoginBeanTest {
 		field.setAccessible(true);
 		b = neuerBenutzerMitTestkurznameUndTestkennwort();
 		field.set(proband, b);
+
+		FacesContext facesContext = mock(FacesContext.class);
+		field = clazz.getDeclaredField("facesContext");
+		field.setAccessible(true);
+		field.set(proband, facesContext);
+
 	}
 
 	/**
@@ -333,7 +341,7 @@ public class LoginBeanTest {
 		verify(q).getResultList();
 
 		verify(q).setParameter(eq("kurzname"), eq(TESTBENUTZER));
-		verify(q).setParameter(eq("kennwort"), eq(TESTKENNWORT));
+		verify(q).setParameter(eq("kennwortHash"), eq(TESTKENNWORT));
 
 		verify(em).close();
 	}

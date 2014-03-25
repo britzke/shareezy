@@ -1,212 +1,90 @@
 package org.shareezy.beans;
 
-import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-
-import org.shareezy.entities.Benutzer;
-import org.shareezy.entities.Buchung;
-import org.shareezy.entities.Gruppe;
 import org.shareezy.entities.Ressource;
 import org.shareezy.entities.Typ;
 
 /**
+ * Die neueRessourcenBean dient zum Erzeugen von neuen Ressourcen.
  * 
- */
-
-/**
- * Die Annotation ManagedBean sorgt dafür, dass diese Klasse als ManagedBean
- * erkannt wird. SessionScoped sorgt dafür das diese ManagedBean nur bis zum
- * Ende der Session lebt.
- * 
- * @author ThomasKLawitter
+ * @author Klawitter, Mueller, Chenaux
  * @version 12.12.2013
  */
+@RequestScoped
 @Named("neueRessourcenBean")
-public class NeueRessourceBean implements Serializable {
-
-	private static final long serialVersionUID = 1L;
-	@Inject
-	private EntityManagerFactory emf;
-	@Inject
-	private Ressource ress;
-
-	public EntityManager em;
-	@Inject
-	private Benutzer benutzer;
-
-	private String beschreibung;
-
-	private byte[] bild;
-
-	private List<Buchung> buchungen;
-
-	private Date einstellungsdatum;
-
-	private Date enddatum;
-
-	private List<Gruppe> gruppen;
-
-	private String name;
-
-	private int id;
-
-	private Date startdatum;
-
-	private List<Typ> typOptionen;
-
-	private Typ typ;
-
-	public NeueRessourceBean() {
-
-		/**
-		 * Typ einTyp = new Typ(); einTyp.setName("TypEins");
-		 * typOptionen.add(einTyp);
-		 */
-	}
+public class NeueRessourceBean {
 
 	/**
-	 * Action-Routine für den View <code>neueRessource</code>. Wird
-	 * angesprochen, wenn der Benutzer die Schaltfläche <code>löschen</code>
-	 * anwähquery daten auslsenlt. Sorgt dafür, dass Ressourcen aus der
-	 * Ressourcenliste gelöscht werden können.
 	 * 
-	 * @return null - d. h. der View wird nicht gewechselt.
 	 */
-	public String loescheRessource(Ressource ress) {
+	@Inject
+	private EntityManagerFactory emf;
+	private Ressource ressource;
+	private EntityManager em;
+	private Typ typ;
+	private List<Typ> typListe;
+	
+	/**
+	 * Die init() Methode dient zum erzeugen des ressource Objekts, das mit
+	 * Inhalten befüllt wird
+	 * 
+	 */
+	@PostConstruct
+	public void init() {
+
 		em = emf.createEntityManager();
 		EntityTransaction ent = em.getTransaction();
 		ent.begin();
-		ress = em.merge(ress);
-		em.remove(ress);
+		ressource = new Ressource();
+		em.persist(ressource);
+		ladeTyp();
 		ent.commit();
 		em.close();
-		return "RessourcenListen.xhtml";
+		this.typ = typListe.get(0);
 	}
 
-	/*
-	 * Action-Routine für den View <code>neueRessource</code>. Wird
-	 * angesprochen, wenn der Benutzer die Schaltfläche <code>speichern</code>
-	 * anwählt. Sorgt dafür, dass die neu eingesetzten Werte für diese Ressource
-	 * in der Datenbank gespeichert wird.
+	/**
+	 * Lädt die Typen aus der Datenbank
 	 * 
-	 * @return null - d. h. der View wird nicht gewechselt.
+	 */
+	@SuppressWarnings("unchecked")
+	public void ladeTyp() {
+		
+		Query query = em.createQuery("SELECT t FROM Typ t");
+		typListe = query.getResultList();
+	}
+
+	/**
+	 * In der speichern Methode wird das ressorce Objekt befüllt und mit
+	 * setTyp() der ausgewählte Typ zugeordnet
 	 */
 	public String speichern() {
+
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
-		Ressource ress = new Ressource();// muss später Injected werden
-		ress.setBenutzer(benutzer);
-		ress.setBeschreibung(beschreibung);
-		ress.setBild(bild);
-		ress.setBuchungens(buchungen);
-		ress.setEinstellungsdatum(einstellungsdatum);
-		ress.setEnddatum(enddatum);
-		ress.setGruppens(gruppen);
-		ress.setName(name);
-		ress.setId(id);
-		ress.setStartdatum(startdatum);
-		ress.setTyp(typ);
-		em.persist(ress);
+		ressource.setTyp(typ);
+		em.merge(ressource);
 		em.getTransaction().commit();
 		em.close();
-		return "RessourceListen.xhtml";
+
+		return "ressourcenList.xhtml";
 	}
 
-	public void queryTypOptionen() {
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		Query query = em.createQuery("select r from Typ r");
-		typOptionen = query.getResultList();
-		em.getTransaction().commit();
-
+	public Ressource getRessource() {
+		return ressource;
 	}
 
-	public Benutzer getBenutzer() {
-		return benutzer;
-	}
-
-	public void setBenutzer(Benutzer benutzer) {
-		this.benutzer = benutzer;
-	}
-
-	public String getBeschreibung() {
-		return beschreibung;
-	}
-
-	public void setBeschreibung(String beschreibung) {
-		this.beschreibung = beschreibung;
-	}
-
-	public byte[] getBild() {
-		return bild;
-	}
-
-	public void setBild(byte[] bild) {
-		this.bild = bild;
-	}
-
-	public List<Buchung> getBuchungen() {
-		return buchungen;
-	}
-
-	public void setBuchungen(List<Buchung> buchungen) {
-		this.buchungen = buchungen;
-	}
-
-	public Date getEinstellungsdatum() {
-		return einstellungsdatum;
-	}
-
-	public void setEinstellungsdatum(Date einstellungsdatum) {
-		this.einstellungsdatum = einstellungsdatum;
-	}
-
-	public Date getEnddatum() {
-		return enddatum;
-	}
-
-	public void setEnddatum(Date enddatum) {
-		this.enddatum = enddatum;
-	}
-
-	public List<Gruppe> getGruppen() {
-		return gruppen;
-	}
-
-	public void setGruppen(List<Gruppe> gruppen) {
-		this.gruppen = gruppen;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public Date getStartdatum() {
-		return startdatum;
-	}
-
-	public void setStartdatum(Date startdatum) {
-		this.startdatum = startdatum;
+	public void setRessource(Ressource ressource) {
+		this.ressource = ressource;
 	}
 
 	public Typ getTyp() {
@@ -217,20 +95,12 @@ public class NeueRessourceBean implements Serializable {
 		this.typ = typ;
 	}
 
-	public Ressource getRess() {
-		return ress;
+	public List<Typ> getTypListe() {
+		return typListe;
 	}
 
-	public void setRess(Ressource ress) {
-		this.ress = ress;
-	}
-
-	public List<Typ> getTypOptionen() {
-		return typOptionen;
-	}
-
-	public void setTypOptionen(List<Typ> typOptionen) {
-		this.typOptionen = typOptionen;
+	public void setTypListe(List<Typ> typListe) {
+		this.typListe = typListe;
 	}
 
 }

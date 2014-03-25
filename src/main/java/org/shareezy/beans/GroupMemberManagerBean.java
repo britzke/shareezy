@@ -21,8 +21,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -131,7 +129,7 @@ public class GroupMemberManagerBean implements Serializable {
 		em.close();
 		return null;
 	}
-
+	
 	/**
 	 * Die Methode sendRequest dient dazu eine Anfrage an den Benutzer zu senden
 	 * <ol>
@@ -156,6 +154,8 @@ public class GroupMemberManagerBean implements Serializable {
 	 * getGrpAnf hol sich aus der Datenbank die Anfragen der jeweiligen Gruppe
 	 * und listet diese in der View
 	 */
+
+	@SuppressWarnings("unchecked")
 	public void getGrpAnf() {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
@@ -168,6 +168,7 @@ public class GroupMemberManagerBean implements Serializable {
 	 * getGrpRes hol sich aus der Datenbank die Ressourcen der jeweiligen Gruppe
 	 * und listet diese in der View
 	 */
+	@SuppressWarnings("unchecked")
 	public void getGrpData() {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();

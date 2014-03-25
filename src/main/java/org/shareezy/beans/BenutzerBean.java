@@ -56,27 +56,31 @@ import org.shareezy.entities.Benutzer;
  */
 @RequestScoped
 @Named
-public class RegistrierungBean {
+public class BenutzerBean {
 	static final char[] HEX_DIGIT = "0123456789ABCDEF".toCharArray();
-
-
-//@FacesValidator(value = "emailAddressValidator")
 
 	@Inject
 	private EntityManagerFactory emf;
 
 	private Benutzer benutzer;
 	private String kennwort;
+	private String kennwortAlt;
+	private boolean navNextPage;
 
 	/**
 	 * Erzeugt eine neue RegistrierungBean. Initialisiert den Benutzer.
 	 */
-	public RegistrierungBean() {
+	public BenutzerBean() {
 		benutzer = new Benutzer();
 	}
 
 	/**
-	 * Validiert, ob beide Kennworte übereinstimmen.
+	 * Validiert, ob das eingegebene Kennwort mit dem Kennwort in dem Feld
+	 * "kennwortWiederholung" übereinstimmt, und ob es sich von dem Kennwort in
+	 * dem Feld "altesKennwort" unterscheidet. Wenn im Formular kein Feld mit
+	 * der ID "kennwortWiederholung" existiert, wird eine Warnung angezeigt.
+	 * Wenn im Formular kein Feld mit der ID "altesKennwort" existiert, wird
+	 * eine Warnung angezeigt.
 	 * 
 	 * @param ctx
 	 *            Der FacesContext
@@ -86,23 +90,89 @@ public class RegistrierungBean {
 	 *            Der Wert, der validiert werden soll
 	 * @throws ValidatorException
 	 */
-	public void validiereKennwort(FacesContext ctx, UIComponent component,
-			Object value) throws ValidatorException {
-		String kennwort1 = (String) ((EditableValueHolder) component)
-				.getSubmittedValue();
-		UIComponent parent = component.getParent();
-		List<UIComponent> siblings = parent.getChildren();
-		for (UIComponent sibling : siblings) {
-			if (sibling.getId().equals("kennwort2")) {
-				String kennwort2 = (String) ((EditableValueHolder) sibling)
-						.getSubmittedValue();
-				if (!kennwort1.equals(kennwort2)) {
-					FacesMessage message = new FacesMessage(
-							"Die Kennworte stimmen nicht überein " + value
-									+ " " + kennwort2);
-					throw new ValidatorException(message);
+	public String validiereKennwort(FacesContext facesContext,
+			UIComponent component, Object value) throws ValidatorException {
+		boolean kennwortWiederholungVorhanden = false;
+		boolean altesKennwortVorhanden = false;
+
+		String kennwort = (String) value;
+		if (kennwort != null && !kennwort.equals("")) {
+			UIComponent parent = component.getParent();
+			List<UIComponent> siblings = parent.getChildren();
+			for (UIComponent sibling : siblings) {
+
+				if (sibling.getId().equals("kennwortWiederholung")) {
+					kennwortWiederholungVorhanden = true;
+					String kennwortWiederholung = (String) ((EditableValueHolder) sibling)
+							.getSubmittedValue();
+					if (!kennwort.equals(kennwortWiederholung)) {
+						FacesMessage message = new FacesMessage(
+								FacesMessage.SEVERITY_ERROR,
+								"Kennworte unterschiedlich",
+								"Das Kennwort und die Kennwortwiederholung stimmen nicht überein.");
+						throw new ValidatorException(message);						
+					}else{
+						navNextPage=true;
+						System.out.println("navnextPage setzen");
+					}
+				}
+
+				if (sibling.getId().equals("altesKennwort")) {
+					altesKennwortVorhanden = true;
+					String altesKennwort = (String) ((EditableValueHolder) sibling)
+							.getSubmittedValue();
+					if (kennwort.equals(altesKennwort)) {
+						FacesMessage message = new FacesMessage(
+								FacesMessage.SEVERITY_ERROR,
+								"Kennworte gleich",
+								"Neues und altes Kennwort dürfen nicht übereinstimmen.");
+							throw new ValidatorException(message);
+					}
 				}
 			}
+			if (!altesKennwortVorhanden) {
+				FacesMessage m = new FacesMessage(
+						FacesMessage.SEVERITY_WARN,
+						"Eingabefeld 'altesKennwort' fehlt",
+						"Das Eingabefeld mit der ID 'altesKennwort' ist in dem Formular nicht vorhanden."
+								+ "Die Validierung kann nicht durchgeführt werden.");
+				facesContext.addMessage(null, m);
+			}
+			if (!kennwortWiederholungVorhanden) {
+				FacesMessage m = new FacesMessage(
+						FacesMessage.SEVERITY_WARN,
+						"Eingabefeld 'kennwortWiederholung' fehlt",
+						"Das Eingabefeld mit der ID 'kennwortWiederholung' ist in dem Formular nicht vorhanden."
+								+ "Die Validierung kann nicht durchgeführt werden.");
+				facesContext.addMessage(null, m);
+			}
+		} else {
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
+					"Kennwort-Feld nicht'required'",
+					"Das Kennwort-Feld sollte im View mit dem Attribut 'required' markiert sein");
+			facesContext.addMessage("", message);
+		}
+		return null;
+	}
+
+	/**
+	 * Validiert die E-Mail des Benutzers
+	 * 
+	 * @param context
+	 * @param component
+	 * @param value
+	 * @throws ValidatorException
+	 */
+	public void validateEmail(FacesContext context, UIComponent component,
+			Object value) throws ValidatorException {
+		String.valueOf(value);
+		boolean valid = true;
+
+		if (!valid) {
+			FacesMessage message = new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "Invalid email address",
+					"The email address you entered is not valid.");
+			throw new ValidatorException(message);
 		}
 	}
 
@@ -149,7 +219,12 @@ public class RegistrierungBean {
 			em.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+			
+			
+		}if(navNextPage==true){
+			System.out.println("nav"); 
+			return "index.xhtml";
+		 }
 		return null;
 	}
 
@@ -199,8 +274,8 @@ public class RegistrierungBean {
 			message.setSeverity(FacesMessage.SEVERITY_FATAL);
 			facesContext.addMessage(null, message);
 		}
-		return null;
-	}
+		return "index.xhtml";
+		}
 
 	/**
 	 * Konvertiert das angegebene Byte-Array in eine Zeichenkette mit
@@ -256,5 +331,22 @@ public class RegistrierungBean {
 	 */
 	public void setKennwort(String kennwort) {
 		this.kennwort = kennwort;
+	}
+
+	/**
+	 * Antwortet mit dem Wert des kennwortAlt
+	 * 
+	 * @return the kennwortAlt
+	 */
+	public String getKennwortAlt() {
+		return kennwortAlt;
+	}
+
+	/**
+	 * @param kennwortAlt
+	 *            the kennwortAlt to set
+	 */
+	public void setKennwortAlt(String kennwortAlt) {
+		this.kennwortAlt = kennwortAlt;
 	}
 }

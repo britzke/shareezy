@@ -46,16 +46,12 @@ import org.shareezy.entities.Ressource;
 @Named("GruppenzuordnungBean")
 public class GruppenzuordnungBean {
 
-	private List<Ressource> res;
-
-	private List<Gruppe> grp;
-
 	private EntityManagerFactory emf;
-
 	public EntityManager em;
 	private boolean authenticated;
-
 	private Benutzer benutzer;
+	private Gruppe gruppe;
+	private EntityTransaction tr;
 
 	public GruppenzuordnungBean() {
 		benutzer = new Benutzer();
@@ -70,27 +66,31 @@ public class GruppenzuordnungBean {
 	}
 
 	/**
+	 * Der Datensatz wird durch das select * from Statement als Objekt in der
+	 * Query gespeichert.
+	 * Durch getResultList() wird es in einer Liste vom Typ Ressource gespeichert.
+	 * Es soll geprüft werden ob in der Entität Verfügbarkeiten 
 	 * 
 	 * @return null - immer
 	 */
+	@SuppressWarnings("unchecked")
 	public String mitgliederabfragen() {
+
 		EntityManager em = emf.createEntityManager();
-		EntityTransaction tr = em.getTransaction();
+		tr = em.getTransaction();
 		tr.begin();
-		Gruppe gruppe = new Gruppe();
+		em.persist(benutzer);
 		em.persist(gruppe);
-		/*
-		 * Query qr = em.createQuery(
-		 * "SELECT a.ID FROM Ressource a, b.ID FROM Gruppe b FROM Ressource b "
-		 * );
-		 */
-		Query qr = em
-				.createQuery("SELECT shareezy.RESSOURCEN.ID, shareezy.GRUPPEN.ID FROM shareezy.RESSOURCEN INNER JOIN shareezy.GRUPPEN ON shareezy.GRUPPEN.ID=shareezy.RESSOURCEN.ID;");
-		List<Ressource> abgleich = qr.getResultList();
-		System.out.println(qr);
 		tr.commit();
-		
-		//abgleich.add(index, element);
+		em.close();
+
+		Query qr = em
+				.createQuery("SELECT * from RESSOURCEN, VERFÜGBARKEITEN where ID!=RESSORCEN_ID;");
+		@SuppressWarnings({ "unused" })
+		List<Ressource> res = qr.getResultList();
+		tr.commit();
+
+		// abgleich.add(index, element);
 		/*
 		 * Query qr2 = em.createQuery("SELECT b FROM Gruppe b"); List<Gruppe>
 		 * abgleich2 = qr.getResultList();
