@@ -55,8 +55,8 @@ public class GroupMemberManagerBean implements Serializable {
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	private EntityTransaction t;
-	private final Benutzer user = new Benutzer();
-	private final BenutzerGruppe userGrp = new BenutzerGruppe();
+	private Benutzer user = new Benutzer();
+	private BenutzerGruppe userGroup = new BenutzerGruppe();
 	private List<Ressource> grpDataListe;
 	private List<Ressource> grpAnfListe;
 
@@ -124,14 +124,15 @@ public class GroupMemberManagerBean implements Serializable {
 		em = emf.createEntityManager();
 		t = em.getTransaction();
 		t.begin();
-		em.remove(userGrp);
+		em.remove(userGroup);
 		t.commit();
 		em.close();
 		return null;
 	}
 
 	/**
-	 * Die Methode sendRequest dient dazu eine Anfrage an den Benutzer zu senden
+	 * Die Methode sendRequest dient dazu eine Anfrage an den
+	 * Benutzer zu senden
 	 * <ol>
 	 * <li>
 	 * wird bei Klick auf Ablehnen aufgerufen<br>
@@ -144,16 +145,45 @@ public class GroupMemberManagerBean implements Serializable {
 		em = emf.createEntityManager();
 		t = em.getTransaction();
 		t.begin();
-		em.persist(userGrp);
+		em.persist(userGroup);
 		t.commit();
 		em.close();
 		return null;
 	}
 
 	/**
+	 * @return the user
+	 */
+	public Benutzer getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(Benutzer user) {
+		this.user = user;
+	}
+
+	/**
+	 * @return the userGroup
+	 */
+	public BenutzerGruppe getUserGroup() {
+		return userGroup;
+	}
+
+	/**
+	 * @param userGroup the userGroup to set
+	 */
+	public void setUserGroup(BenutzerGruppe userGroup) {
+		this.userGroup = userGroup;
+	}
+
+	/**
 	 * getGrpAnf hol sich aus der Datenbank die Anfragen der jeweiligen Gruppe
 	 * und listet diese in der View
 	 */
+
 	@SuppressWarnings("unchecked")
 	public void getGrpAnf() {
 		EntityManager em = emf.createEntityManager();

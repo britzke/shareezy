@@ -7,8 +7,6 @@
 
 <h:head>
 	<title>[shareezy] - <ui:insert name="title">ohne Titel</ui:insert></title>
-	<link type="text/css" rel="stylesheet"
-		href="resources/primefaces-yourtheme/theme.css?ln=css" />
 </h:head>
 <h:body>
 	<f:phaseListener type="org.shareezy.DebugPhaseListener" />
@@ -16,10 +14,11 @@
 		<ui:debug hotkey="x"
 			rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
 		<header>
-			<p:layoutUnit position="north">
+			<p:layoutUnit position="north" size="125">
 				<ui:insert name="header">
 					<ui:include src="/WEB-INF/templates/login.xhtml" />
 				</ui:insert>
+				<p:messages autoUpdate="true" />
 			</p:layoutUnit>
 		</header>
 		<section id="menu">
@@ -30,7 +29,7 @@
 						<li><p:commandLink action="index?faces-redirect=true"
 								value="Home" /></li>
 						<li><p:commandLink
-								action="AccountBearbeiten?faces-redirect=true"
+								action="accountBearbeiten?faces-redirect=true"
 								value="Konto bearbeiten" /></li>
 						<li><p:commandLink
 								action="ressourcenList?faces-redirect=true"
@@ -38,9 +37,6 @@
 						<li><p:commandLink
 								action="ressourcenVerwaltung?faces-redirect=true"
 								value="Ressourcenverwaltung" /></li>
-						<li><p:commandLink action="detailAnsicht?faces-redirect=true"
-								value="detailRessourcenAnsicht" /></li>
-						<!-- <li><p:commandLink action="gruppen" value="Gruppen" /></li> -->
 					</ul>
 				</h:form>
 			</p:layoutUnit>
