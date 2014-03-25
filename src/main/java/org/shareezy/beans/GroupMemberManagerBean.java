@@ -129,9 +129,10 @@ public class GroupMemberManagerBean implements Serializable {
 		em.close();
 		return null;
 	}
-	
+
 	/**
-	 * Die Methode sendRequest dient dazu eine Anfrage an den Benutzer zu senden
+	 * Die Methode sendRequest dient dazu eine Anfrage an den
+	 * Benutzer zu senden
 	 * <ol>
 	 * <li>
 	 * wird bei Klick auf Ablehnen aufgerufen<br>
