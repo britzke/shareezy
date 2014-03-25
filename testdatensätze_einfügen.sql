@@ -1,8 +1,8 @@
 SET SCHEMA SHAREEZY
 go
-
+delete from BENUTZER where id=1;
 INSERT INTO BENUTZER(ID,KURZNAME, EMAIL, KENNWORTHASH, VORNAME, NACHNAME, REGISTRATION, VALIDATIONHASH)
-values(1,'musterbenutzer','muster@gmail.com','cec87c7d4f786fa96f67ef161bad3754', 'Max', 'Musterman', '2011-03-17 15:52:25', 'HASH zur Validierung');
+values(1,'musterbenutzer','muster@gmail.com','CEC87C7D4F786FA96F67EF161BAD3754', 'Max', 'Musterman', '2011-03-17 15:52:25', 'HASH zur Validierung');
 /* Der validationHash ist der Hashwert, der zur Validierung der E-Mailadresse während der Registrierung verwendet wird */
 
 INSERT INTO TYPEN values (1,'Testtyp Ressource');

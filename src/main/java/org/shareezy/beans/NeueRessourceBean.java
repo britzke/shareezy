@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+
 import org.shareezy.entities.Ressource;
 import org.shareezy.entities.Typ;
 
@@ -23,9 +23,7 @@ import org.shareezy.entities.Typ;
 @Named("neueRessourcenBean")
 public class NeueRessourceBean {
 
-	/**
-	 * 
-	 */
+
 	@Inject
 	private EntityManagerFactory emf;
 	private Ressource ressource;
@@ -35,44 +33,32 @@ public class NeueRessourceBean {
 	
 	/**
 	 * Die init() Methode dient zum erzeugen des ressource Objekts, das mit
-	 * Inhalten befüllt wird
-	 * 
-	 */
-	@PostConstruct
-	public void init() {
-
-		em = emf.createEntityManager();
-		EntityTransaction ent = em.getTransaction();
-		ent.begin();
-		ressource = new Ressource();
-		em.persist(ressource);
-		ladeTyp();
-		ent.commit();
-		em.close();
-		this.typ = typListe.get(0);
-	}
-
-	/**
-	 * Lädt die Typen aus der Datenbank
+	 * Inhalten befüllt wird und ruft ladeTyp() auf
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
-	public void ladeTyp() {
+	@PostConstruct
+	public void init() {
 		
+		ressource = new Ressource();
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
 		Query query = em.createQuery("SELECT t FROM Typ t");
 		typListe = query.getResultList();
-	}
+		this.typ = typListe.get(0);
+		em.close();
+	} 
 
 	/**
 	 * In der speichern Methode wird das ressorce Objekt befüllt und mit
 	 * setTyp() der ausgewählte Typ zugeordnet
 	 */
 	public String speichern() {
-
+		
 		em = emf.createEntityManager();
 		em.getTransaction().begin();
 		ressource.setTyp(typ);
-		em.merge(ressource);
+		em.persist(ressource);
 		em.getTransaction().commit();
 		em.close();
 

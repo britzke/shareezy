@@ -57,7 +57,6 @@ import org.shareezy.entities.Benutzer;
 @RequestScoped
 @Named
 public class BenutzerBean {
-	static final char[] HEX_DIGIT = "0123456789ABCDEF".toCharArray();
 
 	@Inject
 	private EntityManagerFactory emf;
@@ -65,7 +64,6 @@ public class BenutzerBean {
 	private Benutzer benutzer;
 	private String kennwort;
 	private String kennwortAlt;
-	private boolean navNextPage;
 
 	/**
 	 * Erzeugt eine neue RegistrierungBean. Initialisiert den Benutzer.
@@ -90,7 +88,7 @@ public class BenutzerBean {
 	 *            Der Wert, der validiert werden soll
 	 * @throws ValidatorException
 	 */
-	public String validiereKennwort(FacesContext facesContext,
+	public void validiereKennwort(FacesContext facesContext,
 			UIComponent component, Object value) throws ValidatorException {
 		boolean kennwortWiederholungVorhanden = false;
 		boolean altesKennwortVorhanden = false;
@@ -110,10 +108,7 @@ public class BenutzerBean {
 								FacesMessage.SEVERITY_ERROR,
 								"Kennworte unterschiedlich",
 								"Das Kennwort und die Kennwortwiederholung stimmen nicht überein.");
-						throw new ValidatorException(message);						
-					}else{
-						navNextPage=true;
-						System.out.println("navnextPage setzen");
+						throw new ValidatorException(message);
 					}
 				}
 
@@ -126,7 +121,7 @@ public class BenutzerBean {
 								FacesMessage.SEVERITY_ERROR,
 								"Kennworte gleich",
 								"Neues und altes Kennwort dürfen nicht übereinstimmen.");
-							throw new ValidatorException(message);
+						throw new ValidatorException(message);
 					}
 				}
 			}
@@ -152,7 +147,6 @@ public class BenutzerBean {
 					"Das Kennwort-Feld sollte im View mit dem Attribut 'required' markiert sein");
 			facesContext.addMessage("", message);
 		}
-		return null;
 	}
 
 	/**
@@ -202,7 +196,7 @@ public class BenutzerBean {
 
 			byte[] bytesOfDigestSource = kennwort.getBytes("UTF-8");
 			byte[] digest = md.digest(bytesOfDigestSource);
-			benutzer.setKennwortHash(hexDigitString(digest));
+			benutzer.setKennwortHash(Benutzer.hexDigitString(digest));
 
 			String digestSource = "" + benutzer.getRegistration()
 					+ benutzer.getVorname() + benutzer.getNachname()
@@ -210,7 +204,7 @@ public class BenutzerBean {
 			bytesOfDigestSource = digestSource.getBytes("UTF-8");
 			digest = md.digest(bytesOfDigestSource);
 
-			benutzer.setValidationHash(hexDigitString(digest));
+			benutzer.setValidationHash(Benutzer.hexDigitString(digest));
 			EntityManager em = emf.createEntityManager();
 			EntityTransaction et = em.getTransaction();
 			et.begin();
@@ -219,12 +213,8 @@ public class BenutzerBean {
 			em.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			
-			
-		}if(navNextPage==true){
-			System.out.println("nav"); 
-			return "index.xhtml";
-		 }
+
+		}
 		return null;
 	}
 
@@ -253,7 +243,6 @@ public class BenutzerBean {
 			message.setRecipients(Message.RecipientType.TO, addresses);
 			message.setSubject("[shareezy] Validierung der Registrierung");
 
-			// TODO check validationHash (nach ascii konvertieren)
 			String validationUrl = externalContext.getRequestPathInfo()
 					+ benutzer.getValidationHash();
 
@@ -275,24 +264,6 @@ public class BenutzerBean {
 			facesContext.addMessage(null, message);
 		}
 		return "index.xhtml";
-		}
-
-	/**
-	 * Konvertiert das angegebene Byte-Array in eine Zeichenkette mit
-	 * hexadezimalen Ziffern.
-	 * 
-	 * @param bytes
-	 *            das zu konvertierende Byte-Array
-	 * @return Hexadezimale Zeichenkette mit des Byte-Array
-	 */
-	private String hexDigitString(byte[] bytes) {
-		char[] hexChars = new char[bytes.length * 2];
-		for (int j = 0; j < bytes.length; j++) {
-			int v = bytes[j] & 0xFF;
-			hexChars[j * 2] = HEX_DIGIT[v >>> 4];
-			hexChars[j * 2 + 1] = HEX_DIGIT[v & 0x0F];
-		}
-		return new String(hexChars);
 	}
 
 	/**

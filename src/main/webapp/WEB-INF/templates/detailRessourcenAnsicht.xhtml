@@ -28,11 +28,10 @@
 		
 	<h:form>
 		<h3><h:outputText value="#{aktuelleRessourceBean.ressource.name}"/></h3>
-		
-		<p:panelGrid columns="3" style="margin-top:30px;border:none" >
+		<p:panelGrid columns="3">
 		<p:graphicImage value="{aktuelleRessourceBean.ressource.bild}" />
 		<h:graphicImage url="testbild.jpg" width="160" height="160" />
-		<p:panelGrid columns="3" style="margin-left:30px;margin-top:-80px">
+		<p:panelGrid columns="1">
 		<h:outputText value="#{aktuelleRessourceBean.ressource.beschreibung}"/>
 		</p:panelGrid>
 		<br/><br/>

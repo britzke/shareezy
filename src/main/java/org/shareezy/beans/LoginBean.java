@@ -19,8 +19,12 @@
  */
 package org.shareezy.beans;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -41,6 +45,7 @@ import org.shareezy.entities.Benutzer;
  * @author burghard.britzke bubi@charmides.in-berlin.de
  */
 @Named
+@RequestScoped
 public class LoginBean {
 
 	@Inject
@@ -49,29 +54,15 @@ public class LoginBean {
 	@Inject
 	FacesContext facesContext;
 
-	private final Benutzer benutzer;
-	private boolean authenticated;
+	@Inject
+	BenutzerStatus benutzerStatus;
 
-	private String benutzername = "";
-	private String kennwort = "";
+	private String benutzername;
+	private String kennwort;
 
 	public LoginBean() {
-		benutzer = new Benutzer();
-	}
-
-	/**
-	 * @return the authenticated
-	 */
-	public boolean isAuthenticated() {
-		return authenticated;
-	}
-
-	/**
-	 * @param authenticated
-	 *            the authenticated to set
-	 */
-	public void setAuthenticated(boolean authenticated) {
-		this.authenticated = authenticated;
+		kennwort = "";
+		benutzername = "";
 	}
 
 	/**
@@ -83,30 +74,56 @@ public class LoginBean {
 	 */
 	@SuppressWarnings("unchecked")
 	public String login() {
-		EntityManager em = emf.createEntityManager();
-		Query q = em
-				.createQuery("select b.kurzname,b.kennwortHash from Benutzer b where b.kurzname= :kurzname and b.kennwortHash= :kennwortHash");
-		q.setParameter("kurzname", benutzer.getKurzname());
-		q.setParameter("kennwortHash", benutzer.getKennwortHash());
-		List<Benutzer> benutzerList = q.getResultList();
-		for (Benutzer b : benutzerList) {
-			if (b.getKurzname().equals(benutzer.getKurzname())
-					&& b.getKennwortHash().equals(benutzer.getKennwortHash())) {
-				setAuthenticated(true);
-				break;
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+
+			byte[] bytesOfDigestSource = kennwort.getBytes("UTF-8");
+			byte[] digest = md.digest(bytesOfDigestSource);
+			String hexStringDiggest = Benutzer.hexDigitString(digest);
+
+			EntityManager em = emf.createEntityManager();
+			Query q = em
+					.createQuery("select b.kurzname,b.kennwortHash from Benutzer b where b.kurzname= :kurzname and b.kennwortHash= :kennwortHash");
+			q.setParameter("kurzname", benutzername);
+			q.setParameter("kennwortHash", hexStringDiggest);
+			List<Benutzer> benutzerList = q.getResultList();
+			if (benutzerList != null && !benutzerList.isEmpty()) {
+				benutzerStatus.setAuthenticated(true);
 			}
+			em.close();
+		} catch (NoSuchAlgorithmException e) {
+			FacesMessage message = new FacesMessage(
+					"Keine UTF-8 Unterstützung",
+					"Das UTF-8 Encoding wird auf diesem System nicht unterstützt'.");
+			facesContext.addMessage(null, message);
+
+		} catch (UnsupportedEncodingException e) {
+			FacesMessage message = new FacesMessage("Kein MD5 Algorithmus",
+					"Auf diesem System existiert keine Implementierung des MD5-Algorithmus'.");
+			facesContext.addMessage(null, message);
 		}
-		em.close();
-		if (!authenticated) {
+		if (!benutzerStatus.isAuthenticated()) {
 			FacesMessage message = new FacesMessage("Anmeldung fehlgeschlagen",
 					"Die Kombination aus 'Name' und 'Kennwort' passt nicht.");
-			facesContext.addMessage("Anmeldung Fehlgeschlagen", message);
+			facesContext.addMessage(null, message);
 		}
+		return null;
+	}
+
+	/**
+	 * Meldet den Benutzer ab.
+	 * 
+	 * @return null - immer
+	 */
+	public String logout() {
+		benutzerStatus.setAuthenticated(false);
 		return null;
 	}
 
 	// ++++++++++++++++ Getter & Setter +++++++++++++++++++++++
 	/**
+	 * Antwortet mit dem Wert des benutzername
+	 * 
 	 * @return the benutzername
 	 */
 	public String getBenutzername() {
