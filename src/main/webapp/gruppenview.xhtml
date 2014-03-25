@@ -20,7 +20,7 @@
 					<p:dataTable var="ressourcen" value="#{memberManager.grpDataListe}">
 						<p:column headerText="Gruppen Ressourcen" sortBy="ressourcen">
 							<!-- Ressourcen auflisten -->
-							<h:outputText value="#{ressourcen.getRessourcens()}" />
+							<h:outputText value="#{ressourcen.getRessourcens}" />
 						</p:column>
 
 						<p:column>
@@ -44,7 +44,7 @@
 
 						<p:column headerText="Gruppen User" sortBy="user">
 							<!-- Benutzer auflisten -->
-							<h:outputText value="#{user.getBenutzers()}" />
+							<h:outputText value="#{user.getBenutzers}" />
 						</p:column>
 					</p:dataTable>
 
@@ -60,9 +60,9 @@
 
 						<p:column headerText="Benutzer Anfragen" sortBy="requests">
 							<!-- Requests auflisten -->
-							<h:outputText value="#{requests.getBenutzerId()}" />
-							<h:outputText value="#{requests.getGruppenId()}" />
-							<h:outputText value="#{requests.isBestätigt()}" />
+							<h:outputText value="#{requests.getBenutzerId}" />
+							<h:outputText value="#{requests.getGruppenId}" />
+							<h:outputText value="#{requests.isBestätigt}" />
 						</p:column>
 					</p:dataTable>
 
