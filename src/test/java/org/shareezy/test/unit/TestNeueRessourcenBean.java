@@ -111,7 +111,7 @@ public class TestNeueRessourcenBean {
 		proband.init();
 		assertNotNull(proband.getRessource());
 		verify(emf).createEntityManager();
-		verify(em).getTransaction();
+		verify(em, times(2)).getTransaction();
 		verify(em).close();
 	}
 	
