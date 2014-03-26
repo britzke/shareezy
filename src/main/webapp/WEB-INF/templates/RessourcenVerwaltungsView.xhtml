@@ -4,33 +4,29 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<h:form>
 <h:head>
 </h:head>
-<h:body>
-
-	<p:panelGrid columns="2">
-		<p:outputLabel value="Beschreibung:" />
-		<p:inputTextarea value="#{neueRessourcenBean.ressource.beschreibung}" />
-		<p:outputLabel value="Enddatum:" />
-		<p:calendar value="#{neueRessourcenBean.ressource.enddatum}"
-			pattern="MM/dd/yyyy" />
-		<p:outputLabel value="Name:" />
-		<p:inputText value="#{neueRessourcenBean.ressource.name}" />
-		<p:outputLabel value="Startdatum:" />
-
-		<p:calendar value="#{neueRessourcenBean.ressource.startdatum}"
-			pattern="MM/dd/yyyy" />
-
-	<p:selectOneMenu value="#{neueRessourcenBean.typ.name}">
-			<f:selectItems value="#{neueRessourcenBean.typListe}" var="typ"
-				itemLabel="#{typ.name}" itemValue="#{typ.id}" />
-		</p:selectOneMenu> 
-		
-		<p:commandButton value="Ressource veröffentlichen"
-			action="#{neueRessourcenBean.speichern}" update="@form"/>
-	</p:panelGrid>
-	
-</h:body>
+<h:form>
+	<h:body>
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Name:" />
+			<p:inputText value="#{neueRessourcenBean.ressource.name}" />
+			<p:outputLabel value="Beschreibung:" />
+			<p:inputTextarea value="#{neueRessourcenBean.ressource.beschreibung}" />
+			<p:outputLabel value="Startdatum:" />
+			<p:calendar value="#{neueRessourcenBean.ressource.startdatum}"
+				pattern="dd.MM.yyyy" />
+			<p:outputLabel value="Enddatum:" />
+			<p:calendar value="#{neueRessourcenBean.ressource.enddatum}"
+				pattern="dd.MM.yyyy" />
+			<p:outputLabel value="Typ: " />
+			<p:selectOneMenu>
+				<f:selectItems value="#{neueRessourcenBean.typListe}" var="typ"
+					itemLabel="#{typ.name}" itemValue="#{typ.id}" />
+			</p:selectOneMenu>
+			<p:commandButton value="Ressource veröffentlichen"
+				action="#{neueRessourcenBean.speichern}" update="@form" />
+		</p:panelGrid>
+	</h:body>
 </h:form>
 </html>
