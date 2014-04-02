@@ -61,6 +61,8 @@ public class BenutzerBean {
 	@Inject
 	private EntityManagerFactory emf;
 
+	@Inject
+	private FacesContext facesContext;
 	private Benutzer benutzer;
 	private String kennwort;
 	private String kennwortAlt;
@@ -211,9 +213,11 @@ public class BenutzerBean {
 			em.persist(benutzer);
 			et.commit();
 			em.close();
+			validierungsEmail(facesContext);
 		} catch (Exception e) {
+			facesContext.addMessage(null, new FacesMessage(
+					"Registrierung fehlgeschlagen", e.getLocalizedMessage()));
 			e.printStackTrace();
-
 		}
 		return null;
 	}
@@ -243,7 +247,13 @@ public class BenutzerBean {
 			message.setRecipients(Message.RecipientType.TO, addresses);
 			message.setSubject("[shareezy] Validierung der Registrierung");
 
-			String validationUrl = externalContext.getRequestPathInfo()
+			String validationUrl = externalContext.getRequestScheme()
+					+ "://"
+					+ externalContext.getRequestServerName()
+					+ ((externalContext.getRequestServerPort() != 80) ? ":"
+							+ +externalContext.getRequestServerPort() : "")
+					+ externalContext.getRequestContextPath() + "/"
+					+ externalContext.getRequestServletPath() + "/"
 					+ benutzer.getValidationHash();
 
 			message.setText("Hallo,\r"
