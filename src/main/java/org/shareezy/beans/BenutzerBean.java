@@ -213,7 +213,7 @@ public class BenutzerBean {
 			em.persist(benutzer);
 			et.commit();
 			em.close();
-			validierungsEmail(facesContext);
+			validierungsEmail();
 		} catch (Exception e) {
 			facesContext.addMessage(null, new FacesMessage(
 					"Registrierung fehlgeschlagen", e.getLocalizedMessage()));
@@ -231,7 +231,7 @@ public class BenutzerBean {
 	 *            Der Context der JSF-Infrastruktur
 	 * @return null da kein Seitenwechsel stattfindet.
 	 */
-	public String validierungsEmail(FacesContext facesContext) {
+	public String validierungsEmail() {
 
 		ExternalContext externalContext = facesContext.getExternalContext();
 		try {
