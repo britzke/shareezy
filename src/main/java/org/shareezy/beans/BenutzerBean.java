@@ -252,7 +252,7 @@ public class BenutzerBean {
 					+ externalContext.getRequestServerName()
 					+ ((externalContext.getRequestServerPort() != 80) ? ":"
 							+ +externalContext.getRequestServerPort() : "")
-					+ externalContext.getRequestContextPath() + "/"
+					+ externalContext.getRequestContextPath()
 					+ externalContext.getRequestServletPath() + "/"
 					+ benutzer.getValidationHash();
 
