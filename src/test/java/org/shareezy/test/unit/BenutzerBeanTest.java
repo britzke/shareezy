@@ -105,6 +105,9 @@ public class BenutzerBeanTest {
 		field.set(proband, emf);
 
 		facesContext = new MockFacesContext();
+		field = clazz.getDeclaredField("facesContext");
+		field.setAccessible(true);
+		field.set(proband, facesContext);
 
 		kennwort = new HtmlInputSecret();
 		kennwort.setId("kennwort");
@@ -252,10 +255,32 @@ public class BenutzerBeanTest {
 	 * Test method for
 	 * {@link org.shareezy.beans.RegestrierungsBean#datensatzEinfügen()}.
 	 * Testet, ob ein Datensatz eingefügt wird.
+	 * 
+	 * @throws SecurityException
+	 * @throws NoSuchFieldException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
 	 */
 	@Test
-	public void testDatensatzEinfügen() {
+	public void testDatensatzEinfügen() throws NoSuchFieldException,
+			SecurityException, IllegalArgumentException, IllegalAccessException {
+		FacesContext facesContext = org.mockito.Mockito
+				.mock(FacesContext.class);
 
+		ExternalContext externalContext = org.mockito.Mockito
+				.mock(ExternalContext.class);
+		org.mockito.Mockito.when(facesContext.getExternalContext()).thenReturn(
+				externalContext);
+
+		ServletContext servletContext = org.mockito.Mockito
+				.mock(ServletContext.class);
+		org.mockito.Mockito.when(externalContext.getContext()).thenReturn(
+				servletContext);
+
+		Class<? extends BenutzerBean> clazz = proband.getClass();
+		Field field = clazz.getDeclaredField("facesContext");
+		field.setAccessible(true);
+		field.set(proband, facesContext);
 		String antwort = proband.datensatzEinfügen();
 
 		assertNull("Die Antwort muss null sein", antwort);
@@ -300,10 +325,15 @@ public class BenutzerBeanTest {
 		org.mockito.Mockito.when(externalContext.getContext()).thenReturn(
 				servletContext);
 
+		Class<? extends BenutzerBean> clazz = proband.getClass();
+		Field field = clazz.getDeclaredField("facesContext");
+		field.setAccessible(true);
+		field.set(proband, facesContext);
+
 		mockStatic(Session.class);
 		mockStatic(Transport.class);
 
-		String antwort = proband.validierungsEmail(facesContext);
+		String antwort = proband.validierungsEmail();
 
 		assertNull("Die Antwort muss 'null' sein", antwort);
 		verify(facesContext).getExternalContext();
